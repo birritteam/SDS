@@ -268,6 +268,7 @@
       <DependentUpon>sdsModel.edmx</DependentUpon>
       <LastGenOutput>sdsModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\ajaxFunctions.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\sdsModel.edmx">
