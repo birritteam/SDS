@@ -1,0 +1,99 @@
+﻿@model SDS_SanadDistributedSystem.Models.family
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>family</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.familynature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.familynature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.personcount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.personcount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastaddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastaddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.currentaddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.currentaddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.displacementdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.displacementdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.phone2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AspNetUser.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idfamily }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
