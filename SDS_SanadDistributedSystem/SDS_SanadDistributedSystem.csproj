@@ -180,8 +180,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\familiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\peopleController.cs" />
+    <Compile Include="Controllers\temporalsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -323,6 +326,21 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\families\Index.cshtml" />
+    <Content Include="Views\people\Index.cshtml" />
+    <Content Include="Views\temporals\Create.cshtml" />
+    <Content Include="Views\temporals\Delete.cshtml" />
+    <Content Include="Views\temporals\Details.cshtml" />
+    <Content Include="Views\temporals\Edit.cshtml" />
+    <Content Include="Views\temporals\Index.cshtml" />
+    <Content Include="Views\families\Create.cshtml" />
+    <Content Include="Views\families\Delete.cshtml" />
+    <Content Include="Views\families\Details.cshtml" />
+    <Content Include="Views\families\Edit.cshtml" />
+    <Content Include="Views\people\Create.cshtml" />
+    <Content Include="Views\people\Delete.cshtml" />
+    <Content Include="Views\people\Details.cshtml" />
+    <Content Include="Views\people\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

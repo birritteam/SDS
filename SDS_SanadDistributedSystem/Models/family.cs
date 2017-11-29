@@ -32,6 +32,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string phone2 { get; set; }
         public string note { get; set; }
         public string iduser { get; set; }
+        public string lastname { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

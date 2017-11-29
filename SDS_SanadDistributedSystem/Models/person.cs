@@ -44,6 +44,7 @@ namespace SDS_SanadDistributedSystem.Models
         public Nullable<int> formnumber { get; set; }
         public string note { get; set; }
         public string iduser { get; set; }
+        public string nationalnumber { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual center center { get; set; }

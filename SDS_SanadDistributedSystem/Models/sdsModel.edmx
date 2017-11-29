@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="sds_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="sds_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -82,6 +82,7 @@
           </Key>
           <Property Name="idfamily" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="familynature" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="personcount" Type="int" />
           <Property Name="lastaddress" Type="varchar" MaxLength="100" />
           <Property Name="currentaddress" Type="varchar" MaxLength="100" />
@@ -122,6 +123,7 @@
           <Property Name="idperson" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="fname" Type="varchar" MaxLength="20" />
           <Property Name="lname" Type="varchar" MaxLength="20" />
+          <Property Name="nationalnumber" Type="varchar" MaxLength="11" />
           <Property Name="fathername" Type="varchar" MaxLength="30" />
           <Property Name="mothername" Type="varchar" MaxLength="30" />
           <Property Name="birthday" Type="date" />
@@ -747,8 +749,7 @@
             <End Role="roles_services" EntitySet="roles_services" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sds_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -857,6 +858,7 @@
           <NavigationProperty Name="people" Relationship="Self.FK_person_family" FromRole="family" ToRole="person" />
           <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_family" FromRole="family" ToRole="referalfamily" />
           <NavigationProperty Name="managelists" Relationship="Self.familymanage" FromRole="family" ToRole="managelist" />
+          <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="managelist">
           <Key>
@@ -910,6 +912,7 @@
           <NavigationProperty Name="family" Relationship="Self.FK_person_family" FromRole="person" ToRole="family" />
           <NavigationProperty Name="personmanages" Relationship="Self.FK_personmanage_person" FromRole="person" ToRole="personmanage" />
           <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_person" FromRole="person" ToRole="referalperson" />
+          <Property Name="nationalnumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="personmanage">
           <Key>
@@ -1521,6 +1524,7 @@
           <EntitySetMapping Name="families">
             <EntityTypeMapping TypeName="sds_dbModel.family">
               <MappingFragment StoreEntitySet="family">
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
                 <ScalarProperty Name="idfamily" ColumnName="idfamily" />
                 <ScalarProperty Name="familynature" ColumnName="familynature" />
                 <ScalarProperty Name="personcount" ColumnName="personcount" />
@@ -1555,6 +1559,7 @@
           <EntitySetMapping Name="people">
             <EntityTypeMapping TypeName="sds_dbModel.person">
               <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="nationalnumber" ColumnName="nationalnumber" />
                 <ScalarProperty Name="idperson" ColumnName="idperson" />
                 <ScalarProperty Name="fname" ColumnName="fname" />
                 <ScalarProperty Name="lname" ColumnName="lname" />
