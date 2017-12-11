@@ -91,6 +91,8 @@
           <Property Name="phone2" Type="varchar" MaxLength="15" />
           <Property Name="note" Type="text" />
           <Property Name="iduser" Type="nvarchar" MaxLength="128" />
+          <Property Name="phone1owner" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone2owner" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="familymanage">
           <Key>
@@ -138,7 +140,7 @@
           <Property Name="phone1" Type="varchar" MaxLength="20" />
           <Property Name="phone2" Type="varchar" MaxLength="20" />
           <Property Name="currentaddress" Type="varchar" MaxLength="100" />
-          <Property Name="registrationdate" Type="date" />
+          <Property Name="registrationdate" Type="datetimeoffset" Precision="7" />
           <Property Name="idfamily_FK" Type="varchar" MaxLength="20" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" />
           <Property Name="formnumber" Type="int" />
@@ -213,6 +215,7 @@
           <Property Name="idservice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idcase_FK" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="enabled" Type="bit" />
         </EntityType>
         <EntityType Name="temporal">
           <Key>
@@ -859,6 +862,8 @@
           <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_family" FromRole="family" ToRole="referalfamily" />
           <NavigationProperty Name="managelists" Relationship="Self.familymanage" FromRole="family" ToRole="managelist" />
           <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="phone1owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone2owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="managelist">
           <Key>
@@ -901,7 +906,7 @@
           <Property Name="phone1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="phone2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="currentaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="registrationdate" Type="DateTime" Precision="0" />
+          <Property Name="registrationdate" Type="DateTimeOffset" />
           <Property Name="idfamily_FK" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="formnumber" Type="Int32" />
@@ -990,6 +995,7 @@
           <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_service" FromRole="service" ToRole="referalfamily" />
           <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_service" FromRole="service" ToRole="referalperson" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.roles_services" FromRole="service" ToRole="AspNetRoles" />
+          <Property Name="enabled" Type="Boolean" />
         </EntityType>
         <EntityType Name="temporal">
           <Key>
@@ -1524,6 +1530,8 @@
           <EntitySetMapping Name="families">
             <EntityTypeMapping TypeName="sds_dbModel.family">
               <MappingFragment StoreEntitySet="family">
+                <ScalarProperty Name="phone2owner" ColumnName="phone2owner" />
+                <ScalarProperty Name="phone1owner" ColumnName="phone1owner" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />
                 <ScalarProperty Name="idfamily" ColumnName="idfamily" />
                 <ScalarProperty Name="familynature" ColumnName="familynature" />
@@ -1640,6 +1648,7 @@
           <EntitySetMapping Name="services">
             <EntityTypeMapping TypeName="sds_dbModel.service">
               <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
                 <ScalarProperty Name="idservice" ColumnName="idservice" />
                 <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
                 <ScalarProperty Name="name" ColumnName="name" />

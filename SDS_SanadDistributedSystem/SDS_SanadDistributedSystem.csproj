@@ -183,6 +183,7 @@
     <Compile Include="Controllers\familiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\managelistsController.cs" />
     <Compile Include="Controllers\peopleController.cs" />
     <Compile Include="Controllers\temporalsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -285,6 +286,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -342,6 +345,11 @@
     <Content Include="Views\people\Delete.cshtml" />
     <Content Include="Views\people\Details.cshtml" />
     <Content Include="Views\people\Edit.cshtml" />
+    <Content Include="Views\managelists\Create.cshtml" />
+    <Content Include="Views\managelists\Delete.cshtml" />
+    <Content Include="Views\managelists\Details.cshtml" />
+    <Content Include="Views\managelists\Edit.cshtml" />
+    <Content Include="Views\managelists\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

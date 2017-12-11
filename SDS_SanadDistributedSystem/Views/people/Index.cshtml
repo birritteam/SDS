@@ -91,7 +91,7 @@
             @Html.DisplayNameFor(model => model.center.name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.family.familynature)
+            @Html.DisplayNameFor(model => model.family.idfamily)
         </th>
         <th></th>
     </tr>
@@ -165,7 +165,7 @@
             @Html.DisplayFor(modelItem => item.center.name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.family.familynature)
+            @Html.DisplayFor(modelItem => item.family.idfamily)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.idperson }) |

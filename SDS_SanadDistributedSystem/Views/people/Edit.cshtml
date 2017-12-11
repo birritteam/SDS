@@ -7,7 +7,6 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -68,40 +67,40 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+            <div class="col-md-10">         
+                @foreach (string item in ViewBag.genderOptions)
+                {
+                    @Html.RadioButtonFor(model => model.gender, item)
+                    @Html.Label(item, new {@for=item})
+                }
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.nationality, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.nationality, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.nationality, "", new { @class = "text-danger" })
+                @Html.DropDownList("nationality", new SelectList(ViewBag.nationalityOptions), htmlAttributes: new { @class = "form-control" })
             </div>
-        </div>
+        </div>  
 
         <div class="form-group">
             @Html.LabelFor(model => model.martial, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.martial, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.martial, "", new { @class = "text-danger" })
+                @Html.DropDownList("martial", new SelectList(ViewBag.martialOptions), htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.relationtype, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.relationtype, "", new { @class = "text-danger" })
+                @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtype), htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.onoffflag, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.onoffflag, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.onoffflag, new { htmlAttributes = new { @class = "form-control" ,@readonly = true} })
                 @Html.ValidationMessageFor(model => model.onoffflag, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -109,15 +108,18 @@
         <div class="form-group">
             @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.education, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.education, "", new { @class = "text-danger" })
+                @Html.DropDownList("education", new SelectList(ViewBag.education), htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.educationstate, new { htmlAttributes = new { @class = "form-control" } })
+                @foreach (string item in ViewBag.educationstate)
+                {
+                    @Html.RadioButtonFor(model => model.educationstate, item)
+                    @Html.Label(item, new { @for = item })
+                }
                 @Html.ValidationMessageFor(model => model.educationstate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -149,31 +151,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.registrationdate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.registrationdate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.registrationdate, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
                 @Html.ValidationMessageFor(model => model.registrationdate, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idfamily_FK, "idfamily_FK", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idfamily_FK", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idfamily_FK, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <input type="hidden" name="idfamily_FK" id="idfamily_FK" value="@Model.idfamily_FK"/>
+        <input type="hidden" name="idcenter_FK" id="idcenter_FK" value="@Model.idcenter_FK" />
+        <input type="hidden" name="iduser" id="iduser" value="@Model.iduser" />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idcenter_FK, "idcenter_FK", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idcenter_FK", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
-            </div>
-        </div>
+     
 
         <div class="form-group">
             @Html.LabelFor(model => model.formnumber, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.formnumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.formnumber, new { htmlAttributes = new { @class = "form-control", @readonly = true} })
                 @Html.ValidationMessageFor(model => model.formnumber, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -186,11 +178,18 @@
             </div>
         </div>
 
+
         <div class="form-group">
-            @Html.LabelFor(model => model.iduser, "iduser", htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">العمل الحالي</label>
             <div class="col-md-10">
-                @Html.DropDownList("iduser", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.iduser, "", new { @class = "text-danger" })
+                @Html.DropDownList("currentWorkID", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">العمل السابق</label>
+            <div class="col-md-10">
+                @Html.DropDownList("previousWorkID", null, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
 
@@ -203,12 +202,38 @@
         </div>
 
         <div class="form-group">
+            <label class="control-label col-md-2">طريقة التعرف على المركز</label>
+            <div class="col-md-10">
+                @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+       <div class="form-group">
+           @foreach (var weakness in ViewBag.weaknesses)
+           {
+               foreach (var item in weakness)
+               {
+
+                   if (ViewBag.selectedML.Contains(item.idmanagelist))
+                   {
+                       <input type="checkbox" name="weaknesses" value="@item.idmanagelist" checked="checked" /> @item.name <br />
+                   }
+                   else
+                   {
+                       <input type="checkbox" name="weaknesses" value="@item.idmanagelist" /> @item.name <br />
+                   }
+               }
+           }
+       </div>
+        
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
-    </div>
-}
+        </div>
+        }
 
 <div>
     @Html.ActionLink("Back to List", "Index")

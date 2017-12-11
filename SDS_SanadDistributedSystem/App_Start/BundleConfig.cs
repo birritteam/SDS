@@ -13,7 +13,7 @@ namespace SDS_SanadDistributedSystem
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*",
-                        "~/Scripts/jquery.validate.unobtrusive.min.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.min.js",
                         "~/Scripts/ajaxFunctions.js"
                         ));
 

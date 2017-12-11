@@ -8,25 +8,29 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Ajax.BeginForm("Create","people",
+    new AjaxOptions { OnSuccess= "SuccessLoadForPerson", OnFailure = "FailureLoadForPerson" }, new  {@id= "personCreationForm" }))
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
+    <div class="form-horizontal" >
         <h4>person</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            موقع الشخص ضمن العائلة:
+            <label class = "control-label col-md-2">موقع الشخص ضمن العائلة:</label>
             <div class="col-md-10">
-                <select class="form-control" id="personPositionSelect">
+                @*<input type="radio" id="personPositionSelect" name="personPositionSelect" value="H" />زوج
+                <input type="radio" id="personPositionSelect" name="personPositionSelect" value="W" />زوجة
+                <input type="radio" id="personPositionSelect" name="personPositionSelect" value="C" />ابن(ة)*@
+
+                <select class="form-control" id="personPositionSelect" dir="rtl">
                     <option></option>
                     <option value="H">زوج</option>
                     <option value="W">زوجة</option>
                     <option value="C">ولد</option>
                 </select>
-
                 
                 <input type="number" id="wifeOrder" class="form-control hidden"  min="1" max="4" />
                 <input type="number" id="childOrder"  class="hidden form-control" min="1" max="20" />
@@ -93,55 +97,60 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.gender, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                    @foreach (string item in ViewBag.genderOptions)
+                    {
+                        @Html.RadioButtonFor(model => model.gender, item)
+                        @Html.Label(item, new { @for = item })
+                    }                 
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.nationality, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.nationality, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.nationality, "", new { @class = "text-danger" })
+                    @Html.DropDownList("nationality",new SelectList(ViewBag.nationalityOptions), htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.martial, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.martial, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.martial, "", new { @class = "text-danger" })
+                    @Html.DropDownList("martial", new SelectList(ViewBag.martialOptions), htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.relationtype, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.relationtype, "", new { @class = "text-danger" })
+                    @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtype), htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
 
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.onoffflag, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
+                    
                     @Html.EditorFor(model => model.onoffflag, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.onoffflag, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
+        
+        <input type="hidden" name="onoffflag" id="onoffflag" value="online"/>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.education, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.education, "", new { @class = "text-danger" })
+                    @Html.DropDownList("education", new SelectList(ViewBag.education), htmlAttributes: new { @class = "form-control" })       
                 </div>
             </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.educationstate, new { htmlAttributes = new { @class = "form-control" } })
+                    @foreach (string item in ViewBag.educationstate)
+                    {
+                        @Html.RadioButtonFor(model => model.educationstate, item)
+                        @Html.Label(item, new { @for = item })
+                    }
                     @Html.ValidationMessageFor(model => model.educationstate, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -170,37 +179,46 @@
                 </div>
             </div>
 
-            <div class="form-group">
+
+        <input type="hidden" name="registrationdate" id="registrationdate"/>
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.registrationdate, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.registrationdate, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.registrationdate, "", new { @class = "text-danger" })
                 </div>
-            </div>
+            </div>*@
 
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.idfamily_FK, "idfamily_FK", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownList("idfamily_FK", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.EditorFor(model=>model.idfamily_FK, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.idfamily_FK, "", new { @class = "text-danger" })
                 </div>
+            </div>*@
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.idcenter_FK, "idcenter_FK", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idcenter_FK", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
             </div>
+        </div>*@
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.idcenter_FK, "idcenter_FK", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("idcenter_FK", null, htmlAttributes: new { @class = "form-control"})
-                    @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.formnumber, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.formnumber, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.formnumber, "", new { @class = "text-danger" })
                 </div>
+            </div>*@
+        
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.iduser, "iduser", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("iduser", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.iduser, "", new { @class = "text-danger" })
             </div>
+        </div>*@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.note, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -210,14 +228,25 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.iduser, "iduser", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("iduser", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.iduser, "", new { @class = "text-danger" })
-                </div>
-            </div>
 
+        <div class="form-group">
+            <label class="control-label col-md-2">العمل الحالي</label>
+            <div class="col-md-10">
+                @Html.DropDownList("currentWorkID", null, htmlAttributes: new { @class = "form-control" })    
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">العمل السابق</label>
+            <div class="col-md-10">
+                @Html.DropDownList("previousWorkID", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+
+            
+        <input type="hidden" name="idfamily_FK" id="idfamily_FK" />
+        <input type="hidden" name="idcenter_FK" id="idcenter_FK" />
+        <input type="hidden" name="iduser" id="iduser" />
             <div class="form-group">
                 @Html.LabelFor(model => model.nationalnumber, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -225,12 +254,186 @@
                     @Html.ValidationMessageFor(model => model.nationalnumber, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+        <div class="form-group">
+            <label class="control-label col-md-2">طريقة التعرف على المركز</label>
+            <div class="col-md-10">
+                @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @foreach (var weakness in ViewBag.weaknesses)
+            {
+                foreach (var item in weakness)
+                {                        
+                    <input type="checkbox" name="weaknesses" value="@item.idmanagelist" /> @item.name <br />   
+                }
+            }
+        </div>
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Create" class="btn btn-default" />
                 </div>
             </div>
+        <div>
+
+            <table class="table" id="familymembers">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.idperson)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fathername)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mothername)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.birthday)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.birthplace)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.gender)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nationality)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.martial)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.relationtype)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.onoffflag)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.education)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.educationstate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.phone1)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.phone2)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.currentaddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.registrationdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.formnumber)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.note)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.center.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.family.idfamily)
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model.family.people)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.idperson)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nationalnumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fathername)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.mothername)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.birthday)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.birthplace)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nationality)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.martial)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.relationtype)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.onoffflag)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.education)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.educationstate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone2)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.currentaddress)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.registrationdate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.formnumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.note)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.center.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.family.idfamily)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.idperson }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.idperson }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.idperson })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
         </div>
 }
 
@@ -248,12 +451,10 @@
 
         $(document).ready(function () {
             idFamily = $("#idperson").val();
-            //$('#idfamily_FK option').filter(function () { return $(this).html() == idFamily; }).val();
-            $('#idfamily_FK option:contains(' + idFamily + ')').attr('selected', true)
-            
-            //$('#idfamily_FK option').val()
 
-            //    .attr('selected', true)
+            //$('#idfamily_FK option:contains(' + idFamily + ')').attr('selected', true)
+            $('#idfamily_FK').val(idFamily);
+ 
         });
 
         $("#personPositionSelect").on("change", function () {
@@ -265,7 +466,7 @@
                     $("#childOrder").removeClass("hidden");
                     $("#wifeOrder").addClass("hidden");
                     break;
-                case "W": idFamily
+                case "W": 
                     $("#wifeOrder").removeClass("hidden");
                     $("#childOrder").addClass("hidden");
                     break;
@@ -292,6 +493,7 @@
 
         //$("#idfamily_FK option").val(idFamily)
         //$('#idfamily_FK option').filter(function () { return $(this).html() == idFamily; }).val();
+        
         
     </script>
 }

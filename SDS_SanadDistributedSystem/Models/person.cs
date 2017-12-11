@@ -11,7 +11,8 @@ namespace SDS_SanadDistributedSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -26,6 +27,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string lname { get; set; }
         public string fathername { get; set; }
         public string mothername { get; set; }
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> birthday { get; set; }
         public string birthplace { get; set; }
         public string gender { get; set; }
@@ -38,7 +40,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string phone1 { get; set; }
         public string phone2 { get; set; }
         public string currentaddress { get; set; }
-        public Nullable<System.DateTime> registrationdate { get; set; }
+        public Nullable<System.DateTimeOffset> registrationdate { get; set; }
         public string idfamily_FK { get; set; }
         public string idcenter_FK { get; set; }
         public Nullable<int> formnumber { get; set; }

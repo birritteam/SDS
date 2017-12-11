@@ -12,11 +12,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.familynature)
+            @Html.DisplayNameFor(model => model.idfamily)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.familynature)
+            @Html.DisplayFor(model => model.idfamily)
         </dd>
 
         <dt>
@@ -92,6 +92,95 @@
         </dd>
 
     </dl>
+</div>
+
+
+
+<div>
+   
+    <table class="table">
+
+        @foreach (var item in Model.people)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nationalnumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fathername)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mothername)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.birthday)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.birthplace)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nationality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.martial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.relationtype)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.onoffflag)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.education)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.educationstate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.currentaddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.registrationdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.formnumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.center.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.family.idfamily)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.idperson }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.idperson }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.idperson })
+                </td>
+            </tr>
+        }
+
+    </table>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.idfamily }) |
