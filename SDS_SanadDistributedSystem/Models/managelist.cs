@@ -17,8 +17,8 @@ namespace SDS_SanadDistributedSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public managelist()
         {
-            this.personmanages = new HashSet<personmanage>();
             this.families = new HashSet<family>();
+            this.personmanages = new HashSet<personmanage>();
         }
     
         public int idmanagelist { get; set; }
@@ -26,8 +26,8 @@ namespace SDS_SanadDistributedSystem.Models
         public string flag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<personmanage> personmanages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<family> families { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<personmanage> personmanages { get; set; }
     }
 }

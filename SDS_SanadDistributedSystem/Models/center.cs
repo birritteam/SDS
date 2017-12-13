@@ -18,10 +18,10 @@ namespace SDS_SanadDistributedSystem.Models
         public center()
         {
             this.AspNetUsers = new HashSet<AspNetUser>();
-            this.people = new HashSet<person>();
             this.referalfamilies = new HashSet<referalfamily>();
             this.referalpersons = new HashSet<referalperson>();
             this.temporals = new HashSet<temporal>();
+            this.people = new HashSet<person>();
         }
     
         public string idcenter { get; set; }
@@ -34,12 +34,12 @@ namespace SDS_SanadDistributedSystem.Models
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
         public virtual partner partner { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<person> people { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalfamily> referalfamilies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalperson> referalpersons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<temporal> temporals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<person> people { get; set; }
     }
 }

@@ -1,0 +1,112 @@
+﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.referalfamily>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.submittingdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referalstate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referaldate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.servicestate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.servicestartdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serviceenddate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.senderevalution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.recieverevalution)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.outreachnote)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.case.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.center.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.service.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.family.familynature)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.submittingdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referalstate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referaldate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.servicestate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.servicestartdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.serviceenddate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.senderevalution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.recieverevalution)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.outreachnote)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.case.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.center.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.service.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.family.familynature)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

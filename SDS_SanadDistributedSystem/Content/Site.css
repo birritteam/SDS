@@ -1,24 +1,67 @@
-﻿body {
+﻿/*body {
     padding-top: 50px;
     padding-bottom: 20px;
-}
+}*/
 
 /* Set padding to keep content from hitting the edges */
-.body-content {
+/*.body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
+}*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
+/*.dl-horizontal dt {
     white-space: normal;
-}
+}*/
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
+}*/
+
+*{
+    /*direction: rtl;*/
+    font-family: 'Droid Arabic Kufi';
 }
+body,h1{
+    /*direction: rtl;*/
+    font-family: 'Droid Arabic Kufi';
+    padding-bottom: 20px;
+}
+
+label{
+    right:0px;
+}
+
+
+input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.md-textarea{
+    font-family: 'Droid Arabic Kufi';
+      font-size: 14px;
+      direction: rtl;
+}
+
+
+.md-form label,[type=radio]:checked+label, [type=radio]:not(:checked)+label, [type=checkbox]+label{
+    font-size: 11px;
+    right:0;
+    left: unset;
+
+}
+
+
+.mb-2{
+     margin-bottom: 15px !important;
+ }
+ .mb-3 {
+      margin-bottom: 20px !important;
+ }
+  .p-1{
+     padding:10px;
+ }
+ .p-2{
+     padding:20px;
+ }

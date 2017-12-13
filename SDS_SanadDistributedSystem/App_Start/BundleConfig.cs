@@ -23,11 +23,15 @@ namespace SDS_SanadDistributedSystem
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/bootstrap-rtl.min.js",
+                      "~/Scripts/mdb.js",
+                      "~/Scripts/Layout.js",
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-rtl.min.css",
+                      "~/Content/mdb.min.css",
+                      "~/Content/font-awesome.min.css",
                       "~/Content/site.css"));
         }
     }

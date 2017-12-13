@@ -11,23 +11,22 @@ namespace SDS_SanadDistributedSystem.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class person
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public person()
         {
-            this.personmanages = new HashSet<personmanage>();
             this.referalpersons = new HashSet<referalperson>();
+            this.personmanages = new HashSet<personmanage>();
         }
     
         public string idperson { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }
+        public string nationalnumber { get; set; }
         public string fathername { get; set; }
         public string mothername { get; set; }
-        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> birthday { get; set; }
         public string birthplace { get; set; }
         public string gender { get; set; }
@@ -46,14 +45,13 @@ namespace SDS_SanadDistributedSystem.Models
         public Nullable<int> formnumber { get; set; }
         public string note { get; set; }
         public string iduser { get; set; }
-        public string nationalnumber { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual center center { get; set; }
         public virtual family family { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<personmanage> personmanages { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalperson> referalpersons { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<personmanage> personmanages { get; set; }
     }
 }

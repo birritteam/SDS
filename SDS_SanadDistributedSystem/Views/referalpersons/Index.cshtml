@@ -1,0 +1,885 @@
+﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.referalperson>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    int new_Count = 5;
+}
+
+<h2>إحالات مدير حالة ---------(  defined by role)</h2>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+<div>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">جديدة أو معلقة <h5>@new_Count</h5></a></li>
+        <li role="presentation"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">مقبولة  ولم يخدم</a></li>
+        <li role="presentation"><a href="#third" aria-controls="third" role="tab" data-toggle="tab">مرفوضة</a></li>
+        <li role="presentation"><a href="#fourth" aria-controls="fourth" role="tab" data-toggle="tab"> قيد المتابعة</a></li>
+        <li role="presentation"><a href="#fifth" aria-controls="fifth" role="tab" data-toggle="tab">مغلقة</a></li>
+        <li role="presentation"><a href="#sixth" aria-controls="sixth" role="tab" data-toggle="tab">خارجية</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="first">
+            @*@Html.RenderAction("GetMyFirstForm", "MyController)*@
+
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.submittingdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referalstate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referaldate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestartdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.serviceenddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.senderevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieverevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.outreachnote)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.@case.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.center.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.person.fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.service.name)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.servicestate == "Pending" && item.referalstate == "Pending")
+                    {
+                        new_Count++;
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="second">
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.submittingdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referalstate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referaldate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestartdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.serviceenddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.senderevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieverevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.outreachnote)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.@case.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.center.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.person.fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.service.name)
+                    </th>
+                    <th>
+                        وصول
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.servicestate == "Pending" && item.referalstate == "Approved")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                لا
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                    if (item.servicestate == "Pending" && item.referalstate == "OutReach")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                نعم
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="third">
+            @*@Html.RenderAction("GetMySecondForm", "MyController)*@
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.submittingdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referalstate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referaldate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestartdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.serviceenddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.senderevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieverevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.outreachnote)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.@case.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.center.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.person.fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.service.name)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.servicestate == "Pending" && item.referalstate == "Rejected")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="fourth">
+            @*@Html.RenderAction("GetMySecondForm", "MyController)*@
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.submittingdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referalstate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referaldate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestartdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.serviceenddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.senderevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieverevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.outreachnote)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.@case.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.center.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.person.fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.service.name)
+                    </th>
+                    <th>
+                        وصول
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.servicestate == "In prgress" && item.referalstate == "Approved")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                لا
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                    if (item.servicestate == "In prgress" && item.referalstate == "OutReach")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                نعم
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="fifth">
+            @*@Html.RenderAction("GetMySecondForm", "MyController)*@
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.submittingdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referalstate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referaldate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestartdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.serviceenddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.senderevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieverevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.outreachnote)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.@case.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.center.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.person.fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.service.name)
+                    </th>
+                    <th>
+                        وصول
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.servicestate == "Closed" && item.referalstate == "Approved")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                لا
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                    if (item.servicestate == "Closed" && item.referalstate == "OutReach")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                نعم
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="sixth">
+            @*@Html.RenderAction("GetMySecondForm", "MyController)*@
+            <table class="table">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.submittingdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referalstate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.referaldate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.servicestartdate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.serviceenddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.senderevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.recieverevalution)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.outreachnote)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.@case.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.center.name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.person.fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.service.name)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    if (item.servicestate == "Pending" && item.referalstate == "External")
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.submittingdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referalstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.referaldate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.senderevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.outreachnote)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.@case.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.center.name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.person.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.service.name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*|
+                                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </table>
+        </div>
+    </div>
+
+</div>

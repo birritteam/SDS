@@ -17,31 +17,29 @@ namespace SDS_SanadDistributedSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public family()
         {
-            this.people = new HashSet<person>();
             this.referalfamilies = new HashSet<referalfamily>();
             this.managelists = new HashSet<managelist>();
+            this.people = new HashSet<person>();
         }
     
         public string idfamily { get; set; }
         public string familynature { get; set; }
+        public string lastname { get; set; }
         public Nullable<int> personcount { get; set; }
         public string lastaddress { get; set; }
         public string currentaddress { get; set; }
         public Nullable<System.DateTime> displacementdate { get; set; }
-        public string phone1 { get; set; }
-        public string phone2 { get; set; }
-        public string note { get; set; }
-        public string iduser { get; set; }
-        public string lastname { get; set; }
         public string phone1owner { get; set; }
         public string phone2owner { get; set; }
+        public string note { get; set; }
+        public string iduser { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<person> people { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalfamily> referalfamilies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<managelist> managelists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<person> people { get; set; }
     }
 }

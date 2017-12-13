@@ -4,18 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4df13dc03d96463488d9b4eb8b796abb" Name="Diagram1" ZoomLevel="64">
+      <Diagram DiagramId="4df13dc03d96463488d9b4eb8b796abb" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="sds_dbModel.AspNetRole" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.AspNetUserClaim" Width="1.5" PointX="9.75" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.AspNetUserLogin" Width="1.5" PointX="9.75" PointY="15.375" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.AspNetUser" Width="1.5" PointX="7.5" PointY="14.625" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.case" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.center" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="sds_dbModel.family" Width="1.5" PointX="9.75" PointY="17.875" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.managelist" Width="1.5" PointX="12" PointY="18.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.partner" Width="1.5" PointX="0.75" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="sds_dbModel.person" Width="1.5" PointX="15" PointY="14.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="sds_dbModel.personmanage" Width="1.5" PointX="17.25" PointY="17.125" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.referalfamily" Width="1.5" PointX="12" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.referalperson" Width="1.5" PointX="17.25" PointY="10.875" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.service" Width="1.5" PointX="7.5" PointY="11.375" IsExpanded="true" />
@@ -24,8 +21,6 @@
         <AssociationConnector Association="sds_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_AspNetUsers_center" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_family_AspNetUsers" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_person_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalfamily_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalperson_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_case_partner" ManuallyRouted="false" />
@@ -33,20 +28,25 @@
         <AssociationConnector Association="sds_dbModel.FK_referalperson_case" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_service_case" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_center_partner" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_person_center" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalfamily_center" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalperson_center" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_temp_center1" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_person_family" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_referalfamily_family" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_personmanage_managelist" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_personmanage_person" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_referalperson_person" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalfamily_service" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalperson_service" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.familymanage" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.roles_services" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="sds_dbModel.family" Width="1.5" PointX="9.75" PointY="18.25" />
+        <AssociationConnector Association="sds_dbModel.FK_family_AspNetUsers" />
+        <AssociationConnector Association="sds_dbModel.FK_referalfamily_family" />
+        <AssociationConnector Association="sds_dbModel.familymanage" />
+        <EntityTypeShape EntityType="sds_dbModel.person" Width="1.5" PointX="15" PointY="15.125" />
+        <AssociationConnector Association="sds_dbModel.FK_person_AspNetUsers" />
+        <AssociationConnector Association="sds_dbModel.FK_person_center" />
+        <AssociationConnector Association="sds_dbModel.FK_person_family" />
+        <AssociationConnector Association="sds_dbModel.FK_referalperson_person" />
+        <EntityTypeShape EntityType="sds_dbModel.personmanage" Width="1.5" PointX="17.25" PointY="17.375" />
+        <AssociationConnector Association="sds_dbModel.FK_personmanage_managelist" />
+        <AssociationConnector Association="sds_dbModel.FK_personmanage_person" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

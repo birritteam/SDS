@@ -1,0 +1,208 @@
+﻿@model SDS_SanadDistributedSystem.Models.referalperson
+
+@{
+    ViewBag.Title = "personReferal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>إحالات الشخص</h2>
+@functions
+{
+    public SelectList SayHello()
+    {
+        return ViewBag.idcase_FK;
+    }
+    //string id, SelectList s
+    //SelectList ssss = s;
+
+}
+
+@*@using (Ht.BeginForm("personReferal", "referalpersons", new AjaxOptions { OnSuccess = "successFillTable", OnFailure = "OnFailureFillTable" }))*@
+@using (Html.BeginForm())
+{
+
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>إضافة إحالة للشخص من قبل  مدير حالة معين</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.idperson_FK, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idperson_FK", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.idperson_FK, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idcase_FK, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idcase_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServicesNew()" })
+                @Html.ValidationMessageFor(model => model.idcase_FK, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("cmEducation", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmProfessional", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmChildProtection", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmPsychologicalSupport1", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmPsychologicalSupport2", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmPsychologicalSupport3", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmDayCare", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmHomeCare", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmSGBV", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmSmallProjects", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmIOutReachTeam", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("cmInkindAssistance", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.submittingdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.submittingdate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })*@
+                @Html.TextBoxFor(model => model.submittingdate, new { @class = "form-control", @Value = @DateTime.Now.ToString("yyyy-MM-dd"), @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.submittingdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.referalstate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("referalstate", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.referalstate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.referaldate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.referaldate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.referaldate, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.servicestate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("servicestate", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.servicestate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.servicestartdate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.servicestartdate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.servicestartdate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.serviceenddate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.serviceenddate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.serviceenddate, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.referalsender_FK, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("referalsender_FK", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.referalsender_FK, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.senderevalution, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.senderevalution, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.senderevalution, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.recieverevalution, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.recieverevalution, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.recieverevalution, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idcenter_FK", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.outreachnote, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.outreachnote, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="إضافة" class="btn btn-default" onclick="successFillTableNew()" />
+            </div>
+        </div>
+    </div>
+}
+<div class="form-group">
+    <table id="tblItems" class="table">
+        <thead>
+            <tr>
+                <th>الرقم التسلسلي</th>
+                <th>مدير الإحالة</th>
+                <th>الخدمة</th>
+                <th>التقييم الأولي</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+<div>
+    @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
+    @using (Html.BeginForm())
+    {
+
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" value="إرسال الإحالات" class="btn btn-default" onclick="successSendReferals()" />
+            </div>
+        </div>
+
+    }
+    @Html.ActionLink("عودة إلى القائمة", "Index")
+</div>
+<script src="~/Scripts/ajaxFunctionsAmr.js"></script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+            $(document).ready(function () {
+                //  FillServices();
+                FillServicesNew();
+
+
+            });
+
+
+
+
+    </script>
+
+
+}

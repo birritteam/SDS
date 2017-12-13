@@ -1,0 +1,52 @@
+﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.center>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.flag)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.partner.name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.partner.name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idcenter }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idcenter }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idcenter })
+        </td>
+    </tr>
+}
+
+</table>
