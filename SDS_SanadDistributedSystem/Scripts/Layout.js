@@ -15,7 +15,17 @@ $('.datepicker').pickadate();
 
 // select Init
 $(document).ready(function () {
-    $('.mdb-select').material_select();
+    //$('.mdb-select').material_select();
+
+    $('select').prop('class', 'selectpicker');
+ //   $('select').attr('data-live-search', true);
+    $('.selectpicker').selecxxtpicker({
+        style: 'btn-info',
+        size: 4
+    }
+
+ );
+
 });
 
 
@@ -36,5 +46,15 @@ toastr.options = {
     "hideEasing": "linear",
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
+}
+
+
+$('.selectpicker').selectpicker(
+    //style: 'btn-info',
+    //size: 4
+);
+
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
+    $('.selectpicker').selectpicker('mobile');
 }
 
