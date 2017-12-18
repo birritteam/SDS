@@ -18,15 +18,17 @@ $(document).ready(function () {
     //$('.mdb-select').material_select();
 
     $('select').prop('class', 'selectpicker');
- //   $('select').attr('data-live-search', true);
-    $('.selectpicker').selecxxtpicker({
+    $('select').attr('data-live-search', true);
+    $('.selectpicker').selectpicker({
         style: 'btn-info',
-        size: 4
+        size: 6
     }
 
  );
 
 });
+
+
 
 
 // alert optios Init
@@ -58,3 +60,18 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
     $('.selectpicker').selectpicker('mobile');
 }
 
+
+$(document).ready(function () {
+    //  FillServices();
+    FillServicesNew();
+
+
+});
+$(document).ready(function () {
+    $('#myTable').DataTable({
+        //dom: 'Bfrtip',
+        //buttons: [
+        //    'copy', 'csv', 'excel', 'pdf', 'print'
+        //]
+    });
+});

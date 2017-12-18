@@ -171,13 +171,13 @@ namespace SDS_SanadDistributedSystem.Controllers
         //add new referal by Receptionist
         public ActionResult personReferal(string id)
         {
-            List<string> serviceStates = new List<string>();
-            serviceStates.Add("Pending");
+            //List<string> serviceStates = new List<string>();
+            //serviceStates.Add("Pending");
             //serviceStates.Add("In prgress");
             //serviceStates.Add("Closed");
 
-            List<string> referalstates = new List<string>();
-            referalstates.Add("Pending");
+            //List<string> referalstates = new List<string>();
+            //referalstates.Add("Pending");
             //referalstates.Add("Approved");
             //referalstates.Add("Rejected");
             //referalstates.Add("OutReach");
@@ -210,21 +210,21 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             ViewBag.cmInkindAssistance = new SelectList(db.services.Where(s => s.idcase_FK == 12), "idservice", "name");
 
-            ViewBag.referalstate = new SelectList(referalstates);
-            ViewBag.servicestate = new SelectList(serviceStates);
+            //ViewBag.referalstate = new SelectList(referalstates, "Pending");
+            //ViewBag.servicestate = new SelectList(serviceStates, "Pending");
 
             return View();
         }
         //add new referal by CaseManager
         public ActionResult personReferalByCaseManager(string id, int idcase)
         {
-            List<string> serviceStates = new List<string>();
-            serviceStates.Add("Pending");
+            //List<string> serviceStates = new List<string>();
+            //serviceStates.Add("Pending");
             //serviceStates.Add("In prgress");
             //serviceStates.Add("Closed");
 
-            List<string> referalstates = new List<string>();
-            referalstates.Add("Pending");
+            //List<string> referalstates = new List<string>();
+            //referalstates.Add("Pending");
             //referalstates.Add("Approved");
             //referalstates.Add("Rejected");
             //referalstates.Add("OutReach");
@@ -258,8 +258,8 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             ViewBag.cmInkindAssistance = new SelectList(db.services.Where(s => s.idcase_FK == 12), "idservice", "name");
 
-            ViewBag.referalstate = new SelectList(referalstates);
-            ViewBag.servicestate = new SelectList(serviceStates);
+            //ViewBag.referalstate = new SelectList(referalstates, "Pending");
+            //ViewBag.servicestate = new SelectList(serviceStates, "Pending");
 
             return View();
         }
@@ -281,9 +281,13 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                     rp.submittingdate = DateTime.Parse(rpvm.submittingdate);
 
-                    rp.referalstate = rpvm.referalstate;
+                    //rp.referalstate = rpvm.referalstate;
 
-                    rp.servicestate = rpvm.servicestate;
+                    //rp.servicestate = rpvm.servicestate;
+
+                    rp.referalstate = "Pending";
+
+                    rp.servicestate = "Pending";
 
                     rp.referalsender_FK = rpvm.referalsender_FK;
 

@@ -21,9 +21,22 @@
 }
 function FillServicesNew() {
 
-    var idcase_FK_text = document.getElementById("idcase_FK").options[document.getElementById("idcase_FK").selectedIndex].text;
+   // var idcase_FK_text = document.getElementById("idcase_FK").options[document.getElementById("idcase_FK").selectedIndex].text;
     var selectedId = $('#idcase_FK').val();
     if (selectedId == 1) {
+        $("button[data-id='cmEducation']").show(); 
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").show(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -32,6 +45,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 2) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").show();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").show();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -40,6 +66,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 3) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").show();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").show(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -48,6 +87,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 4) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").show();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").show();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -56,6 +108,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 5) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").show();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").show(); $("#cmPsychologicalSupport3").hide();
@@ -64,6 +129,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 6) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").show();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").show();
@@ -72,6 +150,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 7) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").show();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -80,6 +171,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 8) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").show();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -88,6 +192,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 9) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").show();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -96,6 +213,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 10) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").show();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -104,6 +234,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").hide(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 11) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").show();
+        $("button[data-id='cmInkindAssistance']").hide();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -112,6 +255,19 @@ function FillServicesNew() {
         $("#cmIOutReachTeam").show(); $("#cmInkindAssistance").hide();
     }
     else if (selectedId == 12) {
+        $("button[data-id='cmEducation']").hide();
+        $("button[data-id='cmProfessional']").hide();
+        $("button[data-id='cmChildProtection']").hide();
+        $("button[data-id='cmPsychologicalSupport1']").hide();
+        $("button[data-id='cmPsychologicalSupport2']").hide();
+        $("button[data-id='cmPsychologicalSupport3']").hide();
+        $("button[data-id='cmDayCare']").hide();
+        $("button[data-id='cmHomeCare']").hide();
+        $("button[data-id='cmSGBV']").hide();
+        $("button[data-id='cmSmallProjects']").hide();
+        $("button[data-id='cmIOutReachTeam']").hide();
+        $("button[data-id='cmInkindAssistance']").show();
+
         $("#cmEducation").hide(); $("#cmProfessional").hide();
         $("#cmChildProtection").hide(); $("#cmPsychologicalSupport1").hide();
         $("#cmPsychologicalSupport2").hide(); $("#cmPsychologicalSupport3").hide();
@@ -123,7 +279,7 @@ function FillServicesNew() {
 }
 
 function BindItemTable() {
-    var myTable = $("#tblItems").DataTable({
+    var myTable = $("#myTable").DataTable({
         "deferRender": true,
         "paging": true,
         "lengthChange": false,
@@ -144,9 +300,9 @@ function deleterow(id) {
         success:
 function (data) {
     alert("successFillTable.............")
-    $("#tblItems tbody").empty();
+    $("#myTable tbody").empty();
     $.each(data, function (i, referalperson) {
-        $("#tblItems").append(
+        $("#myTable").append(
         $('<tr><td>' + (i + 1) + '</td><td>' + referalperson.idcase_FK +
             '</td><td>' + referalperson.idservice_FK + '</td><td>' +
             referalperson.senderevalution + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterow(this.id)" /></td></tr>'));
@@ -163,9 +319,9 @@ function (data) {
 
 function successFillTable(data) {
     alert("successFillTable.............")
-    $("#tblItems tbody").empty();
+    $("#myTable tbody").empty();
     $.each(data, function (i, referalperson) {
-        $("#tblItems").append(
+        $("#myTable").append(
         $('<tr><td>' + (i + 1) + '</td><td>' + referalperson.idcase_FK +
             '</td><td>' + referalperson.idservice_FK + '</td><td>' +
             referalperson.senderevalution + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterow(this.id)" /></td></tr>'));
@@ -240,13 +396,13 @@ function successFillTableNew() {
     //----------------------------------------
     var submittingdate = document.getElementById("submittingdate").value;
 
-    var referalstate = document.getElementById("referalstate").value;
-    var referalstate_text = document.getElementById("referalstate").options[document.getElementById("referalstate").selectedIndex].text;
+    //var referalstate = document.getElementById("referalstate").value;
+    //var referalstate_text = document.getElementById("referalstate").options[document.getElementById("referalstate").selectedIndex].text;
 
     var referaldate;
 
-    var servicestate = document.getElementById("servicestate").value;
-    var servicestate_text = document.getElementById("servicestate").options[document.getElementById("servicestate").selectedIndex].text;
+    //var servicestate = document.getElementById("servicestate").value;
+    //var servicestate_text = document.getElementById("servicestate").options[document.getElementById("servicestate").selectedIndex].text;
 
     var servicestartdate;
 
@@ -265,14 +421,14 @@ function successFillTableNew() {
     var outreachnote = document.getElementById("outreachnote").value;
     var obj = {
         "idperson_FK": idperson_FK,
-        "idcase_FK": idcase_FK, "idservice_FK": idservice_FK, "submittingdate": submittingdate, "referalstate": referalstate,
-        "servicestate": servicestate, "referalsender_FK": referalsender_FK, "senderevalution": senderevalution, "idcenter_FK": idcenter_FK, "outreachnote": outreachnote
+        "idcase_FK": idcase_FK, "idservice_FK": idservice_FK, "submittingdate": submittingdate, 
+         "referalsender_FK": referalsender_FK, "senderevalution": senderevalution, "idcenter_FK": idcenter_FK, "outreachnote": outreachnote
     };
 
     var obj_text = {
         "idperson_FK": idperson_FK_text,
-        "idcase_FK": idcase_FK_text, "idservice_FK": idservice_FK_text, "submittingdate": submittingdate, "referalstate": referalstate_text,
-        "servicestate": servicestate_text, "referalsender_FK": referalsender_FK_text, "senderevalution": senderevalution, "idcenter_FK": idcenter_FK_text, "outreachnote": outreachnote
+        "idcase_FK": idcase_FK_text, "idservice_FK": idservice_FK_text, "submittingdate": submittingdate,
+         "referalsender_FK": referalsender_FK_text, "senderevalution": senderevalution, "idcenter_FK": idcenter_FK_text, "outreachnote": outreachnote
     };
 
     var checkexist = false;
@@ -292,10 +448,10 @@ function successFillTableNew() {
         personReferal.push(obj);
         personReferal_text.push(obj_text);
         alert("successFillTableNew............." + obj.idcase_FK)
-        $("#tblItems tbody").empty();
+        $("#myTable tbody").empty();
         personReferal_text.forEach(function (item, i, array) {
             //console.log(item, i);
-            $("#tblItems").append(
+            $("#myTable").append(
             $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
                 '</td><td>' + item.idservice_FK + '</td><td>' +
                 item.senderevalution + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
@@ -315,11 +471,11 @@ function deleterowNew(index) {
     alert(index);
     personReferal.splice(index - 1, 1);
     personReferal_text.splice(index - 1, 1);
-    $("#tblItems tbody").empty();
-    $("#tblItems tbody").empty();
+    $("#myTable tbody").empty();
+    $("#myTable tbody").empty();
     personReferal_text.forEach(function (item, i, array) {
         //console.log(item, i);
-        $("#tblItems").append(
+        $("#myTable").append(
         $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
             '</td><td>' + item.idservice_FK + '</td><td>' +
             item.senderevalution + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
@@ -348,7 +504,7 @@ function successSendReferals() {
         success:
 function (data) {
     alert(data)
-    $("#tblItems tbody").empty();
+    $("#myTable tbody").empty();
     personReferal = [];
     personReferal_text = [];
 },
@@ -371,7 +527,5 @@ function OnFailureFillTable() {
     alert("Failure FillTable.............")
 
 }
-
-
 
 

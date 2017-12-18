@@ -65,3 +65,10 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
  .p-2{
      padding:20px;
  }
+.btn {
+    padding:5px;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+    text-align: center;
+}

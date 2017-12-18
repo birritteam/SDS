@@ -3,6 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ 
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -46,7 +48,7 @@
                 <li>
                     <div class="logo-wrapper waves-light special-logo">
                         @*special-logo : style.css*@
-                        <a href="#"><img src="" class="img-fluid flex-center z-depth-1 rounded-circle logo"></a> @*~/images/birr.jpg*@
+                        @*<a href="#"><img src="" class="img-fluid flex-center z-depth-1 rounded-circle logo"></a> @*~/images/birr.jpg*@
                     </div>
                 </li>
                 <!--/. Logo -->
@@ -156,5 +158,7 @@
                 @Scripts.Render("~/bundles/jquery")
                 @Scripts.Render("~/bundles/bootstrap")
                 @RenderSection("scripts", required: false)
+
+
     </body>
 </html>

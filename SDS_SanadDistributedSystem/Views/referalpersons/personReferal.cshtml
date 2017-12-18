@@ -25,6 +25,7 @@
     <div class="form-horizontal">
         <h4>إضافة إحالة للشخص من قبل موظف الاستقبال</h4>
         <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.idperson_FK, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -70,13 +71,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.referalstate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("referalstate",null, htmlAttributes : new { @class = "form-control", @readonly = "readonly" } )
                 @Html.ValidationMessageFor(model => model.referalstate, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.referaldate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -86,13 +87,13 @@
             </div>
         </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.servicestate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("servicestate", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
                 @Html.ValidationMessageFor(model => model.servicestate, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         @*<div class="form-group">
             @Html.LabelFor(model => model.servicestartdate, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -150,13 +151,14 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.outreachnote, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="col-md-3">
+            <div class="md-form">
+                @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control validate" } })
+                @Html.LabelFor(model => model.outreachnote, htmlAttributes: new { })
                 @Html.ValidationMessageFor(model => model.outreachnote, "", new { @class = "text-danger" })
             </div>
         </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -166,7 +168,7 @@
     </div>
 }
 <div class="form-group">
-    <table id="tblItems" class="table">
+    <table id="myTable"   class="display table table-bordered" cellspacing="0" >
         <thead>
             <tr>
                 <th>الرقم التسلسلي</th>
@@ -176,7 +178,9 @@
                 <th></th>
             </tr>
         </thead>
-        <tbody></tbody>
+        <tbody>
+
+</tbody>
     </table>
     </div>
     <div>
@@ -195,21 +199,23 @@
 }
 @Html.ActionLink("عودة إلى القائمة", "Index")
     </div>
-
+@*<script src="~/Scripts/ajaxFunctionsAmr.js"></script>*@
+@Scripts.Render("~/bundles/jqueryval")
     @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-        <script>
-            $(document).ready(function () {
-                //  FillServices();
-                FillServicesNew();
-                
-               
-            });
+       
+        @*<script>
+           
 
             
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    //dom: 'Bfrtip',
+                    //buttons: [
+                    //    'copy', 'csv', 'excel', 'pdf', 'print'
+                    //]
+                });
+            });
 
-
-        </script>
-<script src="~/Scripts/ajaxFunctionsAmr.js"></script>
+        </script>*@
 
     }

@@ -21,12 +21,12 @@ namespace SDS_SanadDistributedSystem.viewModel
 
         public string submittingdate { get; set; }
 
-        public string referalstate { get; set; }
+       // public string referalstate { get; set; }
 
         //public Nullable<System.DateTime> referaldate { get; set; }
 
 
-        public string servicestate { get; set; }
+      //  public string servicestate { get; set; }
 
         //public Nullable<System.DateTime> servicestartdate { get; set; }
 

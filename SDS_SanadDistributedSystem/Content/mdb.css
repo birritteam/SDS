@@ -12488,7 +12488,7 @@ button.toast-close-button {
   background-color: #40454f;
 }
 .grey-skin .side-nav .logo-wrapper {
-  background: url("http://mdbootstrap.com/images/sidenavs/grey.jpg") no-repeat center center;
+  /*background: url("http://mdbootstrap.com/images/sidenavs/grey.jpg") no-repeat center center;*/
   background-size: cover;
 }
 .grey-skin .side-nav .sn-avatar-wrapper img {
@@ -12612,7 +12612,7 @@ button.toast-close-button {
   background-color: #294a65;
 }
 .mdb-skin .side-nav .logo-wrapper {
-  background: url("http://mdbootstrap.com/images/sidenavs/mdb.jpg") no-repeat center center;
+  /*background: url("http://mdbootstrap.com/images/sidenavs/mdb.jpg") no-repeat center center;*/
   background-size: cover;
 }
 .mdb-skin .side-nav .sn-avatar-wrapper img {
