@@ -1,14 +1,14 @@
 ﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.temporal>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "أشخاص ببيانات غير مستكملة";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>أشخاص ببيانات غير مستكملة</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("إضافة استمارة مؤقتة جديدة", "Create")
 </p>
 <table class="table">
     <tr>
@@ -24,36 +24,7 @@
         <th>
             @Html.DisplayNameFor(model => model.mothername)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.birthday)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.birthplace)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nationality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.martial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.relationtype)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.flag)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.onoffflag)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.education)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.educationstate)
-        </th>
+       
         <th>
             @Html.DisplayNameFor(model => model.phone1)
         </th>
@@ -67,13 +38,8 @@
             @Html.DisplayNameFor(model => model.tempregistrationdate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.formnumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.center.name)
+            اسم المركز
+            @*@Html.DisplayNameFor(model => model.center.name)*@
         </th>
         <th></th>
     </tr>
@@ -92,36 +58,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.mothername)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.birthday)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.birthplace)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nationality)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.martial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.relationtype)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.flag)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.onoffflag)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.education)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.educationstate)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.phone1)
         </td>
@@ -134,19 +71,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.tempregistrationdate)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.formnumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.note)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.center.name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idperson }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idperson }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idperson })
+            @Html.ActionLink("تعديل", "Edit", new { id=item.idperson }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id=item.idperson }) |
+            @Html.ActionLink("حذف", "Delete", new { id=item.idperson })
         </td>
     </tr>
 }

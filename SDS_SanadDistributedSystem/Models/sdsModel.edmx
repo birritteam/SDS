@@ -57,6 +57,7 @@
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" />
+          <Property Name="enabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="cases">
           <Key>
@@ -73,8 +74,8 @@
           <Property Name="idcenter" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="location" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="flag" Type="varchar" MaxLength="5" />
-          <Property Name="idpartner_FK" Type="varchar" MaxLength="5" />
+          <Property Name="idpartner_FK" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="flag" Type="varchar" MaxLength="5" Nullable="false" />
         </EntityType>
         <EntityType Name="family">
           <Key>
@@ -87,10 +88,12 @@
           <Property Name="lastaddress" Type="varchar" MaxLength="100" />
           <Property Name="currentaddress" Type="varchar" MaxLength="100" />
           <Property Name="displacementdate" Type="date" />
-          <Property Name="phone1owner" Type="varchar" MaxLength="15" />
-          <Property Name="phone2owner" Type="varchar" MaxLength="15" />
+          <Property Name="phone1" Type="varchar" MaxLength="15" />
+          <Property Name="phone2" Type="varchar" MaxLength="15" />
           <Property Name="note" Type="text" />
           <Property Name="iduser" Type="nvarchar" MaxLength="128" />
+          <Property Name="phone1owner" Type="nvarchar" MaxLength="100" />
+          <Property Name="phone2owner" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="familymanage">
           <Key>
@@ -144,6 +147,7 @@
           <Property Name="formnumber" Type="int" />
           <Property Name="note" Type="text" />
           <Property Name="iduser" Type="nvarchar" MaxLength="128" />
+          <Property Name="is_secret" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="personmanage">
           <Key>
@@ -213,8 +217,8 @@
           </Key>
           <Property Name="idservice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idcase_FK" Type="int" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" />
-          <Property Name="enabled" Type="bit" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="enabled" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="temporal">
           <Key>
@@ -238,10 +242,11 @@
           <Property Name="phone1" Type="varchar" MaxLength="15" />
           <Property Name="phone2" Type="varchar" MaxLength="15" />
           <Property Name="currentaddress" Type="varchar" MaxLength="100" />
-          <Property Name="tempregistrationdate" Type="date" />
+          <Property Name="tempregistrationdate" Type="datetimeoffset" Precision="7" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" />
           <Property Name="formnumber" Type="int" />
           <Property Name="note" Type="text" />
+          <Property Name="iduser_FK" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <Association Name="FK_AspNetRoles_cases">
           <End Role="cases" Type="Self.cases" Multiplicity="0..1" />
@@ -280,7 +285,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_center_partner">
-          <End Role="partner" Type="Self.partner" Multiplicity="0..1" />
+          <End Role="partner" Type="Self.partner" Multiplicity="1" />
           <End Role="center" Type="Self.center" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="partner">
@@ -587,18 +592,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_temp_center1">
-          <End Role="center" Type="Self.center" Multiplicity="0..1" />
-          <End Role="temporal" Type="Self.temporal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="center">
-              <PropertyRef Name="idcenter" />
-            </Principal>
-            <Dependent Role="temporal">
-              <PropertyRef Name="idcenter_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_users_services_service">
           <End Role="service" Type="Self.service" Multiplicity="1" />
           <End Role="roles_services" Type="Self.roles_services" Multiplicity="*" />
@@ -742,10 +735,6 @@
             <End Role="cases" EntitySet="cases" />
             <End Role="service" EntitySet="service" />
           </AssociationSet>
-          <AssociationSet Name="FK_temp_center1" Association="Self.FK_temp_center1">
-            <End Role="center" EntitySet="center" />
-            <End Role="temporal" EntitySet="temporal" />
-          </AssociationSet>
           <AssociationSet Name="FK_users_services_service" Association="Self.FK_users_services_service">
             <End Role="service" EntitySet="service" />
             <End Role="roles_services" EntitySet="roles_services" />
@@ -812,6 +801,8 @@
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
           <NavigationProperty Name="families" Relationship="sds_dbModel.FK_family_AspNetUsers" FromRole="AspNetUser" ToRole="family" />
           <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_AspNetUsers" FromRole="AspNetUser" ToRole="person" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="temporals" Relationship="sds_dbModel.FK_temporal_AspNetUsers" FromRole="AspNetUser" ToRole="temporal" />
         </EntityType>
         <EntityType Name="case">
           <Key>
@@ -833,14 +824,14 @@
           <Property Name="idcenter" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="flag" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="idpartner_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="idpartner_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_AspNetUsers_center" FromRole="center" ToRole="AspNetUsers" />
           <NavigationProperty Name="partner" Relationship="Self.FK_center_partner" FromRole="center" ToRole="partner" />
           <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_center" FromRole="center" ToRole="referalfamily" />
           <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_center" FromRole="center" ToRole="referalperson" />
           <NavigationProperty Name="temporals" Relationship="Self.FK_temp_center1" FromRole="center" ToRole="temporal" />
           <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_center" FromRole="center" ToRole="person" />
+          <Property Name="flag" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="managelist">
           <Key>
@@ -922,12 +913,12 @@
           </Key>
           <Property Name="idservice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idcase_FK" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="case" Relationship="Self.FK_service_case" FromRole="service" ToRole="cases" />
           <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_service" FromRole="service" ToRole="referalfamily" />
           <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_service" FromRole="service" ToRole="referalperson" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.roles_services" FromRole="service" ToRole="AspNetRoles" />
-          <Property Name="enabled" Type="Boolean" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="temporal">
           <Key>
@@ -944,18 +935,19 @@
           <Property Name="nationality" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="martial" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="relationtype" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="flag" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="onoffflag" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="education" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="educationstate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="currentaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="tempregistrationdate" Type="DateTime" Precision="0" />
+          <Property Name="tempregistrationdate" Type="DateTimeOffset" Precision="7" />
           <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="formnumber" Type="Int32" />
           <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="center" Relationship="Self.FK_temp_center1" FromRole="temporal" ToRole="center" />
+          <Property Name="iduser_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_temporal_AspNetUsers" FromRole="temporal" ToRole="AspNetUser" />
         </EntityType>
         <Association Name="FK_AspNetRoles_cases">
           <End Role="cases" Type="Self.case" Multiplicity="0..1" />
@@ -1082,7 +1074,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_center_partner">
-          <End Role="partner" Type="Self.partner" Multiplicity="0..1" />
+          <End Role="partner" Type="Self.partner" Multiplicity="1" />
           <End Role="center" Type="Self.center" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="partner">
@@ -1285,6 +1277,10 @@
             <End Role="person" EntitySet="people" />
             <End Role="personmanage" EntitySet="personmanages" />
           </AssociationSet>
+          <AssociationSet Name="FK_temporal_AspNetUsers" Association="sds_dbModel.FK_temporal_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="temporal" EntitySet="temporals" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="family">
           <Key>
@@ -1297,14 +1293,16 @@
           <Property Name="lastaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="currentaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="displacementdate" Type="DateTime" Precision="0" />
-          <Property Name="phone1owner" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="phone2owner" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="phone1owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone2owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="iduser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_family_AspNetUsers" FromRole="family" ToRole="AspNetUser" />
           <NavigationProperty Name="referalfamilies" Relationship="sds_dbModel.FK_referalfamily_family" FromRole="family" ToRole="referalfamily" />
           <NavigationProperty Name="managelists" Relationship="sds_dbModel.familymanage" FromRole="family" ToRole="managelist" />
           <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_family" FromRole="family" ToRole="person" />
+          <Property Name="phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_family_AspNetUsers">
           <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -1367,6 +1365,7 @@
           <NavigationProperty Name="family" Relationship="sds_dbModel.FK_person_family" FromRole="person" ToRole="family" />
           <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_person" FromRole="person" ToRole="referalperson" />
           <NavigationProperty Name="personmanages" Relationship="sds_dbModel.FK_personmanage_person" FromRole="person" ToRole="personmanage" />
+          <Property Name="is_secret" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_person_AspNetUsers">
           <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -1452,6 +1451,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_temporal_AspNetUsers">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.temporal" Role="temporal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="temporal">
+              <PropertyRef Name="iduser_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1489,6 +1500,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="sds_dbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
@@ -1517,10 +1529,10 @@
           <EntitySetMapping Name="centers">
             <EntityTypeMapping TypeName="sds_dbModel.center">
               <MappingFragment StoreEntitySet="center">
+                <ScalarProperty Name="flag" ColumnName="flag" />
                 <ScalarProperty Name="idcenter" ColumnName="idcenter" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="flag" ColumnName="flag" />
                 <ScalarProperty Name="idpartner_FK" ColumnName="idpartner_FK" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1598,6 +1610,7 @@
           <EntitySetMapping Name="temporals">
             <EntityTypeMapping TypeName="sds_dbModel.temporal">
               <MappingFragment StoreEntitySet="temporal">
+                <ScalarProperty Name="iduser_FK" ColumnName="iduser_FK" />
                 <ScalarProperty Name="idperson" ColumnName="idperson" />
                 <ScalarProperty Name="fname" ColumnName="fname" />
                 <ScalarProperty Name="lname" ColumnName="lname" />
@@ -1609,7 +1622,6 @@
                 <ScalarProperty Name="nationality" ColumnName="nationality" />
                 <ScalarProperty Name="martial" ColumnName="martial" />
                 <ScalarProperty Name="relationtype" ColumnName="relationtype" />
-                <ScalarProperty Name="flag" ColumnName="flag" />
                 <ScalarProperty Name="onoffflag" ColumnName="onoffflag" />
                 <ScalarProperty Name="education" ColumnName="education" />
                 <ScalarProperty Name="educationstate" ColumnName="educationstate" />
@@ -1642,6 +1654,8 @@
           <EntitySetMapping Name="families">
             <EntityTypeMapping TypeName="sds_dbModel.family">
               <MappingFragment StoreEntitySet="family">
+                <ScalarProperty Name="phone2" ColumnName="phone2" />
+                <ScalarProperty Name="phone1" ColumnName="phone1" />
                 <ScalarProperty Name="iduser" ColumnName="iduser" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="phone2owner" ColumnName="phone2owner" />
@@ -1667,6 +1681,7 @@
           <EntitySetMapping Name="people">
             <EntityTypeMapping TypeName="sds_dbModel.person">
               <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="is_secret" ColumnName="is_secret" />
                 <ScalarProperty Name="iduser" ColumnName="iduser" />
                 <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="formnumber" ColumnName="formnumber" />

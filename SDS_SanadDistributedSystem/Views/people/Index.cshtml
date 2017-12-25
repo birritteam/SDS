@@ -1,31 +1,37 @@
 ﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.person>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "كافة الأشخاص المسجلين";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>كافة الأشخاص المسجلين</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Index", "families")
+    @Html.ActionLink("إضافة شخص جديد", "Index", "families")
 
     @using (Html.BeginForm())
     {
-    <p>
-        
-        Person's Last Name: @Html.TextBox("LastName") 
-        Person's National Number: @Html.TextBox("NationalNumber")<br />
-        <input type="submit" value="Filter" />
-    
+    <p>    
+        <div class="md-form">
+            @Html.Editor("LastName","", new { htmlAttributes = new { @class = "form-control", @placeholder = "البحث حسب الاسم الأخير" } })
+        </div>
+        <div class="md-form">
+            @Html.Editor("NationalNumber","", new { htmlAttributes = new { @class = "form-control",@placeholder = "البحث حسب الرقم الوطني" } })
+        </div>
+        <input type="submit" value="بحث" class="btn btn-default" />
+        @*<div class="input-group md-form form-sm form-1 pl-0">
+            <span class="input-group-addon cyan lighten-2" id="basic-addon1"><i class="fa fa-search text-white" aria-hidden="true"></i></span>
+            <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+        </div>*@
     </p>
     }
 
 </p>
-<table class="table">
+<table class="table" id="familymembers">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.nationalnumber)
+            @Html.DisplayNameFor(model => model.idperson)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.fname)
@@ -40,139 +46,56 @@
             @Html.DisplayNameFor(model => model.mothername)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.birthday)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.birthplace)
+            العمر
         </th>
         <th>
             @Html.DisplayNameFor(model => model.gender)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.nationality)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.martial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.relationtype)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.onoffflag)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.education)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.educationstate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.currentaddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.registrationdate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.formnumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.note)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.center.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.family.idfamily)
+            @Html.DisplayNameFor(model=>model.registrationdate)
         </th>
         <th></th>
     </tr>
+    @foreach (var item in Model)
+    {
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nationalnumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fathername)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mothername)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.birthday)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.birthplace)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.nationality)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.martial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.relationtype)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.onoffflag)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.education)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.educationstate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.currentaddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.registrationdate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.formnumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.note)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.center.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.family.idfamily)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idperson }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idperson }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idperson })
-        </td>
-    </tr>
-}
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idperson)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fathername)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mothername)
+            </td>
+            <td>
+                @{
+                    var dob = item.birthday.GetValueOrDefault();
+                    DateTime now = DateTime.Today;
+                    int age = now.Year - dob.Year;
+                    if (now < dob.AddYears(age))
+                    { age--; }
+                    @Html.DisplayFor(model => age);
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gender)
+            </td>
+    <td>@Html.DisplayFor(modelItem=>item.registrationdate)</td>
+            
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
+                @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.idperson })
+            </td>
+        </tr>                             }
 
 </table>
+

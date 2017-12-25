@@ -69,8 +69,6 @@ namespace SDS_SanadDistributedSystem.Models
         public string idcenter_FK { get; set; }
         [Display(Name = "outreachnote", ResourceType = typeof(referalpersonResource))]
         public string outreachnote { get; set; }
-
-
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual @case @case { get; set; }
         public virtual center center { get; set; }

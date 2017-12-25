@@ -1,4 +1,9 @@
-﻿/*body {
+﻿@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+@import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
+@import url('https://fonts.googleapis.com/css?family=Cairo');
+@import url('https://fonts.googleapis.com/css?family=Amiri');
+
+/*body {
     padding-top: 50px;
     padding-bottom: 20px;
 }*/
@@ -25,11 +30,15 @@ textarea {
 
 *{
     /*direction: rtl;*/
-    font-family: 'Droid Arabic Kufi';
+
+    font-family: 'Noto Kufi Arabic', sans-serif;
+    /*font-family: 'Cairo', sans-serif;*/
+    /*font-family: 'Amiri', serif;*/
 }
 body,h1{
     /*direction: rtl;*/
-    font-family: 'Droid Arabic Kufi';
+    /*font-family: 'Droid Arabic Kufi';*/
+    /*font-family: 'Cairo', sans-serif;*/
     padding-bottom: 20px;
 }
 
@@ -39,8 +48,9 @@ label{
 
 
 input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.md-textarea{
-    font-family: 'Droid Arabic Kufi';
-      font-size: 14px;
+    /*font-family: 'Droid Arabic Kufi';*/
+    /*font-family: 'Cairo', sans-serif;*/ 
+     font-size: 14px;
       direction: rtl;
 }
 

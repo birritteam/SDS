@@ -185,6 +185,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\managelistsController.cs" />
+    <Compile Include="Controllers\peopleAPIController.cs" />
     <Compile Include="Controllers\peopleController.cs" />
     <Compile Include="Controllers\personmanagesController.cs" />
     <Compile Include="Controllers\referalfamiliesController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Models\person.cs">
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PersonDTO.cs" />
     <Compile Include="Models\personmanage.cs">
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
@@ -258,6 +260,11 @@
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\PersonAndFamilyResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PersonAndFamilyResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\referalpersonResource.Designer.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="viewModel\referalPersonViewModel.cs" />
@@ -428,6 +435,7 @@
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\mdb.css" />
     <Content Include="Content\mdb.min.css" />
     <Content Include="favicon.ico" />
@@ -637,6 +645,7 @@
     <Content Include="Scripts\mdb.js" />
     <Content Include="Scripts\mdb.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\person-creation-script.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -736,6 +745,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\PersonAndFamilyResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PersonAndFamilyResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\referalpersonResource.resx" />
   </ItemGroup>
   <PropertyGroup>

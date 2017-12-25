@@ -1,14 +1,15 @@
 ﻿@model SDS_SanadDistributedSystem.Models.family
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "تفاصيل";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>تفاصيل العائلة</h2>
 
 <div>
-    <h4>family</h4>
+    
+    <h4>@Model.idfamily</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -83,28 +84,53 @@
             @Html.DisplayFor(model => model.lastname)
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>
+        </dd>*@
 
     </dl>
 </div>
 
 
-
+<h3>الأشخاص المسجلين ضمن العائلة</h3>
 <div>
-   
-    <table class="table">
+
+    <table class="table" id="familymembers">
+        <tr>
+            <th>
+                الرقم التسلسلي للشخص
+            </th>
+            <th>
+                الاسم الأول
+            </th>
+            <th>
+                الاسم الأخير
+            </th>
+            <th>
+                اسم الأب
+            </th>
+            <th>
+                اسم الأم
+            </th>
+            <th>
+                العمر
+            </th>
+            <th>
+                الجنس
+            </th>
+            @*<th></th>*@
+        </tr>
 
         @foreach (var item in Model.people)
         {
+
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.nationalnumber)
+                    @Html.DisplayFor(modelItem => item.idperson)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.fname)
@@ -119,70 +145,30 @@
                     @Html.DisplayFor(modelItem => item.mothername)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.birthday)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.birthplace)
+                    @{
+                        var dob = item.birthday.GetValueOrDefault();
+                        DateTime now = DateTime.Today;
+                        int age = now.Year - dob.Year;
+                        if (now < dob.AddYears(age))
+                        { age--; }
+                        @Html.DisplayFor(model => age);
+                    }
+                    @*@Html.DisplayFor(modelItem => item.age)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.gender)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nationality)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.martial)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.relationtype)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.onoffflag)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.education)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.educationstate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.phone1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.phone2)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.currentaddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.registrationdate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.formnumber)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.note)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.center.name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.family.idfamily)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.idperson }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.idperson }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.idperson })
-                </td>
-            </tr>
-        }
+                @*<td>
+                    @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
+                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.idperson })
+                </td>*@
+            </tr>                             }
 
     </table>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idfamily }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.idfamily }) |
+    @Html.ActionLink("العودة إلى قائمة العائلات", "Index")
 </p>
