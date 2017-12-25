@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SDS_SanadDistributedSystem.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
@@ -62,16 +63,17 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner")] family family , int idmangelist)
+        public async Task<ActionResult> Create([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner")] family family, int idmangelist)
         {
             if (ModelState.IsValid)
             {
+                family.iduser = User.Identity.GetUserId();
                 db.families.Add(family);
                 managelist managel = db.managelists.SingleOrDefault(ml => ml.idmanagelist == idmangelist);
                 managel.families.Add(family);
 
                 await db.SaveChangesAsync();
-                return RedirectToAction("Create","people", new  { id = family.idfamily});
+                return RedirectToAction("Create", "people", new { id = family.idfamily });
             }
 
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", family.iduser);
@@ -92,7 +94,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 return HttpNotFound();
             }
 
-            int selectedAddressType= 0;
+            int selectedAddressType = 0;
 
             foreach (managelist item in db.managelists)
             {
@@ -131,7 +133,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     else
                         item.families.Remove(family);
                 }
-  
+
                 await db.SaveChangesAsync();
 
                 return RedirectToAction("Index");

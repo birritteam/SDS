@@ -27,8 +27,8 @@ namespace SDS_SanadDistributedSystem.Models
         public string idcenter { get; set; }
         public string name { get; set; }
         public string location { get; set; }
-        public string flag { get; set; }
         public string idpartner_FK { get; set; }
+        public string flag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }

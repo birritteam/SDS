@@ -1,14 +1,14 @@
 ﻿@model SDS_SanadDistributedSystem.Models.person
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "تفاصيل بيانات الشخص";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>تفاصيل بيانات الشخص</h2>
 
 <div>
-    <h4>person</h4>
+    <h4>@Model.idperson</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -198,6 +198,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idperson }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.idperson }) |
+    @Html.ActionLink("عودة إلى قائمة الأشخاص", "Index")
 </p>

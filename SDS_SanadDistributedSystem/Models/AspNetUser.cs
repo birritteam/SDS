@@ -24,6 +24,7 @@ namespace SDS_SanadDistributedSystem.Models
             this.AspNetRoles = new HashSet<AspNetRole>();
             this.families = new HashSet<family>();
             this.people = new HashSet<person>();
+            this.temporals = new HashSet<temporal>();
         }
     
         public string Id { get; set; }
@@ -39,6 +40,7 @@ namespace SDS_SanadDistributedSystem.Models
         public int AccessFailedCount { get; set; }
         public string UserName { get; set; }
         public string idcenter_FK { get; set; }
+        public bool enabled { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
@@ -55,5 +57,7 @@ namespace SDS_SanadDistributedSystem.Models
         public virtual ICollection<family> families { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<person> people { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<temporal> temporals { get; set; }
     }
 }

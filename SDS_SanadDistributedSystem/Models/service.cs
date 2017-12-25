@@ -25,7 +25,7 @@ namespace SDS_SanadDistributedSystem.Models
         public int idservice { get; set; }
         public int idcase_FK { get; set; }
         public string name { get; set; }
-        public Nullable<bool> enabled { get; set; }
+        public bool enabled { get; set; }
     
         public virtual @case @case { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

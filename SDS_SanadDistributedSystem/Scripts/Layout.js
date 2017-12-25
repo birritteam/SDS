@@ -38,7 +38,7 @@ toastr.options = {
     "newestOnTop": false, // true/false
     "progressBar": false, // true/false
     "positionClass": "toast-bottom-right", // toast-top-right / toast-top-left / toast-bottom-right / toast-bottom-left
-    "preventDuplicates": false, //true,false
+    "preventDuplicates": true, //true,false
     "onclick": null,
     "showDuration": "300", // in milliseconds
     "hideDuration": "1000", // in milliseconds
