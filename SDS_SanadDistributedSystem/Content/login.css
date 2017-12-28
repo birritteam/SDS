@@ -1,0 +1,71 @@
+﻿.centered-wrapper {
+    position: relative;
+    text-align: center;
+}
+.centered-wrapper:before {
+    content: "";
+    position: relative;
+    display: inline-block;
+    width: 0; height: 100%;
+    vertical-align: middle;
+}
+.centered-content {
+    display: inline-block;
+    vertical-align: middle;
+}
+.centered-content2 {
+    margin:10px;
+     width:25%;
+    display: inline-block;
+    vertical-align: middle;
+   
+}
+
+/*.wthree-pro img {
+		width: 25%;
+        align-self:center
+	}*/
+
+
+.form-simple .font-small {
+  font-size: 0.8rem; }
+
+.form-simple .header {
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem; }
+
+.form-simple input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #ff3547;
+  -webkit-box-shadow: 0 1px 0 0 #ff3547;
+  box-shadow: 0 1px 0 0 #ff3547; }
+
+.form-simple input[type=text]:focus:not([readonly]) + label {
+  color: #4f4f4f; }
+
+.form-simple input[type=password]:focus:not([readonly]) {
+  border-bottom: 1px solid #2196f3;
+  -webkit-box-shadow: 0 1px 0 0 #2196f3;
+  box-shadow: 0 1px 0 0 #2196f3; }
+
+.form-simple input[type=email]:focus.valid:not([readonly]) + label {
+  color: #ff3547; }
+.form-simple input[type=password]:focus:not([readonly]) + label {
+  color: #2196f3; }
+
+.btn {
+    font-size:.8rem;
+    padding: .85rem 2.13rem;
+    margin:3rem;
+    border-radius: 2px;
+    border: 0;
+    color: #fff!important;
+    margin: 6px;
+    white-space: normal!important;
+       background: #2196f3;
+       width:150px; 
+}
+
+
+
+
+                

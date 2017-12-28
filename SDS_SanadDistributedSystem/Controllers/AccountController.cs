@@ -17,7 +17,7 @@ namespace SDS_SanadDistributedSystem.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private sds_dbEntities db = new sds_dbEntities();
         public AccountController()
         {
         }
@@ -90,6 +90,64 @@ namespace SDS_SanadDistributedSystem.Controllers
                     return View(model);
             }
         }
+        // GET: /Account/Login
+        [AllowAnonymous]
+        public ActionResult SmartLogin(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        // POST: /Account/Login
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SmartLogin(LoginViewModel model, string returnUrl)
+        {
+
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var login_user = db.AspNetUsers.Where(u => u.Email.Equals(model.Email));
+            var roles = login_user.First().AspNetRoles.First().Name;
+            string action_name = "";
+            string contrller_naem = "";
+            switch (result)
+            {
+
+                case SignInStatus.Success:
+                    if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
+                        || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
+                        || roles.Equals("cmSGBV") || roles.Equals("cmSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
+                    {
+                        action_name = "index";
+                        contrller_naem = "referalpersons";
+
+                    }
+                    else
+                    {
+                        action_name = "index";
+                        contrller_naem = "Account";
+                    }
+                    return RedirectToAction(action_name, contrller_naem);
+
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "محاولة تسجيل دخول خاطئة");
+                    return View(model);
+            }
+        }
+
 
         //
         // GET: /Account/VerifyCode
@@ -392,8 +450,9 @@ namespace SDS_SanadDistributedSystem.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("SmartLogin", "Account");
         }
+
 
         //
         // GET: /Account/ExternalLoginFailure

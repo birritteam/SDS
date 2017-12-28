@@ -7,7 +7,7 @@
     int new_Count = 5;
 }
 
-<h2>إحالات مدير حالة ---------(  defined by role)</h2>
+<h2>إحالات مدير حالة @ViewBag.case_manager</h2>
 
 @*<p>
         @Html.ActionLink("Create New", "Create")
@@ -16,7 +16,7 @@
     @*<script src="~/Scripts/bootstrap.min.js"></script>*@
     @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" />*@
     @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>*@
-    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">    </script>*@ 
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">    </script>*@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">جديدة أو معلقة <h5>@*@new_Count*@</h5></a></li>
@@ -35,17 +35,20 @@
             <table id="myTable" class="display table table-bordered" cellspacing="0">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.submittingdate)
+                        اسم الشخص
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.referalstate)
+                        @Html.DisplayNameFor(model => model.submittingdate)
                     </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.referalstate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.referaldate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.servicestate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.servicestate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.servicestartdate)
                     </th>
@@ -61,21 +64,19 @@
                     <th>
                         @Html.DisplayNameFor(model => model.outreachnote)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.@case.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.center.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.person.fname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.service.name)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.@case.name)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.center.name)
+                        </th>*@
+
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.service.name)
+                        </th>*@
                     <th></th>
                 </tr>
 
@@ -86,17 +87,21 @@
                         new_Count++;
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                                @Html.DisplayFor(modelItem => item.person.fname ) @Html.DisplayFor(modelItem => item.person.lname)
+                                
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -112,21 +117,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                 @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
@@ -146,17 +149,21 @@
             <table id="myTable" class="display table table-bordered" cellspacing="0">
                 <tr>
                     <th>
+                        اسم الشخص
+                    </th>
+
+                    <th>
                         @Html.DisplayNameFor(model => model.submittingdate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.referalstate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.referalstate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.referaldate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.servicestate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.servicestate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.servicestartdate)
                     </th>
@@ -172,21 +179,19 @@
                     <th>
                         @Html.DisplayNameFor(model => model.outreachnote)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.@case.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.center.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.person.fname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.service.name)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.@case.name)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.center.name)
+                        </th>*@
+
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.service.name)
+                        </th>*@
                     <th>
                         وصول
                     </th>
@@ -199,17 +204,20 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                               @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -225,21 +233,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 لا
                             </td>
@@ -257,17 +263,20 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                                @Html.DisplayFor(modelItem => item.person.fname ) @Html.DisplayFor(modelItem => item.person.lname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -283,21 +292,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 نعم
                             </td>
@@ -320,17 +327,20 @@
             <table id="myTable" class="display table table-bordered" cellspacing="0">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.submittingdate)
+                        اسم الشخص
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.referalstate)
+                        @Html.DisplayNameFor(model => model.submittingdate)
                     </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.referalstate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.referaldate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.servicestate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.servicestate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.servicestartdate)
                     </th>
@@ -346,21 +356,19 @@
                     <th>
                         @Html.DisplayNameFor(model => model.outreachnote)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.@case.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.center.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.person.fname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.service.name)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.@case.name)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.center.name)
+                        </th>*@
+
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.service.name)
+                        </th>*@
                     <th></th>
                 </tr>
 
@@ -370,17 +378,20 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                               @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -396,21 +407,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                 @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
@@ -431,17 +440,21 @@
             <table id="myTable" class="display table table-bordered" cellspacing="0">
                 <tr>
                     <th>
+                        اسم الشخص
+                    </th>
+
+                    <th>
                         @Html.DisplayNameFor(model => model.submittingdate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.referalstate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.referalstate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.referaldate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.servicestate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.servicestate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.servicestartdate)
                     </th>
@@ -457,21 +470,19 @@
                     <th>
                         @Html.DisplayNameFor(model => model.outreachnote)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.@case.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.center.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.person.fname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.service.name)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.@case.name)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.center.name)
+                        </th>*@
+
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.service.name)
+                        </th>*@
                     <th>
                         وصول
                     </th>
@@ -484,17 +495,20 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                                @Html.DisplayFor(modelItem => item.person.fname ) @Html.DisplayFor(modelItem => item.person.lname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -510,21 +524,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 لا
                             </td>
@@ -542,17 +554,20 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                             @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -568,21 +583,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 نعم
                             </td>
@@ -605,17 +618,21 @@
             <table id="myTable" class="display table table-bordered" cellspacing="0">
                 <tr>
                     <th>
+                        اسم الشخص
+                    </th>
+
+                    <th>
                         @Html.DisplayNameFor(model => model.submittingdate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.referalstate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.referalstate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.referaldate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.servicestate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.servicestate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.servicestartdate)
                     </th>
@@ -631,21 +648,19 @@
                     <th>
                         @Html.DisplayNameFor(model => model.outreachnote)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.@case.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.center.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.person.fname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.service.name)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.@case.name)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.center.name)
+                        </th>*@
+
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.service.name)
+                        </th>*@
                     <th>
                         وصول
                     </th>
@@ -658,17 +673,20 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                               @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -684,21 +702,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 لا
                             </td>
@@ -716,17 +732,20 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                             @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -742,21 +761,19 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 نعم
                             </td>
@@ -779,17 +796,20 @@
             <table id="myTable" class="display table table-bordered" cellspacing="0">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.submittingdate)
+                        اسم الشخص
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.referalstate)
+                        @Html.DisplayNameFor(model => model.submittingdate)
                     </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.referalstate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.referaldate)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.servicestate)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.servicestate)
+                        </th>*@
                     <th>
                         @Html.DisplayNameFor(model => model.servicestartdate)
                     </th>
@@ -805,21 +825,19 @@
                     <th>
                         @Html.DisplayNameFor(model => model.outreachnote)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.AspNetUser.Email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.@case.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.center.name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.person.fname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.service.name)
-                    </th>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.@case.name)
+                        </th>*@
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.center.name)
+                        </th>*@
+
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.service.name)
+                        </th>*@
                     <th></th>
                 </tr>
 
@@ -829,17 +847,20 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.submittingdate)
+                               @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.referalstate)
+                                @Html.DisplayFor(modelItem => item.submittingdate)
                             </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.referaldate)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.servicestate)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.servicestartdate)
                             </td>
@@ -855,24 +876,23 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.outreachnote)
                             </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.@case.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.center.name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.person.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.service.name)
-                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                </td>*@
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.center.name)
+                                </td>*@
+
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.service.name)
+                                </td>*@
                             <td>
                                 @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                 @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
                                 @*|
                                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                      @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
@@ -887,3 +907,17 @@
 
 </div>
 @Scripts.Render("~/bundles/jqueryval")
+<script>
+
+
+
+            $(document).ready(function () {
+                $('#myTable').DataTable({
+                    //dom: 'Bfrtip',
+                    //buttons: [
+                    //    'copy', 'csv', 'excel', 'pdf', 'print'
+                    //]
+                });
+            });
+       
+</script>

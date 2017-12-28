@@ -19,7 +19,7 @@ namespace SDS_SanadDistributedSystem.viewModel
        
         public string idservice_FK { get; set; }
 
-        public string submittingdate { get; set; }
+       // public string submittingdate { get; set; }
 
        // public string referalstate { get; set; }
 
@@ -33,13 +33,13 @@ namespace SDS_SanadDistributedSystem.viewModel
 
         //public Nullable<System.DateTime> serviceenddate { get; set; }
 
-        public string referalsender_FK { get; set; }
+        //public string referalsender_FK { get; set; }
 
         public string senderevalution { get; set; }
     
         //public string recieverevalution { get; set; }
 
-        public string idcenter_FK { get; set; }
+        //public string idcenter_FK { get; set; }
 
         public string outreachnote { get; set; }
     }

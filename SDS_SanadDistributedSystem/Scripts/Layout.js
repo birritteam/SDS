@@ -38,7 +38,7 @@ toastr.options = {
     "newestOnTop": false, // true/false
     "progressBar": false, // true/false
     "positionClass": "toast-bottom-right", // toast-top-right / toast-top-left / toast-bottom-right / toast-bottom-left
-    "preventDuplicates": true, //true,false
+    "preventDuplicates": false, //true,false
     "onclick": null,
     "showDuration": "300", // in milliseconds
     "hideDuration": "1000", // in milliseconds
@@ -68,10 +68,5 @@ $(document).ready(function () {
 
 });
 $(document).ready(function () {
-    $('#myTable').DataTable({
-        //dom: 'Bfrtip',
-        //buttons: [
-        //    'copy', 'csv', 'excel', 'pdf', 'print'
-        //]
-    });
+    FillReferalStateDropdown();
 });

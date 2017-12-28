@@ -1,0 +1,111 @@
+﻿@using SDS_SanadDistributedSystem.Models
+@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <title> برنامج سند الموزع</title>
+    <!-- Meta tag Keywords -->
+    <meta name="viewport" content="width=device-width" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1">*@
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body class="md-12 centered-wrapper pulse wow fadeInUp" style=" margin:10px 10px 20px 20px ;padding:10px; ">
+    <!--header-->
+    @*<div class="header-w3l">
+        <h1>برنامج سند الموزع</h1>
+    </div>*@
+    <!--//header-->
+    <!--main-->
+
+        <div class="col-md-6 centered-content " >
+            <img src="~/images/sanad.jpg" alt="image">
+            @*<h2>تسجيل الدخول الآن</h2>*@
+        </div>
+       
+    <div class=" col-md-6 centered-content " style=" margin:0px 0px 20px 0px ;">
+        @using (Html.BeginForm("SmartLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <section class="form-simple centered-content" style="width: 28rem;">
+
+                <!--Form with header-->
+                <div class="card" style="width: 28rem; padding:15px; align-items:center">
+
+                    <!--Header-->
+                    <div class="header pt-3 grey lighten-2">
+
+                        <div class="row d-flex justify-content-start">
+
+                            <div class="centered-content2 animated bounce infinite">
+                                <img  src="~/images/user-200x200.png" />
+                            </div>
+                            <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5 "> تسجيل دخول</h3>
+                        </div>
+                     
+                    </div>
+                    <!--Header-->
+
+                    <div class="card-body mx-4 mt-4">
+
+                        <!--Body--><i class="fa fa-user blue-text " style="font-size:2em"></i>
+                        <div class="md-form">
+
+                            @Html.EditorFor(m => m.Email, new { @class = " validate", @required = "true" })
+                            <label for="Password">البريد الإلكتروني</label>
+                            @*@Html.LabelFor(model => model.Email, htmlAttributes: new { })"يجب إدخال البريد الإلكتروني"*@
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+                        </div>
+                        <i class="fa fa-envelope prefix  blue-text" style="font-size:2em" ></i>
+                        <div class="md-form ">
+
+                            @Html.PasswordFor(m => m.Password, new { @class = " validate", @required = "true" })
+                            <label for="Password">كلمة المرور</label>
+                             @*@Html.LabelFor(model => model.Password, htmlAttributes: new { })"يجب إدخال كلمة المرور"*@
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                            @*<p class="font-small grey-text d-flex justify-content-end">Forgot <a href="#" class="dark-grey-text font-bold ml-1"> Password?</a></p>*@
+                        </div>
+
+                        <div class="text-center md-4 ">
+                            <div class="form-group ">
+                                <input type="checkbox" name="RememberMe" value="true" id="RememberMe" />
+                                <label for="RememberMe">ذكرني</label>
+                            </div>
+                        </div>
+                       
+
+                            <div class="text-center mb-4">
+                                <button type="submit" class="btn   z-depth-2">تسجيل الدخول</button>
+                            </div>
+                            <p class="font-small grey-text d-flex justify-content-center">
+                                إذا كنت لا تملك حساب يمكنك
+                                @Html.ActionLink("إنشاء حساب", "Register", null, htmlAttributes: new { @class = "dark-grey-text font-bold ml-1" })
+                            </p>
+
+                        </div>
+
+                </div>
+                <!--/Form with header-->
+
+            </section>
+        }
+    </div>
+
+    
+
+</body>
+</html>
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")

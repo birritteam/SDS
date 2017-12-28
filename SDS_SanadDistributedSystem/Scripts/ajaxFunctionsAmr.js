@@ -21,10 +21,10 @@
 }
 function FillServicesNew() {
 
-   // var idcase_FK_text = document.getElementById("idcase_FK").options[document.getElementById("idcase_FK").selectedIndex].text;
+    // var idcase_FK_text = document.getElementById("idcase_FK").options[document.getElementById("idcase_FK").selectedIndex].text;
     var selectedId = $('#idcase_FK').val();
     if (selectedId == 1) {
-        $("button[data-id='cmEducation']").show(); 
+        $("button[data-id='cmEducation']").show();
         $("button[data-id='cmProfessional']").hide();
         $("button[data-id='cmChildProtection']").hide();
         $("button[data-id='cmPsychologicalSupport1']").hide();
@@ -333,8 +333,13 @@ var personReferal_text = [];
 
 function successFillTableNew() {
     //alert("successFillTableNew.............")
+    //$("#SchedulingProfile_Id").val();
+   // var idperson_FK = $("#idperson_FK").val();
+
     var idperson_FK = document.getElementById("idperson_FK").value;
-    var idperson_FK_text = document.getElementById("idperson_FK").options[document.getElementById("idperson_FK").selectedIndex].text;
+
+    var idperson_FK_text = idperson_FK;
+    //var idperson_FK_text = document.getElementById("idperson_FK").options[document.getElementById("idperson_FK").selectedIndex].text;
 
     var idcase_FK = document.getElementById("idcase_FK").value;
     var idcase_FK_text = document.getElementById("idcase_FK").options[document.getElementById("idcase_FK").selectedIndex].text;
@@ -394,7 +399,7 @@ function successFillTableNew() {
         var idservice_FK_text = document.getElementById("cmInkindAssistance").options[document.getElementById("cmInkindAssistance").selectedIndex].text;
     }
     //----------------------------------------
-    var submittingdate = document.getElementById("submittingdate").value;
+    //var submittingdate = document.getElementById("submittingdate").value;
 
     //var referalstate = document.getElementById("referalstate").value;
     //var referalstate_text = document.getElementById("referalstate").options[document.getElementById("referalstate").selectedIndex].text;
@@ -408,33 +413,35 @@ function successFillTableNew() {
 
     var serviceenddate;
 
-    var referalsender_FK = document.getElementById("referalsender_FK").value;
-    var referalsender_FK_text = document.getElementById("referalsender_FK").options[document.getElementById("referalsender_FK").selectedIndex].text;
+    //var referalsender_FK = document.getElementById("referalsender_FK").value;
+    //var referalsender_FK_text = document.getElementById("referalsender_FK").options[document.getElementById("referalsender_FK").selectedIndex].text;
 
     var senderevalution = document.getElementById("senderevalution").value;
 
     var recieverevalution;
 
-    var idcenter_FK = document.getElementById("idcenter_FK").value;
-    var idcenter_FK_text = document.getElementById("idcenter_FK").options[document.getElementById("idcenter_FK").selectedIndex].text;
+    //var idcenter_FK = document.getElementById("idcenter_FK").value;
+    //var idcenter_FK_text = document.getElementById("idcenter_FK").options[document.getElementById("idcenter_FK").selectedIndex].text;
 
     var outreachnote = document.getElementById("outreachnote").value;
     var obj = {
         "idperson_FK": idperson_FK,
-        "idcase_FK": idcase_FK, "idservice_FK": idservice_FK, "submittingdate": submittingdate, 
-         "referalsender_FK": referalsender_FK, "senderevalution": senderevalution, "idcenter_FK": idcenter_FK, "outreachnote": outreachnote
+        "idcase_FK": idcase_FK, "idservice_FK": idservice_FK,
+
+      "senderevalution": senderevalution, "outreachnote": outreachnote
     };
 
     var obj_text = {
         "idperson_FK": idperson_FK_text,
-        "idcase_FK": idcase_FK_text, "idservice_FK": idservice_FK_text, "submittingdate": submittingdate,
-         "referalsender_FK": referalsender_FK_text, "senderevalution": senderevalution, "idcenter_FK": idcenter_FK_text, "outreachnote": outreachnote
+        "idcase_FK": idcase_FK_text, "idservice_FK": idservice_FK_text,
+
+         "senderevalution": senderevalution,  "outreachnote": outreachnote
     };
 
     var checkexist = false;
     var checkundefined = false;
 
-
+    
     personReferal_text.forEach(function (item, i, array) {
         if (item.idcase_FK == idcase_FK_text && item.idservice_FK == idservice_FK_text)
             checkexist = true;
@@ -447,7 +454,7 @@ function successFillTableNew() {
     if (!checkexist && !checkundefined) {
         personReferal.push(obj);
         personReferal_text.push(obj_text);
-        alert("successFillTableNew............." + obj.idcase_FK)
+       // alert("successFillTableNew............." + obj.idcase_FK)
         $("#myTable tbody").empty();
         personReferal_text.forEach(function (item, i, array) {
             //console.log(item, i);
@@ -457,18 +464,21 @@ function successFillTableNew() {
                 item.senderevalution + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
         });
         // BindItemTable();
-        alert("successFillTableNew........end .")
+        toastr.success('تم إضافة إحالة للجدول');
+      // alert("successFillTableNew........end .")
     }
     else {
         if (checkexist)
-            alert("already exist.....")
+            toastr.warning('تمت إضافة هذه الخدمة مسبقا للجدول.');
+            //alert("already exist.....")
+
         else
-            alert(" لا يمكن")
+            toastr.warning(" لا يمكن إضافة هذه الخدمة")
     }
 }
 
 function deleterowNew(index) {
-    alert(index);
+    toastr.info("حذف من الجدول");
     personReferal.splice(index - 1, 1);
     personReferal_text.splice(index - 1, 1);
     $("#myTable tbody").empty();
@@ -503,7 +513,7 @@ function successSendReferals() {
         data: referals,
         success:
 function (data) {
-    alert(data)
+    toastr.success('تم الحفظ بنجاح');
     $("#myTable tbody").empty();
     personReferal = [];
     personReferal_text = [];
@@ -511,7 +521,7 @@ function (data) {
 
         error: function (xhr, status, error) {
             // check status && error
-            alert("fail send referals............")
+            toastr.error("فشلة عملية الحفظ ")
         }
     });
 
@@ -525,6 +535,67 @@ function OnFailureSendReferals() {
 
 function OnFailureFillTable() {
     alert("Failure FillTable.............")
+
+}
+
+function FillReferalStateDropdown() {
+    var servicestate_text = document.getElementById("servicestate").options[document.getElementById("servicestate").selectedIndex].text;
+
+    var referalstate_text = document.getElementById("referalstate").options[document.getElementById("servicestate").selectedIndex].text;
+
+
+
+    if (servicestate_text == "Pending") {
+
+        $('#referalstate')
+    .empty()
+    .append('<option selected="selected" value="Pending">Pending</option>')
+         .append('<option selected="selected" value="Approved">Approved</option>')
+         .append('<option selected="selected" value="Rejected">Rejected</option>')
+
+         .append('<option selected="selected" value="OutReach">OutReach</option>')
+         .append('<option selected="selected" value="External">External</option>')
+        ;
+
+
+
+        $('select#referalstate option')
+   .each(function () { this.selected = (this.text == referalstate_text); });
+
+        $('#referalstate').selectpicker('refresh');
+
+        //    $('.selectpicker #referalstate')
+        //.find('option')
+        //.remove()
+        //.end()
+        //.append('<option value="Pending">Pending</option>')
+        //.val('Pending')
+        //    ;
+        //  $("#referalstate").append(
+        //$('<option></option>').val("Pending").html("Pending"),
+        //$('<option></option>').val("Approved").html("Approved"),
+        //$('<option></option>').val("Rejected").html("Rejected"),
+        //$('<option></option>').val("OutReach").html("OutReach"),
+        //$('<option></option>').val("External").html("External"));
+
+
+
+    }
+        // if (servicestate_text == "In prgress") else if (servicestate_text == "Closed")
+    else {
+
+        $('#referalstate')
+ .empty()
+      .append('<option selected="selected" value="Approved">Approved</option>')
+      .append('<option selected="selected" value="OutReach">OutReach</option>')
+        ;
+        $('select#referalstate option')
+    .each(function () { this.selected = (this.text == "Approved"); });
+
+        $('#referalstate').selectpicker('refresh');
+
+    }
+
 
 }
 
