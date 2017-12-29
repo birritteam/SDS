@@ -176,6 +176,7 @@
           <Property Name="servicestartdate" Type="date" />
           <Property Name="serviceenddate" Type="date" />
           <Property Name="referalsender_FK" Type="nvarchar" MaxLength="128" />
+          <Property Name="referalreciever_FK" Type="nvarchar" MaxLength="128" />
           <Property Name="senderevalution" Type="text" />
           <Property Name="recieverevalution" Type="text" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" />
@@ -198,18 +199,11 @@
           <Property Name="servicestartdate" Type="date" />
           <Property Name="serviceenddate" Type="date" />
           <Property Name="referalsender_FK" Type="nvarchar" MaxLength="128" />
+          <Property Name="referalreicver_FK" Type="nvarchar" MaxLength="128" />
           <Property Name="senderevalution" Type="text" />
           <Property Name="recieverevalution" Type="text" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="outreachnote" Type="text" />
-        </EntityType>
-        <EntityType Name="roles_services">
-          <Key>
-            <PropertyRef Name="idRole_FK" />
-            <PropertyRef Name="idservice_FK" />
-          </Key>
-          <Property Name="idRole_FK" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="idservice_FK" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="service">
           <Key>
@@ -219,6 +213,7 @@
           <Property Name="idcase_FK" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="enabled" Type="bit" Nullable="false" />
+          <Property Name="idrole_FK" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="temporal">
           <Key>
@@ -460,6 +455,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_referalfamily_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="referalfamily" Type="Self.referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="referalreciever_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_referalfamily_case">
           <End Role="cases" Type="Self.cases" Multiplicity="1" />
           <End Role="referalfamily" Type="Self.referalfamily" Multiplicity="*" />
@@ -520,6 +527,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_referalperson_AspNetUsers1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="referalperson" Type="Self.referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="referalreicver_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_referalperson_case">
           <End Role="cases" Type="Self.cases" Multiplicity="1" />
           <End Role="referalperson" Type="Self.referalperson" Multiplicity="*" />
@@ -568,15 +587,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_roles_services_AspNetRoles">
+        <Association Name="FK_service_AspNetRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
-          <End Role="roles_services" Type="Self.roles_services" Multiplicity="*" />
+          <End Role="service" Type="Self.service" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetRoles">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="roles_services">
-              <PropertyRef Name="idRole_FK" />
+            <Dependent Role="service">
+              <PropertyRef Name="idrole_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -589,18 +608,6 @@
             </Principal>
             <Dependent Role="service">
               <PropertyRef Name="idcase_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_users_services_service">
-          <End Role="service" Type="Self.service" Multiplicity="1" />
-          <End Role="roles_services" Type="Self.roles_services" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="service">
-              <PropertyRef Name="idservice" />
-            </Principal>
-            <Dependent Role="roles_services">
-              <PropertyRef Name="idservice_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -620,7 +627,6 @@
           <EntitySet Name="personmanage" EntityType="Self.personmanage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="referalfamily" EntityType="Self.referalfamily" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="referalperson" EntityType="Self.referalperson" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="roles_services" EntityType="Self.roles_services" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="service" EntityType="Self.service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="temporal" EntityType="Self.temporal" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AspNetRoles_cases" Association="Self.FK_AspNetRoles_cases">
@@ -691,6 +697,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="referalfamily" EntitySet="referalfamily" />
           </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_AspNetUsers1" Association="Self.FK_referalfamily_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="referalfamily" EntitySet="referalfamily" />
+          </AssociationSet>
           <AssociationSet Name="FK_referalfamily_case" Association="Self.FK_referalfamily_case">
             <End Role="cases" EntitySet="cases" />
             <End Role="referalfamily" EntitySet="referalfamily" />
@@ -711,6 +721,10 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="referalperson" EntitySet="referalperson" />
           </AssociationSet>
+          <AssociationSet Name="FK_referalperson_AspNetUsers1" Association="Self.FK_referalperson_AspNetUsers1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="referalperson" EntitySet="referalperson" />
+          </AssociationSet>
           <AssociationSet Name="FK_referalperson_case" Association="Self.FK_referalperson_case">
             <End Role="cases" EntitySet="cases" />
             <End Role="referalperson" EntitySet="referalperson" />
@@ -727,17 +741,13 @@
             <End Role="service" EntitySet="service" />
             <End Role="referalperson" EntitySet="referalperson" />
           </AssociationSet>
-          <AssociationSet Name="FK_roles_services_AspNetRoles" Association="Self.FK_roles_services_AspNetRoles">
+          <AssociationSet Name="FK_service_AspNetRoles" Association="Self.FK_service_AspNetRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="roles_services" EntitySet="roles_services" />
+            <End Role="service" EntitySet="service" />
           </AssociationSet>
           <AssociationSet Name="FK_service_case" Association="Self.FK_service_case">
             <End Role="cases" EntitySet="cases" />
             <End Role="service" EntitySet="service" />
-          </AssociationSet>
-          <AssociationSet Name="FK_users_services_service" Association="Self.FK_users_services_service">
-            <End Role="service" EntitySet="service" />
-            <End Role="roles_services" EntitySet="roles_services" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -753,7 +763,7 @@
           <Property Name="idcase" Type="Int32" />
           <NavigationProperty Name="case" Relationship="Self.FK_AspNetRoles_cases" FromRole="AspNetRoles" ToRole="cases" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
-          <NavigationProperty Name="services" Relationship="Self.roles_services" FromRole="AspNetRoles" ToRole="service" />
+          <NavigationProperty Name="services1" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="AspNetRole" ToRole="service" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
@@ -803,6 +813,8 @@
           <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_AspNetUsers" FromRole="AspNetUser" ToRole="person" />
           <Property Name="enabled" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="temporals" Relationship="sds_dbModel.FK_temporal_AspNetUsers" FromRole="AspNetUser" ToRole="temporal" />
+          <NavigationProperty Name="referalfamilies1" Relationship="sds_dbModel.FK_referalfamily_AspNetUsers1" FromRole="AspNetUser" ToRole="referalfamily" />
+          <NavigationProperty Name="referalpersons1" Relationship="sds_dbModel.FK_referalperson_AspNetUsers1" FromRole="AspNetUser" ToRole="referalperson" />
         </EntityType>
         <EntityType Name="case">
           <Key>
@@ -879,6 +891,8 @@
           <NavigationProperty Name="center" Relationship="Self.FK_referalfamily_center" FromRole="referalfamily" ToRole="center" />
           <NavigationProperty Name="service" Relationship="Self.FK_referalfamily_service" FromRole="referalfamily" ToRole="service" />
           <NavigationProperty Name="family" Relationship="sds_dbModel.FK_referalfamily_family" FromRole="referalfamily" ToRole="family" />
+          <Property Name="referalreciever_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_referalfamily_AspNetUsers1" FromRole="referalfamily" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="referalperson">
           <Key>
@@ -906,6 +920,8 @@
           <NavigationProperty Name="center" Relationship="Self.FK_referalperson_center" FromRole="referalperson" ToRole="center" />
           <NavigationProperty Name="service" Relationship="Self.FK_referalperson_service" FromRole="referalperson" ToRole="service" />
           <NavigationProperty Name="person" Relationship="sds_dbModel.FK_referalperson_person" FromRole="referalperson" ToRole="person" />
+          <Property Name="referalreicver_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_referalperson_AspNetUsers1" FromRole="referalperson" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="service">
           <Key>
@@ -917,8 +933,9 @@
           <NavigationProperty Name="case" Relationship="Self.FK_service_case" FromRole="service" ToRole="cases" />
           <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_service" FromRole="service" ToRole="referalfamily" />
           <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_service" FromRole="service" ToRole="referalperson" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.roles_services" FromRole="service" ToRole="AspNetRoles" />
           <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <Property Name="idrole_FK" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRole" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="service" ToRole="AspNetRole" />
         </EntityType>
         <EntityType Name="temporal">
           <Key>
@@ -1149,10 +1166,6 @@
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <Association Name="roles_services">
-          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-          <End Role="service" Type="Self.service" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="sds_dbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
@@ -1234,10 +1247,6 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
-          <AssociationSet Name="roles_services" Association="Self.roles_services">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="service" EntitySet="services" />
-          </AssociationSet>
           <EntitySet Name="families" EntityType="sds_dbModel.family" />
           <AssociationSet Name="FK_family_AspNetUsers" Association="sds_dbModel.FK_family_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
@@ -1280,6 +1289,18 @@
           <AssociationSet Name="FK_temporal_AspNetUsers" Association="sds_dbModel.FK_temporal_AspNetUsers">
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="temporal" EntitySet="temporals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_AspNetUsers1" Association="sds_dbModel.FK_referalfamily_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="referalfamily" EntitySet="referalfamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalperson_AspNetUsers1" Association="sds_dbModel.FK_referalperson_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="referalperson" EntitySet="referalpersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_AspNetRoles" Association="sds_dbModel.FK_service_AspNetRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="service" EntitySet="services" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="family">
@@ -1463,6 +1484,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_referalfamily_AspNetUsers1">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="referalreciever_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalperson_AspNetUsers1">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="referalreicver_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_AspNetRoles">
+          <End Type="sds_dbModel.AspNetRole" Role="AspNetRole" Multiplicity="1" />
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="idrole_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1558,6 +1615,7 @@
           <EntitySetMapping Name="referalfamilies">
             <EntityTypeMapping TypeName="sds_dbModel.referalfamily">
               <MappingFragment StoreEntitySet="referalfamily">
+                <ScalarProperty Name="referalreciever_FK" ColumnName="referalreciever_FK" />
                 <ScalarProperty Name="idreferalfamily" ColumnName="idreferalfamily" />
                 <ScalarProperty Name="idfamily_FK" ColumnName="idfamily_FK" />
                 <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
@@ -1579,6 +1637,7 @@
           <EntitySetMapping Name="referalpersons">
             <EntityTypeMapping TypeName="sds_dbModel.referalperson">
               <MappingFragment StoreEntitySet="referalperson">
+                <ScalarProperty Name="referalreicver_FK" ColumnName="referalreicver_FK" />
                 <ScalarProperty Name="idreferalperson" ColumnName="idreferalperson" />
                 <ScalarProperty Name="idperson_FK" ColumnName="idperson_FK" />
                 <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
@@ -1600,6 +1659,7 @@
           <EntitySetMapping Name="services">
             <EntityTypeMapping TypeName="sds_dbModel.service">
               <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="idrole_FK" ColumnName="idrole_FK" />
                 <ScalarProperty Name="enabled" ColumnName="enabled" />
                 <ScalarProperty Name="idservice" ColumnName="idservice" />
                 <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
@@ -1641,14 +1701,6 @@
             </EndProperty>
             <EndProperty Name="AspNetUsers">
               <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="roles_services" TypeName="sds_dbModel.roles_services" StoreEntitySet="roles_services">
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="idRole_FK" />
-            </EndProperty>
-            <EndProperty Name="service">
-              <ScalarProperty Name="idservice" ColumnName="idservice_FK" />
             </EndProperty>
           </AssociationSetMapping>
           <EntitySetMapping Name="families">

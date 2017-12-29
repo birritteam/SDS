@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SDS_SanadDistributedSystem.Hubs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,6 +19,13 @@ namespace SDS_SanadDistributedSystem
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            NotificationComponent NC = new NotificationComponent();
+            var CurrentTime = DateTime.Now;
+            HttpContext.Current.Session["LastUpdated"] = CurrentTime;
         }
     }
 }

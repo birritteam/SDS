@@ -9,6 +9,7 @@ namespace SDS_SanadDistributedSystem
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+            app.MapSignalR();
         }
     }
 }

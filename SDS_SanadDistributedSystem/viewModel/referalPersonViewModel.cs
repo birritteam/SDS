@@ -19,6 +19,8 @@ namespace SDS_SanadDistributedSystem.viewModel
        
         public string idservice_FK { get; set; }
 
+        public string referalreciever_FK { get; set; }
+
        // public string submittingdate { get; set; }
 
        // public string referalstate { get; set; }

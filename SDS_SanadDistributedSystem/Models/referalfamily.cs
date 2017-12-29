@@ -29,11 +29,13 @@ namespace SDS_SanadDistributedSystem.Models
         public string recieverevalution { get; set; }
         public string idcenter_FK { get; set; }
         public string outreachnote { get; set; }
+        public string referalreciever_FK { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual @case @case { get; set; }
         public virtual center center { get; set; }
         public virtual service service { get; set; }
         public virtual family family { get; set; }
+        public virtual AspNetUser AspNetUser1 { get; set; }
     }
 }

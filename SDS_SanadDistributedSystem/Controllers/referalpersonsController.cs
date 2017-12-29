@@ -10,10 +10,12 @@ using System.Web.Mvc;
 using SDS_SanadDistributedSystem.Models;
 using SDS_SanadDistributedSystem.viewModel;
 using Microsoft.AspNet.Identity;
+using SDS_SanadDistributedSystem.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    [Authorize(Roles = "superadmin,admin,cmEducation,cmProfessional,cmChildProtection,cmPsychologicalSupport1,cmPsychologicalSupport2,cmPsychologicalSupport3,cmDayCare,cmHomeCare,cmSGBV,cmSmallProjects ,cmIOutReachTeam,cmInkindAssistance ")]
+    [System.Web.Http.Authorize(Roles = "superadmin,admin,cmEducation,cmProfessional,cmChildProtection,cmPsychologicalSupport1,cmPsychologicalSupport2,cmPsychologicalSupport3,cmDayCare,cmHomeCare,cmSGBV,cmSmallProjects ,cmIOutReachTeam,cmInkindAssistance ")]
 
     public class referalpersonsController : Controller
     {
@@ -121,6 +123,18 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             //return View(await referalpersons.Where(x=>x.servicestate == "Pending" && x.referalstate=="Pending").ToListAsync());
             return View(await referalpersons.ToListAsync());
+        }
+
+        // this get new referalperson when added to database .. and when user click on جرس
+
+        public JsonResult GetNotificationsReferal()
+        {
+            var notificationRegisterTime = Session["LastUpdated"] != null ? Convert.ToDateTime(Session["LastUpdated"]) : DateTime.Now;
+            NotificationComponent NC = new NotificationComponent();
+            var list = NC.GetReferals(notificationRegisterTime, User.Identity.Name);
+
+            Session["LastUpdated"] = DateTime.Now;
+            return new JsonResult { Data = list.Select(r => new { personname = r.person.fname + " " + r.person.lname, serviceType = r.service.name}) , JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public ActionResult FillServices(string selectedId)
@@ -253,6 +267,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             //referalstates.Add("External");
 
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            var centername = user.center.name;
 
             ViewBag.idperson_FK = new SelectList(db.people.Where(p => p.idperson == id), "idperson", "fname");
 
@@ -261,6 +276,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.idcase_FK = new SelectList(db.cases.Where(r => r.idcase != idcase), "idcase", "name");
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");
             ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name");
+            
 
 
             ViewBag.cmEducation = new SelectList(db.services.Where(s => s.idcase_FK == 1), "idservice", "name");
@@ -313,14 +329,22 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                     rp.referalsender_FK = User.Identity.GetUserId().ToString();
 
+                    rp.referalreicver_FK = "84c2c89c-a3a2-4964-80f5-aaafa33c1d67"; /*rpvm.referalreciever_FK;*/
+
                     rp.senderevalution = rpvm.senderevalution;
 
                     rp.idcenter_FK = db.AspNetUsers.Find(User.Identity.GetUserId()).center.idcenter;
 
                     rp.outreachnote = rpvm.outreachnote;
 
+
                     db.referalpersons.Add(rp);
                     await db.SaveChangesAsync();
+
+                    // send real time notifcation to reciver user
+                    var notificationHub = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+                    string username = db.AspNetUsers.SingleOrDefault(user => user.Id == rp.referalreicver_FK).UserName;
+                    notificationHub.Clients.All.notify("added", username);
                 }
                 return new JsonResult { Data = "Success send referals" };
             }

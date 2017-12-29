@@ -19,20 +19,19 @@ namespace SDS_SanadDistributedSystem.Models
         {
             this.referalfamilies = new HashSet<referalfamily>();
             this.referalpersons = new HashSet<referalperson>();
-            this.AspNetRoles = new HashSet<AspNetRole>();
         }
     
         public int idservice { get; set; }
         public int idcase_FK { get; set; }
         public string name { get; set; }
         public bool enabled { get; set; }
+        public string idrole_FK { get; set; }
     
         public virtual @case @case { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalfamily> referalfamilies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalperson> referalpersons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        public virtual AspNetRole AspNetRole { get; set; }
     }
 }
