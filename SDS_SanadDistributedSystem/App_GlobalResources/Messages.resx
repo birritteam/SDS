@@ -117,52 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Case_Manager" xml:space="preserve">
-    <value>مدير الحالة</value>
+  <data name="FieldMustBeNumeric" xml:space="preserve">
+    <value>حقل '{0}' يجب أن يكون رقماً</value>
   </data>
-  <data name="idcenter_FK" xml:space="preserve">
-    <value>المركز</value>
+  <data name="PropertyValueRequired" xml:space="preserve">
+    <value>حقل '{0}' مطلوب</value>
   </data>
-  <data name="number" xml:space="preserve">
-    <value>الرقم التسلسلي</value>
+  <data name="RangeInvalid" xml:space="preserve">
+    <value>قيمة الحقل '{0}' يجب أن تكون بين {1} و {2}</value>
   </data>
-  <data name="outreachnote" xml:space="preserve">
-    <value>ملاحظات</value>
+  <data name="RegExInvalid" xml:space="preserve">
+    <value>قيمة الحقل '{0}' غير صحيحة</value>
   </data>
-  <data name="Person" xml:space="preserve">
-    <value>الشخص</value>
-  </data>
-  <data name="recieverevalution" xml:space="preserve">
-    <value>تقيم المستقبل</value>
-  </data>
-  <data name="referaldate" xml:space="preserve">
-    <value>تاريخ الإحالة</value>
-  </data>
-  <data name="referalsender_FK" xml:space="preserve">
-    <value>المرسل</value>
-  </data>
-  <data name="referalstate" xml:space="preserve">
-    <value>حالة الإحالة</value>
-  </data>
-  <data name="senderevalution" xml:space="preserve">
-    <value>تقيم أولي</value>
-  </data>
-  <data name="serviceenddate" xml:space="preserve">
-    <value>تاريخ إنهاء الخدمة</value>
-  </data>
-  <data name="servicestartdate" xml:space="preserve">
-    <value>تاريخ بدء الخدمة</value>
-  </data>
-  <data name="servicestate" xml:space="preserve">
-    <value>حالة الخدمة</value>
-  </data>
-  <data name="Service_Type" xml:space="preserve">
-    <value>نوع الخدمة</value>
-  </data>
-  <data name="submittingdate" xml:space="preserve">
-    <value>تاريخ الإرسال</value>
-  </data>
-  <data name="referalreicver_FK" xml:space="preserve">
-    <value>المستقبل</value>
+  <data name="StringLengthInvalid" xml:space="preserve">
+    <value>طول '{0}' يجب أن لا يتجاوز {1} حرفاً</value>
   </data>
 </root>

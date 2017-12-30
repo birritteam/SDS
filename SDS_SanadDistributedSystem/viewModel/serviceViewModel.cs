@@ -9,5 +9,7 @@ namespace SDS_SanadDistributedSystem.viewModel
     {
         public int idservice { get; set; }
         public string name { get; set; }
+
+        public List<UserViewModel> recivers { get; set; }
     }
 }

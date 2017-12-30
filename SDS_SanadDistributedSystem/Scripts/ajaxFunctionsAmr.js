@@ -1,17 +1,25 @@
 ﻿function FillServices() {
-    var selectedId = $('#idcase_FK').val();
-    alert("sssssssssssss" + selectedId);
+    var caseId = $('#idcase_FK').val();
+    alert("sssssssssssss" + caseId);
     $.ajax({
         url: '/referalpersons/FillServices',
         type: "GET",
         dataType: "JSON",
-        data: { 'selectedId': selectedId },
-        success: function (model) {
-            $("#idservice_FK").html("");
-            $.each(model, function (i, service) {
-                $("#idservice_FK").append(
-                $('<option></option>').val(service.idservice).html(service.name));
+        data: { 'caseId': caseId },
+        success: function (data) {
+            $('#services').empty()
+            $.each(data, function (i, service) {
+                $("#services").append(
+                $('<option selected="selected"></option>').val(service.idservice).html(service.name));
+                $("#referalReciver_FK").empty();
+                $.each(service.recivers, function (i, reciver) {
+                    $("#referalReciver_FK").append(
+                    $('<option></option>').val(reciver.Id).html(reciver.UserName));
+                });
             });
+           
+            $('#services').selectpicker('refresh');
+            $('#referalReciver_FK').selectpicker('refresh');
         },
         error: function (xhr, status, error) {
             // check status && error
@@ -19,6 +27,66 @@
         }
     });
 }
+
+function FillRecivers()
+{
+
+    var serviceId = $('#services').val();
+    alert("serviceId =" + serviceId);
+    $.ajax({
+        url: '/referalpersons/FillRecivers',
+        type: "GET",
+        dataType: "JSON",
+        data: { 'serviceId': serviceId },
+        success: function (recivers) {
+
+            $("#referalReciver_FK").empty();
+            $.each(recivers, function (i, reciver) {
+                $("#referalReciver_FK").append(
+                $('<option></option>').val(reciver.Id).html(reciver.UserName));
+        });
+            $('#referalReciver_FK').selectpicker('refresh');
+
+        },
+        error: function (xhr, status, error) {
+            // check status && error
+            alert("Whooaaa! Something went wrong..")
+        }
+    });
+
+
+
+}
+
+function FillRecivers_EDIT() {
+
+    var serviceId = $('#idservice_FK').val();
+    alert("serviceId =" + serviceId);
+    $.ajax({
+        url: '/referalpersons/FillRecivers',
+        type: "GET",
+        dataType: "JSON",
+        data: { 'serviceId': serviceId },
+        success: function (recivers) {
+
+            $("#referalReciver_FK").empty();
+            $.each(recivers, function (i, reciver) {
+                $("#referalReciver_FK").append(
+                $('<option></option>').val(reciver.Id).html(reciver.UserName));
+            });
+            $('#referalReciver_FK').selectpicker('refresh');
+
+        },
+        error: function (xhr, status, error) {
+            // check status && error
+            alert("Whooaaa! Something went wrong..")
+        }
+    });
+
+
+
+}
+
 function FillServicesNew() {
 
     // var idcase_FK_text = document.getElementById("idcase_FK").options[document.getElementById("idcase_FK").selectedIndex].text;
@@ -334,8 +402,10 @@ var personReferal_text = [];
 function successFillTableNew() {
     //alert("successFillTableNew.............")
     //$("#SchedulingProfile_Id").val();
-   // var idperson_FK = $("#idperson_FK").val();
-
+    // var idperson_FK = $("#idperson_FK").val();
+    
+    referalReciver_FK
+ 
     var idperson_FK = document.getElementById("idperson_FK").value;
 
     var idperson_FK_text = idperson_FK;
@@ -344,60 +414,63 @@ function successFillTableNew() {
     var idcase_FK = document.getElementById("idcase_FK").value;
     var idcase_FK_text = document.getElementById("idcase_FK").options[document.getElementById("idcase_FK").selectedIndex].text;
 
-    var selectedId = $('#idcase_FK').val();
-    if (selectedId == 1) {
-        var idservice_FK = document.getElementById("cmEducation").value;
-        var idservice_FK_text = document.getElementById("cmEducation").options[document.getElementById("cmEducation").selectedIndex].text;
-    }
-    else if (selectedId == 2) {
-        var idservice_FK = document.getElementById("cmProfessional").value;
-        var idservice_FK_text = document.getElementById("cmProfessional").options[document.getElementById("cmProfessional").selectedIndex].text;
-    }
-    else if (selectedId == 3) {
-        var idservice_FK = document.getElementById("cmChildProtection").value;
-        var idservice_FK_text = document.getElementById("cmChildProtection").options[document.getElementById("cmChildProtection").selectedIndex].text;
-    }
-    else if (selectedId == 4) {
-        var idservice_FK = document.getElementById("cmPsychologicalSupport1").value;
-        var idservice_FK_text = document.getElementById("cmPsychologicalSupport1").options[document.getElementById("cmPsychologicalSupport1").selectedIndex].text;
+    var idservice_FK = document.getElementById("services").value;
+    var idservice_FK_text = document.getElementById("services").options[document.getElementById("services").selectedIndex].text;
 
-    }
-    else if (selectedId == 5) {
-        var idservice_FK = document.getElementById("cmPsychologicalSupport2").value;
-        var idservice_FK_text = document.getElementById("cmPsychologicalSupport2").options[document.getElementById("cmPsychologicalSupport2").selectedIndex].text;
-    }
-    else if (selectedId == 6) {
-        var idservice_FK = document.getElementById("cmPsychologicalSupport3").value;
-        var idservice_FK_text = document.getElementById("cmPsychologicalSupport3").options[document.getElementById("cmPsychologicalSupport3").selectedIndex].text;
+    //var selectedId = $('#idcase_FK').val();
+    //if (selectedId == 1) {
+    //    var idservice_FK = document.getElementById("cmEducation").value;
+    //    var idservice_FK_text = document.getElementById("cmEducation").options[document.getElementById("cmEducation").selectedIndex].text;
+    //}
+    //else if (selectedId == 2) {
+    //    var idservice_FK = document.getElementById("cmProfessional").value;
+    //    var idservice_FK_text = document.getElementById("cmProfessional").options[document.getElementById("cmProfessional").selectedIndex].text;
+    //}
+    //else if (selectedId == 3) {
+    //    var idservice_FK = document.getElementById("cmChildProtection").value;
+    //    var idservice_FK_text = document.getElementById("cmChildProtection").options[document.getElementById("cmChildProtection").selectedIndex].text;
+    //}
+    //else if (selectedId == 4) {
+    //    var idservice_FK = document.getElementById("cmPsychologicalSupport1").value;
+    //    var idservice_FK_text = document.getElementById("cmPsychologicalSupport1").options[document.getElementById("cmPsychologicalSupport1").selectedIndex].text;
 
-
-    }
-    else if (selectedId == 7) {
-        var idservice_FK = document.getElementById("cmDayCare").value;
-        var idservice_FK_text = document.getElementById("cmDayCare").options[document.getElementById("cmDayCare").selectedIndex].text;
-    }
-    else if (selectedId == 8) {
-        var idservice_FK = document.getElementById("cmHomeCare").value;
-        var idservice_FK_text = document.getElementById("cmHomeCare").options[document.getElementById("cmHomeCare").selectedIndex].text;
+    //}
+    //else if (selectedId == 5) {
+    //    var idservice_FK = document.getElementById("cmPsychologicalSupport2").value;
+    //    var idservice_FK_text = document.getElementById("cmPsychologicalSupport2").options[document.getElementById("cmPsychologicalSupport2").selectedIndex].text;
+    //}
+    //else if (selectedId == 6) {
+    //    var idservice_FK = document.getElementById("cmPsychologicalSupport3").value;
+    //    var idservice_FK_text = document.getElementById("cmPsychologicalSupport3").options[document.getElementById("cmPsychologicalSupport3").selectedIndex].text;
 
 
-    }
-    else if (selectedId == 9) {
-        var idservice_FK = document.getElementById("cmSGBV").value;
-        var idservice_FK_text = document.getElementById("cmSGBV").options[document.getElementById("cmSGBV").selectedIndex].text;
-    }
-    else if (selectedId == 10) {
-        var idservice_FK = document.getElementById("cmSmallProjects").value;
-        var idservice_FK_text = document.getElementById("cmSmallProjects").options[document.getElementById("cmSmallProjects").selectedIndex].text;
-    }
-    else if (selectedId == 11) {
-        var idservice_FK = document.getElementById("cmIOutReachTeam").value;
-        var idservice_FK_text = document.getElementById("cmIOutReachTeam").options[document.getElementById("cmIOutReachTeam").selectedIndex].text;
-    }
-    else if (selectedId == 12) {
-        var idservice_FK = document.getElementById("cmInkindAssistance").value;
-        var idservice_FK_text = document.getElementById("cmInkindAssistance").options[document.getElementById("cmInkindAssistance").selectedIndex].text;
-    }
+    //}
+    //else if (selectedId == 7) {
+    //    var idservice_FK = document.getElementById("cmDayCare").value;
+    //    var idservice_FK_text = document.getElementById("cmDayCare").options[document.getElementById("cmDayCare").selectedIndex].text;
+    //}
+    //else if (selectedId == 8) {
+    //    var idservice_FK = document.getElementById("cmHomeCare").value;
+    //    var idservice_FK_text = document.getElementById("cmHomeCare").options[document.getElementById("cmHomeCare").selectedIndex].text;
+
+
+    //}
+    //else if (selectedId == 9) {
+    //    var idservice_FK = document.getElementById("cmSGBV").value;
+    //    var idservice_FK_text = document.getElementById("cmSGBV").options[document.getElementById("cmSGBV").selectedIndex].text;
+    //}
+    //else if (selectedId == 10) {
+    //    var idservice_FK = document.getElementById("cmSmallProjects").value;
+    //    var idservice_FK_text = document.getElementById("cmSmallProjects").options[document.getElementById("cmSmallProjects").selectedIndex].text;
+    //}
+    //else if (selectedId == 11) {
+    //    var idservice_FK = document.getElementById("cmIOutReachTeam").value;
+    //    var idservice_FK_text = document.getElementById("cmIOutReachTeam").options[document.getElementById("cmIOutReachTeam").selectedIndex].text;
+    //}
+    //else if (selectedId == 12) {
+    //    var idservice_FK = document.getElementById("cmInkindAssistance").value;
+    //    var idservice_FK_text = document.getElementById("cmInkindAssistance").options[document.getElementById("cmInkindAssistance").selectedIndex].text;
+    //}
     //----------------------------------------
     //var submittingdate = document.getElementById("submittingdate").value;
 
@@ -416,6 +489,9 @@ function successFillTableNew() {
     //var referalsender_FK = document.getElementById("referalsender_FK").value;
     //var referalsender_FK_text = document.getElementById("referalsender_FK").options[document.getElementById("referalsender_FK").selectedIndex].text;
 
+    var referalReciver_FK = document.getElementById("referalReciver_FK").value;
+    var referalReciver_FK_text = document.getElementById("referalReciver_FK").options[document.getElementById("referalReciver_FK").selectedIndex].text;
+
     var senderevalution = document.getElementById("senderevalution").value;
 
     var recieverevalution;
@@ -428,14 +504,14 @@ function successFillTableNew() {
         "idperson_FK": idperson_FK,
         "idcase_FK": idcase_FK, "idservice_FK": idservice_FK,
 
-      "senderevalution": senderevalution, "outreachnote": outreachnote
+        "senderevalution": senderevalution, "outreachnote": outreachnote, "referalReciver_FK": referalReciver_FK
     };
 
     var obj_text = {
         "idperson_FK": idperson_FK_text,
         "idcase_FK": idcase_FK_text, "idservice_FK": idservice_FK_text,
 
-         "senderevalution": senderevalution,  "outreachnote": outreachnote
+        "senderevalution": senderevalution, "outreachnote": outreachnote, "referalReciver_FK": referalReciver_FK_text
     };
 
     var checkexist = false;
@@ -461,7 +537,8 @@ function successFillTableNew() {
             $("#myTable").append(
             $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
                 '</td><td>' + item.idservice_FK + '</td><td>' +
-                item.senderevalution + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
+                item.senderevalution + '</td><td>' +
+                item.referalReciver_FK + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
         });
         // BindItemTable();
         toastr.success('تم إضافة إحالة للجدول');

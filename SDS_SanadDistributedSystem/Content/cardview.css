@@ -62,7 +62,7 @@ input[type=date] + label {
 
 .btn {
     font-size:.8rem;
-    padding: .35rem 2.13rem;
+    padding: 5px;
     margin:3rem;
     border-radius: 2px;
     border: 0;
@@ -70,8 +70,12 @@ input[type=date] + label {
     margin: 6px;
     white-space: normal!important;
        background: #2196f3;
-       width:150px; 
+       width:auto; 
         text-align: center;
 }
 
+
+.dataTables_length .input-sm {
+    padding-bottom: 0px;
+}
 

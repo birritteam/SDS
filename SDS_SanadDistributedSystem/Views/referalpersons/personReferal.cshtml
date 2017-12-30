@@ -118,19 +118,21 @@
                     </div>
                 </div>*@
 
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.idcase_FK, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.idcase_FK, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-4">
-                    @Html.DropDownList("idcase_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServicesNew()" })
+                    @Html.DropDownList("idcase_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
                     @Html.ValidationMessageFor(model => model.idcase_FK, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group col-md-6" style="height:50px">
-                @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="form-group card-block ">
+            <div class="form-group col-md-4" >
+                @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-4 ">
                     <i>
-                        @Html.DropDownList("cmEducation", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownList("services", null, htmlAttributes: new { @class = "form-control", @onchange = "FillRecivers()" })
+
+                        @*@Html.DropDownList("cmEducation", null, htmlAttributes: new { @class = "form-control" })
                         @Html.DropDownList("cmProfessional", null, htmlAttributes: new { @class = "form-control" })
                         @Html.DropDownList("cmChildProtection", null, htmlAttributes: new { @class = "form-control" })
                         @Html.DropDownList("cmPsychologicalSupport1", null, htmlAttributes: new { @class = "form-control" })
@@ -142,8 +144,16 @@
                         @Html.DropDownList("cmSmallProjects", null, htmlAttributes: new { @class = "form-control" })
                         @Html.DropDownList("cmIOutReachTeam", null, htmlAttributes: new { @class = "form-control" })
                         @Html.DropDownList("cmInkindAssistance", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })*@
                     </i>
+                </div>
+            </div>
+
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.referalreicver_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-4">
+                    @Html.DropDownList("referalReciver_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "" })
+                    @Html.ValidationMessageFor(model => model.idcase_FK, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -213,7 +223,7 @@
                 </div>*@
             <div class="col-md-6">
                 <div class="md-form">
-                    @Html.EditorFor(model => model.senderevalution, new { htmlAttributes = new { @class = "form-control validate" } })
+                    @Html.EditorFor(model => model.senderevalution, new { htmlAttributes = new { @class = "form-control validate col-md-6" } })
                     @Html.LabelFor(model => model.senderevalution, htmlAttributes: new { })
                     @Html.ValidationMessageFor(model => model.senderevalution, "", new { @class = "text-danger" })
                 </div>
@@ -238,7 +248,7 @@
 
             <div class="col-md-6">
                 <div class="md-form">
-                    @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control validate" } })
+                    @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control validate col-md-6" } })
                     @Html.LabelFor(model => model.outreachnote, htmlAttributes: new { })
                     @Html.ValidationMessageFor(model => model.outreachnote, "", new { @class = "text-danger" })
                 </div>
@@ -270,6 +280,7 @@
                         <th>مدير الإحالة</th>
                         <th>الخدمة</th>
                         <th>التقييم الأولي</th>
+                        <th>المستقبل</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -297,23 +308,8 @@
 </body>
 </html>
 
-@*<script src="~/Scripts/ajaxFunctionsAmr.js"></script>*@
-@Scripts.Render("~/bundles/jqueryval")
+
 @section Scripts {
-
-    @*<script>
-
-
-
-            $(document).ready(function () {
-                $('#myTable').DataTable({
-                    //dom: 'Bfrtip',
-                    //buttons: [
-                    //    'copy', 'csv', 'excel', 'pdf', 'print'
-                    //]
-                });
-            });
-
-        </script>*@
+    @Scripts.Render("~/bundles/jqueryval")
 
 }

@@ -181,12 +181,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Messages1.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ArabicValidation\MyRangeAttributeAdapter.cs" />
+    <Compile Include="ArabicValidation\MyRegExAttributeAdapter.cs" />
+    <Compile Include="ArabicValidation\MyRequiredAttributeAdapter.cs" />
+    <Compile Include="ArabicValidation\MyStringLengthAttributeAdapter.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\centersController.cs" />
     <Compile Include="Controllers\familiesController.cs" />
@@ -275,10 +284,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PersonAndFamilyResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Resources\referalpersonResource.Designer.cs" />
+    <Compile Include="Resources\referalpersonResource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>referalpersonResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="viewModel\referalPersonViewModel.cs" />
     <Compile Include="viewModel\serviceViewModel.cs" />
+    <Compile Include="viewModel\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-rtl.min.css" />
@@ -470,6 +484,7 @@
     </Content>
     <Content Include="Scripts\ajaxFunctions.js" />
     <Content Include="Scripts\ajaxFunctionsAmr.js" />
+    <Content Include="Scripts\AllDataTablesDesign.js" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -657,6 +672,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jszip.js" />
+    <Content Include="Scripts\jszip.min.js" />
     <Content Include="Scripts\Layout.js" />
     <Content Include="Scripts\mdb.js" />
     <Content Include="Scripts\mdb.min.js" />
@@ -764,11 +781,18 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_GlobalResources\Messages.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Messages1.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Resources\PersonAndFamilyResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PersonAndFamilyResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\referalpersonResource.resx" />
+    <EmbeddedResource Include="Resources\referalpersonResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>referalpersonResource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

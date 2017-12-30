@@ -114,14 +114,15 @@ namespace SDS_SanadDistributedSystem.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            var login_user = db.AspNetUsers.Where(u => u.Email.Equals(model.Email));
-            var roles = login_user.First().AspNetRoles.First().Name;
-            string action_name = "";
-            string contrller_naem = "";
+          
             switch (result)
             {
 
                 case SignInStatus.Success:
+                    var login_user = db.AspNetUsers.Where(u => u.Email.Equals(model.Email));
+                    var roles = login_user.First().AspNetRoles.First().Name;
+                    string action_name = "";
+                    string contrller_naem = "";
                     if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
                         || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
                         || roles.Equals("cmSGBV") || roles.Equals("cmSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
