@@ -30,9 +30,11 @@
 
     @*@using (Ht.BeginForm("personReferal", "referalpersons", new AjaxOptions { OnSuccess = "successFillTable", OnFailure = "OnFailureFillTable" }))*@
     @{
-        var name = Model.person.fname + " " + Model.person.lname;
 
-        var birthday = Model.person.birthday.Value.ToShortDateString();
+        var name = Model.person.fname + " " + Model.person.lname;
+        var birthday = DateTime.Today.ToShortDateString();
+        if (Model.person.birthday != null) { birthday = Model.person.birthday.Value.ToShortDateString(); }
+
         var birthplace = Model.person.birthplace;
         var currentaddress = Model.person.currentaddress;
 

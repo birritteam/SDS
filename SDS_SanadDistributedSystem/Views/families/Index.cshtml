@@ -43,36 +43,39 @@
                 @Html.DisplayNameFor(model => model.personcount)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.lastaddress)
+                عدد الأفراد المسجلين
             </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.lastaddress)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.currentaddress)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.displacementdate)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.phone1)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.phone2)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.phone1owner)
             </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.phone2)
+            </th>     
             <th>
                 @Html.DisplayNameFor(model => model.phone2owner)
-            </th>
-            <th>
+            </th>*@
+            @*<th>
                 @Html.DisplayNameFor(model => model.note)
-            </th>
+            </th>*@
             @*<th>
                     @Html.DisplayNameFor(model => model.AspNetUser.Email)
                 </th>*@
             <th>
 
             </th>
-            <th></th>
+            @*<th></th>*@
         </tr>
 
         @foreach (var item in Model)
@@ -91,41 +94,47 @@
                     @Html.DisplayFor(modelItem => item.personcount)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.lastaddress)
+                    @item.people.Count()
                 </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.lastaddress)
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.currentaddress)
                 </td>
-                <td>
+                @*<td>
                     @Html.DisplayFor(modelItem => item.displacementdate)
-                </td>
+                </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.phone1)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.phone2)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.phone1owner)
                 </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.phone2)
+                </td>
+                
                 <td>
                     @Html.DisplayFor(modelItem => item.phone2owner)
-                </td>
-                <td>
+                </td>*@
+                @*<td>
                     @Html.DisplayFor(modelItem => item.note)
-                </td>
+                </td>*@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                     </td>*@
                 <td>
                     @Html.ActionLink("تعديل", "Edit", new { id = item.idfamily }) |
                     @Html.ActionLink("تفاصيل", "Details", new { id = item.idfamily }) |
-                    @Html.ActionLink("حذف", "Delete", new { id = item.idfamily })
+                   @* @Html.ActionLink("حذف", "Delete", new { id = item.idfamily })*@
+                    @Html.ActionLink("إضافة شخص", "Create", "people", new { id = item.idfamily }, "")
+
+
                 </td>
-                <td>
-                    @*@Html.ActionLink("إضافة شخص","Create","people", new { id = item.idfamily})*@
-                    <a href="/people/Create/@item.idfamily">إضافة شخص</a>
-                </td>
+                @*<td>
+                   <a href="/people/Create/@item.idfamily">إضافة شخص</a>
+                </td>*@
             </tr>
         }
 

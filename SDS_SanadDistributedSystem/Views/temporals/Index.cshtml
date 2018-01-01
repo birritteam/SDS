@@ -24,7 +24,7 @@
         <th>
             @Html.DisplayNameFor(model => model.mothername)
         </th>
-       
+
         <th>
             @Html.DisplayNameFor(model => model.phone1)
         </th>
@@ -44,43 +44,44 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.fname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fathername)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.mothername)
-        </td>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fathername)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mothername)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.phone1)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone2)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.currentaddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tempregistrationdate)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.currentaddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tempregistrationdate)
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.center.name)
-        </td>
-        <td>
-            @Html.ActionLink("تعديل", "Edit", new { id=item.idperson }) |
-            @Html.ActionLink("تفاصيل", "Details", new { id=item.idperson }) |
-            @Html.ActionLink("حذف", "Delete", new { id=item.idperson })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.center.name)
+            </td>
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
+                @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
+                @Html.ActionLink("حذف", "Delete", new { id = item.idperson })
+            </td>
+        </tr>
+    }
 
 </table>

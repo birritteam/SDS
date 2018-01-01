@@ -1,21 +1,29 @@
 ﻿@model SDS_SanadDistributedSystem.Models.person
 
 @{
-    ViewBag.Title = "تعديل";
+    ViewBag.Title = "إضافة حالة سرية";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>تعديل بيانات المستفيد: @Model.idperson</h2>
+<h2>إضافة حالة سرية</h2>
 
-@using (Html.BeginForm())
+
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-
+      
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.idperson)
+        @*<div class="form-group hidden">
+            @Html.LabelFor(model => model.idperson, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.idperson, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.idperson, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
         <div class="row">
             <div class="col-md-3">
                 <div class="md-form">
@@ -46,6 +54,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-1"><label>تاريخ الميلاد</label></div>
             <div class="col-md-3">
@@ -93,22 +102,23 @@
                 </div>
             </div>
         </div>
-        
-        
+
         <div class="row panel"></div>
         <div class="row">
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.nationality, htmlAttributes: new { @class = "control-label col-md-4" })
                 @Html.DropDownList("nationality", new SelectList(ViewBag.nationalityOptions), htmlAttributes: new { @class = "col-md-8" })
             </div>
-
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.martial, htmlAttributes: new { @class = "control-label col-md-4" })
-                @Html.DropDownList("martial", new SelectList(ViewBag.martialOptions), htmlAttributes: new { @class = "col-md-8" })
-            </div>
+                @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                @foreach (string item in ViewBag.genderOptions)
+                {
+                    @Html.RadioButtonFor(model => model.gender, item, new { @id = item })
+                    @Html.Label(item, new { @for = item })
+                }
+            </div>          
         </div>
-
-
         <div class="row">
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -124,12 +134,6 @@
                 @Html.ValidationMessageFor(model => model.educationstate, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-
-        <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
-        <input type="hidden" name="registrationdate" id="registrationdate" />
-
         <div class="row">
             <div class="form-group col-md-6">
                 <label class="control-label col-md-4" for="currentWorkID">العمل الحالي</label>
@@ -141,11 +145,11 @@
                 @Html.DropDownList("previousWorkID", null, htmlAttributes: new { @class = "form-control" })
             </div>
         </div>
-
         <div class="row">
+
             <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-4" })
-                @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtype), htmlAttributes: new { @class = "" })
+                @Html.LabelFor(model => model.martial, htmlAttributes: new { @class = "control-label col-md-4" })
+                @Html.DropDownList("martial", new SelectList(ViewBag.martialOptions), htmlAttributes: new { @class = "col-md-8" })
             </div>
 
             <div class="form-group col-md-6">
@@ -154,31 +158,31 @@
             </div>
         </div>
 
-        @*@Html.HiddenFor(model=>model.idfamily_FK)
-            @Html.HiddenFor(model => model.idcenter_FK)*@
-        @*@Html.HiddenFor(model => model.iduser)*@
-        @Html.HiddenFor(model => model.onoffflag)
-        @Html.HiddenFor(model => model.registrationdate)
-        @Html.HiddenFor(model => model.gender)
+
+        <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
+        <input type="hidden" name="registrationdate" id="registrationdate" />
+
+
+
+
+        <div class="form-group col-md-6 hidden">
+            @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtype), htmlAttributes: new { @class = "" })
+        </div>
+        <input type="hidden" name="idfamily_FK" id="idfamily_FK" />
+        <input type="hidden" name="idcenter_FK" id="idcenter_FK" />
+        <input type="hidden" name="iduser" id="iduser" />
 
         <div class="form-group">
             <h3 class="h3">نقاط الضعف</h3>
             @foreach (var weakness in ViewBag.weaknesses)
-            {<div class="row">
+            {<div class="card">
                 @foreach (var item in weakness)
 
                 {
                     <div class="col-md-3">
                         <div class="form-group">
-                            @if (ViewBag.selectedML.Contains(item.idmanagelist))
-                            {
-                                <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" checked="checked" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
-                            }
-
+                            <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
                             <label for="@item.idmanagelist">@item.name</label>
                         </div>
                     </div>
@@ -189,25 +193,43 @@
 
         </div>
 
+        <div class="row">
+            <div class="md-form">
 
-        <div class="md-form">
-
-            @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
-            @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
-            @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
+                @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
+                @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+            </div>
         </div>
 
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.is_secret, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.is_secret)
+                    @Html.ValidationMessageFor(model => model.is_secret, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>*@
 
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
-                <input type="submit" value="حفظ التعديلات" class="btn btn-default" />
+                <input type="submit" value="إضافة" class="btn btn-default" />
             </div>
         </div>
+
+
+       
+
+        
     </div>
 }
 
 <div>
-    @Html.ActionLink("العودة إلى قائمة الأشخاص", "Index")
+    <div>
+        @Html.ActionLink(" العودة إلى قائمة الحالات السرية", "Index")
+    </div>
 </div>
 
 @section Scripts {

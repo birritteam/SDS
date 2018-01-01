@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.person>
 
+
 @{
     ViewBag.Title = "كافة الأشخاص المسجلين";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -51,51 +52,62 @@
         <th>
             @Html.DisplayNameFor(model => model.gender)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model=>model.registrationdate)
-        </th>
+        </th>*@
+        @*<th></th>*@
         <th></th>
     </tr>
     @foreach (var item in Model)
     {
 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.idperson)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fathername)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.mothername)
-            </td>
-            <td>
-                @{
-                    var dob = item.birthday.GetValueOrDefault();
-                    DateTime now = DateTime.Today;
-                    int age = now.Year - dob.Year;
-                    if (now < dob.AddYears(age))
-                    { age--; }
-                    @Html.DisplayFor(model => age);
-                }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.gender)
-            </td>
-    <td>@Html.DisplayFor(modelItem=>item.registrationdate)</td>
-            
-            <td>
-                @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
-                @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
-                @Html.ActionLink("حذف", "Delete", new { id = item.idperson })
-            </td>
-        </tr>                             }
+        if (!item.is_secret)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idperson)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fathername)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.mothername)
+                </td>
+                <td>
+                    @{
+                        var dob = item.birthday.GetValueOrDefault();
+                        DateTime now = DateTime.Today;
+                        int age = now.Year - dob.Year;
+                        if (now < dob.AddYears(age))
+                        { age--; }
+                        @Html.DisplayFor(model => age);
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+          @*      <td>@Html.DisplayFor(modelItem => item.registrationdate)</td>*@
+
+                <td>
+                    @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
+                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
+                    @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, "")
+
+
+
+                    
+                    @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
+                </td>
+
+            </tr>
+                            }
+                        }
 
 </table>
 

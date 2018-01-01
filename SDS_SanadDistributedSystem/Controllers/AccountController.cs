@@ -122,21 +122,31 @@ namespace SDS_SanadDistributedSystem.Controllers
                     var login_user = db.AspNetUsers.Where(u => u.Email.Equals(model.Email));
                     var roles = login_user.First().AspNetRoles.First().Name;
                     string action_name = "";
-                    string contrller_naem = "";
+                    string controller_name = "";
                     if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
                         || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
-                        || roles.Equals("cmSGBV") || roles.Equals("cmSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
+                        //|| roles.Equals("cmSGBV") 
+                        || roles.Equals("cmSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
                     {
                         action_name = "index";
-                        contrller_naem = "referalpersons";
-
+                        controller_name = "referalpersons";
+                    }
+                    else if (roles.Equals("receptionist"))
+                    {
+                        action_name = "index";
+                        controller_name = "people";
+                    }
+                    else if (roles.Equals("cmSGBV"))
+                    {
+                        action_name = "index";
+                        controller_name = "secretPeople";
                     }
                     else
                     {
                         action_name = "index";
-                        contrller_naem = "Account";
+                        controller_name = "Account";
                     }
-                    return RedirectToAction(action_name, contrller_naem);
+                    return RedirectToAction(action_name, controller_name);
 
                 case SignInStatus.LockedOut:
                     return View("Lockout");

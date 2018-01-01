@@ -11,9 +11,17 @@ using SDS_SanadDistributedSystem.Models;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class managelistsController : Controller
     {
         private sds_dbEntities db = new sds_dbEntities();
+
+        public JsonResult flagAlreadyExisted(string flag)
+        {
+            bool existed = db.managelists.Any(x => x.flag.Equals(flag));
+            return Json(!existed, JsonRequestBehavior.AllowGet);
+        }
+
 
         // GET: managelists
         public async Task<ActionResult> Index()

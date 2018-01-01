@@ -52,7 +52,7 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
     /*font-family: 'Cairo', sans-serif;*/ 
      font-size: 14px;
       direction: rtl;
-      width:300px;
+      /*width:300px;*/
      }
 
 

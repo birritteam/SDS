@@ -16,7 +16,7 @@ using System.Collections;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    [System.Web.Mvc.Authorize(Roles = "superadmin,admin,cmEducation,cmProfessional,cmChildProtection,cmPsychologicalSupport1,cmPsychologicalSupport2,cmPsychologicalSupport3,cmDayCare,cmHomeCare,cmSGBV,cmSmallProjects ,cmIOutReachTeam,cmInkindAssistance ")]
+    [System.Web.Mvc.Authorize(Roles = "superadmin,admin,cmEducation,cmProfessional,cmChildProtection,cmPsychologicalSupport1,cmPsychologicalSupport2,cmPsychologicalSupport3,cmDayCare,cmHomeCare,cmSGBV,cmSmallProjects ,cmIOutReachTeam,cmInkindAssistance,receptionist")]
 
     public class referalpersonsController : Controller
     {
@@ -255,12 +255,10 @@ namespace SDS_SanadDistributedSystem.Controllers
         //    return Json(referalpersonlistviewmodel, JsonRequestBehavior.AllowGet);
         //}
 
-
+        [System.Web.Mvc.Authorize(Roles = "receptionist,cmSGBV")]
         //add new referal by Receptionist
         public ActionResult personReferal(string id)
-        {
-           
-
+        {         
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
             referalperson rp = new referalperson();
             

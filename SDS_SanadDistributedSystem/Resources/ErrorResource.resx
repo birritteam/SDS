@@ -117,97 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="birthday" xml:space="preserve">
-    <value>تاريخ الميلاد</value>
+  <data name="flag_existed" xml:space="preserve">
+    <value>الرمز المميز موجود مسبقا</value>
   </data>
-  <data name="birthplace" xml:space="preserve">
-    <value>مكان الولادة</value>
-  </data>
-  <data name="currentaddress" xml:space="preserve">
-    <value>العنوان الحالي</value>
-  </data>
-  <data name="education" xml:space="preserve">
-    <value>التعليم</value>
-  </data>
-  <data name="educationstate" xml:space="preserve">
-    <value>الحالة التعليمية</value>
-  </data>
-  <data name="familynature" xml:space="preserve">
-    <value>طبيعة العائلة</value>
-  </data>
-  <data name="fathername" xml:space="preserve">
-    <value>اسم الأب</value>
-  </data>
-  <data name="fname" xml:space="preserve">
-    <value>الاسم الأول</value>
-  </data>
-  <data name="formnumber" xml:space="preserve">
-    <value>رقم الاستمارة</value>
-  </data>
-  <data name="gender" xml:space="preserve">
-    <value>الجنس</value>
-  </data>
-  <data name="idfamily" xml:space="preserve">
-    <value>رقم دفتر العائلة</value>
-  </data>
-  <data name="iduser" xml:space="preserve">
-    <value>الرقم التسلسلي للمستخدم</value>
-  </data>
-  <data name="lastaddress" xml:space="preserve">
-    <value>العنوان السابق</value>
-  </data>
-  <data name="lname" xml:space="preserve">
-    <value>الاسم الأخير</value>
-  </data>
-  <data name="martial" xml:space="preserve">
-    <value>الوضع العائلي</value>
-  </data>
-  <data name="mothername" xml:space="preserve">
-    <value>اسم الأم</value>
-  </data>
-  <data name="nationality" xml:space="preserve">
-    <value>الجنسية</value>
-  </data>
-  <data name="nationalnumber" xml:space="preserve">
-    <value>الرقم الوطني</value>
-  </data>
-  <data name="note" xml:space="preserve">
-    <value>ملاحظات</value>
-  </data>
-  <data name="personcount" xml:space="preserve">
-    <value>عدد أفراد العائلة</value>
-  </data>
-  <data name="person_id" xml:space="preserve">
-    <value>الرقم التسلسلي للشخص</value>
-  </data>
-  <data name="phone1" xml:space="preserve">
-    <value>هاتف 1</value>
-  </data>
-  <data name="phone1owner" xml:space="preserve">
-    <value>مالك الهاتف 1</value>
-  </data>
-  <data name="phone2" xml:space="preserve">
-    <value>هاتف 2</value>
-  </data>
-  <data name="phone2owner" xml:space="preserve">
-    <value>مالك الهاتف 2</value>
-  </data>
-  <data name="registrationdate" xml:space="preserve">
-    <value>تاريخ التسجيل</value>
-  </data>
-  <data name="relationtype" xml:space="preserve">
-    <value>العلاقة مع مقدم الطلب</value>
-  </data>
-  <data name="displacementdate" xml:space="preserve">
-    <value>تاريخ النزوح</value>
-  </data>
-  <data name="idmanagelist" xml:space="preserve">
-    <value>الرقم التسلسلي للقائمة</value>
-  </data>
-  <data name="managelist_flag" xml:space="preserve">
-    <value>الرمز المميز للقائمة</value>
-  </data>
-  <data name="managelist_name" xml:space="preserve">
-    <value>اسم عنصر القائمة</value>
+  <data name="id_existed" xml:space="preserve">
+    <value>الرقم التسلسلي موجود مسبقا</value>
   </data>
 </root>

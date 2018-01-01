@@ -1,11 +1,29 @@
-﻿function SuccessLoadForPerson(data) {
+﻿//FAMILIES SCRIPT
 
-    $("#personCreationForm").children($("input[type='text'], input[type='datetime'], input[type='number']").val(""));
-    $("#personCreationForm").children($("input[type='text'], input[type='datetime'] , input[type='number']").text(""));
+
+$("#familynature").on("change", function () {
+    if ($(this).val() == "فرد من المجتمع المضيف") {
+        $("#displacementdate").addClass("hidden");
+        $("#lastaddress").addClass("hidden");
+    }
+    else {
+        $("#displacementdate").removeClass("hidden");
+        $("#lastaddress").removeClass("hidden");
+    }
+})
+
+
+//PEOPLE SCRIPTS
+
+function SuccessLoadForPerson(data) {
+
+    $("input[type='text'], input[type='datetime']").val("");
+    $("input[type='text'], input[type='datetime']").text("");
+    $("input[type='number']").val(1);
+    $("input[type='number']").text(1);
+
     $("#idperson").val(data.idfamily);
     $("#idfamily_FK").val(data.idfamily);
-
-    //alert("Person: " + data + " Added Successfully!!");
 
     toastr.success("نجاح", 'نجاح العملية');
 
@@ -15,10 +33,13 @@
         data.fathername + "</td><td>" + data.mothername + "</td><td>" +
         data.age + "</td><td>" + data.gender + "</td><td>" +
 
-        '<a href="/people/Edit/'+
-         data.idfamily + '"> تعديل </a>|<a href="/people/Details/'+
-        data.idfamily + '"> تفاصيل </a>|<a href="/people/Delete/'+
-        data.idfamily + '"> حذف </a></td></tr>');
+        '<a href="/people/Edit/' +
+         data.idfamily + '"> تعديل </a>|<a href="/people/Details/' +
+        data.idfamily + '"> تفاصيل </a>' +
+        //'|<a href="/people/Delete/' + data.idfamily + '"> حذف </a></td>' +
+        '|<a href="/referalpersons/personReferal/' + data.idperson + '"> إحالة </a></td>' +
+
+        '</tr>');
 }
 
 function FailureLoadForPerson(data) {
@@ -30,40 +51,61 @@ var idFamily;
 var type;
 
 $(document).ready(function () {
+    //$('#birthday').datepicker({
+    //        dateFormat: "dd/mm/yy",
+    //        showStatus: true,
+    //        showWeeks: true,
+    //        currentText: 'Now',
+    //        autoSize: true,
+    //        gotoCurrent: true,
+    //        showAnim: 'blind',
+    //        highlightWeek: true
+    //    });
+    $.validator.unobtrusive.parse("#ParentDiv > form");
     idFamily = $("#idperson").val();
     $('#idfamily_FK').val(idFamily);
+
+    //$(function () {
+
+    //    $('#birthday').datepicker({
+    //        dateFormat: 'dd/mm/yy'
+    //    });
+
+    //});
 });
 
-$(function () {
-    var addresses = [
-      "ActionScript",
-      "AppleScript",
-      "Asp",
-      "BASIC",
-      "C",
-      "C++",
-      "Clojure",
-      "COBOL",
-      "ColdFusion",
-      "Erlang",
-      "Fortran",
-      "Groovy",
-      "Haskell",
-      "Java",
-      "JavaScript",
-      "Lisp",
-      "Perl",
-      "PHP",
-      "Python",
-      "Ruby",
-      "Scala",
-      "Scheme"
-    ];
-    $("#currentaddress").autocomplete({
-        source: addresses
-    });
-});
+//$(function () {
+//    //var addresses = [
+//    //  "ActionScript",
+//    //  "AppleScript",
+//    //  "Asp",
+//    //  "BASIC",
+//    //  "C",
+//    //  "C++",
+//    //  "Clojure",
+//    //  "COBOL",
+//    //  "ColdFusion",
+//    //  "Erlang",
+//    //  "Fortran",
+//    //  "Groovy",
+//    //  "Haskell",
+//    //  "Java",
+//    //  "JavaScript",
+//    //  "Lisp",
+//    //  "Perl",
+//    //  "PHP",
+//    //  "Python",
+//    //  "Ruby",
+//    //  "Scala",
+//    //  "Scheme"
+//    //];
+//    //$("#currentaddress").autocomplete({
+//    //    source: addresses
+//    //});
+//});
 
+
+// generate person's id based on his/her familyid and his position in the family
 
 $("input[type=radio][name=position]").on("change", function () {
 
@@ -74,38 +116,42 @@ $("input[type=radio][name=position]").on("change", function () {
             $("#childOrder").removeClass("hidden");
             $("#wifeOrder").addClass("hidden");
             $("#أنثى").prop("checked", true).trigger("click");
+            $("#idperson").val(idFamily + type + $("#childOrder").val()).trigger("focusout");
             break;
         case "S":
             $("#childOrder").removeClass("hidden");
             $("#wifeOrder").addClass("hidden");
             $("#ذكر").prop("checked", true).trigger("click");
+            $("#idperson").val(idFamily + type + $("#childOrder").val()).trigger("focusout");
             break;
         case "W":
             $("#wifeOrder").removeClass("hidden");
             $("#childOrder").addClass("hidden");
             $("#أنثى").prop("checked", true).trigger("click");
+            $("#idperson").val(idFamily + type + $("#wifeOrder").val()).trigger("focusout");
             break;
         case "H":
             $("#wifeOrder").addClass("hidden");
             $("#childOrder").addClass("hidden");
             $("#ذكر").prop("checked", true).trigger("click");
+            $("#idperson").val(idFamily + type).trigger("focusout");
             break;
         default:
             $("#wifeOrder").addClass("hidden");
             $("#childOrder").addClass("hidden");
     }
 
-    $("#idperson").val(idFamily + type);
+
 });
 
 $("#childOrder").on("change", function () {
 
     var childOrder = $("#childOrder").val();
-    $("#idperson").val(idFamily + type + childOrder);
+    $("#idperson").val(idFamily + type + childOrder).trigger("focusout");;
 
 });
 
 $("#wifeOrder").on("change", function () {
     var wifeOrder = $("#wifeOrder").val();
-    $("#idperson").val(idFamily + type + wifeOrder);
+    $("#idperson").val(idFamily + type + wifeOrder).trigger("focusout");;
 });

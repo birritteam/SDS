@@ -27,6 +27,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             educationstate = { "آخر تحصيل", "الوضع الحالي" };
 
         // GET: temporals
+        [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Index()
         {
             var temporals = db.temporals.Include(t => t.center);
@@ -34,6 +35,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: temporals/Details/5
+        [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
@@ -49,6 +51,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: temporals/Create
+        [Authorize(Roles = "receptionist")]
         public ActionResult Create()
         {
             ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
@@ -71,6 +74,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note")] temporal temporal)
         {
             if (ModelState.IsValid)
@@ -98,6 +102,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: temporals/Edit/5
+        [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
@@ -125,6 +130,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             return View(temporal);
         }
 
+
+        [Authorize(Roles = "receptionist")]
         // POST: temporals/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -141,6 +148,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", temporal.idcenter_FK);
             return View(temporal);
         }
+
 
         // GET: temporals/Delete/5
         public async Task<ActionResult> Delete(string id)

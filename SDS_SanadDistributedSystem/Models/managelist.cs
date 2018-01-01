@@ -9,9 +9,12 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
+    using Resources;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class managelist
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,9 +23,19 @@ namespace SDS_SanadDistributedSystem.Models
             this.families = new HashSet<family>();
             this.personmanages = new HashSet<personmanage>();
         }
-    
+
+        [Display(Name = "idmanagelist", ResourceType = typeof(PersonAndFamilyResources))]
         public int idmanagelist { get; set; }
+        [Display(Name = "managelist_name", ResourceType = typeof(PersonAndFamilyResources))]
         public string name { get; set; }
+
+        [StringLength(3)]
+        [Required]
+        [Remote("flagAlreadyExisted", "managelists",
+            ErrorMessageResourceType = typeof(ErrorResource),
+            ErrorMessageResourceName = "id_existed")
+            ]
+        [Display(Name = "managelist_flag", ResourceType = typeof(PersonAndFamilyResources))]
         public string flag { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -17,6 +17,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         private sds_dbEntities db = new sds_dbEntities();
 
         // GET: families
+        [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Index(string familyID, string lastName)
         {
 
@@ -36,6 +37,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: families/Details/5
+        [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
@@ -51,6 +53,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: families/Create
+        [Authorize(Roles = "receptionist")]
         public ActionResult Create()
         {
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
@@ -61,6 +64,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // POST: families/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "receptionist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner")] family family, int idmangelist)
@@ -81,6 +85,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: families/Edit/5
+        [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
@@ -114,8 +119,10 @@ namespace SDS_SanadDistributedSystem.Controllers
         // POST: families/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "receptionist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner")] family family, int idmangelist)
         {
             if (ModelState.IsValid)
@@ -142,6 +149,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: families/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
@@ -157,6 +165,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // POST: families/Delete/5
+        [Authorize(Roles = "admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)
@@ -166,7 +175,6 @@ namespace SDS_SanadDistributedSystem.Controllers
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

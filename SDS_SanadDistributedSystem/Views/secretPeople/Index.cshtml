@@ -1,0 +1,78 @@
+﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.person>
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title =  "كافة الحالات السرية ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>الحالات السرية الخاصة بالمستخدم</h3>
+<h4>@User.Identity.GetUserName()</h4>
+<p>
+    @Html.ActionLink("إضافة حالة جديدة", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.martial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.education)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.currentaddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.registrationdate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.is_secret)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.fname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.lname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.martial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.education)
+            </td>
+      
+            <td>
+                @Html.DisplayFor(modelItem => item.currentaddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.registrationdate)
+            </td>
+            
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
+                @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson })
+                 @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
+            </td>
+        </tr>
+    }
+
+}
+
+</table>

@@ -207,6 +207,7 @@
     <Compile Include="Controllers\personmanagesController.cs" />
     <Compile Include="Controllers\referalfamiliesController.cs" />
     <Compile Include="Controllers\referalpersonsController.cs" />
+    <Compile Include="Controllers\secretPeopleController.cs" />
     <Compile Include="Controllers\servicesController.cs" />
     <Compile Include="Controllers\temporalsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -279,6 +280,11 @@
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ErrorResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ErrorResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\PersonAndFamilyResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -766,6 +772,11 @@
     <Content Include="Views\personmanages\Index.cshtml" />
     <Content Include="Views\Account\SmartLogin.cshtml" />
     <Content Include="Views\referalpersons\_referallayout.cshtml" />
+    <Content Include="Views\secretPeople\Create.cshtml" />
+    <Content Include="Views\secretPeople\Delete.cshtml" />
+    <Content Include="Views\secretPeople\Details.cshtml" />
+    <Content Include="Views\secretPeople\Edit.cshtml" />
+    <Content Include="Views\secretPeople\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -785,6 +796,10 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Messages1.designer.cs</LastGenOutput>
     </Content>
+    <EmbeddedResource Include="Resources\ErrorResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ErrorResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\PersonAndFamilyResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PersonAndFamilyResources.Designer.cs</LastGenOutput>

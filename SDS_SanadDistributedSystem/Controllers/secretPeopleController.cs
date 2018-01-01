@@ -1,99 +1,79 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using SDS_SanadDistributedSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using System.Web;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using SDS_SanadDistributedSystem.Models;
-using Microsoft.AspNet.Identity;
-using System.Web.Mvc.Html;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    public class peopleController : Controller
+    public class secretPeopleController : Controller
     {
         private sds_dbEntities db = new sds_dbEntities();
+         DbSet<managelist> managelists;
+         SelectList works;
+         List<IQueryable> weaknesses;
 
         private string[]
-            gender = { "أنثى", "ذكر" },
-            nationality = { "عربي - سوري" },
-            martial = { "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
-            education = { "أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
-            "6 سنوات (صف سادس)", "7 سنوات (صف سابع)", "8 سنوات (صف ثامن)","9 سنوات (صف تايع)","10 سنوات (صف عاشر)","11 سنة (صف حادي عشر)","12 سنة (صف ثاني عشر)",
-            "شهادة جامعية","دراسات عليا","تدريب مهني أو تقني" },
-            relationtype = { "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
-            educationstate = { "آخر تحصيل", "الوضع الحالي" };
+        gender = { "أنثى", "ذكر" },
+        nationality = { "عربي - سوري" },
+        martial = { "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
+        education = { "أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
+                "6 سنوات (صف سادس)", "7 سنوات (صف سابع)", "8 سنوات (صف ثامن)","9 سنوات (صف تايع)","10 سنوات (صف عاشر)","11 سنة (صف حادي عشر)","12 سنة (صف ثاني عشر)",
+                "شهادة جامعية","دراسات عليا","تدريب مهني أو تقني" },
+        relationtype = { "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
+        educationstate = { "آخر تحصيل", "الوضع الحالي" };
 
 
-        public JsonResult idAlreadyExisted(string idperson)
+
+        // GET: secretPeople
+        [Authorize(Roles = "cmSGBV")]
+        public async Task<ActionResult> Index()
         {
-            bool existed = db.people.Any(x => x.idperson.Equals(idperson));
-            return Json(!existed, JsonRequestBehavior.AllowGet);
-        }
+            string iduser = User.Identity.GetUserId();
+            //idcenter_FK = 
+            //db.AspNetUsers.SingleOrDefault(u => u.Id == person.iduser).idcenter_FK;
 
-
-
-
-
-        [Authorize(Roles = "receptionist")]
-        // GET: people
-        public async Task<ActionResult> Index(string lastName, string nationalNumber)
-        {
-            var people = db.people.Include(p => p.AspNetUser).Include(p => p.center).Include(p => p.family).Where(p => !p.is_secret);
-
-            if (!String.IsNullOrEmpty(lastName))
-            {
-                people = people.Where(s => s.lname.Contains(lastName));
-            }
-
-            if (!String.IsNullOrEmpty(nationalNumber))
-            {
-                people = people.Where(s => s.nationalnumber.Contains(nationalNumber));
-            }
-
+            var people = db.people.Include(p => p.AspNetUser).Include(p => p.center).Include(p => p.family).Where(p => p.iduser == iduser);
             return View(await people.ToListAsync());
         }
-        [Authorize(Roles = "receptionist")]
-        // GET: people/Details/5
+
+
+        // GET: secretPeople/Details/5
+        [Authorize(Roles = "cmSGBV")]
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            string iduser = User.Identity.GetUserId();
             person person = await db.people.FindAsync(id);
-            if (person == null || person.is_secret)
+            if (person == null || person.iduser != iduser)
             {
                 return HttpNotFound();
             }
             return View(person);
         }
-        [Authorize(Roles = "receptionist")]
-        // GET: people/Create
-        public ActionResult Create(string id)
+
+
+
+
+        // GET: secretPeople/Create
+        [Authorize(Roles = "cmSGBV")]
+        public ActionResult Create()
         {
-            person person = new person();
+            managelists = db.managelists;
+            works = new SelectList(managelists.Where(ma => ma.flag == "W"), "idmanagelist", "name");
+            weaknesses = new List<IQueryable>();
 
-            person.family = db.families.SingleOrDefault(f => f.idfamily == id);
-            //person.idfamily_FK = id;
-            person.idperson = id;
-
-            ViewBag.family = person.family;
-            //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
-            //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
-
-            var managelists = db.managelists;
-
-            var works = new SelectList(managelists.Where(ma => ma.flag == "W"), "idmanagelist", "name");
             ViewBag.currentWorkID = works;
             ViewBag.previousWorkID = works;
-
             ViewBag.idKnowledgeCenter = new SelectList(managelists.Where(ma => ma.flag == "KC"), "idmanagelist", "name");
-
-            List<IQueryable> weaknesses = new List<IQueryable>();
 
             weaknesses.Add(managelists.Where(ma => ma.flag == "WM"));
             weaknesses.Add(managelists.Where(ma => ma.flag == "WD"));
@@ -115,31 +95,38 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.relationtype = relationtype;
             ViewBag.education = education;
 
-            return View(person);
+            //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
+            //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
+            //ViewBag.idfamily_FK = new SelectList(db.families, "idfamily", "familynature");
+
+            return View();
         }
-        [Authorize(Roles = "receptionist")]
-        // POST: people/Create
+
+        // POST: secretPeople/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        // P.S : 
-        // removed formnumber from the Bind parameters 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
+        [Authorize(Roles = "cmSGBV")]
+        public async Task<ActionResult> Create([Bind(Include = "fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,is_secret")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
         {
+            DateTime now = DateTime.Now;
+            person.registrationdate = now;
+
+            person.iduser = User.Identity.GetUserId();
+            person.idcenter_FK = db.AspNetUsers.SingleOrDefault(u => u.Id == person.iduser).idcenter_FK;
+
+            int? maxcenterform = db.people.Where(p => p.idcenter_FK == person.idcenter_FK).Max(p => p.formnumber) + 1;
+            if (maxcenterform != null)
+                person.formnumber = maxcenterform;
+            else person.formnumber = 1;
+
+
+            person.idperson = person.idcenter_FK.ToString() + person.formnumber.ToString();
+            person.is_secret = true;
+
             if (ModelState.IsValid)
             {
-                DateTime now = DateTime.Now;
-                person.registrationdate = now;
-
-                person.iduser = User.Identity.GetUserId();
-                person.idcenter_FK = db.AspNetUsers.SingleOrDefault(u => u.Id == person.iduser).idcenter_FK;
-
-                int? maxcenterform = db.people.Where(p => p.idcenter_FK == person.idcenter_FK).Max(p => p.formnumber) + 1;
-                if (maxcenterform != null)
-                    person.formnumber = maxcenterform;
-                else person.formnumber = 1;
-
                 db.people.Add(person);
 
                 personmanage currentWork = new personmanage()
@@ -188,39 +175,62 @@ namespace SDS_SanadDistributedSystem.Controllers
                     }
 
                 await db.SaveChangesAsync();
-                //return RedirectToAction("Create");
-
-                return new JsonResult
-                {
-                    Data = new
-                    {
-                        idperson = person.idperson,
-                        fname = person.fname,
-                        lname = person.lname,
-                        fathername = person.fathername,
-                        mothername = person.mothername,
-                        age = DateTime.Today.Year - person.birthday.GetValueOrDefault().Year,
-                        gender = person.gender,
-                        idfamily = person.idfamily_FK
-                    },
-                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
-                };
+                return RedirectToAction("Index");
             }
-            return new JsonResult { Data = "Failed" };
+
+            //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", person.iduser);
+            //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", person.idcenter_FK);
+            //ViewBag.idfamily_FK = new SelectList(db.families, "idfamily", "familynature", person.idfamily_FK);
+
+            managelists = db.managelists;
+            works = new SelectList(managelists.Where(ma => ma.flag == "W"), "idmanagelist", "name");
+            List<IQueryable> weaknesses1 = new List<IQueryable>();
+
+            ViewBag.currentWorkID = works;
+            ViewBag.previousWorkID = works;
+            ViewBag.idKnowledgeCenter = new SelectList(managelists.Where(ma => ma.flag == "KC"), "idmanagelist", "name");
+
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WM"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WD"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WE"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WC"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WWD"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WWF"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WWS"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WP"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WF"));
+            weaknesses1.Add(managelists.Where(ma => ma.flag == "WL"));
+
+            ViewBag.weaknesses = weaknesses1;
+
+            ViewBag.genderOptions = gender;
+            ViewBag.nationalityOptions = nationality;
+            ViewBag.martialOptions = martial;
+            ViewBag.educationstate = educationstate;
+            ViewBag.relationtype = relationtype;
+            ViewBag.education = education;
+
+            return View(person);
         }
-        [Authorize(Roles = "receptionist")]
-        // GET: people/Edit/5
+
+        // GET: secretPeople/Edit/5
+        [Authorize(Roles = "cmSGBV")]
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            string iduser = User.Identity.GetUserId();
             person person = await db.people.FindAsync(id);
-            if (person == null || person.is_secret)
+            if (person == null || person.iduser != iduser)
             {
                 return HttpNotFound();
             }
+
+            //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", person.iduser);
+            //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", person.idcenter_FK);
+            //ViewBag.idfamily_FK = new SelectList(db.families, "idfamily", "familynature", person.idfamily_FK);
 
             var managelists = db.managelists;
 
@@ -279,19 +289,6 @@ namespace SDS_SanadDistributedSystem.Controllers
                 }
             }
 
-
-            //ViewBag.medicalWeakness = managelists.Where(ma => ma.flag == "WM");
-            //ViewBag.disabilityWeakness = managelists.Where(ma => ma.flag == "WD");
-            //ViewBag.vulnerableElder = managelists.Where(ma => ma.flag == "WE");
-            //ViewBag.vulnerableChild = managelists.Where(ma => ma.flag == "WC");
-            //ViewBag.vulnerableWoman = managelists.Where(ma => ma.flag == "WWD");
-            //ViewBag.singleMother = managelists.Where(ma => ma.flag == "WWF");
-            //ViewBag.GBVSurviver = managelists.Where(ma => ma.flag == "WWS");
-            //ViewBag.PsychologicalSupport = managelists.Where(ma => ma.flag == "WP");
-            //ViewBag.singleFather = managelists.Where(ma => ma.flag == "WF");
-            //ViewBag.documentsAid = managelists.Where(ma => ma.flag == "WL");
-
-
             weaknesses.Add(managelists.Where(ma => ma.flag == "WM"));
             weaknesses.Add(managelists.Where(ma => ma.flag == "WD"));
             weaknesses.Add(managelists.Where(ma => ma.flag == "WE"));
@@ -313,17 +310,17 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.relationtype = relationtype;
             ViewBag.education = education;
 
+
             return View(person);
         }
-        [Authorize(Roles = "receptionist")]
-        // POST: people/Edit/5
+        [Authorize(Roles = "cmSGBV")]
+        // POST: secretPeople/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
+        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,is_secret")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
         {
-            List<int> weaknessesList = weaknesses.ToList();
             if (ModelState.IsValid)
             {
                 List<personmanage> personmanages = db.personmanages.Where(ps => ps.idperson_FK == person.idperson).ToList();
@@ -407,7 +404,6 @@ namespace SDS_SanadDistributedSystem.Controllers
                     }
 
                 person.personmanages = personmanages;
-
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -416,8 +412,9 @@ namespace SDS_SanadDistributedSystem.Controllers
             //ViewBag.idfamily_FK = new SelectList(db.families, "idfamily", "familynature", person.idfamily_FK);
             return View(person);
         }
+
         [Authorize(Roles = "admin")]
-        // GET: people/Delete/5
+        // GET: secretPeople/Delete/5
         public async Task<ActionResult> Delete(string id)
         {
             if (id == null)
@@ -431,8 +428,9 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
             return View(person);
         }
+
+        // POST: secretPeople/Delete/5
         [Authorize(Roles = "admin")]
-        // POST: people/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(string id)

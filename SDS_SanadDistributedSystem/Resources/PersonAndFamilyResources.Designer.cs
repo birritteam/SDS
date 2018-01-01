@@ -169,6 +169,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to الرقم التسلسلي للقائمة.
+        /// </summary>
+        public static string idmanagelist {
+            get {
+                return ResourceManager.GetString("idmanagelist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to الرقم التسلسلي للمستخدم.
         /// </summary>
         public static string iduser {
@@ -192,6 +201,24 @@ namespace SDS_SanadDistributedSystem.Resources {
         public static string lname {
             get {
                 return ResourceManager.GetString("lname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الرمز المميز للقائمة.
+        /// </summary>
+        public static string managelist_flag {
+            get {
+                return ResourceManager.GetString("managelist_flag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to اسم عنصر القائمة.
+        /// </summary>
+        public static string managelist_name {
+            get {
+                return ResourceManager.GetString("managelist_name", resourceCulture);
             }
         }
         
