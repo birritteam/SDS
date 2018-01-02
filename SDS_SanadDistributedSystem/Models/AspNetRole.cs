@@ -18,7 +18,7 @@ namespace SDS_SanadDistributedSystem.Models
         public AspNetRole()
         {
             this.AspNetUsers = new HashSet<AspNetUser>();
-            this.services1 = new HashSet<service>();
+            this.services = new HashSet<service>();
         }
     
         public string Id { get; set; }
@@ -29,6 +29,6 @@ namespace SDS_SanadDistributedSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<service> services1 { get; set; }
+        public virtual ICollection<service> services { get; set; }
     }
 }

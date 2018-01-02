@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="sds_dbModel.partner" Width="1.5" PointX="0.5" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.referalfamily" Width="1.5" PointX="12" PointY="13" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.referalperson" Width="1.5" PointX="17.25" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="sds_dbModel.service" Width="1.5" PointX="5.25" PointY="9.5" IsExpanded="true" />
         <EntityTypeShape EntityType="sds_dbModel.temporal" Width="1.5" PointX="4.75" PointY="16.5" IsExpanded="true" />
         <AssociationConnector Association="sds_dbModel.FK_AspNetRoles_cases" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
@@ -26,13 +25,10 @@
         <AssociationConnector Association="sds_dbModel.FK_case_partner" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalfamily_case" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalperson_case" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_service_case" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_center_partner" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalfamily_center" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_referalperson_center" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.FK_temp_center1" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_referalfamily_service" ManuallyRouted="false" />
-        <AssociationConnector Association="sds_dbModel.FK_referalperson_service" ManuallyRouted="false" />
         <AssociationConnector Association="sds_dbModel.AspNetUserRoles" ManuallyRouted="false" />
         <EntityTypeShape EntityType="sds_dbModel.family" Width="1.5" PointX="9.75" PointY="18.25" />
         <AssociationConnector Association="sds_dbModel.FK_family_AspNetUsers" />
@@ -49,7 +45,11 @@
         <AssociationConnector Association="sds_dbModel.FK_temporal_AspNetUsers" />
         <AssociationConnector Association="sds_dbModel.FK_referalfamily_AspNetUsers1" />
         <AssociationConnector Association="sds_dbModel.FK_referalperson_AspNetUsers1" />
+        <EntityTypeShape EntityType="sds_dbModel.service" Width="1.5" PointX="7" PointY="10.5" />
         <AssociationConnector Association="sds_dbModel.FK_service_AspNetRoles" />
+        <AssociationConnector Association="sds_dbModel.FK_service_case" />
+        <AssociationConnector Association="sds_dbModel.FK_referalfamily_service" />
+        <AssociationConnector Association="sds_dbModel.FK_referalperson_service" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

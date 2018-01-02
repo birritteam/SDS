@@ -21,7 +21,9 @@ $(document).ready(function () {
     $('select').attr('data-live-search', true);
     $('.selectpicker').selectpicker({
         style: 'btn-info',
-        size: 6
+        size: 6,
+        //title:"لا يوجد"
+        
     }
 
  );

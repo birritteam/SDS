@@ -125,7 +125,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     string controller_name = "";
                     if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
                         || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
-                        //|| roles.Equals("cmSGBV") 
+                        || roles.Equals("cmAwareness") 
                         || roles.Equals("cmSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
                     {
                         action_name = "index";

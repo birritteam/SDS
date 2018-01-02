@@ -25,13 +25,14 @@ namespace SDS_SanadDistributedSystem.Models
         public int idcase_FK { get; set; }
         public string name { get; set; }
         public bool enabled { get; set; }
+        public byte[] description { get; set; }
         public string idrole_FK { get; set; }
     
+        public virtual AspNetRole AspNetRole { get; set; }
         public virtual @case @case { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalfamily> referalfamilies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalperson> referalpersons { get; set; }
-        public virtual AspNetRole AspNetRole { get; set; }
     }
 }

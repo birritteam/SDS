@@ -527,31 +527,38 @@ function successFillTableNew() {
             checkundefined = true;
 
     });
-    if (!checkexist && !checkundefined) {
-        personReferal.push(obj);
-        personReferal_text.push(obj_text);
-       // alert("successFillTableNew............." + obj.idcase_FK)
-        $("#myTable tbody").empty();
-        personReferal_text.forEach(function (item, i, array) {
-            //console.log(item, i);
-            $("#myTable").append(
-            $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
-                '</td><td>' + item.idservice_FK + '</td><td>' +
-                item.senderevalution + '</td><td>' +
-                item.referalReciver_FK + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
-        });
-        // BindItemTable();
-        toastr.success('تم إضافة إحالة للجدول');
-      // alert("successFillTableNew........end .")
+    if (idservice_FK_text != "لايوجد خدمات مفّعلة") {
+
+        if (!checkexist && !checkundefined) {
+            personReferal.push(obj);
+            personReferal_text.push(obj_text);
+            // alert("successFillTableNew............." + obj.idcase_FK)
+            $("#myTable tbody").empty();
+            personReferal_text.forEach(function (item, i, array) {
+                //console.log(item, i);
+                $("#myTable").append(
+                $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
+                    '</td><td>' + item.idservice_FK + '</td><td>' +
+                    item.senderevalution + '</td><td>' +
+                    item.referalReciver_FK + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
+            });
+            // BindItemTable();
+            toastr.success('تم إضافة إحالة للجدول');
+            // alert("successFillTableNew........end .")
+        }
+        else {
+            if (checkexist)
+                toastr.warning('تمت إضافة هذه الخدمة مسبقا للجدول.');
+                //alert("already exist.....")
+
+            else
+                toastr.warning(" لا يمكن إضافة هذه الخدمة")
+        }
     }
     else {
-        if (checkexist)
-            toastr.warning('تمت إضافة هذه الخدمة مسبقا للجدول.');
-            //alert("already exist.....")
-
-        else
-            toastr.warning(" لا يمكن إضافة هذه الخدمة")
+        toastr.error(" لا يوجد خدمات مفعلة في هذا القسم")
     }
+   
 }
 
 function deleterowNew(index) {
@@ -670,6 +677,66 @@ function FillReferalStateDropdown() {
     .each(function () { this.selected = (this.text == "Approved"); });
 
         $('#referalstate').selectpicker('refresh');
+
+    }
+
+
+}
+
+function search()
+{
+    var name = document.getElementById("personname").value;
+    var from = document.getElementById("datepickerfrom").value;
+    var to = document.getElementById("datepickerto").value;
+    var idcase = document.getElementById("idcase_FK").value;
+
+    if (name != "" && from != "" && to != "")
+    {
+        $.ajax({
+            url: '/referalpersons/searchReferal',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'name': name, 'from': from, 'to': to, 'idcase': idcase },
+            success: function (data) {
+                $('#referalbysearch').empty()
+                $.each(data, function (i, referal) {
+                    $("#referalbysearch").append(
+                    $('<tr></tr>')
+                    .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.submittingdate + '</td>')
+
+                    .append('<td>' + referal.referaldate + '</td>')
+
+                    .append('<td>' + referal.type + '</td>')
+
+                    .append('<td>' + referal.servicestartdate + '</td>')
+
+                    .append('<td>' + referal.serviceenddate + '</td>')
+
+                    .append('<td>' + referal.senderevalution + '</td>')
+                         .append('<td>' + referal.recieverevalution + '</td>')
+                         .append('<td>' + referal.outreachnote + '</td>')
+
+                                   .append('<td>'+
+                                      '<a href="/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
+                                      '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
+                                        '<a length="0" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase
+                                        + '">إحالة جديدة</a>' +
+                                      '</td>')
+                                      
+
+                    );
+                  
+                });
+
+                },
+            error: function (xhr, status, error) {
+                // check status && error
+                alert("Whooaaa! Something went wrong..")
+            }
+        });
+
+
 
     }
 

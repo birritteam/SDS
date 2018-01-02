@@ -9,59 +9,34 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
-    using Resources;
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class temporal
     {
-        [Display(Name = "person_id", ResourceType = typeof(PersonAndFamilyResources))]
         public string idperson { get; set; }
-        [Display(Name = "fname", ResourceType = typeof(PersonAndFamilyResources))]
         public string fname { get; set; }
-        [Display(Name = "lname", ResourceType = typeof(PersonAndFamilyResources))]
         public string lname { get; set; }
-        [Display(Name = "fathername", ResourceType = typeof(PersonAndFamilyResources))]
         public string fathername { get; set; }
-        [Display(Name = "mothername", ResourceType = typeof(PersonAndFamilyResources))]
         public string mothername { get; set; }
-        [Column(TypeName = "date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "birthday", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<System.DateTime> birthday { get; set; }
-        [Display(Name = "birthplace", ResourceType = typeof(PersonAndFamilyResources))]
         public string birthplace { get; set; }
-        [Display(Name = "gender", ResourceType = typeof(PersonAndFamilyResources))]
         public string gender { get; set; }
-        [Display(Name = "nationality", ResourceType = typeof(PersonAndFamilyResources))]
         public string nationality { get; set; }
-        [Display(Name = "martial", ResourceType = typeof(PersonAndFamilyResources))]
         public string martial { get; set; }
-        [Display(Name = "relationtype", ResourceType = typeof(PersonAndFamilyResources))]
         public string relationtype { get; set; }
         public string onoffflag { get; set; }
-        [Display(Name = "education", ResourceType = typeof(PersonAndFamilyResources))]
         public string education { get; set; }
-        [Display(Name = "educationstate", ResourceType = typeof(PersonAndFamilyResources))]
         public string educationstate { get; set; }
-        [Display(Name = "phone1", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone1 { get; set; }
-        [Display(Name = "phone2", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone2 { get; set; }
-        [Display(Name = "currentaddress", ResourceType = typeof(PersonAndFamilyResources))]
         public string currentaddress { get; set; }
-        [Display(Name = "registrationdate", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<System.DateTimeOffset> tempregistrationdate { get; set; }
         public string idcenter_FK { get; set; }
-        [Display(Name = "formnumber", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<int> formnumber { get; set; }
-        [Display(Name = "note", ResourceType = typeof(PersonAndFamilyResources))]
         public string note { get; set; }
         public string iduser_FK { get; set; }
-
+    
         public virtual center center { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
     }

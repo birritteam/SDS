@@ -35,10 +35,10 @@ namespace SDS_SanadDistributedSystem.Models
         public virtual DbSet<partner> partners { get; set; }
         public virtual DbSet<referalfamily> referalfamilies { get; set; }
         public virtual DbSet<referalperson> referalpersons { get; set; }
-        public virtual DbSet<service> services { get; set; }
         public virtual DbSet<temporal> temporals { get; set; }
         public virtual DbSet<family> families { get; set; }
         public virtual DbSet<person> people { get; set; }
         public virtual DbSet<personmanage> personmanages { get; set; }
+        public virtual DbSet<service> services { get; set; }
     }
 }

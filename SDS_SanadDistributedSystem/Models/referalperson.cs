@@ -73,7 +73,7 @@ namespace SDS_SanadDistributedSystem.Models
 
         [Display(Name = "referalreicver_FK", ResourceType = typeof(referalpersonResource))]
         public string referalreicver_FK { get; set; }
-    
+
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual @case @case { get; set; }
         public virtual center center { get; set; }

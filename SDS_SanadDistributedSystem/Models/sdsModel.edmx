@@ -213,6 +213,7 @@
           <Property Name="idcase_FK" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="enabled" Type="bit" Nullable="false" />
+          <Property Name="description" Type="varbinary" MaxLength="500" />
           <Property Name="idrole_FK" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="temporal">
@@ -763,7 +764,7 @@
           <Property Name="idcase" Type="Int32" />
           <NavigationProperty Name="case" Relationship="Self.FK_AspNetRoles_cases" FromRole="AspNetRoles" ToRole="cases" />
           <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
-          <NavigationProperty Name="services1" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="AspNetRole" ToRole="service" />
+          <NavigationProperty Name="services" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="AspNetRole" ToRole="service" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
@@ -827,7 +828,7 @@
           <NavigationProperty Name="partner" Relationship="Self.FK_case_partner" FromRole="cases" ToRole="partner" />
           <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_case" FromRole="cases" ToRole="referalfamily" />
           <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_case" FromRole="cases" ToRole="referalperson" />
-          <NavigationProperty Name="services" Relationship="Self.FK_service_case" FromRole="cases" ToRole="service" />
+          <NavigationProperty Name="services" Relationship="sds_dbModel.FK_service_case" FromRole="case" ToRole="service" />
         </EntityType>
         <EntityType Name="center">
           <Key>
@@ -889,10 +890,10 @@
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_referalfamily_AspNetUsers" FromRole="referalfamily" ToRole="AspNetUsers" />
           <NavigationProperty Name="case" Relationship="Self.FK_referalfamily_case" FromRole="referalfamily" ToRole="cases" />
           <NavigationProperty Name="center" Relationship="Self.FK_referalfamily_center" FromRole="referalfamily" ToRole="center" />
-          <NavigationProperty Name="service" Relationship="Self.FK_referalfamily_service" FromRole="referalfamily" ToRole="service" />
           <NavigationProperty Name="family" Relationship="sds_dbModel.FK_referalfamily_family" FromRole="referalfamily" ToRole="family" />
           <Property Name="referalreciever_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_referalfamily_AspNetUsers1" FromRole="referalfamily" ToRole="AspNetUser" />
+          <NavigationProperty Name="service" Relationship="sds_dbModel.FK_referalfamily_service" FromRole="referalfamily" ToRole="service" />
         </EntityType>
         <EntityType Name="referalperson">
           <Key>
@@ -918,24 +919,10 @@
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_referalperson_AspNetUsers" FromRole="referalperson" ToRole="AspNetUsers" />
           <NavigationProperty Name="case" Relationship="Self.FK_referalperson_case" FromRole="referalperson" ToRole="cases" />
           <NavigationProperty Name="center" Relationship="Self.FK_referalperson_center" FromRole="referalperson" ToRole="center" />
-          <NavigationProperty Name="service" Relationship="Self.FK_referalperson_service" FromRole="referalperson" ToRole="service" />
           <NavigationProperty Name="person" Relationship="sds_dbModel.FK_referalperson_person" FromRole="referalperson" ToRole="person" />
           <Property Name="referalreicver_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_referalperson_AspNetUsers1" FromRole="referalperson" ToRole="AspNetUser" />
-        </EntityType>
-        <EntityType Name="service">
-          <Key>
-            <PropertyRef Name="idservice" />
-          </Key>
-          <Property Name="idservice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idcase_FK" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="case" Relationship="Self.FK_service_case" FromRole="service" ToRole="cases" />
-          <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_service" FromRole="service" ToRole="referalfamily" />
-          <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_service" FromRole="service" ToRole="referalperson" />
-          <Property Name="enabled" Type="Boolean" Nullable="false" />
-          <Property Name="idrole_FK" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetRole" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="service" ToRole="AspNetRole" />
+          <NavigationProperty Name="service" Relationship="sds_dbModel.FK_referalperson_service" FromRole="referalperson" ToRole="service" />
         </EntityType>
         <EntityType Name="temporal">
           <Key>
@@ -1078,18 +1065,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_service_case">
-          <End Role="cases" Type="Self.case" Multiplicity="1" />
-          <End Role="service" Type="Self.service" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cases">
-              <PropertyRef Name="idcase" />
-            </Principal>
-            <Dependent Role="service">
-              <PropertyRef Name="idcase_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_center_partner">
           <End Role="partner" Type="Self.partner" Multiplicity="1" />
           <End Role="center" Type="Self.center" Multiplicity="*" />
@@ -1138,30 +1113,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_referalfamily_service">
-          <End Role="service" Type="Self.service" Multiplicity="0..1" />
-          <End Role="referalfamily" Type="Self.referalfamily" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="service">
-              <PropertyRef Name="idservice" />
-            </Principal>
-            <Dependent Role="referalfamily">
-              <PropertyRef Name="idservice_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalperson_service">
-          <End Role="service" Type="Self.service" Multiplicity="0..1" />
-          <End Role="referalperson" Type="Self.referalperson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="service">
-              <PropertyRef Name="idservice" />
-            </Principal>
-            <Dependent Role="referalperson">
-              <PropertyRef Name="idservice_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -1177,7 +1128,6 @@
           <EntitySet Name="partners" EntityType="Self.partner" />
           <EntitySet Name="referalfamilies" EntityType="Self.referalfamily" />
           <EntitySet Name="referalpersons" EntityType="Self.referalperson" />
-          <EntitySet Name="services" EntityType="Self.service" />
           <EntitySet Name="temporals" EntityType="Self.temporal" />
           <AssociationSet Name="FK_AspNetRoles_cases" Association="Self.FK_AspNetRoles_cases">
             <End Role="cases" EntitySet="cases" />
@@ -1215,10 +1165,6 @@
             <End Role="cases" EntitySet="cases" />
             <End Role="referalperson" EntitySet="referalpersons" />
           </AssociationSet>
-          <AssociationSet Name="FK_service_case" Association="Self.FK_service_case">
-            <End Role="cases" EntitySet="cases" />
-            <End Role="service" EntitySet="services" />
-          </AssociationSet>
           <AssociationSet Name="FK_center_partner" Association="Self.FK_center_partner">
             <End Role="partner" EntitySet="partners" />
             <End Role="center" EntitySet="centers" />
@@ -1234,14 +1180,6 @@
           <AssociationSet Name="FK_temp_center1" Association="Self.FK_temp_center1">
             <End Role="center" EntitySet="centers" />
             <End Role="temporal" EntitySet="temporals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalfamily_service" Association="Self.FK_referalfamily_service">
-            <End Role="service" EntitySet="services" />
-            <End Role="referalfamily" EntitySet="referalfamilies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalperson_service" Association="Self.FK_referalperson_service">
-            <End Role="service" EntitySet="services" />
-            <End Role="referalperson" EntitySet="referalpersons" />
           </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
@@ -1298,9 +1236,22 @@
             <End Role="AspNetUser" EntitySet="AspNetUsers" />
             <End Role="referalperson" EntitySet="referalpersons" />
           </AssociationSet>
+          <EntitySet Name="services" EntityType="sds_dbModel.service" />
           <AssociationSet Name="FK_service_AspNetRoles" Association="sds_dbModel.FK_service_AspNetRoles">
             <End Role="AspNetRole" EntitySet="AspNetRoles" />
             <End Role="service" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_case" Association="sds_dbModel.FK_service_case">
+            <End Role="case" EntitySet="cases" />
+            <End Role="service" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_service" Association="sds_dbModel.FK_referalfamily_service">
+            <End Role="service" EntitySet="services" />
+            <End Role="referalfamily" EntitySet="referalfamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalperson_service" Association="sds_dbModel.FK_referalperson_service">
+            <End Role="service" EntitySet="services" />
+            <End Role="referalperson" EntitySet="referalpersons" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="family">
@@ -1508,6 +1459,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="service">
+          <Key>
+            <PropertyRef Name="idservice" />
+          </Key>
+          <Property Name="idservice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idcase_FK" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <Property Name="description" Type="Binary" MaxLength="500" FixedLength="false" />
+          <Property Name="idrole_FK" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetRole" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="service" ToRole="AspNetRole" />
+          <NavigationProperty Name="case" Relationship="sds_dbModel.FK_service_case" FromRole="service" ToRole="case" />
+          <NavigationProperty Name="referalfamilies" Relationship="sds_dbModel.FK_referalfamily_service" FromRole="service" ToRole="referalfamily" />
+          <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_service" FromRole="service" ToRole="referalperson" />
+        </EntityType>
         <Association Name="FK_service_AspNetRoles">
           <End Type="sds_dbModel.AspNetRole" Role="AspNetRole" Multiplicity="1" />
           <End Type="sds_dbModel.service" Role="service" Multiplicity="*" />
@@ -1517,6 +1483,42 @@
             </Principal>
             <Dependent Role="service">
               <PropertyRef Name="idrole_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_case">
+          <End Type="sds_dbModel.case" Role="case" Multiplicity="1" />
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="case">
+              <PropertyRef Name="idcase" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="idcase_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalfamily_service">
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="idservice" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="idservice_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalperson_service">
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="idservice" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="idservice_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1656,17 +1658,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="services">
-            <EntityTypeMapping TypeName="sds_dbModel.service">
-              <MappingFragment StoreEntitySet="service">
-                <ScalarProperty Name="idrole_FK" ColumnName="idrole_FK" />
-                <ScalarProperty Name="enabled" ColumnName="enabled" />
-                <ScalarProperty Name="idservice" ColumnName="idservice" />
-                <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="temporals">
             <EntityTypeMapping TypeName="sds_dbModel.temporal">
               <MappingFragment StoreEntitySet="temporal">
@@ -1767,6 +1758,18 @@
                 <ScalarProperty Name="eval" ColumnName="eval" />
                 <ScalarProperty Name="idmanagelist_FK" ColumnName="idmanagelist_FK" />
                 <ScalarProperty Name="idperson_FK" ColumnName="idperson_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="services">
+            <EntityTypeMapping TypeName="sds_dbModel.service">
+              <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="idrole_FK" ColumnName="idrole_FK" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
+                <ScalarProperty Name="idservice" ColumnName="idservice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
