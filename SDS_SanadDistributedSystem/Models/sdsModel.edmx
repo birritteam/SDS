@@ -213,7 +213,7 @@
           <Property Name="idcase_FK" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="enabled" Type="bit" Nullable="false" />
-          <Property Name="description" Type="varbinary" MaxLength="500" />
+          <Property Name="description" Type="text" />
           <Property Name="idrole_FK" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="temporal">
@@ -1467,7 +1467,7 @@
           <Property Name="idcase_FK" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="enabled" Type="Boolean" Nullable="false" />
-          <Property Name="description" Type="Binary" MaxLength="500" FixedLength="false" />
+          <Property Name="description" Type="String" />
           <Property Name="idrole_FK" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetRole" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="service" ToRole="AspNetRole" />
           <NavigationProperty Name="case" Relationship="sds_dbModel.FK_service_case" FromRole="service" ToRole="case" />

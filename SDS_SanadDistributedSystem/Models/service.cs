@@ -25,7 +25,7 @@ namespace SDS_SanadDistributedSystem.Models
         public int idcase_FK { get; set; }
         public string name { get; set; }
         public bool enabled { get; set; }
-        public byte[] description { get; set; }
+        public string description { get; set; }
         public string idrole_FK { get; set; }
     
         public virtual AspNetRole AspNetRole { get; set; }
