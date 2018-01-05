@@ -2,40 +2,121 @@
 @{
     ViewBag.Title = "Register";
 }
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link href="~/Content/cardview.css" rel="stylesheet" />
 
-<h2>@ViewBag.Title.</h2>
+<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+@*<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />*@
+<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
 
+
+<h2>تسجيل مستخدم</h2>
+
+@*@using (Ajax.BeginForm("Register", "Account", new AjaxOptions { OnSuccess = "registerSuccess", OnFailure = "registerFailure" }))*@
 @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
+    <h4>إضافة حساب مستخدم جديد</h4>
     <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @* @Html.ValidationSummary("", new { @class = "text-danger" }) *@
     <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.enabled, "تفعيل المستخدم", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @foreach (bool item in ViewBag.enableOptions)
+                {
+                    if (item == true)
+                    {
+                            @Html.RadioButtonFor(model => model.enabled, true, new { @id = item, @checked = "checked" })
+                            @Html.Label(item.ToString(), "تفعيل", new { @for = item })
+                        }
+                        if (item == false)
+                        {
+                            @Html.RadioButtonFor(model => model.enabled, false, new { @id = item })
+                            @Html.Label(item.ToString(), "إلغاء تفعيل", new { @for = item })
+                        }
+                    }
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.idcenter_FK, "المركز", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idcenter_FK", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.AspNetRoles, "صلاحيات المستخدم", new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                @Html.DropDownList("RolesID", null, htmlAttributes: new { @Id = "RolesID", @class = "form-control", @multiple = "true" })
+                 @*@Html.DropDownListFor(   x => x.AspNetRoles,
+                    new SelectList(Model.AspNetRoles, "Id", "Name"), "-- يرجى اختيار الصلاحيات --")*@
+                  @*  @Html.DropDownListFor(m => m.AspNetRoles, ViewBag.RolesID, "--اختر صلاحيات المستخدم--", new { @class = "form-control", @multiple = "true" })*@
+                 @*@Html.DropDownListFor(m => m.AspNetRoles,
+                                          new SelectList(ViewBag.RolesI),
+                                          "-- Please select a category --"
+                                       , new {@class = "form-control", @multiple = "true" })*@
+                          @Html.ValidationMessageFor(m => m.AspNetRoles, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="حفظ" />
+
+                </div>
+            </div>
+            <div>
+                @Html.ActionLink("عودة إلى القائمة", "../AspNetUsers/Index")
+            </div>
+
 }
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/adminAjaxFunctions.js"></script>
+
 }

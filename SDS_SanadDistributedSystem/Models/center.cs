@@ -9,9 +9,12 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
+    using Resources;
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
+
     public partial class center
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,11 +28,18 @@ namespace SDS_SanadDistributedSystem.Models
         }
     
         public string idcenter { get; set; }
+        [Required]
+        [Display(Name = "name", ResourceType = typeof(CenterResource))]
         public string name { get; set; }
+        [Display(Name = "location", ResourceType = typeof(CenterResource))]
         public string location { get; set; }
-        public string idpartner_FK { get; set; }
+        [Required]
+        [Display(Name = "flag", ResourceType = typeof(CenterResource))]
+        [Remote("IsAlreadyUsedFlag", "centers", HttpMethod = "Post", ErrorMessage = "«·—„“ „” Œœ„ „”»ﬁ«")]
         public string flag { get; set; }
-    
+        [Display(Name = "idpartner_FK", ResourceType = typeof(CenterResource))]
+        public string idpartner_FK { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
         public virtual partner partner { get; set; }

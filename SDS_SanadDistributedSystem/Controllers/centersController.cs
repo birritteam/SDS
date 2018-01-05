@@ -37,6 +37,36 @@ namespace SDS_SanadDistributedSystem.Controllers
             return View(center);
         }
 
+        public JsonResult IsAlreadyUsedFlag(string flag)
+        {
+
+            return Json(IsFlagAvailable(flag));
+
+        }
+        public bool IsFlagAvailable(string flag)
+        {
+            // Assume these details coming from database  
+            List<RegisterViewModel> RegisterUsers = new List<RegisterViewModel>();
+
+            var regFlag = (from u in db.centers
+                           where u.flag == flag
+                           select new { flag }).FirstOrDefault();
+
+            bool status;
+            if (regFlag != null)
+            {
+                //Already registered  
+                status = false;
+            }
+            else
+            {
+                //Available to use  
+                status = true;
+            }
+
+            return status;
+        }
+
         // GET: centers/Create
         public ActionResult Create()
         {
@@ -53,6 +83,8 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                partner p = db.partners.SingleOrDefault(pa => pa.idpartner == center.idpartner_FK);
+                center.idcenter = p.idpartner + center.flag;
                 db.centers.Add(center);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -96,30 +128,30 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: centers/Delete/5
-        public async Task<ActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            center center = await db.centers.FindAsync(id);
-            if (center == null)
-            {
-                return HttpNotFound();
-            }
-            return View(center);
-        }
+        //public async Task<ActionResult> Delete(string id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    center center = await db.centers.FindAsync(id);
+        //    if (center == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(center);
+        //}
 
-        // POST: centers/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
-        {
-            center center = await db.centers.FindAsync(id);
-            db.centers.Remove(center);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
+        //// POST: centers/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> DeleteConfirmed(string id)
+        //{
+        //    center center = await db.centers.FindAsync(id);
+        //    db.centers.Remove(center);
+        //    await db.SaveChangesAsync();
+        //    return RedirectToAction("Index");
+        //}
 
         protected override void Dispose(bool disposing)
         {

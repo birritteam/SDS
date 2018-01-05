@@ -14,11 +14,12 @@ namespace SDS_SanadDistributedSystem.Controllers
     public class servicesController : Controller
     {
         private sds_dbEntities db = new sds_dbEntities();
+        private bool[] enable = { true, false };
 
         // GET: services
         public async Task<ActionResult> Index()
         {
-            var services = db.services.Include(s => s.@case);
+            var services = db.services.Include(s => s.AspNetRole).Include(s => s.@case);
             return View(await services.ToListAsync());
         }
 
@@ -40,7 +41,10 @@ namespace SDS_SanadDistributedSystem.Controllers
         // GET: services/Create
         public ActionResult Create()
         {
+            ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "Name");
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name");
+            ViewBag.enableOptions = enable;
+
             return View();
         }
 
@@ -49,7 +53,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idservice,idcase_FK,name,enabled")] service service)
+        public async Task<ActionResult> Create([Bind(Include = "idservice,idcase_FK,name,enabled,description,idrole_FK")] service service)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +62,9 @@ namespace SDS_SanadDistributedSystem.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "Name", service.idrole_FK);
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", service.idcase_FK);
+            ViewBag.enableOptions = enable;
             return View(service);
         }
 
@@ -74,7 +80,9 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "Name", service.idrole_FK);
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", service.idcase_FK);
+            ViewBag.enableOptions = enable;
             return View(service);
         }
 
@@ -83,7 +91,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idservice,idcase_FK,name,enabled")] service service)
+        public async Task<ActionResult> Edit([Bind(Include = "idservice,idcase_FK,name,enabled,description,idrole_FK")] service service)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +99,9 @@ namespace SDS_SanadDistributedSystem.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "Name", service.idrole_FK);
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", service.idcase_FK);
+            ViewBag.enableOptions = enable;
             return View(service);
         }
 

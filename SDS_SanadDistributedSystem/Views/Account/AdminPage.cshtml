@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "AdminPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://use.fontawesome.com/f8377be314.js"></script>
+
+<h2>أهلا بمدير سند</h2>
+
+<div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="w3-panel w3-card">
+                <p>
+                    <center>
+                        <div class="header pt-3 grey lighten-2">
+
+                            <div class="row d-flex justify-content-start">
+
+                                <div class="centered-content2 animated">
+                                    @*    <img src="~/images/user-200x200.png" />*@
+                                    <i class="fa fa-home fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5 ">
+                                    <a href="../Centers/Create">إضافة مركز</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </center>
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="w3-panel w3-card-2">
+                <p>
+                    <center>
+                        <div class="header pt-3 grey lighten-2">
+                            <div class="row d-flex justify-content-start">
+                                <div class="centered-content2 animated">
+                                    @* <img src="~/images/user-200x200.png" />*@
+                                    <i class="fa fa-user-circle fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5 ">
+                                    <a href="../Account/Register">إضافة مستخدم</a>
+                                </h3>
+                            </div>
+                        </div>
+                    </center>
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="w3-panel w3-card-2">
+                <p>
+                    <center>
+                        <div class="header pt-3 grey lighten-2">
+
+                            <div class="row d-flex justify-content-start">
+
+                                <div class="centered-content2 animated">
+                                    @* <img src="~/images/user-200x200.png" />*@
+                                    <i class="fa fa-handshake-o fa-5x" aria-hidden="true"></i>
+                                </div>
+                                <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5 ">
+                                    <a href="../Services/Create">إضافة خدمة</a>
+                                </h3>
+                            </div>
+
+                        </div>
+                    </center>
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
