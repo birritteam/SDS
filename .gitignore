@@ -286,3 +286,5 @@ __pycache__/
 *.btm.cs
 *.odx.cs
 *.xsd.cs
+/SDS_SanadDistributedSystem/Models/Models.rar
+/SDS_SanadDistributedSystem/Models/Models.zip
