@@ -26,7 +26,7 @@ namespace SDS_SanadDistributedSystem.Models
             this.temporals = new HashSet<temporal>();
             this.people = new HashSet<person>();
         }
-    
+
         public string idcenter { get; set; }
         [Required]
         [Display(Name = "name", ResourceType = typeof(CenterResource))]

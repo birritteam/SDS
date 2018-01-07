@@ -17,6 +17,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.PasswordHash)
 
         <div class="form-group">
             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -45,13 +46,13 @@
                 </div>
             </div>*@
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.PasswordHash, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.PasswordFor(model => model.PasswordHash, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.PasswordHash, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         @*<div class="form-group">
                 @Html.LabelFor(model => model.SecurityStamp, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -144,19 +145,28 @@
         <div class="form-group">
             @Html.LabelFor(model => model.enabled, "تفعيل المستخدم", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @foreach (bool item in ViewBag.enableOptions)
-                {
-                    if (item == true)
+                @{if (Model.enabled)
                     {
-                        @Html.RadioButtonFor(model => model.enabled, true, new { @id = item, @checked = "checked" })
-                        @Html.Label(item.ToString(), "تفعيل", new { @for = item })
+                      @Html.RadioButtonFor(model => model.enabled, true, new { @id = "تفعيل", @checked = "checked" })
+                        @Html.Label("تفعيل", "تفعيل", new { @for = "تفعيل" })
+
+                        @Html.RadioButtonFor(model => model.enabled, false, new { @id = "إلغاء تفعيل" })
+                        @Html.Label("إلغاء تفعيل", "إلغاء تفعيل", new { @for = "إلغاء تفعيل" })
+                        //ViewBag.enableOptions = true;
+                        Model.enabled = true;
+
                     }
-                    if (item == false)
+                    else
                     {
-                        @Html.RadioButtonFor(model => model.enabled, false, new { @id = item })
-                        @Html.Label(item.ToString(), "إلغاء تفعيل", new { @for = item })
+                @Html.RadioButtonFor(model => model.enabled, true, new { @id = "تفعيل", })
+                @Html.Label("تفعيل", "تفعيل", new { @for = "تفعيل" })
+
+                @Html.RadioButtonFor(model => model.enabled, false, new { @id = "إلغاء تفعيل" })
+                @Html.Label("إلغاء تفعيل", "إلغاء تفعيل", new { @for = "إلغاء تفعيل", @checked = "checked" })
+                        //ViewBag.enableOptions = false;
+                        Model.enabled = false;
                     }
-                }
+                    }
             </div>
         </div>
 
@@ -167,8 +177,8 @@
                 {
                     foreach (var roleSelected in ViewBag.SelectedRolesId)
                     {
-                    <input type="checkbox" name="currentSelectedRolesID" value="@roleSelected.Id" checked="checked" id="@roleSelected.Name" />
-                        <label for="@roleSelected.Name">@roleSelected.Name</label>
+                    <input type="checkbox" name="currentSelectedRolesID" value="@roleSelected.Id" checked="checked" id="@roleSelected.NameAR" />
+                        <label for="@roleSelected.NameAR">@roleSelected.NameAR</label>
                     //                @Html.CheckBox(Model.AspNetRoles.Single().Name ,true)
                 }
             }
@@ -177,8 +187,8 @@
                 {
                     foreach (var role in ViewBag.NotSelectedRolesId)
                     {
-                    <input type="checkbox" name="currentSelectedRolesID" value="@role.Id" id="@role.Name" />
-                        <label for="@role.Name">@role.Name</label>
+                    <input type="checkbox" name="currentSelectedRolesID" value="@role.Id" id="@role.NameAR" />
+                        <label for="@role.NameAR">@role.NameAR</label>
                 }
             }
         </div>

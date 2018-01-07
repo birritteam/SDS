@@ -28,14 +28,15 @@ namespace SDS_SanadDistributedSystem.Models
     public class SetPasswordViewModel
     {
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, /*ErrorMessage = "The {0} must be at least {2} characters long.",*/ MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "كلمة المرور الجديدة")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "تأكيد كلمة المرور الجديدة")]
+        //[Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "كلمة المرور الجديدة لا تتطابق مع تأكيد كلمة المرور")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -43,18 +44,19 @@ namespace SDS_SanadDistributedSystem.Models
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "كلمة المرور الحالية")]
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100,/* ErrorMessage = "The {0} must be at least {2} characters long.",*/ MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "كلمة المرور الجديدة")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "تأكيد كلمة المرور الجديدة")]
+        //[Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "كلمة المرور الجديدة لا تتطابق مع تأكيد كلمة المرور")]
         public string ConfirmPassword { get; set; }
     }
 

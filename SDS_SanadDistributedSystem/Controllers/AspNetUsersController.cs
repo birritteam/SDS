@@ -185,7 +185,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             //ViewBag.RolesID = //new MultiSelectList(db.AspNetRoles, "Id", "Name",service.AspNetRoles.AsEnumerable());
             ViewBag.SelectedRolesId = userRoles;
             ViewBag.NotSelectedRolesId = allRoles;//db.AspNetRoles;
-            ViewBag.enableOptions = enable;
+            ViewBag.enableOptions = aspNetUser.enabled;
 
             return View(aspNetUser);
         }
@@ -195,7 +195,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,UserName,Email,PasswordHash,PhoneNumber,idcenter_FK,enabled")] AspNetUser aspNetUser, string[] currentSelectedRolesID)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,UserName,Email,PasswordHash,PhoneNumber,idcenter_FK,enabled")] AspNetUser aspNetUser, string[] currentSelectedRolesID)//PasswordHash,
         {
             if (ModelState.IsValid)
             {
@@ -230,12 +230,28 @@ namespace SDS_SanadDistributedSystem.Controllers
                 aspNetUser.PasswordHash = hash.HashPassword(aspNetUser.PasswordHash);
                 // IdentityResult i =  await usrMngr.UpdateSecurityStampAsync(aspNetUser.Id);
                 aspNetUser.SecurityStamp = Guid.NewGuid().ToString();//usrMngr.GetSecurityStamp(aspNetUser.Id);
-                db.SaveChanges();
+                await db.SaveChangesAsync();
 
 
                 return RedirectToAction("Index");
             }
             ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", aspNetUser.idcenter_FK);
+            var userRoles = aspNetUser.AspNetRoles;
+            //     var userRoles2 = service.AspNetRoles;
+            //   var allRoles = db.AspNetRoles.Where(a => !userRoles.Contains(a));
+            //    var allTempRoles = db.AspNetRoles;
+            ICollection<AspNetRole> notSelectedRoles = new List<AspNetRole>();
+            foreach (var role in db.AspNetRoles)
+            {
+                if (!userRoles.Contains(role))
+                    notSelectedRoles.Add(role);
+
+            }
+            var allRoles = notSelectedRoles;
+            //ViewBag.RolesID = //new MultiSelectList(db.AspNetRoles, "Id", "Name",service.AspNetRoles.AsEnumerable());
+            ViewBag.SelectedRolesId = userRoles;
+            ViewBag.NotSelectedRolesId = allRoles;//db.AspNetRoles;
+            ViewBag.enableOptions = aspNetUser.enabled;
             return View(aspNetUser);
         }
 

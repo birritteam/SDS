@@ -41,7 +41,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // GET: services/Create
         public ActionResult Create()
         {
-            ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "Name");
+            ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "NameAR");
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name");
             ViewBag.enableOptions = enable;
 
@@ -62,7 +62,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "Name", service.idrole_FK);
+            ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "NameAR", service.idrole_FK);
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", service.idcase_FK);
             ViewBag.enableOptions = enable;
             return View(service);

@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity;
 using SDS_SanadDistributedSystem.Hubs;
 using Microsoft.AspNet.SignalR;
 using System.Collections;
+using System.Globalization;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
@@ -252,9 +253,9 @@ namespace SDS_SanadDistributedSystem.Controllers
             return Json(user_list, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult searchReferal(string name,string from ,string to,int idcase)
+        public ActionResult searchReferalByName(string name,int idcase)
         {
-            List<referalperson> referalpersons = db.referalpersons.Where(r=>r.referalstate!=name && r.idcase_FK== idcase).ToList();
+            List<referalperson> referalpersons = db.referalpersons.Where(r=>(r.person.fname == name || r.person.lname == name || r.person.fname+" "+r.person.lname == name) && r.idcase_FK== idcase).ToList();
             List<RPSearchViewModel> RPSearchViewModels=new List<viewModel.RPSearchViewModel>();
 
             foreach(referalperson r in referalpersons)
@@ -317,6 +318,80 @@ namespace SDS_SanadDistributedSystem.Controllers
                     rps.outreachnote = "لم يحدد ";
 
                 
+
+                RPSearchViewModels.Add(rps);
+            }
+
+            return Json(RPSearchViewModels, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult searchReferalByDate( string from, string to, int idcase)
+        {
+            DateTime from_date = DateTime.ParseExact(from, "yyyy-MM-dd", null);
+            DateTime to_date = DateTime.ParseExact(to, "yyyy-MM-dd", null);
+            List <referalperson> referalpersons = db.referalpersons.Where(r => r.submittingdate > from_date && r.submittingdate < to_date  && r.idcase_FK == idcase).ToList();
+            List<RPSearchViewModel> RPSearchViewModels = new List<viewModel.RPSearchViewModel>();
+
+            foreach (referalperson r in referalpersons)
+            {
+                RPSearchViewModel rps = new RPSearchViewModel();
+
+                rps.idcase = r.idcase_FK.ToString();
+                rps.idperson = r.idperson_FK;
+                rps.idreferalperson = r.idreferalperson.ToString();
+                rps.name = r.person.fname + " " + r.person.lname;
+                rps.submittingdate = r.submittingdate.Value.ToShortDateString();
+                if (r.referaldate != null)
+                    rps.referaldate = r.referaldate.Value.ToShortDateString();
+                else
+                    rps.referaldate = "لم يحدد التاريخ";
+
+                if (r.servicestate == "Pending" && r.referalstate == "Pending")
+                    rps.type = "جديد";
+                else if (r.servicestate == "Pending" && r.referalstate == "Approved")
+                    rps.type = "مقبولة";
+                else if (r.servicestate == "Pending" && r.referalstate == "OutReach")
+                    rps.type = " مقبولة-وصول";
+                else if (r.servicestate == "Pending" && r.referalstate == "Rejected")
+                    rps.type = "مرفوضة";
+                else if (r.servicestate == "Pending" && r.referalstate == "External")
+                    rps.type = "خارجي";
+                else if (r.servicestate == "In prgress" && r.referalstate == "Approved")
+                    rps.type = "قيد المتابعة";
+                else if (r.servicestate == "In prgress" && r.referalstate == "OutReach")
+                    rps.type = "قيد المتابعة-وصول";
+                else if (r.servicestate == "Closed" && r.referalstate == "Approved")
+                    rps.type = "مغلقة";
+                else if (r.servicestate == "Closed" && r.referalstate == "OutReach")
+                    rps.type = "مغلقة-وصوب";
+
+
+                if (r.servicestartdate != null)
+                    rps.servicestartdate = r.servicestartdate.Value.ToShortDateString();
+                else
+                    rps.servicestartdate = "لم يحدد التاريخ";
+
+                if (r.serviceenddate != null)
+                    rps.serviceenddate = r.serviceenddate.Value.ToShortDateString();
+                else
+                    rps.serviceenddate = "لم يحدد التاريخ";
+
+                if (r.senderevalution != null)
+                    rps.senderevalution = r.senderevalution;
+                else
+                    rps.senderevalution = "لم يحدد ";
+
+                if (r.recieverevalution != null)
+                    rps.recieverevalution = r.recieverevalution;
+                else
+                    rps.recieverevalution = "لم يحدد ";
+
+                if (r.outreachnote != null)
+                    rps.outreachnote = r.outreachnote;
+                else
+                    rps.outreachnote = "لم يحدد ";
+
+
 
                 RPSearchViewModels.Add(rps);
             }

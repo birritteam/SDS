@@ -52,7 +52,8 @@
             @Html.DisplayNameFor(model => model.center.name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AspNetRoles)
+            @*@Html.DisplayNameFor(model => model.AspNetRoles)*@
+            الصلاحيات
         </th>
         <th></th>
     </tr>
@@ -113,11 +114,12 @@
             <td>
                 @foreach (var role in item.AspNetRoles)
                 {
-                    @role.Name <br />
+                    @role.NameAR <br />
                 }
             </td>
             <td>
                 @Html.ActionLink("تعديل", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("تغير كلمة المرور", "ChangePassword" , "Manage", "","") |
                 @Html.ActionLink("تفاصيل", "Details", new { id = item.Id })
                 @*  @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
             </td>

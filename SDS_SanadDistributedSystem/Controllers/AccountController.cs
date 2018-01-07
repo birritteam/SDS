@@ -13,8 +13,8 @@ using System.Collections.Generic;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    [Authorize]
-    public class AccountController : Controller
+    [System.Web.Mvc.Authorize(Roles = "superadmin,admin")]
+     public class AccountController : Controller
     {
         private bool[] enable = { true, false };
         private ApplicationSignInManager _signInManager;
@@ -148,6 +148,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                     {
                         action_name = "index";
                         controller_name = "secretPeople";
+                    }
+                    else if (roles.Equals("admin"))
+                    {
+                        action_name = "AdminPage";
+                        controller_name = "Account";
                     }
                     else
                     {
@@ -341,7 +346,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             else
                 ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
 
-            ViewBag.RolesID = new SelectList(db.AspNetRoles, "Name", "Name");
+            ViewBag.RolesID = new SelectList(db.AspNetRoles, "Name", "NameAR", db.AspNetRoles.First().NameAR);
             ViewBag.enableOptions = enable;
             return View(register);
         }
@@ -383,7 +388,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             else
                 ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
 
-            ViewBag.RolesID = new SelectList(db.AspNetRoles, "Name", "Name");
+            ViewBag.RolesID = new SelectList(db.AspNetRoles, "Name", "NameAR", db.AspNetRoles.First().NameAR);
             ViewBag.enableOptions = enable;
 
             return RedirectToAction("Index", "AspNetUsers");
