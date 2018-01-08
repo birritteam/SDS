@@ -500,18 +500,19 @@ function successFillTableNew() {
     //var idcenter_FK_text = document.getElementById("idcenter_FK").options[document.getElementById("idcenter_FK").selectedIndex].text;
 
     var outreachnote = document.getElementById("outreachnote").value;
+    //<<<<<انتبه ارسل الايميل
     var obj = {
         "idperson_FK": idperson_FK,
         "idcase_FK": idcase_FK, "idservice_FK": idservice_FK,
 
-        "senderevalution": senderevalution, "outreachnote": outreachnote, "referalReciver_FK": referalReciver_FK
+        "senderevalution": senderevalution + "", "outreachnote": outreachnote + "", "referalreciever_FK": referalReciver_FK + ""
     };
 
     var obj_text = {
         "idperson_FK": idperson_FK_text,
         "idcase_FK": idcase_FK_text, "idservice_FK": idservice_FK_text,
 
-        "senderevalution": senderevalution, "outreachnote": outreachnote, "referalReciver_FK": referalReciver_FK_text
+        "senderevalution": senderevalution, "outreachnote": outreachnote, "referalreciever_FK": referalReciver_FK_text
     };
 
     var checkexist = false;
@@ -590,17 +591,24 @@ function successSendReferals() {
     //});
 
     $.ajax({
-        contentType: 'application/json; charset=utf-8',
+       // contentType: 'application/json; charset=utf-8',
+        contentType: 'application/json',
         url: '/referalpersons/sendReferals',
         type: "POST",
         dataType: "JSON",
         data: referals,
         success:
 function (data) {
-    toastr.success('تم الحفظ بنجاح');
-    $("#myTable tbody").empty();
-    personReferal = [];
-    personReferal_text = [];
+    if (data == "Success")
+    {
+        toastr.success('تم الحفظ بنجاح');
+        $("#myTable tbody").empty();
+        personReferal = [];
+        personReferal_text = [];
+    }
+    else
+        toastr.error('حدث خطأ أثناء الحفظ');
+    
 },
 
         error: function (xhr, status, error) {

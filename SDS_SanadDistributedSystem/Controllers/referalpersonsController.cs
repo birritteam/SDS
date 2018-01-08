@@ -545,7 +545,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
               return View(rp);
         }
-        //[HttpPost]
+        [HttpPost]
         //[ValidateAntiForgeryToken]
         public async Task<ActionResult> sendReferals(List<referalPersonViewModel> referals)
         {
@@ -553,6 +553,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 foreach (referalPersonViewModel rpvm in referals)
                 {
+                    string email = "amro@gmail.com"; 
 
                     referalperson rp = new referalperson();
                     rp.idperson_FK = rpvm.idperson_FK;
@@ -571,11 +572,13 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                     rp.servicestate = "Pending";
 
-                    rp.referalreicver_FK = /*"84c2c89c-a3a2-4964-80f5-aaafa33c1d67";*/ rpvm.referalreciever_FK;
+                    rp.referalreicver_FK = /*"84c2c89c-a3a2-4964-80f5-aaafa33c1d67";*/  rpvm.referalreciever_FK;
+                   // rp.referalreicver_FK = db.AspNetUsers.SingleOrDefault(user => user.Email == rpvm.referalreciever_FK).Id;
 
                     rp.senderevalution = rpvm.senderevalution;
 
                     rp.idcenter_FK = db.AspNetUsers.Find(User.Identity.GetUserId()).center.idcenter;
+                    rp.referalsender_FK = User.Identity.GetUserId();
 
                     rp.outreachnote = rpvm.outreachnote;
 
@@ -588,7 +591,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     string username = db.AspNetUsers.SingleOrDefault(user => user.Id == rp.referalreicver_FK).UserName;
                     notificationHub.Clients.All.notify("added", username);
                 }
-                return new JsonResult { Data = "Success send referals" };
+                return new JsonResult { Data = "Success" };
             }
             catch (Exception e)
             {
