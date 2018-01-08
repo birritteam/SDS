@@ -146,10 +146,11 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
             var notificationRegisterTime = Session["LastUpdated"] != null ? Convert.ToDateTime(Session["LastUpdated"]) : DateTime.Now;
             NotificationComponent NC = new NotificationComponent();
-            var list = NC.GetReferals(notificationRegisterTime, User.Identity.Name);
+            string usertosend = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name).Id;
+            var list = NC.GetReferals(notificationRegisterTime, usertosend);
 
             Session["LastUpdated"] = DateTime.Now;
-            return new JsonResult { Data = list.Select(r => new { personname = r.person.fname + " " + r.person.lname, serviceType = r.service.name}) , JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult { Data = list.Select(r => new { idreferalperson = r.idreferalperson, idperson_FK = r.idperson_FK, idcase_FK = r.idcase_FK, personname = r.person.fname + " " + r.person.lname, serviceType = r.service.name }), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public ActionResult FillServices(string caseId)

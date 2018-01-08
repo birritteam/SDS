@@ -9,7 +9,7 @@
                  <li>
 
                     @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-                    <a href="/Manage/Index" class="waves-effect"><i class="fa fa-user-circle fa-5x"></i>  مرحباً <span id="loginusername"> @User.Identity.GetUserName() </span></a>
+                    <a href="/Manage/Index" class="waves-effect"><i class="fa fa-user-circle fa-5x"></i>  مرحباً <span id="loginusername">@User.Identity.GetUserName()</span></a>
 
                 </li>
           
