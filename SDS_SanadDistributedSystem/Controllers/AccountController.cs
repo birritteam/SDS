@@ -216,41 +216,57 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
         }
 
-        public JsonResult IsRolesEmpty(string roleName)
+        //public JsonResult IsRolesEmpty(string roleName)
+        //{
+        //    try
+        //    {
+        //        return Json(checkRoles(roleName));
+        //    }
+        //    catch { return Json(true); }
+        //}
+        //public bool checkRoles(string roleName)
+        //{
+        //    // Assume these details coming from database  
+        //    //List<RegisterViewModel> RegisterUsers = new List<RegisterViewModel>();
+
+        //    //var RegUserName = (from u in db.AspNetUsers
+        //    //                   where u.UserName.ToUpper() == UserName.ToUpper()
+        //    //                   select new { UserName }).FirstOrDefault();
+
+        //    bool status;
+        //    if (roleName == null)
+        //    {
+        //        //Already registered  
+        //        status = false;
+        //    }
+        //    else
+        //    {
+        //        //Available to use  
+        //        status = true;
+        //    }
+
+        //    return status;
+        //}
+
+        public JsonResult CheckUserName(string Email)
         {
+            //   sds_dbEntities db = new sds_dbEntities();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var result = true;
+            var user = db.Users.Where(x => x.Email == Email).FirstOrDefault();
 
-            return Json(checkRoles(roleName));
+            if (user != null)
+                result = false;
 
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
-        public bool checkRoles(string roleName)
-        {
-            // Assume these details coming from database  
-            //List<RegisterViewModel> RegisterUsers = new List<RegisterViewModel>();
 
-            //var RegUserName = (from u in db.AspNetUsers
-            //                   where u.UserName.ToUpper() == UserName.ToUpper()
-            //                   select new { UserName }).FirstOrDefault();
-
-            bool status;
-            if (roleName == null)
-            {
-                //Already registered  
-                status = false;
-            }
-            else
-            {
-                //Available to use  
-                status = true;
-            }
-
-            return status;
-        }
 
         public JsonResult IsAlreadySignedUserName(string UserName)
         {
-
+            if(!string.IsNullOrEmpty(UserName))
             return Json(IsUserAvailable(UserName));
-
+            return Json(true);
         }
         public bool IsUserAvailable(string UserName)
         {
@@ -278,9 +294,9 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         public JsonResult IsAlreadySignedEmail(string Email)
         {
-
+            if(!string.IsNullOrEmpty(Email))
                 return Json(IsEmailAvailable(Email));
-
+            return Json(true);
         }
         public bool IsEmailAvailable(string Email)
         {
@@ -308,8 +324,9 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         public JsonResult IsAlreadySignedPhone(string phone)
         {
-
-            return Json(IsPhoneAvailable(phone));
+            if(!string.IsNullOrEmpty(phone))
+              return Json(IsPhoneAvailable(phone));
+            return Json(true);
 
         }
         public bool IsPhoneAvailable(string phone)
@@ -360,11 +377,11 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, enabled = model.enabled, idcenter_FK = model.idcenter_FK };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, enabled = model.enabled, idcenter_FK = model.idcenter_FK };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -375,6 +392,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                         await this.UserManager.AddToRolesAsync(user.Id, RolesID);
                     //return new JsonResult { Data = "" };//
                     RedirectToAction("Register", "Account");
+                }
+                if (result.Succeeded== false)
+                {
+                    var exceptionText = result.Errors.Aggregate("User Creation Failed - Identity Exception. Errors were: \n\r\n\r", (current, error) => current + (" - " + error + "\n\r"));
+                    throw new Exception(exceptionText);
                 }
                 AddErrors(result);
             }

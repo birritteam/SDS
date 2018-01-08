@@ -12,9 +12,9 @@
 </p>
 <table class="table">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.UserName)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
@@ -61,9 +61,9 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.UserName)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
@@ -122,6 +122,7 @@
                 @Html.ActionLink("تغير كلمة المرور", "ChangePassword" , "Manage", "","") |
                 @Html.ActionLink("تفاصيل", "Details", new { id = item.Id })
                 @*  @Html.ActionLink("Delete", "Delete", new { id = item.Id })*@
+                @* RedirectToAction(action_name, controller_name); *@
             </td>
         </tr>
     }
