@@ -11,17 +11,19 @@ using SDS_SanadDistributedSystem.Models;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
+    [Authorize(Roles = "superadmin,admin")]
     public class centersController : Controller
     {
         private sds_dbEntities db = new sds_dbEntities();
 
+        [Authorize(Roles = "superadmin,admin")]
         // GET: centers
         public async Task<ActionResult> Index()
         {
             var centers = db.centers.Include(c => c.partner);
             return View(await centers.ToListAsync());
         }
-
+        [Authorize(Roles = "superadmin,admin")]
         // GET: centers/Details/5
         public async Task<ActionResult> Details(string id)
         {
@@ -67,6 +69,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             return status;
         }
 
+        [Authorize(Roles = "superadmin,admin")]
         // GET: centers/Create
         public ActionResult Create()
         {
@@ -79,6 +82,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> Create([Bind(Include = "idcenter,name,location,flag,idpartner_FK")] center center)
         {
             if (ModelState.IsValid)
@@ -93,7 +97,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.idpartner_FK = new SelectList(db.partners, "idpartner", "name", center.idpartner_FK);
             return View(center);
         }
-
+        [Authorize(Roles = "superadmin,admin")]
         // GET: centers/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
@@ -115,6 +119,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> Edit([Bind(Include = "idcenter,name,location,flag,idpartner_FK")] center center)
         {
             if (ModelState.IsValid)

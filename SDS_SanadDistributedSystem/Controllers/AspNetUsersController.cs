@@ -13,18 +13,20 @@ using Microsoft.AspNet.Identity;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
+    [Authorize(Roles = "superadmin,admin")]
     public class AspNetUsersController : Controller
     {
         private sds_dbEntities db = new sds_dbEntities();
         private bool[] enable = { true, false };
 
+        [Authorize(Roles = "superadmin,admin")]
         // GET: AspNetUsers
         public async Task<ActionResult> Index()
         {
             var aspNetUsers = db.AspNetUsers.Include(a => a.center);
             return View(await aspNetUsers.ToListAsync());
         }
-
+        [Authorize(Roles = "superadmin,admin")]
         // GET: AspNetUsers/Details/5
         public async Task<ActionResult> Details(string id)
         {
@@ -155,7 +157,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //    ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", aspNetUser.idcenter_FK);
         //    return View(aspNetUser);
         //}
-
+        [Authorize(Roles = "superadmin,admin")]
         // GET: AspNetUsers/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
@@ -195,6 +197,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> Edit([Bind(Include = "Id,UserName,Email,PasswordHash,PhoneNumber,idcenter_FK,enabled")] AspNetUser aspNetUser, string[] currentSelectedRolesID)//PasswordHash,
         {
             if (ModelState.IsValid)
