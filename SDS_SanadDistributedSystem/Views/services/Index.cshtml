@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>الخدمات</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("إضافة خدمة", "Create")
 </p>
 <table class="table">
     <tr>
@@ -16,31 +16,54 @@
             @Html.DisplayNameFor(model => model.name)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.enabled)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.case.name)
+            @*   @Html.DisplayNameFor(model => model.@case.name)*@
+            القسم
         </th>
-        <th></th>
+        <th>
+            صلاحيات الوصول إلى الخدمة
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.enabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.case.name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idservice }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idservice }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idservice })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @if (item.enabled == true)
+                {
+                    //       @Html.Label("مفعلة", new { @font-weight = "normal" })
+                    <div class="display-label" style="font-weight: normal">مفعلة</div>
+                }
+                @if (item.enabled == false)
+                {
+                    //    @Html.Label("غير مفعلة", new { @font = "normal" })
+                    <div class="display-label" style="font-weight: normal">غير مفعلة</div>
+
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.@case.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AspNetRole.NameAR)
+            </td>
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.idservice }) |
+                @Html.ActionLink("تفاصيل", "Details", new { id = item.idservice })
+                @*@Html.ActionLink("Delete", "Delete", new { id=item.idservice })*@
+            </td>
+        </tr>
+    }
 
 </table>

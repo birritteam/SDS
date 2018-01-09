@@ -45,6 +45,9 @@ body,h1{
 label{
     right:0px;
 }
+.bootstrap-select.btn-group .dropdown-menu.inner {
+   margin:10px;
+}
 
 
 input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.md-textarea{

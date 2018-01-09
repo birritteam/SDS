@@ -19,7 +19,7 @@ namespace SDS_SanadDistributedSystem.viewModel
        
         public string idservice_FK { get; set; }
 
-        public string referalreciever_FK { get; set; }
+       
 
        // public string submittingdate { get; set; }
 
@@ -44,5 +44,8 @@ namespace SDS_SanadDistributedSystem.viewModel
         //public string idcenter_FK { get; set; }
 
         public string outreachnote { get; set; }
+
+
+        public string referalreciever_FK { get; set; }
     }
 }

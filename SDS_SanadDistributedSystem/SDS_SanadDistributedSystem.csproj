@@ -281,6 +281,16 @@
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AspNetUserResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AspNetUserResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\CenterResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CenterResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\ErrorResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -295,6 +305,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>referalpersonResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\RegisterViewModelResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RegisterViewModelResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\ServiceResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="viewModel\referalPersonViewModel.cs" />
@@ -490,6 +510,7 @@
       <DependentUpon>sdsModel.edmx</DependentUpon>
       <LastGenOutput>sdsModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\adminAjaxFunctions.js" />
     <Content Include="Scripts\ajaxFunctions.js" />
     <Content Include="Scripts\ajaxFunctionsAmr.js" />
     <Content Include="Scripts\AllDataTablesDesign.js" />
@@ -752,11 +773,6 @@
     <Content Include="Views\referalpersons\Index.cshtml" />
     <Content Include="Views\referalpersons\personReferal.cshtml" />
     <Content Include="Views\referalpersons\personReferalByCaseManager.cshtml" />
-    <Content Include="Views\services\Create.cshtml" />
-    <Content Include="Views\services\Delete.cshtml" />
-    <Content Include="Views\services\Details.cshtml" />
-    <Content Include="Views\services\Edit.cshtml" />
-    <Content Include="Views\services\Index.cshtml" />
     <Content Include="Views\referalfamilies\Create.cshtml" />
     <Content Include="Views\referalfamilies\Delete.cshtml" />
     <Content Include="Views\referalfamilies\Details.cshtml" />
@@ -784,6 +800,12 @@
     <Content Include="Views\AspNetUsers\Details.cshtml" />
     <Content Include="Views\AspNetUsers\Edit.cshtml" />
     <Content Include="Views\AspNetUsers\Index.cshtml" />
+    <Content Include="Views\services\Create.cshtml" />
+    <Content Include="Views\services\Delete.cshtml" />
+    <Content Include="Views\services\Details.cshtml" />
+    <Content Include="Views\services\Edit.cshtml" />
+    <Content Include="Views\services\Index.cshtml" />
+    <Content Include="Views\Account\AdminPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -803,6 +825,14 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Messages1.designer.cs</LastGenOutput>
     </Content>
+    <EmbeddedResource Include="Resources\AspNetUserResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AspNetUserResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CenterResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CenterResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\ErrorResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ErrorResource.Designer.cs</LastGenOutput>
@@ -814,6 +844,14 @@
     <EmbeddedResource Include="Resources\referalpersonResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>referalpersonResource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\RegisterViewModelResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RegisterViewModelResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ServiceResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ServiceResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
