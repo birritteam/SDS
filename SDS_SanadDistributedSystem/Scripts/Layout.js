@@ -21,7 +21,7 @@ $(document).ready(function () {
     $('select').attr('data-live-search', true);
     $('.selectpicker').selectpicker({
         style: 'btn-info',
-        size: 6,
+        size: 7,
         //title:"لا يوجد"
         
     }
@@ -53,10 +53,10 @@ toastr.options = {
 }
 
 
-$('.selectpicker').selectpicker(
-    //style: 'btn-info',
-    //size: 4
-);
+//$('.selectpicker').selectpicker(
+//    "style": 'btn-info',
+//    "size": 4,
+//);
 
 if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
     $('.selectpicker').selectpicker('mobile');

@@ -934,22 +934,41 @@
             {
                 @Html.HiddenFor(model => model.ElementAt(0).idcase_FK, new { Value = Model.ElementAt(0).idcase_FK });
                 <div class="md-form">
-                    <input type="text" id="personname" class="form-control">
-                    <label for="form1" class=""> حسب اسم الشخص</label>
-                </div>
+                    <div class="col-md-6">
+                        <input type="text" id="personname" class="form-control">
+                        <label for="form1" class=""> حسب اسم الشخص</label>
+                    </div>      
+                    <div class="col-md-6 "></div>        
+                      </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="button" value="بحث" class="btn btn-default" onclick="searchByName()" />
+                        </div>
+                    </div>
+            }
+                    @using (Html.BeginForm())
+                    {
+                        @Html.HiddenFor(model => model.ElementAt(0).idcase_FK, new { Value = Model.ElementAt(0).idcase_FK });
                 <div class="md-form">
-                    <input placeholder="Selected date" type="text" id="datepickerfrom" class="form-control datepicker">
-                    <label for="date-picker-example">من</label>
+                    <div class="col-md-6">
+                        @*@{var  today = DateTime.Now.ToShortDateString('YYYY-MM-DD');}*@
+                    <input placeholder="Selected date" type="date" id="datepickerfrom"  value="2018-01-01">
+                        <label for="date-picker-example">من</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input placeholder="Selected date" type="date" id="datepickerto" value="2018-12-01">
+                        <label for="date-picker-example">إلى</label>
+                    </div>
+                    
 
-                    <input placeholder="Selected date" type="text" id="datepickerto" class="form-control datepicker">
-                    <label for="date-picker-example">إلى</label>
+                    
                 </div>
-
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="button" value="بحث" class="btn btn-default" onclick="search()" />
+                        <input type="button" value="بحث" class="btn btn-default" onclick="searcByDate()" />
                     </div>
                 </div>
+
 
             }
             <table id="All7" class="display table table-bordered" cellspacing="0">

@@ -11,7 +11,7 @@ namespace SDS_SanadDistributedSystem.Hubs
         private sds_dbEntities db = new sds_dbEntities();
         public List<referalperson> GetReferals(DateTime afterDate, string usertosend)
         {
-            var list = db.referalpersons.Where(a => a.submittingdate < afterDate && a.AspNetUser.UserName == usertosend && a.referalstate == "Pending" && a.servicestate == "Pending").OrderByDescending(a => a.submittingdate).ToList();
+            var list = db.referalpersons.Where(a => a.submittingdate <= afterDate && a.referalreicver_FK == usertosend && a.referalstate == "Pending" && a.servicestate == "Pending").OrderByDescending(a => a.submittingdate).ToList();
             return list;
         }
     }

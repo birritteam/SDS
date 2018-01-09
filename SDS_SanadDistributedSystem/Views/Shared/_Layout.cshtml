@@ -45,10 +45,11 @@
         }
 
         span.noti {
-            color: #FF2323;
+            color: #FFF;
             margin: 15px;
             position: fixed;
-            right: 100px;
+            right: 109px;
+            top:0pc;
             font-size: 18px;
             cursor: pointer;
         }
@@ -60,7 +61,7 @@
     </style>
 
 </head>
-<body class="fixed-sn mdb-skin bg-skin-lp">
+<body class="fixed-sn mdb-skin bg-skin-lp" style="padding-top:50px;">
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -116,7 +117,7 @@
                 <li>
                     <form class="search-form" role="search">
                         <div class="form-group waves-light">
-                            <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="col-lg-10" placeholder="بحث">
                         </div>
                     </form>
                 </li>
@@ -124,7 +125,7 @@
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
-                        <li>
+                        @*<li>
                             <a class="collapsible-header waves-effect arrow-r"><i class="fa fa-chevron-right"></i> Submit blog<i class="fa fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
@@ -162,9 +163,9 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>*@
                         <li>
-                            <a class="collapsible-header waves-effect arrow-r"><i class="fa fa-envelope-o"></i> Contact me<i class="fa fa-angle-down rotate-icon"></i></a>
+                            <a class="collapsible-header waves-effect arrow-r"><i ></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; للتواصل معنا   <i class="fa fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
                                     <li>
@@ -176,23 +177,66 @@
                                 </ul>
                             </div>
                         </li>
+                        @if (User.IsInRole("admin"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; المستخدمين   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/Account/Register" class="waves-effect">إضافة مستخدم</a>
+                                        </li>
+                                        <li>
+                                            <a href="~/AspNetUsers/index" class="waves-effect">كافة المستخدمين</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;المراكز<i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/Centers/Create" class="waves-effect">إضافة مركز</a> 
+                                        </li>
+                                        <li>
+                                            <a href="~/Centers/index" class="waves-effect">كافة المراكز</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i ></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; الخدمات   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/Services/Create" class="waves-effect">إضافة خدمة</a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Services/index" class="waves-effect">كافة الخدمات</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        
 
                         @Html.Partial("_LoginPartial")
                     </ul>
                 </li>
                 <!--/. Side navigation links -->
-                <div class="sidenav-bg mask-strong"></div>
+                @*<div class="sidenav-bg mask-strong"></div>*@
             </ul>
             <!--/. Sidebar navigation -->
             <!-- Navbar -->
-            <nav class="navbar fixed-top mobile-nofixed navbar-toggleable-md navbar-dark scrolling-navbar double-nav top-nav-collapse">
+            <nav class="navbar navbar-fixed-top mobile-nofixed navbar-toggleable-md navbar-dark scrolling-navbar  top-nav-collapse">
                 <!-- SideNav slide-out button -->
                 <div class="float-right" style="direction:ltr">
                     <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
                 </div>
                 <!-- Breadcrumb-->
-                <div class="breadcrumb-dn mr-auto float-right">
-                    <span class="noti glyphicon glyphicon-bell"><span class="count">&nbsp; </span></span>
+                <div class="breadcrumb-dn mr-auto float-left">
+                    <span class="noti fa fa-bell"><span class="count">&nbsp; </span></span>
                     <div class="noti-content">
                         <div class="noti-top-arrow"></div>
                         <ul id="notiContent"></ul>
@@ -205,20 +249,19 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لصالح جمعية البر والخدمات الاجتماعية </p>
             </footer>
         </div>
     </main>
-               
+    @Scripts.Render("~/bundles/jquery")
 
-                @Scripts.Render("~/bundles/jquery")
-
-                @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/jquery.signalR-2.2.2.js"></script>
     <script src="/signalr/hubs"></script>
     <script src="~/Scripts/signalRJS.js"></script>
-                @RenderSection("scripts", required: false)
-
+   
+                  
+    @RenderSection("scripts", required: false)
 
     </body>
 </html>

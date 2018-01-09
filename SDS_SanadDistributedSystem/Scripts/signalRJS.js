@@ -14,7 +14,7 @@
         $('span.count', this).html('&nbsp;')
 
     });
-    // hide notifications
+    // hide notifications		
 
 
 
@@ -33,18 +33,18 @@
             type: 'GET',
             url: '/referalpersons/GetNotificationsReferal',
             success: function (response) {
-                alert("dasdad")
+                //alert("dasdad")
                 $('#notiContent').empty();
                 if (response.length == 0) {
                     $("#notiContent").append($('<li> لا يوجد أي إشعارات</li>'));
 
                 }
                 $.each(response, function (index, value) {
-                    //var contactid = value.Contactid;
-                    $('#notiContent').append($("<li> <a href='/Contacts/Details/" + value.personname + "' target='_blank'> New contact: '" + value.serviceType + "' ('" + value.serviceType + "') </a> </li>"));
+                    //var contactid = value.Contactid;/referalpersons/Edit?idreferalperson=30&idperson=12345C3&idcase=4
+                    $('#notiContent').append($("<li> <a href='/referalpersons/Edit?idreferalperson=" + value.idreferalperson + "&idperson=" + value.idperson_FK + "&idcase=" + value.idcase_FK + "' target='_blank'> حالة جديدة: <br />'" + value.personname + "' ('" + value.serviceType + "') </a> </li>"));
                 });
             },
-          
+
             error: function (error) {
                 console.log(error);
             }

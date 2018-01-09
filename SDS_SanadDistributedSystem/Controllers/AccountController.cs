@@ -9,12 +9,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using SDS_SanadDistributedSystem.Models;
+using System.Collections.Generic;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    [Authorize]
-    public class AccountController : Controller
+    [System.Web.Mvc.Authorize(Roles = "superadmin,admin")]
+     public class AccountController : Controller
     {
+        private bool[] enable = { true, false };
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private sds_dbEntities db = new sds_dbEntities();
@@ -50,6 +52,12 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 _userManager = value;
             }
+        }
+        [Authorize(Roles = "superadmin,admin")]
+        public ActionResult AdminPage(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
         }
 
         //
@@ -141,6 +149,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                         action_name = "index";
                         controller_name = "secretPeople";
                     }
+                    else if (roles.Equals("admin"))
+                    {
+                        action_name = "AdminPage";
+                        controller_name = "Account";
+                    }
                     else
                     {
                         action_name = "index";
@@ -162,7 +175,8 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/VerifyCode
-        [AllowAnonymous]
+        //        [AllowAnonymous]
+        [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
             // Require that the user has already logged in via username/password or external login
@@ -176,8 +190,9 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/VerifyCode
         [HttpPost]
-        [AllowAnonymous]
+  //      [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
         {
             if (!ModelState.IsValid)
@@ -203,47 +218,212 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
         }
 
+        //public JsonResult IsRolesEmpty(string roleName)
+        //{
+        //    try
+        //    {
+        //        return Json(checkRoles(roleName));
+        //    }
+        //    catch { return Json(true); }
+        //}
+        //public bool checkRoles(string roleName)
+        //{
+        //    // Assume these details coming from database  
+        //    //List<RegisterViewModel> RegisterUsers = new List<RegisterViewModel>();
+
+        //    //var RegUserName = (from u in db.AspNetUsers
+        //    //                   where u.UserName.ToUpper() == UserName.ToUpper()
+        //    //                   select new { UserName }).FirstOrDefault();
+
+        //    bool status;
+        //    if (roleName == null)
+        //    {
+        //        //Already registered  
+        //        status = false;
+        //    }
+        //    else
+        //    {
+        //        //Available to use  
+        //        status = true;
+        //    }
+
+        //    return status;
+        //}
+
+        public JsonResult CheckUserName(string Email)
+        {
+            //   sds_dbEntities db = new sds_dbEntities();
+            ApplicationDbContext db = new ApplicationDbContext();
+            var result = true;
+            var user = db.Users.Where(x => x.Email == Email).FirstOrDefault();
+
+            if (user != null)
+                result = false;
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult IsAlreadySignedUserName(string UserName)
+        {
+            if(!string.IsNullOrEmpty(UserName))
+            return Json(IsUserAvailable(UserName));
+            return Json(true);
+        }
+        public bool IsUserAvailable(string UserName)
+        {
+            // Assume these details coming from database  
+            List<RegisterViewModel> RegisterUsers = new List<RegisterViewModel>();
+
+            var RegUserName = (from u in db.AspNetUsers
+                               where u.UserName.ToUpper() == UserName.ToUpper()
+                               select new { UserName }).FirstOrDefault();
+
+            bool status;
+            if (RegUserName != null)
+            {
+                //Already registered  
+                status = false;
+            }
+            else
+            {
+                //Available to use  
+                status = true;
+            }
+
+            return status;
+        }
+
+        public JsonResult IsAlreadySignedEmail(string Email)
+        {
+            if(!string.IsNullOrEmpty(Email))
+                return Json(IsEmailAvailable(Email));
+            return Json(true);
+        }
+        public bool IsEmailAvailable(string Email)
+        {
+            // Assume these details coming from database  
+            List<RegisterViewModel> RegisterUsers = new List<RegisterViewModel>();
+
+            var RegEmail = (from u in db.AspNetUsers
+                            where u.Email.ToUpper() == Email.ToUpper()
+                            select new { Email }).FirstOrDefault();
+
+            bool status;
+            if (RegEmail != null)
+            {
+                //Already registered  
+                status = false;
+            }
+            else
+            {
+                //Available to use  
+                status = true;
+            }
+
+            return status;
+        }
+
+        public JsonResult IsAlreadySignedPhone(string phone)
+        {
+            if(!string.IsNullOrEmpty(phone))
+              return Json(IsPhoneAvailable(phone));
+            return Json(true);
+
+        }
+        public bool IsPhoneAvailable(string phone)
+        {
+            // Assume these details coming from database  
+            List<RegisterViewModel> RegisterUsers = new List<RegisterViewModel>();
+
+            var RegEmail = (from u in db.AspNetUsers
+                            where u.PhoneNumber == phone
+                            select new { phone }).FirstOrDefault();
+
+            bool status;
+            if (RegEmail != null)
+            {
+                //Already registered  
+                status = false;
+            }
+            else
+            {
+                //Available to use  
+                status = true;
+            }
+
+            return status;
+        }
         //
         // GET: /Account/Register
-        [AllowAnonymous]
-        public ActionResult Register()
+        //        [AllowAnonymous]
+        [Authorize(Roles = "superadmin,admin")]
+        public ActionResult Register(string idcenter_FK)
         {
-            return View();
+            RegisterViewModel register = new RegisterViewModel();
+            if (!string.IsNullOrEmpty(idcenter_FK))
+                ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", idcenter_FK);
+            else
+                ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
+
+            ViewBag.RolesID = new SelectList(db.AspNetRoles, "Name", "NameAR", db.AspNetRoles.First().NameAR);
+            ViewBag.enableOptions = enable;
+            return View(register);
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+//        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        [Authorize(Roles = "superadmin,admin")]
+        public async Task<ActionResult> Register(RegisterViewModel model, string[] RolesID)//, string idCenter_FK)//
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, enabled = model.enabled, idcenter_FK = model.idcenter_FK };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("Index", "Home");
+                    if (RolesID != null)
+                        await this.UserManager.AddToRolesAsync(user.Id, RolesID);
+                    //return new JsonResult { Data = "" };//
+                    RedirectToAction("Register", "Account");
+                }
+                if (result.Succeeded== false)
+                {
+                    var exceptionText = result.Errors.Aggregate("User Creation Failed - Identity Exception. Errors were: \n\r\n\r", (current, error) => current + (" - " + error + "\n\r"));
+                    throw new Exception(exceptionText);
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            //return new JsonResult { Data = "" };//
+            //           return View(model);
+            RegisterViewModel register = new RegisterViewModel();
+            if (!string.IsNullOrEmpty(model.idcenter_FK))
+                ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", model.idcenter_FK);
+            else
+                ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
+
+            ViewBag.RolesID = new SelectList(db.AspNetRoles, "Name", "NameAR", db.AspNetRoles.First().NameAR);
+            ViewBag.enableOptions = enable;
+
+            return RedirectToAction("Index", "AspNetUsers");
         }
 
         //
         // GET: /Account/ConfirmEmail
-        [AllowAnonymous]
+        //        [AllowAnonymous]
+        [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -256,7 +436,8 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/ForgotPassword
-        [AllowAnonymous]
+        //        [AllowAnonymous]
+        [Authorize(Roles = "superadmin,admin")]
         public ActionResult ForgotPassword()
         {
             return View();
@@ -265,8 +446,9 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/ForgotPassword
         [HttpPost]
-        [AllowAnonymous]
+//        [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -292,7 +474,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/ForgotPasswordConfirmation
-        [AllowAnonymous]
+     //   [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -300,7 +482,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/ResetPassword
-        [AllowAnonymous]
+       // [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
@@ -309,8 +491,10 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-        [AllowAnonymous]
+       // [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin")]
+
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -334,7 +518,9 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/ResetPasswordConfirmation
-        [AllowAnonymous]
+        //        [AllowAnonymous]
+        [Authorize(Roles = "superadmin,admin")]
+
         public ActionResult ResetPasswordConfirmation()
         {
             return View();
@@ -343,8 +529,10 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
-        [AllowAnonymous]
+//        [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin")]
+
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {
             // Request a redirect to the external login provider
@@ -353,7 +541,9 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/SendCode
-        [AllowAnonymous]
+        //        [AllowAnonymous]
+        [Authorize(Roles = "superadmin,admin")]
+
         public async Task<ActionResult> SendCode(string returnUrl, bool rememberMe)
         {
             var userId = await SignInManager.GetVerifiedUserIdAsync();
@@ -369,8 +559,10 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/SendCode
         [HttpPost]
-        [AllowAnonymous]
+//        [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin")]
+
         public async Task<ActionResult> SendCode(SendCodeViewModel model)
         {
             if (!ModelState.IsValid)
@@ -388,7 +580,9 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
-        [AllowAnonymous]
+        //        [AllowAnonymous]
+        [Authorize(Roles = "superadmin,admin")]
+
         public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
@@ -419,7 +613,8 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
-        [AllowAnonymous]
+        //        [AllowAnonymous]
+        [Authorize(Roles = "superadmin,admin")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl)
         {

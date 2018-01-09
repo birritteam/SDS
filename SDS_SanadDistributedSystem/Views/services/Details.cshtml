@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>التفاصيل</h2>
 
 <div>
-    <h4>service</h4>
+    <h4>الخدمة</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -18,26 +18,45 @@
         <dd>
             @Html.DisplayFor(model => model.name)
         </dd>
-
+        <dt>
+            @Html.DisplayNameFor(model => model.description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.enabled)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.enabled)
+            @if (Model.enabled == true)
+            {
+                //       @Html.Label("مفعلة", new { @font-weight = "normal" })
+                <div class="display-label" style="font-weight: normal">مفعلة</div>
+            }
+            @if (Model.enabled == false)
+            {
+                //    @Html.Label("غير مفعلة", new { @font = "normal" })
+                <div class="display-label" style="font-weight: normal">غير مفعلة</div>
+
+            }
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.case.name)
+            @Html.DisplayNameFor(model => model.@case.name)
         </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.case.name)
+            @*  @Html.DisplayFor(model => model.@case.name)*@
+            القسم
         </dd>
-
+        <dt>
+            صلاحيات الوصول إلى الخدمة
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AspNetRole.Name)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idservice }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.idservice }) |
+    @Html.ActionLink("عودة إلى القائمة", "Index")
 </p>
