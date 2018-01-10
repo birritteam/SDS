@@ -28,6 +28,10 @@ namespace SDS_SanadDistributedSystem.Controllers
             educationstate = { "الوضع الحالي", "آخر تحصيل" };
 
 
+
+            private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+
+
         public JsonResult idAlreadyExisted(string idperson)
         {
             bool existed = db.people.Any(x => x.idperson.Equals(idperson));
@@ -85,6 +89,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
             //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
 
+            ViewBag.evaluationValues = evaluationValues;
+
             var managelists = db.managelists;
 
             var works = new SelectList(managelists.Where(ma => ma.flag == "W"), "idmanagelist", "name");
@@ -92,6 +98,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.previousWorkID = works;
 
             ViewBag.idKnowledgeCenter = new SelectList(managelists.Where(ma => ma.flag == "KC"), "idmanagelist", "name");
+
+
 
             List<IQueryable> weaknesses = new List<IQueryable>();
 
@@ -125,7 +133,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // removed formnumber from the Bind parameters 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
+        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser,evaluation")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int evaluation)
         {
             if (ModelState.IsValid)
             {
@@ -261,6 +269,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                 }
             }
 
+            ViewBag.evaluationValues = evaluationValues;
+
             ViewBag.currentWorkID = new SelectList(works, "idmanagelist", "name", selectedCurrentWorkId);
             ViewBag.previousWorkID = new SelectList(works, "idmanagelist", "name", selectedPreviousWorkId);
             ViewBag.idKnowledgeCenter = new SelectList(kc, "idmanagelist", "name", selectedKCID);
@@ -321,7 +331,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
+        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber,evaluation")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
         {
           //  List<int> weaknessesList = weaknesses.ToList();
             if (ModelState.IsValid)

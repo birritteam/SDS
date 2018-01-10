@@ -210,4 +210,7 @@
   <data name="managelist_name" xml:space="preserve">
     <value>اسم عنصر القائمة</value>
   </data>
+  <data name="evaluation" xml:space="preserve">
+    <value>التقييم</value>
+  </data>
 </root>

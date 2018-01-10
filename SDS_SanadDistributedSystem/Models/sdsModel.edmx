@@ -96,6 +96,7 @@
           <Property Name="iduser" Type="nvarchar" MaxLength="128" />
           <Property Name="phone1owner" Type="nvarchar" MaxLength="100" />
           <Property Name="phone2owner" Type="nvarchar" MaxLength="100" />
+          <Property Name="evaluation" Type="int" />
         </EntityType>
         <EntityType Name="familymanage">
           <Key>
@@ -150,6 +151,7 @@
           <Property Name="note" Type="text" />
           <Property Name="iduser" Type="nvarchar" MaxLength="128" />
           <Property Name="is_secret" Type="bit" Nullable="false" />
+          <Property Name="evaluation" Type="int" />
         </EntityType>
         <EntityType Name="personmanage">
           <Key>
@@ -233,7 +235,6 @@
           <Property Name="nationality" Type="varchar" MaxLength="20" />
           <Property Name="martial" Type="varchar" MaxLength="100" />
           <Property Name="relationtype" Type="varchar" MaxLength="100" />
-          <Property Name="flag" Type="varchar" MaxLength="20" />
           <Property Name="onoffflag" Type="varchar" MaxLength="20" />
           <Property Name="education" Type="varchar" MaxLength="50" />
           <Property Name="educationstate" Type="varchar" MaxLength="50" />
@@ -1301,6 +1302,7 @@
           <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_family" FromRole="family" ToRole="person" />
           <Property Name="phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="evaluation" Type="Int32" />
         </EntityType>
         <Association Name="FK_family_AspNetUsers">
           <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -1364,6 +1366,7 @@
           <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_person" FromRole="person" ToRole="referalperson" />
           <NavigationProperty Name="personmanages" Relationship="sds_dbModel.FK_personmanage_person" FromRole="person" ToRole="personmanage" />
           <Property Name="is_secret" Type="Boolean" Nullable="false" />
+          <Property Name="evaluation" Type="Int32" />
         </EntityType>
         <Association Name="FK_person_AspNetUsers">
           <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
@@ -1761,6 +1764,7 @@
           <EntitySetMapping Name="families">
             <EntityTypeMapping TypeName="sds_dbModel.family">
               <MappingFragment StoreEntitySet="family">
+                <ScalarProperty Name="evaluation" ColumnName="evaluation" />
                 <ScalarProperty Name="phone2" ColumnName="phone2" />
                 <ScalarProperty Name="phone1" ColumnName="phone1" />
                 <ScalarProperty Name="iduser" ColumnName="iduser" />
@@ -1788,6 +1792,7 @@
           <EntitySetMapping Name="people">
             <EntityTypeMapping TypeName="sds_dbModel.person">
               <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="evaluation" ColumnName="evaluation" />
                 <ScalarProperty Name="is_secret" ColumnName="is_secret" />
                 <ScalarProperty Name="iduser" ColumnName="iduser" />
                 <ScalarProperty Name="note" ColumnName="note" />

@@ -66,6 +66,7 @@ $(document).ready(function () {
     $.validator.unobtrusive.parse("#ParentDiv > form");
     idFamily = $("#idperson").val();
     $('#idfamily_FK').val(idFamily);
+    $("#ذكر").prop("checked", true).trigger("click");
     $("#idperson").val(idFamily + "H").trigger("focusout");
 
     //$(function () {

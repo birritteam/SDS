@@ -115,6 +115,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to التقييم.
+        /// </summary>
+        public static string evaluation {
+            get {
+                return ResourceManager.GetString("evaluation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to طبيعة العائلة.
         /// </summary>
         public static string familynature {

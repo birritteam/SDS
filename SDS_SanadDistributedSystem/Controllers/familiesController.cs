@@ -16,13 +16,13 @@ namespace SDS_SanadDistributedSystem.Controllers
     {
         private sds_dbEntities db = new sds_dbEntities();
 
+        private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+
         public JsonResult idAlreadyExisted(string idfamily)
         {
             bool existed = db.families.Any(x => x.idfamily.Equals(idfamily));
             return Json(!existed, JsonRequestBehavior.AllowGet);
         }
-
-
         // GET: families
         [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Index(string familyID, string lastName)
@@ -65,6 +65,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.idmangelist = new SelectList(db.managelists.Where(ma => ma.flag == "AT"), "idmanagelist", "name");
+            ViewBag.evaluationValues = evaluationValues;
             return View();
         }
 
@@ -74,7 +75,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [Authorize(Roles = "receptionist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner")] family family, int idmangelist)
+        public async Task<ActionResult> Create([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation")] family family, int idmangelist)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +87,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Create", "people", new { id = family.idfamily });
             }
-
+            ViewBag.evaluationValues = evaluationValues;
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", family.iduser);
             return View(family);
         }
@@ -117,7 +118,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
 
             ViewBag.idmangelist = new SelectList(db.managelists.Where(ma => ma.flag == "AT"), "idmanagelist", "name", selectedAddressType);
-
+            ViewBag.evaluationValues = evaluationValues;
 
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", family.iduser);
             return View(family);
@@ -130,7 +131,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner")] family family, int idmangelist)
+        public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation")] family family, int idmangelist)
         {
             if (ModelState.IsValid)
             {
@@ -152,6 +153,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                 return RedirectToAction("Index");
             }
+            ViewBag.evaluationValues = evaluationValues;
             return View(family);
         }
 

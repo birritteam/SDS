@@ -34,10 +34,11 @@ namespace SDS_SanadDistributedSystem.Models
         [Display(Name = "person_id", ResourceType = typeof(PersonAndFamilyResources))]
         public string idperson { get; set; }
 
+        [Required]
         [Display(Name = "fname", ResourceType = typeof(PersonAndFamilyResources))]
         public string fname { get; set; }
+        [Required]
         [Display(Name = "lname", ResourceType = typeof(PersonAndFamilyResources))]
-
         public string lname { get; set; }
 
         [StringLength(11)]
@@ -75,6 +76,7 @@ namespace SDS_SanadDistributedSystem.Models
         [RegularExpression(@"^[0-9]+$")]
         [Display(Name = "phone1", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone1 { get; set; }
+
         [StringLength(10)]
         [RegularExpression(@"^[0-9]+$")]
         [Display(Name = "phone2", ResourceType = typeof(PersonAndFamilyResources))]
@@ -89,6 +91,8 @@ namespace SDS_SanadDistributedSystem.Models
         public Nullable<int> formnumber { get; set; }
         [Display(Name = "note", ResourceType = typeof(PersonAndFamilyResources))]
         public string note { get; set; }
+        [Display(Name = "evaluation", ResourceType = typeof(PersonAndFamilyResources))]
+        public Nullable<int> evaluation { get; set; }
         public string iduser { get; set; }
         public bool is_secret { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }

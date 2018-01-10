@@ -191,9 +191,6 @@
                     @Html.ValidationMessageFor(model => model.educationstate, "", new { @class = "text-danger" })
                 </div>
             </div>
-
-
-
             <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
             <input type="hidden" name="registrationdate" id="registrationdate" />
 
@@ -229,7 +226,7 @@
 
 
             <div class="form-group">
-                <h3 class="h3">نقاط الضعف</h3>
+                <h3 class="h4">نقاط الضعف</h3>
                 @foreach (var weakness in ViewBag.weaknesses)
                 {<div class="card">
                 @foreach (var item in weakness)
@@ -247,20 +244,68 @@
 
 
             </div>
+            <div class="row"></div>
+            <div class="row">
+                @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
+                @*<h3 class="h4">التقييم</h3>*@
+                <div class="md-form">
+                    @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 , @checked = "checked"})
+                    @Html.Label(0 + " %", new { @for = "e" + 0 })
+                         
+                    @foreach (int item in ViewBag.evaluationValues)
+                {
+                        @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e"+item})
+                        @Html.Label(item + " %", new { @for = "e" + item })
+                    }
+                    @*@Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })*@
+                </div>
+                @*<div class="col-md-3">
+                    @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+                </div>*@
+                @*<form class="range-field">
+                    <input type="range" min="0" max="100" />
+                </form>*@
+                @*<div class="md-form center">
+                    @Html.RadioButton("evaluation", "10", new { @id = "e10" })
+                    @Html.Label("10 %", new { @for = "e10" })
+                    @Html.RadioButton("evaluation", "20", new { @id = "e20" })
+                    @Html.Label("20 %", new { @for = "e20" })
+                    @Html.RadioButton("evaluation", "30", new { @id = "e30" })
+                    @Html.Label("30 %", new { @for = "e30" })
+                    @Html.RadioButton("evaluation", "40", new { @id = "e40" })
+                    @Html.Label("40 %", new { @for = "e40" })
+                    @Html.RadioButton("evaluation", "50", new { @id = "e50" })
+                    @Html.Label("50 %", new { @for = "e50" })
+                    @Html.RadioButton("evaluation", "60", new { @id = "e60" })
+                    @Html.Label("60 %", new { @for = "e60" })
+                    @Html.RadioButton("evaluation", "70", new { @id = "e70" })
+                    @Html.Label("70 %", new { @for = "e70" })
+                    @Html.RadioButton("evaluation", "80", new { @id = "e80" })
+                    @Html.Label("80 %", new { @for = "e80" })
+                    @Html.RadioButton("evaluation", "90", new { @id = "e90" })
+                    @Html.Label("90 %", new { @for = "e90" })
+                    @Html.RadioButton("evaluation", "100", new { @id = "e100" })
+                    @Html.Label("100 %", new { @for = "e100" })
 
+                    @Html.EditorFor(model => model.evaluation, new { htmlAttributes = new { @class = "form-control validate" } })
+                @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+                @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+                </div>*@
+                <div class="md-form row">
 
-            <div class="md-form">
-
-                @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
-                @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
-                @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                    @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
+                    @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
+                    @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                </div>
+                
             </div>
-
             <div class="md-form">
                 <div class="col-md-offset-5 col-md-7">
                     <input type="submit" value="إضافة" class="btn btn-default" />
                 </div>
             </div>
+            <div class="row"></div>
+
             <div>
 
                 <table class="table" id="familymembers">

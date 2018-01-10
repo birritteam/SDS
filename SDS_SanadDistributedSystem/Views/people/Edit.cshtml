@@ -190,12 +190,31 @@
         </div>
 
 
-        <div class="md-form">
+        <div class="row"></div>
+        <div class="row">
+            @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
 
-            @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
-            @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
-            @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+            <div class="md-form">
+                @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 })
+                @Html.Label(0 + " %", new { @for = "e" + 0 })
+                @foreach (int item in ViewBag.evaluationValues)
+                {
+                    @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e" + item })
+                    @Html.Label(item + " %", new { @for = "e" + item })
+                }
+                @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+            </div>
+
+  
+            <div class="md-form row">
+
+                @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
+                @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
+                @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+            </div>
+
         </div>
+
 
 
         <div class="form-group">

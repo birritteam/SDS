@@ -44,6 +44,8 @@ namespace SDS_SanadDistributedSystem.Models
         [DataType(DataType.Date, ErrorMessage = "’Ì€… «· «—ÌŒ €Ì— ’ÕÌÕ…")]
         [Display(Name = "displacementdate", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<System.DateTime> displacementdate { get; set; }
+
+        [Required]
         [StringLength(10)]
         [RegularExpression(@"^[0-9]+$")]
         [Display(Name = "phone1", ResourceType = typeof(PersonAndFamilyResources))]
@@ -58,11 +60,15 @@ namespace SDS_SanadDistributedSystem.Models
         public string iduser { get; set; }
         [Display(Name = "lname", ResourceType = typeof(PersonAndFamilyResources))]
         public string lastname { get; set; }
+        [Required]
         [Display(Name = "phone1owner", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone1owner { get; set; }
         [Display(Name = "phone2owner", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone2owner { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
+
+        [Display(Name = "evaluation", ResourceType = typeof(PersonAndFamilyResources))]
+        public Nullable<int> evaluation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<person> people { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

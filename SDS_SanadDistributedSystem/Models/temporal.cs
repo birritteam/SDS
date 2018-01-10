@@ -10,10 +10,7 @@
 namespace SDS_SanadDistributedSystem.Models
 {
     using System;
-    using System.Collections.Generic;
     using Resources;
-    using System;
-
 
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -96,7 +93,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string recieverevalution { get; set; }
         [Display(Name = "outreachnote", ResourceType = typeof(referalpersonResource))]
         public string outreachnote { get; set; }
-    
+
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual center center { get; set; }
