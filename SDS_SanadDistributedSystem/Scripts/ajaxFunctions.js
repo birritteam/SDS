@@ -36,8 +36,8 @@ function SuccessLoadForPerson(data) {
         data.age + "</td><td>" + data.gender + "</td><td>" +
 
         '<a href="/people/Edit/' +
-         data.idfamily + '"> تعديل </a>|<a href="/people/Details/' +
-        data.idfamily + '"> تفاصيل </a>' +
+         data.idperson + '"> تعديل </a>|<a href="/people/Details/' +
+        data.idperson + '"> تفاصيل </a>' +
         //'|<a href="/people/Delete/' + data.idfamily + '"> حذف </a></td>' +
         '|<a href="/referalpersons/personReferal/' + data.idperson + '"> إحالة </a></td>' +
 
