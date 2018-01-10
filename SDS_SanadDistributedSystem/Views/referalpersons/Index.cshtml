@@ -1023,7 +1023,8 @@
 
 
         </div>
-
+@if (User.IsInRole("cmIOutReachTeam"))
+{
 
         <div role="tabpanel" class="tab-pane " id="eighth">
             @*@Html.RenderAction("GetMySecondForm", "MyController)*@
@@ -1102,7 +1103,7 @@
                                             @item.outreachnote
                                         </td>
                                         <td>
-                                            @Html.ActionLink("تعديل", "EditReferal", "temporals", new {id= @item.idperson },"")
+                                            @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
 
                                         </td>
                                     </tr>
@@ -1188,7 +1189,7 @@
                 </div>
             </div>
         </div>
-
+}
     </div>
 
  
