@@ -16,6 +16,13 @@ namespace SDS_SanadDistributedSystem.Controllers
     {
         private sds_dbEntities db = new sds_dbEntities();
 
+        public JsonResult idAlreadyExisted(string idfamily)
+        {
+            bool existed = db.families.Any(x => x.idfamily.Equals(idfamily));
+            return Json(!existed, JsonRequestBehavior.AllowGet);
+        }
+
+
         // GET: families
         [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Index(string familyID, string lastName)

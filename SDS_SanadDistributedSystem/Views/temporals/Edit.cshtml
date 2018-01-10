@@ -59,10 +59,10 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-1"><label>تاريخ الميلاد</label></div>
+        <div class="col-md-3">
             <div class="md-form">
-                @Html.EditorFor(model => model.birthday, new { htmlAttributes = new { @class = "form-control validate", @type = "text" } })
-                @Html.LabelFor(model => model.birthday, htmlAttributes: new { })
+                @Html.EditorFor(model => model.birthday, new { htmlAttributes = new { @class = "form-control validate" } })
                 @Html.ValidationMessageFor(model => model.birthday, "", new { @class = "text-danger" })
             </div>
         </div>
