@@ -9,9 +9,9 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
+    using Resources;
     using System;
     using System.Collections.Generic;
-    using Resources;
     using System.ComponentModel.DataAnnotations;
 
     public partial class family
@@ -19,16 +19,15 @@ namespace SDS_SanadDistributedSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public family()
         {
+            this.people = new HashSet<person>();
             this.referalfamilies = new HashSet<referalfamily>();
             this.managelists = new HashSet<managelist>();
-            this.people = new HashSet<person>();
         }
 
         [Display(Name = "idfamily", ResourceType = typeof(PersonAndFamilyResources))]
         public string idfamily { get; set; }
         [Display(Name = "familynature", ResourceType = typeof(PersonAndFamilyResources))]
         public string familynature { get; set; }
-
         [Display(Name = "personcount", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<int> personcount { get; set; }
         [Display(Name = "lastaddress", ResourceType = typeof(PersonAndFamilyResources))]
@@ -39,7 +38,6 @@ namespace SDS_SanadDistributedSystem.Models
         [DataType(DataType.Date, ErrorMessage = "’Ì€… «· «—ÌŒ €Ì— ’ÕÌÕ…")]
         [Display(Name = "displacementdate", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<System.DateTime> displacementdate { get; set; }
-
         [StringLength(10)]
         [RegularExpression(@"^[0-9]+$")]
         [Display(Name = "phone1", ResourceType = typeof(PersonAndFamilyResources))]
@@ -48,7 +46,6 @@ namespace SDS_SanadDistributedSystem.Models
         [RegularExpression(@"^[0-9]+$")]
         [Display(Name = "phone2", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone2 { get; set; }
-
         [Display(Name = "note", ResourceType = typeof(PersonAndFamilyResources))]
         public string note { get; set; }
         [Display(Name = "iduser", ResourceType = typeof(PersonAndFamilyResources))]
@@ -59,13 +56,12 @@ namespace SDS_SanadDistributedSystem.Models
         public string phone1owner { get; set; }
         [Display(Name = "phone2owner", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone2owner { get; set; }
-
         public virtual AspNetUser AspNetUser { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<person> people { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalfamily> referalfamilies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<managelist> managelists { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<person> people { get; set; }
     }
 }
