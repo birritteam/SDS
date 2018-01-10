@@ -13,7 +13,6 @@ namespace SDS_SanadDistributedSystem.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-
     public partial class service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -39,6 +38,7 @@ namespace SDS_SanadDistributedSystem.Models
         [Required]
         [Display(Name = "idrole_FK", ResourceType = typeof(ServiceResource))]
         public string idrole_FK { get; set; }
+
 
         public virtual AspNetRole AspNetRole { get; set; }
         public virtual @case @case { get; set; }

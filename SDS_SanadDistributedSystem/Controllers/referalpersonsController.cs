@@ -45,7 +45,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             //يتم الفلترة بعد تحديد المستخدم ثم الحصول على اسم الرول ثم الحصول  على  مجدول الخدمات على  الخدمات المرتبة بهذه الرول
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            var referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).OrderByDescending(r => r.submittingdate).Take(100);
+            var referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).OrderBy(r => r.submittingdate).Take(100);
             var roles = user.AspNetRoles.ToList();
             if (roles.Count > 0)
             {
@@ -54,84 +54,98 @@ namespace SDS_SanadDistributedSystem.Controllers
                 if (User.IsInRole("cmEducation"))
                 {  //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmEducation").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK ==role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK ==role_id && r.idcenter_FK ==user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "تعليمي";
                 }
                 else if (User.IsInRole("cmProfessional"))
                 {
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmProfessional").First().Id;
+                    ViewBag.role_id = role_id;
                     //return first 100 row order by submit  date
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "مهني";
                 }
                 else if (User.IsInRole("cmChildProtection"))
                 {
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmChildProtection").First().Id;
+                    ViewBag.role_id = role_id;
                     //return first 100 row order by submit  date
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "حماية الصفل";
                 }
                 else if (User.IsInRole("cmPsychologicalSupport1"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmPsychologicalSupport1").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "1الدعم النفسي";
                 }
                 else if (User.IsInRole("cmPsychologicalSupport2"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmPsychologicalSupport2").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "الدعم النفسي2";
                 }
                 else if (User.IsInRole("cmPsychologicalSupport3"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmPsychologicalSupport3").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "3الدعم النفسي";
                 }
                 else if (User.IsInRole("cmDayCare"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmDayCare").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "رعاية نهارية";
                 }
                 else if (User.IsInRole("cmHomeCare"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmHomeCare").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "رعاية منزلية";
                 }
                 else if (User.IsInRole("cmAwareness"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmAwareness").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK ).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "التوعية ";
                 }
                 else if (User.IsInRole("cmSmallProjects"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmSmallProjects").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "مشاريع صغيرة";
                 }
                 else if (User.IsInRole("cmIOutReachTeam"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmIOutReachTeam").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    //  referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK ==user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service ).Where(r => r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(500);
+                    ViewBag.temporal = db.temporals.ToList();
                     ViewBag.case_manager = "فريق وصول";
                 }
                 else if (User.IsInRole("cmInkindAssistance"))
                 {
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmInkindAssistance").First().Id;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id).OrderByDescending(r => r.submittingdate).Take(100);
+                    ViewBag.role_id = role_id;
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     ViewBag.case_manager = "المساعدات العينية";
                 }
             }
@@ -254,9 +268,10 @@ namespace SDS_SanadDistributedSystem.Controllers
             return Json(user_list, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult searchReferalByName(string name,int idcase)
+        public ActionResult searchReferalByName(string name,string idrole)
         {
-            List<referalperson> referalpersons = db.referalpersons.Where(r=>(r.person.fname == name || r.person.lname == name || r.person.fname+" "+r.person.lname == name) && r.idcase_FK== idcase).ToList();
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            List<referalperson> referalpersons = db.referalpersons.Where(r=>(r.person.fname == name || r.person.lname == name || r.person.fname+" "+r.person.lname == name) &&  r.service.idrole_FK == idrole && r.idcenter_FK == user.idcenter_FK).ToList();
             List<RPSearchViewModel> RPSearchViewModels=new List<viewModel.RPSearchViewModel>();
 
             foreach(referalperson r in referalpersons)
@@ -326,11 +341,12 @@ namespace SDS_SanadDistributedSystem.Controllers
             return Json(RPSearchViewModels, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult searchReferalByDate( string from, string to, int idcase)
+        public ActionResult searchReferalByDate( string from, string to, string idrole)
         {
             DateTime from_date = DateTime.ParseExact(from, "yyyy-MM-dd", null);
             DateTime to_date = DateTime.ParseExact(to, "yyyy-MM-dd", null);
-            List <referalperson> referalpersons = db.referalpersons.Where(r => r.submittingdate > from_date && r.submittingdate < to_date  && r.idcase_FK == idcase).ToList();
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            List <referalperson> referalpersons = db.referalpersons.Where(r => r.submittingdate > from_date && r.submittingdate < to_date && r.service.idrole_FK == idrole && r.idcenter_FK == user.idcenter_FK).ToList();
             List<RPSearchViewModel> RPSearchViewModels = new List<viewModel.RPSearchViewModel>();
 
             foreach (referalperson r in referalpersons)
@@ -465,7 +481,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid), "idservice", "name", first_service_firstcase.name);
 
-            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK)), "Id", "UserName");
+            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
 
 
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");
@@ -517,7 +533,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid), "idservice", "name", first_service_firstcase.name);
 
-            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK)), "Id", "UserName");
+            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK ) && u.idcenter_FK==user.idcenter_FK), "Id", "UserName");
 
 
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");

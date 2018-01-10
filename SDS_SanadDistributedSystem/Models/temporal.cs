@@ -9,12 +9,14 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
-    using Resources;
     using System;
     using System.Collections.Generic;
+    using Resources;
+    using System;
+
+
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-
     public partial class temporal
     {
         [Display(Name = "person_id", ResourceType = typeof(PersonAndFamilyResources))]
@@ -61,8 +63,42 @@ namespace SDS_SanadDistributedSystem.Models
         [Display(Name = "note", ResourceType = typeof(PersonAndFamilyResources))]
         public string note { get; set; }
         public string iduser_FK { get; set; }
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "submittingdate", ResourceType = typeof(referalpersonResource))]
+        public Nullable<System.DateTime> submittingdate { get; set; }
+        [Display(Name = "referalstate", ResourceType = typeof(referalpersonResource))]
+        public string referalstate { get; set; }
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "referaldate", ResourceType = typeof(referalpersonResource))]
+        public Nullable<System.DateTime> referaldate { get; set; }
+        [Display(Name = "servicestate", ResourceType = typeof(referalpersonResource))]
+        public string servicestate { get; set; }
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "servicestartdate", ResourceType = typeof(referalpersonResource))]
+        public Nullable<System.DateTime> servicestartdate { get; set; }
+        [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "serviceenddate", ResourceType = typeof(referalpersonResource))]
+        public Nullable<System.DateTime> serviceenddate { get; set; }
+        [Display(Name = "referalreicver_FK", ResourceType = typeof(referalpersonResource))]
+        public string referalreicver_FK { get; set; }
 
-        public virtual center center { get; set; }
+        [Display(Name = "senderevalution", ResourceType = typeof(referalpersonResource))]
+        public string senderevalution { get; set; }
+        [Display(Name = "recieverevalution", ResourceType = typeof(referalpersonResource))]
+        public string recieverevalution { get; set; }
+        [Display(Name = "outreachnote", ResourceType = typeof(referalpersonResource))]
+        public string outreachnote { get; set; }
+    
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual AspNetUser AspNetUser1 { get; set; }
+        public virtual center center { get; set; }
     }
 }

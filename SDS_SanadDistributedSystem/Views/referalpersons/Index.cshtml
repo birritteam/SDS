@@ -38,8 +38,16 @@
         <li role="presentation"><a href="#fifth" aria-controls="fifth" role="tab" data-toggle="tab">مغلقة</a></li>
         <li role="presentation"><a href="#sixth" aria-controls="sixth" role="tab" data-toggle="tab">خارجية</a></li>
         <li role="presentation"><a href="#seventh" aria-controls="seventh" role="tab" data-toggle="tab">بحث</a></li>
-    </ul>
-
+        @if (User.IsInRole("cmIOutReachTeam"))
+        {
+            
+             <li role="presentation"><a href="#eighth" aria-controls="eighth" role="tab" data-toggle="tab">أشخاص بياناتهم غير مكتملة</a>
+              
+        
+        </li>
+           
+        }
+        </ul>
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active card z-depth-2" id="first">
@@ -932,7 +940,8 @@
         <div role="tabpanel" class="tab-pane  card " id="seventh">
             @using (Html.BeginForm())
             {
-                @Html.HiddenFor(model => model.ElementAt(0).idcase_FK, new { Value = Model.ElementAt(0).idcase_FK });
+                @*@Html.HiddenFor(ViewBag.role_id, new { Value = ViewBag.role_id });*@
+                <input type="hidden" value="@ViewBag.role_id"  id="role_id"/>
                 <div class="md-form">
                     <div class="col-md-6">
                         <input type="text" id="personname" class="form-control">
@@ -948,7 +957,8 @@
             }
                     @using (Html.BeginForm())
                     {
-                        @Html.HiddenFor(model => model.ElementAt(0).idcase_FK, new { Value = Model.ElementAt(0).idcase_FK });
+                        @*@Html.HiddenFor(model => model.ElementAt(0).idcase_FK, new { Value = Model.ElementAt(0).idcase_FK });*@
+                        <input type="hidden" value="@ViewBag.role_id" id="role_id" />
                 <div class="md-form">
                     <div class="col-md-6">
                         @*@{var  today = DateTime.Now.ToShortDateString('YYYY-MM-DD');}*@
@@ -1013,6 +1023,172 @@
 
 
         </div>
+
+
+        <div role="tabpanel" class="tab-pane " id="eighth">
+            @*@Html.RenderAction("GetMySecondForm", "MyController)*@
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active" ><a href="#eighth_1" aria-controls="eighth_1" role="tab" data-toggle="tab">جديد</a></li>
+                <li role="presentation" > <a href="#eighth_2" aria-controls="eighth_2" role="tab" data-toggle="tab">قيد المتابعة</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane card z-depth-2" id="eighth_1">
+                    <table id="All8" class="display table table-bordered" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    اسم الشخص
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.submittingdate)
+                                </th>
+                                @*<th>
+                                @Html.DisplayNameFor(model => model.referalstate)
+                                </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.referaldate)
+                                </th>
+                                @*<th>
+                                @Html.DisplayNameFor(model => model.servicestate)
+                                </th>*@
+                                <th>
+                                    @Html.DisplayNameFor(model => model.servicestartdate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.serviceenddate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.senderevalution)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.recieverevalution)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.outreachnote)
+                                </th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.temporal)
+                            {
+                                if (item.servicestate == "Pending" && item.referalstate == "Pending")
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.fname @item.lname
+                                        </td>
+                                        <td>
+                                            @item.submittingdate
+                                        </td>
+                                        <td>
+                                            @item.referaldate
+                                        </td>
+
+                                        <td>
+                                            @item.servicestartdate
+                                        </td>
+                                        <td>
+                                            @item.serviceenddate
+                                        </td>
+                                        <td>
+                                            @item.iduser_FK
+                                        </td>
+                                        <td>
+                                            @item.recieverevalution
+                                        </td>
+                                        <td>
+                                            @item.outreachnote
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("تعديل", "EditReferal", "temporals", new {id= @item.idperson },"")
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div role="tabpanel" class="tab-pane card" id="eighth_2">
+                    <table id="All9" class="display table table-bordered" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    اسم الشخص
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.submittingdate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.referaldate)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.servicestartdate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.serviceenddate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.senderevalution)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.recieverevalution)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.outreachnote)
+                                </th>
+
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.temporal)
+                            {
+                                if (item.servicestate == "In prgress" && item.referalstate == "Approved")
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.fname @item.lname
+                                        </td>
+                                        <td>
+                                            @item.submittingdate
+                                        </td>
+                                        <td>
+                                            @item.referaldate
+                                        </td>
+
+                                        <td>
+                                            @item.servicestartdate
+                                        </td>
+                                        <td>
+                                            @item.serviceenddate
+                                        </td>
+                                        <td>
+                                            @item.iduser_FK
+                                        </td>
+                                        <td>
+                                            @item.recieverevalution
+                                        </td>
+                                        <td>
+                                            @item.outreachnote
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
+
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 
  
@@ -1041,3 +1217,6 @@
             <script src="~/Scripts/AllDataTablesDesign.js"></script>
             @Scripts.Render("~/bundles/jqueryval")
         }
+
+
+

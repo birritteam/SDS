@@ -65,6 +65,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.education = education;
 
 
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK== user.idcenter_FK), "Id", "UserName");
 
             return View();
         }
@@ -75,7 +77,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "receptionist")]
-        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note")] temporal temporal)
+        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,referalreicver_FK,senderevalution,outreachnote")] temporal temporal)
         {
             if (ModelState.IsValid)
             {
@@ -91,6 +93,10 @@ namespace SDS_SanadDistributedSystem.Controllers
                 else temporal.formnumber = 1;
 
                 temporal.idperson = temporal.idcenter_FK.ToString() + temporal.formnumber.ToString();
+
+                temporal.submittingdate = DateTime.Now;
+                temporal.referalstate = "Pending";
+                temporal.servicestate = "Pending";
 
                 db.temporals.Add(temporal);
                 await db.SaveChangesAsync();
@@ -130,6 +136,25 @@ namespace SDS_SanadDistributedSystem.Controllers
             return View(temporal);
         }
 
+        // GET: temporals/Edit/5
+        [Authorize(Roles = "cmIOutReachTeam")]
+        public async Task<ActionResult> EditReferal(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            temporal temporal = await db.temporals.FindAsync(id);
+            if (temporal == null)
+            {
+                return HttpNotFound();
+            }
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK == user.idcenter_FK), "Id", "UserName", temporal.referalreicver_FK);
+
+            return View(temporal);
+        }
+
 
         [Authorize(Roles = "receptionist")]
         // POST: temporals/Edit/5
@@ -146,6 +171,25 @@ namespace SDS_SanadDistributedSystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", temporal.idcenter_FK);
+            return View(temporal);
+        }
+
+        [Authorize(Roles = "cmIOutReachTeam")]
+        // POST: temporals/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditReferal([Bind(Include = "servicestate,referalstate,referalreicver_FK,servicestartdate,serviceenddate,recieverevalution,outreachnote")] temporal temporal)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(temporal).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK == user.idcenter_FK), "Id", "UserName", temporal.referalreicver_FK);
             return View(temporal);
         }
 

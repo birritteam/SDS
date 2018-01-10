@@ -806,6 +806,7 @@
     <Content Include="Views\services\Edit.cshtml" />
     <Content Include="Views\services\Index.cshtml" />
     <Content Include="Views\Account\AdminPage.cshtml" />
+    <Content Include="Views\temporals\EditReferal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

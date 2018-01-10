@@ -694,7 +694,7 @@ function FillReferalStateDropdown() {
 function searchByName()
 {
     var name = document.getElementById("personname").value;
-    var idcase = document.getElementById("idcase_FK").value;
+    var idrole = document.getElementById("role_id").value;
 
     if (name != "")
     {
@@ -702,7 +702,7 @@ function searchByName()
             url: '/referalpersons/searchReferalByName',
             type: "GET",
             dataType: "JSON",
-            data: { 'name': name,  'idcase': idcase },
+            data: { 'name': name, 'idrole': idrole },
             success: function (data) {
                 $('#referalbysearch').empty()
                 $.each(data, function (i, referal) {
@@ -751,14 +751,14 @@ function searchByName()
 function searcByDate() {
     var from = document.getElementById("datepickerfrom").value;
     var to = document.getElementById("datepickerto").value;
-    var idcase = document.getElementById("idcase_FK").value;
+    var idrole = document.getElementById("role_id").value;
 
     if ( from != "" && to != "") {
         $.ajax({
             url: '/referalpersons/searchReferalByDate',
             type: "GET",
             dataType: "JSON",
-            data: {  'from': from, 'to': to, 'idcase': idcase },
+            data: { 'from': from, 'to': to, 'idrole': idrole },
             success: function (data) {
                 $('#referalbysearch').empty()
                 $.each(data, function (i, referal) {
