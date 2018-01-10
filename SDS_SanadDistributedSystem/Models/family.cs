@@ -13,6 +13,7 @@ namespace SDS_SanadDistributedSystem.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Mvc;
 
     public partial class family
     {
@@ -23,7 +24,12 @@ namespace SDS_SanadDistributedSystem.Models
             this.referalfamilies = new HashSet<referalfamily>();
             this.managelists = new HashSet<managelist>();
         }
-
+        [Remote("idAlreadyExisted", "families",
+            ErrorMessageResourceType = typeof(ErrorResource),
+            ErrorMessageResourceName = "id_existed")
+            ]
+        [RegularExpression(@"^[0-9]+$")]
+        [Required]
         [Display(Name = "idfamily", ResourceType = typeof(PersonAndFamilyResources))]
         public string idfamily { get; set; }
         [Display(Name = "familynature", ResourceType = typeof(PersonAndFamilyResources))]

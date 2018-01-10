@@ -21,11 +21,11 @@ namespace SDS_SanadDistributedSystem.Controllers
             gender = { "أنثى", "ذكر" },
             nationality = { "عربي - سوري" },
             martial = { "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
-            education = { "أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
+            education = {"أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
             "6 سنوات (صف سادس)", "7 سنوات (صف سابع)", "8 سنوات (صف ثامن)","9 سنوات (صف تايع)","10 سنوات (صف عاشر)","11 سنة (صف حادي عشر)","12 سنة (صف ثاني عشر)",
             "شهادة جامعية","دراسات عليا","تدريب مهني أو تقني" },
             relationtype = { "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
-            educationstate = { "آخر تحصيل", "الوضع الحالي" };
+            educationstate = { "الوضع الحالي", "آخر تحصيل" };
 
 
         public JsonResult idAlreadyExisted(string idperson)
@@ -323,7 +323,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
         {
-            List<int> weaknessesList = weaknesses.ToList();
+          //  List<int> weaknessesList = weaknesses.ToList();
             if (ModelState.IsValid)
             {
                 List<personmanage> personmanages = db.personmanages.Where(ps => ps.idperson_FK == person.idperson).ToList();

@@ -15,6 +15,8 @@ $("#familynature").on("change", function () {
 
 //PEOPLE SCRIPTS
 
+
+
 function SuccessLoadForPerson(data) {
 
     $("input[type='text'], input[type='datetime']").val("");
@@ -64,6 +66,7 @@ $(document).ready(function () {
     $.validator.unobtrusive.parse("#ParentDiv > form");
     idFamily = $("#idperson").val();
     $('#idfamily_FK').val(idFamily);
+    $("#idperson").val(idFamily + "H").trigger("focusout");
 
     //$(function () {
 
