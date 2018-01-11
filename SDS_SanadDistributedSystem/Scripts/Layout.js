@@ -66,7 +66,7 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent)) {
 $(document).ready(function () {
     //  FillServices();
     FillServicesNew();
-
+    FillServices();
 
 });
 $(document).ready(function () {

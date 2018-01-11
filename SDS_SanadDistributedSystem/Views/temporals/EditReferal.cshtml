@@ -31,8 +31,35 @@
                 <h3>@item.fname @item.lname</h3>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-              
+                <input type="hidden" value="@Model.idperson" name="idperson" /> 
+                @Html.HiddenFor(model => model.fname)
+                @Html.HiddenFor(model => model.lname)
+                @Html.HiddenFor(model => model.fathername)
+                @Html.HiddenFor(model => model.mothername)
+                @Html.HiddenFor(model => model.birthday)
+                @Html.HiddenFor(model => model.birthplace)
+                @Html.HiddenFor(model => model.gender)
+                @Html.HiddenFor(model => model.nationality)
+                @Html.HiddenFor(model => model.martial)
+                @Html.HiddenFor(model => model.relationtype)
+                @Html.HiddenFor(model => model.education)
+                @Html.HiddenFor(model => model.educationstate)
 
+                @Html.HiddenFor(model => model.phone1)
+
+                @Html.HiddenFor(model => model.phone2)
+                @Html.HiddenFor(model => model.currentaddress)
+                @Html.HiddenFor(model => model.tempregistrationdate)
+                @Html.HiddenFor(model => model.idcenter_FK)
+                @Html.HiddenFor(model => model.formnumber)
+                @Html.HiddenFor(model => model.note)
+                @Html.HiddenFor(model => model.submittingdate)
+
+                @Html.HiddenFor(model => model.onoffflag)
+                @Html.HiddenFor(model => model.iduser_FK)
+
+
+       
                 <div class="form-group col-md-4">
                     @Html.LabelFor(model => model.servicestate, htmlAttributes: new { @class = "control-label col-md-4" })
                     <div class="col-md-4">
@@ -57,7 +84,14 @@
                     </div>
                 </div>
 
+                <div class=" col-md-4">
 
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.referaldate, new { htmlAttributes = new { @class = "form-control validate" } })
+                        @Html.LabelFor(model => model.referaldate, htmlAttributes: new { })
+                        @Html.ValidationMessageFor(model => model.referaldate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
                 <div class=" col-md-4">
 
@@ -112,7 +146,7 @@
 
 </section>
 <div>
-    @Html.ActionLink("عودة إلى القائمة", "Index")
+    @Html.ActionLink("عودة إلى القائمة", "Index", "referalpersons", "","")
 </div>
 
 @section Scripts {

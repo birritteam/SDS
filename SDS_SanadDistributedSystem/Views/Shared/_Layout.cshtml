@@ -7,7 +7,8 @@
  
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/modernizr")
+        <link href="~/Content/Site.css" rel="stylesheet" />
     <style>
         .noti-content {
             position: fixed;
@@ -256,7 +257,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
-    <script src="sds/signalr/hubs"></script>
+    <script src="~/signalr/hubs"></script>
     <script src="~/Scripts/signalRJS.js"></script>
                   
     @RenderSection("scripts", required: false)

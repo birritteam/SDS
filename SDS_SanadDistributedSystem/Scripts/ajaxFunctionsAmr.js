@@ -1,40 +1,41 @@
 ﻿function FillServices() {
     var caseId = $('#idcase_FK').val();
-    alert("sssssssssssss" + caseId);
-    $.ajax({
-        url: '/referalpersons/FillServices',
-        type: "GET",
-        dataType: "JSON",
-        data: { 'caseId': caseId },
-        success: function (data) {
-            $('#services').empty()
-            $.each(data, function (i, service) {
-                $("#services").append(
-                $('<option selected="selected"></option>').val(service.idservice).html(service.name));
-                $("#referalReciver_FK").empty();
-                $.each(service.recivers, function (i, reciver) {
-                    $("#referalReciver_FK").append(
-                    $('<option></option>').val(reciver.Id).html(reciver.UserName));
+    if (caseId!=null)
+        {        //toastr.error("sssssssssssss" + caseId);{
+        $.ajax({
+            url: '/sds/referalpersons/FillServices',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'caseId': caseId },
+            success: function (data) {
+                $('#services').empty()
+                $.each(data, function (i, service) {
+                    $("#services").append(
+                    $('<option selected="selected"></option>').val(service.idservice).html(service.name));
+                    $("#referalReciver_FK").empty();
+                    $.each(service.recivers, function (i, reciver) {
+                        $("#referalReciver_FK").append(
+                        $('<option></option>').val(reciver.Id).html(reciver.UserName));
+                    });
                 });
-            });
-           
-            $('#services').selectpicker('refresh');
-            $('#referalReciver_FK').selectpicker('refresh');
-        },
-        error: function (xhr, status, error) {
-            // check status && error
-            alert("Whooaaa! Something went wrong..")
-        }
-    });
+
+                $('#services').selectpicker('refresh');
+                $('#referalReciver_FK').selectpicker('refresh');
+            },
+            error: function (xhr, status, error) {
+                // check status && error
+                toastr.error("Whooaaa! Something went wrong.. FillServices")
+            }
+        });
+}
 }
 
-function FillRecivers()
-{
+function FillRecivers() {
 
     var serviceId = $('#services').val();
-    alert("serviceId =" + serviceId);
+   // alert("serviceId =" + serviceId);
     $.ajax({
-        url: '/referalpersons/FillRecivers',
+        url: '/sds/referalpersons/FillRecivers',
         type: "GET",
         dataType: "JSON",
         data: { 'serviceId': serviceId },
@@ -44,13 +45,13 @@ function FillRecivers()
             $.each(recivers, function (i, reciver) {
                 $("#referalReciver_FK").append(
                 $('<option></option>').val(reciver.Id).html(reciver.UserName));
-        });
+            });
             $('#referalReciver_FK').selectpicker('refresh');
 
         },
         error: function (xhr, status, error) {
             // check status && error
-            alert("Whooaaa! Something went wrong..")
+            toastr.error("Whooaaa! Something went wrong..FillRecivers")
         }
     });
 
@@ -61,9 +62,9 @@ function FillRecivers()
 function FillRecivers_EDIT() {
 
     var serviceId = $('#idservice_FK').val();
-    alert("serviceId =" + serviceId);
+    //alert("serviceId =" + serviceId);
     $.ajax({
-        url: '/referalpersons/FillRecivers',
+        url: '/sds/referalpersons/FillRecivers',
         type: "GET",
         dataType: "JSON",
         data: { 'serviceId': serviceId },
@@ -79,7 +80,7 @@ function FillRecivers_EDIT() {
         },
         error: function (xhr, status, error) {
             // check status && error
-            alert("Whooaaa! Something went wrong..")
+            toastr.error("Whooaaa! Something went wrong..FillRecivers_EDIT")
         }
     });
 
@@ -359,15 +360,15 @@ function BindItemTable() {
     });
 }
 function deleterow(id) {
-    alert(id);
+  //  alert(id);
     $.ajax({
-        url: '/referalpersons/deleteRow',
+        url: '/sds/referalpersons/deleteRow',
         type: "GET",
         dataType: "JSON",
         data: { 'selectedId': id },
         success:
 function (data) {
-    alert("successFillTable.............")
+  //  alert("successFillTable.............")
     $("#myTable tbody").empty();
     $.each(data, function (i, referalperson) {
         $("#myTable").append(
@@ -379,14 +380,14 @@ function (data) {
 
         error: function (xhr, status, error) {
             // check status && error
-            alert("Whooaaa! Something went wrong..")
+            toastr.error("Whooaaa! Something went wrong..deleterow")
         }
     });
 }
 
 
 function successFillTable(data) {
-    alert("successFillTable.............")
+    //alert("successFillTable.............")
     $("#myTable tbody").empty();
     $.each(data, function (i, referalperson) {
         $("#myTable").append(
@@ -403,9 +404,9 @@ function successFillTableNew() {
     //alert("successFillTableNew.............")
     //$("#SchedulingProfile_Id").val();
     // var idperson_FK = $("#idperson_FK").val();
-    
+
     referalReciver_FK
- 
+
     var idperson_FK = document.getElementById("idperson_FK").value;
 
     var idperson_FK_text = idperson_FK;
@@ -518,7 +519,7 @@ function successFillTableNew() {
     var checkexist = false;
     var checkundefined = false;
 
-    
+
     personReferal_text.forEach(function (item, i, array) {
         if (item.idcase_FK == idcase_FK_text && item.idservice_FK == idservice_FK_text)
             checkexist = true;
@@ -541,7 +542,7 @@ function successFillTableNew() {
                 $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
                     '</td><td>' + item.idservice_FK + '</td><td>' +
                     item.senderevalution + '</td><td>' +
-                    item.referalReciver_FK + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
+                    item.referalreciever_FK + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
             });
             // BindItemTable();
             toastr.success('تم إضافة إحالة للجدول');
@@ -559,7 +560,7 @@ function successFillTableNew() {
     else {
         toastr.error(" لا يوجد خدمات مفعلة في هذا القسم")
     }
-   
+
 }
 
 function deleterowNew(index) {
@@ -572,8 +573,9 @@ function deleterowNew(index) {
         //console.log(item, i);
         $("#myTable").append(
         $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
-            '</td><td>' + item.idservice_FK + '</td><td>' +
-            item.senderevalution + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
+             '</td><td>' + item.idservice_FK + '</td><td>' +
+                    item.senderevalution + '</td><td>' +
+                    item.referalreciever_FK + '</td><td> <input type="submit" id=' + (i + 1) + ' value="delete" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
     });
     // BindItemTable();
 }
@@ -591,16 +593,15 @@ function successSendReferals() {
     //});
 
     $.ajax({
-       // contentType: 'application/json; charset=utf-8',
+        // contentType: 'application/json; charset=utf-8',
         contentType: 'application/json',
-        url: '/referalpersons/sendReferals',
+        url: '/sds/referalpersons/sendReferals',
         type: "POST",
         dataType: "JSON",
         data: referals,
         success:
 function (data) {
-    if (data == "Success")
-    {
+    if (data == "Success") {
         toastr.success('تم الحفظ بنجاح');
         $("#myTable tbody").empty();
         personReferal = [];
@@ -608,7 +609,7 @@ function (data) {
     }
     else
         toastr.error('حدث خطأ أثناء الحفظ');
-    
+
 },
 
         error: function (xhr, status, error) {
@@ -621,19 +622,21 @@ function (data) {
 
 }
 function OnFailureSendReferals() {
-    alert("Failure FailureSendReferals.............")
+    toastr.error("Failure FailureSendReferals.............")
 }
 
 
 function OnFailureFillTable() {
-    alert("Failure FillTable.............")
+    toastr.error("Failure FillTable.............")
 
 }
 
 function FillReferalStateDropdown() {
-    var servicestate_text = document.getElementById("servicestate").options[document.getElementById("servicestate").selectedIndex].text;
 
-    var referalstate_text = document.getElementById("referalstate").options[document.getElementById("servicestate").selectedIndex].text;
+    var ddl = document.getElementById("<%=servicestate.ClientID%>");
+    var servicestate_text = ddl.options[ddl.selectedIndex].value;
+    var ddl2 = document.getElementById("<%=referalstate.ClientID%>");
+    var referalstate_text = ddl2.options[ddl2.selectedIndex].value;
 
 
 
@@ -691,15 +694,13 @@ function FillReferalStateDropdown() {
 
 }
 
-function searchByName()
-{
+function searchByName() {
     var name = document.getElementById("personname").value;
     var idrole = document.getElementById("role_id").value;
 
-    if (name != "")
-    {
+    if (name != "") {
         $.ajax({
-            url: '/referalpersons/searchReferalByName',
+            url: '/sds/referalpersons/searchReferalByName',
             type: "GET",
             dataType: "JSON",
             data: { 'name': name, 'idrole': idrole },
@@ -723,19 +724,19 @@ function searchByName()
                          .append('<td>' + referal.recieverevalution + '</td>')
                          .append('<td>' + referal.outreachnote + '</td>')
 
-                                   .append('<td>'+
+                                   .append('<td>' +
                                       '<a href="/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
                                       '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
                                         '<a length="0" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase
                                         + '">إحالة جديدة</a>' +
                                       '</td>')
-                                      
+
 
                     );
-                  
+
                 });
 
-                },
+            },
             error: function (xhr, status, error) {
                 // check status && error
                 toastr.error("فشلة عملية البحث ")
@@ -753,9 +754,9 @@ function searcByDate() {
     var to = document.getElementById("datepickerto").value;
     var idrole = document.getElementById("role_id").value;
 
-    if ( from != "" && to != "") {
+    if (from != "" && to != "") {
         $.ajax({
-            url: '/referalpersons/searchReferalByDate',
+            url: '/sds/referalpersons/searchReferalByDate',
             type: "GET",
             dataType: "JSON",
             data: { 'from': from, 'to': to, 'idrole': idrole },

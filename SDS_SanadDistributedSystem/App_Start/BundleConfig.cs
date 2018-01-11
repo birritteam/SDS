@@ -14,7 +14,8 @@ namespace SDS_SanadDistributedSystem
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/jquery.unobtrusive-ajax.min.js",
-                        "~/Scripts/ajaxFunctions.js", "~/Scripts/ajaxFunctionsAmr.js"
+                        "~/Scripts/ajaxFunctions.js", 
+                        "~/Scripts/ajaxFunctionsAmr.js"
                         ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're

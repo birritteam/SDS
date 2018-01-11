@@ -30,9 +30,9 @@ textarea {
 
 *{
     /*direction: rtl;*/
-
+    font-family: 'Cairo', sans-serif;
     font-family: 'Noto Kufi Arabic', sans-serif;
-    /*font-family: 'Cairo', sans-serif;*/
+  
     /*font-family: 'Amiri', serif;*/
 }
 body,h1{

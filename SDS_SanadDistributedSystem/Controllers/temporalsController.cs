@@ -150,6 +150,20 @@ namespace SDS_SanadDistributedSystem.Controllers
                 return HttpNotFound();
             }
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            List<string> serviceStates = new List<string>();
+            serviceStates.Add("Pending");
+            serviceStates.Add("In prgress");
+            serviceStates.Add("Closed");
+
+            List<string> referalstates = new List<string>();
+            referalstates.Add("Pending");
+            referalstates.Add("Approved");
+            referalstates.Add("Rejected");
+            referalstates.Add("OutReach");
+            referalstates.Add("External");
+            ViewBag.referalstate = new SelectList(referalstates, temporal.referalstate);
+            ViewBag.servicestate = new SelectList(serviceStates, temporal.servicestate);
+
             ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK == user.idcenter_FK), "Id", "UserName", temporal.referalreicver_FK);
 
             return View(temporal);
@@ -162,7 +176,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note")] temporal temporal)
+        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalreicver_FK,senderevalution,recieverevalution,outreachnote")] temporal temporal)
         {
             if (ModelState.IsValid)
             {
@@ -180,14 +194,16 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditReferal([Bind(Include = "servicestate,referalstate,referalreicver_FK,servicestartdate,serviceenddate,recieverevalution,outreachnote")] temporal temporal)
+        public async Task<ActionResult> EditReferal([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalreicver_FK,senderevalution,recieverevalution,outreachnote")] temporal temporal)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(temporal).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "referalpersons", "");
             }
+          
+
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
             ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK == user.idcenter_FK), "Id", "UserName", temporal.referalreicver_FK);
             return View(temporal);
@@ -196,7 +212,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         // GET: temporals/Delete/5
         public async Task<ActionResult> Delete(string id)
-        {
+        {   
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
