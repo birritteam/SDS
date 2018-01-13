@@ -62,13 +62,14 @@
             <div class="form-group col-md-5">
                 @Html.LabelFor(model => model.familynature, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-8">
-                    <select id="familynature" name="familynature" class="form-control">
+                    @Html.DropDownList("familynature", new SelectList(ViewBag.familynatureValues), htmlAttributes: new { @class = "" })
+                    @*<select id="familynature" name="familynature" class="form-control">
                         <option value="فرد من المجتمع المضيف">فرد من المجتمع المضيف</option>
                         <option value="نازح داخلي">نازح داخلي</option>
                         <option value="نازح داخلي عائد">نازح داخلي عائد</option>
                         <option value="لاجئ عائد إلى سورية">لاجئ عائد إلى سورية</option>
                         <option value="لاجئ أو طالب لجوء من دولة أخرى">لاجئ أو طالب لجوء من دولة أخرى</option>
-                    </select>
+                    </select>*@
                 </div>
             </div>
             <div id="displacementdate" class="hidden">
@@ -180,5 +181,5 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/familyFunctions.js", "~/bundles/jqueryval")
 }

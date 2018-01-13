@@ -25,7 +25,7 @@
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.EditorFor(model => model.idperson, new { htmlAttributes = new { @class = "form-control hidden" } })
-
+           @* <input type="hidden" name="idperson" id="idperson" />*@
 
             <div class="form-group row">
                 <label class="control-label col-md-2">موقع الشخص ضمن العائلة</label>
@@ -179,11 +179,11 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-4" })
-                    @Html.DropDownList("education", new SelectList(ViewBag.education), htmlAttributes: new { })
+                    @Html.DropDownList("education", new SelectList(ViewBag.educationOptions), htmlAttributes: new { })
                 </div>
                 <div class="form-group col-md-6">
                     @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-4" })
-                    @foreach (string item in ViewBag.educationstate)
+                    @foreach (string item in ViewBag.educationstateOptions)
                 {
                         @Html.RadioButtonFor(model => model.educationstate, item, new { @id = item })
                         @Html.Label(item, new { @for = item })
@@ -209,7 +209,7 @@
             <div class="row">
                 <div class="form-group col-md-6">
                     @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-4" })
-                    @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtype), htmlAttributes: new { @class = "" })
+                    @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtypeOptions), htmlAttributes: new { @class = "" })
                 </div>
 
                 <div class="form-group col-md-6">
@@ -222,32 +222,56 @@
             <input type="hidden" name="idcenter_FK" id="idcenter_FK" />
             <input type="hidden" name="iduser" id="iduser" />
 
+            <div class="form-group row">
+                <h4 class="h4">الوثائق</h4>
+                @foreach (var document in ViewBag.documentsOptions)
+                {
+                    <div class="col-md-4" dir="ltr">
+                    <div class="checkbox-inline">
+                        <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" />
+                        <label for="@document.idmanagelist">@document.name</label>
+                    </div>
+                    </div>
+                }
 
+
+
+            </div>
 
 
             <div class="form-group">
-                <h3 class="h4">نقاط الضعف</h3>
+                <h4 class="h4">نقاط الضعف</h4>
                 @foreach (var weakness in ViewBag.weaknesses)
-                {<div class="card">
-                @foreach (var item in weakness)
+                {
+                  //  <div>
+                foreach (var item in weakness)
 
                 {
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
-                            <label for="@item.idmanagelist">@item.name</label>
-                        </div>
+                    <div class="col-md-4" dir="ltr">
+                    <div class="checkbox-inline" dir="rtl">
+                        <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
+                        <label for="@item.idmanagelist">@item.name</label>
                     </div>
+                    </div>
+
                 }
-            </div>
+             //   </div>
+                
+
+                    @*<div class="card">
+                        
+                     </div>*@
                 }
 
 
             </div>
             <div class="row"></div>
-            <div class="row">
+
+            
+
+            @*<div class="row">
                 @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
-                @*<h3 class="h4">التقييم</h3>*@
+                @*<h3 class="h4">التقييم</h3>
                 <div class="md-form">
                     @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 , @checked = "checked"})
                     @Html.Label(0 + " %", new { @for = "e" + 0 })
@@ -257,14 +281,22 @@
                         @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e"+item})
                         @Html.Label(item + " %", new { @for = "e" + item })
                     }
-                    @*@Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })*@
-                </div>
-                @*<div class="col-md-3">
-                    @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+                    @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
                 </div>*@
-                @*<form class="range-field">
-                    <input type="range" min="0" max="100" />
-                </form>*@
+
+                <hr/>
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+                </div>
+                <div >
+                    <div class="range-field">
+                        <input type="range" name="evaluation" id="evaluation" min="0" max="100" />
+                    </div>
+                </div>
+                
+            </div>
+               <hr/> 
                 @*<div class="md-form center">
                     @Html.RadioButton("evaluation", "10", new { @id = "e10" })
                     @Html.Label("10 %", new { @for = "e10" })
@@ -298,7 +330,7 @@
                     @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
                 </div>
                 
-            </div>
+          
             <div class="md-form">
                 <div class="col-md-offset-5 col-md-7">
                     <input type="submit" value="إضافة" class="btn btn-default" />
@@ -394,7 +426,7 @@
 @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/createPersonFunctions.js", "~/bundles/jqueryval")
     @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="~/Content/jquery-ui.min.css" />*@

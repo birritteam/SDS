@@ -1,7 +1,7 @@
 ﻿@model SDS_SanadDistributedSystem.Models.person
 
 @{
-    ViewBag.Title = "تعديل";
+    ViewBag.Title = "تعديل شخص";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -15,6 +15,7 @@
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<input type="hidden" value="@Model.idperson" id="idperson"/>*@
         @Html.HiddenFor(model => model.idperson)
         <div class="row">
             <div class="col-md-3">
@@ -112,11 +113,11 @@
         <div class="row">
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-4" })
-                @Html.DropDownList("education", new SelectList(ViewBag.education), htmlAttributes: new { })
+                @Html.DropDownList("education", new SelectList(ViewBag.educationOptions), htmlAttributes: new { })
             </div>
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-4" })
-                @foreach (string item in ViewBag.educationstate)
+                @foreach (string item in ViewBag.educationstateOptions)
                 {
                     @Html.RadioButtonFor(model => model.educationstate, item, new { @id = item })
                     @Html.Label(item, new { @for = item })
@@ -145,7 +146,7 @@
         <div class="row">
             <div class="form-group col-md-6">
                 @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-4" })
-                @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtype), htmlAttributes: new { @class = "" })
+                @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtypeOptions), htmlAttributes: new { @class = "" })
             </div>
 
             <div class="form-group col-md-6">
@@ -156,20 +157,44 @@
 
         @*@Html.HiddenFor(model=>model.idfamily_FK)
             @Html.HiddenFor(model => model.idcenter_FK)*@
-        @*@Html.HiddenFor(model => model.iduser)*@
+       @Html.HiddenFor(model => model.iduser)
         @Html.HiddenFor(model => model.onoffflag)
         @Html.HiddenFor(model => model.registrationdate)
         @Html.HiddenFor(model => model.gender)
+        <div class="form-group row">
+            <h4 class="h4">الوثائق</h4>
+            @foreach (var document in ViewBag.documentsOptions)
+                {
+                <div class="col-md-4" dir="ltr">
+                    <div class="checkbox-inline">
+                        @if (ViewBag.selectedML.Contains(document.idmanagelist))
+                        {
+                            <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" checked="checked"/>
+
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" />
+
+                        }
+                        <label for="@document.idmanagelist">@document.name</label>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
 
         <div class="form-group">
-            <h3 class="h3">نقاط الضعف</h3>
+            <h4 class="h4">نقاط الضعف</h4>
             @foreach (var weakness in ViewBag.weaknesses)
-            {<div class="row">
-                @foreach (var item in weakness)
+            {//<div class="row">
+                foreach (var item in weakness)
 
                 {
-                    <div class="col-md-3">
-                        <div class="form-group">
+                    <div class="col-md-4" dir="ltr">
+                        <div class="checkbox-inline" dir="ltr">
                             @if (ViewBag.selectedML.Contains(item.idmanagelist))
                             {
                                 <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" checked="checked" />
@@ -183,7 +208,7 @@
                         </div>
                     </div>
                 }
-            </div>
+            //</div>
             }
 
 
@@ -191,8 +216,9 @@
 
 
         <div class="row"></div>
+        <hr/>
         <div class="row">
-            @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
+            @*@Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
 
             <div class="md-form">
                 @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 })
@@ -203,9 +229,20 @@
                     @Html.Label(item + " %", new { @for = "e" + item })
                 }
                 @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-            </div>
+            </div>*@
 
-  
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+                </div>
+                <div>
+                    <div class="range-field">
+                        <input type="range" name="evaluation" id="evaluation" min="0" max="100" value="@Model.evaluation"/>
+                    </div>
+                </div>
+
+            </div>
+  <hr/>
             <div class="md-form row">
 
                 @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })

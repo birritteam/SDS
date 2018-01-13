@@ -19,9 +19,9 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         private string[]
             gender = { "أنثى", "ذكر" },
-            nationality = { "عربي - سوري" },
-            martial = { "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
-            education = {"أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
+            nationality = {"", "عربي - سوري" },
+            martial = {"", "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
+            education = {" ","أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
             "6 سنوات (صف سادس)", "7 سنوات (صف سابع)", "8 سنوات (صف ثامن)","9 سنوات (صف تايع)","10 سنوات (صف عاشر)","11 سنة (صف حادي عشر)","12 سنة (صف ثاني عشر)",
             "شهادة جامعية","دراسات عليا","تدريب مهني أو تقني" },
             relationtype = { "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
@@ -116,12 +116,16 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             ViewBag.weaknesses = weaknesses;
 
+
+
+            ViewBag.documentsOptions = managelists.Where(ml => ml.flag == "D");
+
             ViewBag.genderOptions = gender;
             ViewBag.nationalityOptions = nationality;
             ViewBag.martialOptions = martial;
-            ViewBag.educationstate = educationstate;
-            ViewBag.relationtype = relationtype;
-            ViewBag.education = education;
+            ViewBag.educationstateOptions = educationstate;
+            ViewBag.relationtypeOptions = relationtype;
+            ViewBag.educationOptions = education;
 
             return View(person);
         }
@@ -133,7 +137,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // removed formnumber from the Bind parameters 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser,evaluation")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int evaluation)
+        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser,evaluation")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
         {
             if (ModelState.IsValid)
             {
@@ -193,6 +197,20 @@ namespace SDS_SanadDistributedSystem.Controllers
                             managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == i)
                         };
                         db.personmanages.Add(weakness);
+                    }
+
+                if(documents != null)
+                    foreach(int i in documents)
+                    {
+                        personmanage document = new personmanage()
+                        {
+                            idperson_FK = person.idperson,
+                            idmanagelist_FK = i,
+                            person = person,
+                            eval = "",
+                            managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == i)
+                        };
+                        db.personmanages.Add(document);
                     }
 
                 await db.SaveChangesAsync();
@@ -269,7 +287,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 }
             }
 
-            ViewBag.evaluationValues = evaluationValues;
+            
 
             ViewBag.currentWorkID = new SelectList(works, "idmanagelist", "name", selectedCurrentWorkId);
             ViewBag.previousWorkID = new SelectList(works, "idmanagelist", "name", selectedPreviousWorkId);
@@ -316,12 +334,15 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.selectedML = selectedML;
             ViewBag.weaknesses = weaknesses;
 
+            ViewBag.documentsOptions = managelists.Where(ml => ml.flag == "D");
+
             ViewBag.genderOptions = gender;
             ViewBag.nationalityOptions = nationality;
             ViewBag.martialOptions = martial;
-            ViewBag.educationstate = educationstate;
-            ViewBag.relationtype = relationtype;
-            ViewBag.education = education;
+            ViewBag.educationstateOptions = educationstate;
+            ViewBag.relationtypeOptions = relationtype;
+            ViewBag.educationOptions = education;
+            ViewBag.evaluationValues = evaluationValues;
 
             return View(person);
         }
@@ -331,7 +352,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber,evaluation")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
+        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber,evaluation")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
         {
           //  List<int> weaknessesList = weaknesses.ToList();
             if (ModelState.IsValid)
@@ -393,7 +414,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                                 personmanages.Add(knowledgecenter);
                             }
                         }
-                        else //weaknesses
+                        else //weaknesses && documents
                              // if(personmanage.managelist.flag.Equals())
                         {
                             personmanages.Remove(pm);
@@ -414,6 +435,22 @@ namespace SDS_SanadDistributedSystem.Controllers
                             managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == i)
                         };
                         personmanages.Add(weakness);
+
+                    }
+
+                if (documents != null)
+                    foreach (var i in documents)
+                    {
+                        personmanage document = new personmanage()
+                        {
+                            idperson_FK = person.idperson,
+                            idmanagelist_FK = i,
+                            person = person,
+                            eval = "",
+                            managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == i)
+                        };
+                        personmanages.Add(document);
+
                     }
 
                 person.personmanages = personmanages;

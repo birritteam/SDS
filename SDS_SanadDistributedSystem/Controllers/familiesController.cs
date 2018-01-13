@@ -16,6 +16,7 @@ namespace SDS_SanadDistributedSystem.Controllers
     {
         private sds_dbEntities db = new sds_dbEntities();
 
+        private string[] familynatureValues = {"فرد من المجتمع المضيف", "نازح داخلي", "نازح داخلي عائد", "لاجئ عائد إلى سورية" , "لاجئ أو طالب لجوء من دولة أخرى" };
         private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
         public JsonResult idAlreadyExisted(string idfamily)
@@ -66,6 +67,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
             ViewBag.idmangelist = new SelectList(db.managelists.Where(ma => ma.flag == "AT"), "idmanagelist", "name");
             ViewBag.evaluationValues = evaluationValues;
+            ViewBag.familynatureValues = familynatureValues;
             return View();
         }
 
@@ -88,6 +90,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 return RedirectToAction("Create", "people", new { id = family.idfamily });
             }
             ViewBag.evaluationValues = evaluationValues;
+            ViewBag.familynatureValues = familynatureValues;
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", family.iduser);
             return View(family);
         }
@@ -119,6 +122,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             ViewBag.idmangelist = new SelectList(db.managelists.Where(ma => ma.flag == "AT"), "idmanagelist", "name", selectedAddressType);
             ViewBag.evaluationValues = evaluationValues;
+            ViewBag.familynatureValues = familynatureValues;
 
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", family.iduser);
             return View(family);
@@ -154,6 +158,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.evaluationValues = evaluationValues;
+            ViewBag.familynatureValues = familynatureValues;
+            ViewBag.idmangelist = new SelectList(db.managelists.Where(ma => ma.flag == "AT"), "idmanagelist", "name", null);
+
+
+
             return View(family);
         }
 
