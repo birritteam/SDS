@@ -172,27 +172,49 @@
         <input type="hidden" name="idfamily_FK" id="idfamily_FK" />
         <input type="hidden" name="idcenter_FK" id="idcenter_FK" />
         <input type="hidden" name="iduser" id="iduser" />
+       
+         @*<div class="form-group row">    
+            <h4 class="h4">الوثائق</h4>
+            @foreach (var document in ViewBag.documentsOptions)
+                {
+                <div class="col-md-4" dir="ltr">
+                    <div class="checkbox-inline">
+                        <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" />
+                        <label for="@document.idmanagelist">@document.name</label>
+                    </div>
+                </div>
+            }
+        </div>*@
 
         <div class="form-group">
-            <h3 class="h3">نقاط الضعف</h3>
+            <h4 class="h4">نقاط الضعف</h4>
             @foreach (var weakness in ViewBag.weaknesses)
-            {<div class="card">
-                @foreach (var item in weakness)
-
+            {
+                foreach (var item in weakness)
                 {
-                    <div class="col-md-3">
-                        <div class="form-group">
+                    <div class="col-md-4" dir="ltr">
+                        <div class="checkbox-inline" dir="rtl">
                             <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
                             <label for="@item.idmanagelist">@item.name</label>
                         </div>
                     </div>
                 }
-            </div>
             }
-
-
         </div>
 
+        <hr />
+        <div class="row">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+            </div>
+            <div>
+                <div class="range-field">
+                    <input type="range" name="evaluation" id="evaluation" min="0" max="100" value="0" />
+                </div>
+            </div>
+
+        </div>
+        <hr /> 
         <div class="row">
             <div class="md-form">
 

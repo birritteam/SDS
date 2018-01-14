@@ -8,9 +8,12 @@
 <h2>كافة العائلات المسجلة</h2>
 
 <p>
-
-    @Html.ActionLink("إضافة عائلة جديدة", "Create")<br />
-    @Html.ActionLink("إضافة شخص ببيانات غير مكتملة", "Create", "temporals")
+    @if (User.IsInRole("receptionist"))
+    {
+        @Html.ActionLink("إضافة عائلة جديدة", "Create")<br />
+        @Html.ActionLink("إضافة شخص ببيانات غير مكتملة", "Create", "temporals")
+    }
+   
 
 
 
@@ -126,9 +129,12 @@
                     </td>*@
                 <td>
                     @Html.ActionLink("تعديل", "Edit", new { id = item.idfamily }) |
-                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idfamily }) |
+                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idfamily }) 
                    @* @Html.ActionLink("حذف", "Delete", new { id = item.idfamily })*@
-                    @Html.ActionLink("إضافة شخص", "Create", "people", new { id = item.idfamily }, "")
+                    @if (User.IsInRole("receptionist"))
+                    {
+                       @Html.ActionLink("إضافة شخص", "Create", "people", new { id = item.idfamily }, "")
+                    }
 
 
                 </td>

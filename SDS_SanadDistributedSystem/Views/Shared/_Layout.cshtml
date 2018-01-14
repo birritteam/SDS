@@ -123,6 +123,7 @@
                     </form>
                 </li>
                 <!--/.Search Form-->
+
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
@@ -165,7 +166,7 @@
                                 </ul>
                             </div>
                         </li>*@
-                        <li>
+                        @*<li>
                             <a class="collapsible-header waves-effect arrow-r"><i ></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; للتواصل معنا   <i class="fa fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
@@ -177,7 +178,7 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
+                        </li>*@
                         @if (User.IsInRole("admin"))
                         {
                             <li>
@@ -219,8 +220,68 @@
                                     </ul>
                                 </div>
                             </li>
+                        } 
+                        @if (User.IsInRole("receptionist")||User.IsInRole("cmIOutReachTeam"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  العائلات المسجلة   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/families/index" class="waves-effect">كافة العائلات المسجلة</a>
+                                        </li>
+                                        @if (User.IsInRole("receptionist"))
+                                        {
+                                            <li>
+                                                <a href="~/families/Create" class="waves-effect">إضافة عائلة</a>
+                                            </li>
+                                        }                                                   
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; الأشخاص المسجلين   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/people/index" class="waves-effect">كافة الأشخاص المسجلين</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; بيانات بحاجة لاستكمال   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/temporals/Index" class="waves-effect">كافة الأشخاص</a>
+                                        </li>
+                                        @if (User.IsInRole("receptionist"))
+                                        {
+                                            <li>
+                                                <a href="~/temporals/Create" class="waves-effect">إضافة شخص</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
                         }
-                        
+                        @if(User.IsInRole("cmSGBV"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  الحالات السرية   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/secretPeople/index" class="waves-effect">كافة الحالات المسجلة</a>
+                                        </li>
+                                            <li>
+                                                <a href="~/secretPeople/Create" class="waves-effect">حالة جديدة</a>
+                                            </li>                                                                                
+                                    </ul>
+                                </div>
+                            </li>
+                        }
 
                         @Html.Partial("_LoginPartial")
                     </ul>

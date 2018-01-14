@@ -25,7 +25,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             return Json(!existed, JsonRequestBehavior.AllowGet);
         }
         // GET: families
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> Index(string familyID, string lastName)
         {
 
@@ -45,7 +45,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: families/Details/5
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
@@ -96,7 +96,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: families/Edit/5
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
@@ -131,7 +131,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // POST: families/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         [HttpPost]
         [ValidateAntiForgeryToken]
 

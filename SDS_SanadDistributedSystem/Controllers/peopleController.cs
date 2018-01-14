@@ -21,10 +21,10 @@ namespace SDS_SanadDistributedSystem.Controllers
             gender = { "أنثى", "ذكر" },
             nationality = {"", "عربي - سوري" },
             martial = {"", "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
-            education = {" ","أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
+            education = {"","أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
             "6 سنوات (صف سادس)", "7 سنوات (صف سابع)", "8 سنوات (صف ثامن)","9 سنوات (صف تايع)","10 سنوات (صف عاشر)","11 سنة (صف حادي عشر)","12 سنة (صف ثاني عشر)",
             "شهادة جامعية","دراسات عليا","تدريب مهني أو تقني" },
-            relationtype = { "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
+            relationtype = {"", "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
             educationstate = { "الوضع الحالي", "آخر تحصيل" };
 
 
@@ -42,7 +42,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
 
 
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // GET: people
         public async Task<ActionResult> Index(string lastName, string nationalNumber)
         {
@@ -60,7 +60,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(await people.ToListAsync());
         }
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // GET: people/Details/5
         public async Task<ActionResult> Details(string id)
         {
@@ -234,7 +234,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
             return new JsonResult { Data = "Failed" };
         }
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // GET: people/Edit/5
         public async Task<ActionResult> Edit(string id)
         {
@@ -346,7 +346,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(person);
         }
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // POST: people/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.

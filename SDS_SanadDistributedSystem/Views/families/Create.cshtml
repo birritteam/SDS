@@ -142,7 +142,7 @@
 
         <div class="row"></div>
         <div class="row">
-            @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label" })
+            @*@Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label" })
 
             <div class="md-form">
 
@@ -154,8 +154,20 @@
                     @Html.Label(item + " %", new { @for = "e" + item })
                 }
                 @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-            </div>
+            </div>*@
+            <hr />
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+                </div>
+                <div>
+                    <div class="range-field">
+                        <input type="range" name="evaluation" id="evaluation" min="0" max="100" value="0" />
+                    </div>
+                </div>
 
+            </div>
+            <hr /> 
 
             <div class="md-form row">
 

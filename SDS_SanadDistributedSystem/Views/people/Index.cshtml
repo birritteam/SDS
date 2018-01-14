@@ -9,7 +9,10 @@
 <h2>كافة الأشخاص المسجلين</h2>
 
 <p>
-    @Html.ActionLink("إضافة شخص جديد", "Index", "families")
+    @if (User.IsInRole("receptionist"))
+    {
+        @Html.ActionLink("إضافة شخص جديد", "Index", "families")
+    }
 
     @using (Html.BeginForm())
     {

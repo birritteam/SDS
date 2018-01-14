@@ -27,7 +27,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             educationstate = { "آخر تحصيل", "الوضع الحالي" };
 
         // GET: temporals
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> Index()
         {
             var temporals = db.temporals.Include(t => t.center);
@@ -35,7 +35,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: temporals/Details/5
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> Details(string id)
         {
             if (id == null)
@@ -108,7 +108,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: temporals/Edit/5
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> Edit(string id)
         {
             if (id == null)
@@ -137,7 +137,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: temporals/Edit/5
-        [Authorize(Roles = "cmIOutReachTeam")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> EditReferal(string id)
         {
             if (id == null)
@@ -170,7 +170,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
 
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // POST: temporals/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
