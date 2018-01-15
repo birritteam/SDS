@@ -3,12 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link runat='server' rel="shortcut icon" href="~/Images/sanad.ico" type="image/x-icon" />
+    <link runat="server" rel="icon" href="~/Images/sanad.ico" type="image/ico" />
  
     <title>@ViewBag.Title - نظام سند الموزع</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
-        <link href="~/Content/Site.css" rel="stylesheet" />
+      
     <style>
         .noti-content {
             position: fixed;
@@ -95,10 +97,10 @@
 
         <header>
             <!-- Sidebar navigation -->
-            <ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar">
+            <ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar" style="width: 310px;">
                 <!-- Logo -->
                 <li>
-                    <div class="logo-wrapper waves-light special-logo">
+                    <div class="logo-wrapper waves-light special-logo" style="width: 310px;height:200px;">
                         @*special-logo : style.css*@
                         @*<a href="#"><img src="" class="img-fluid flex-center z-depth-1 rounded-circle logo"></a> @*~/images/birr.jpg*@
                     </div>
@@ -107,7 +109,7 @@
                 <!--Social-->
                 <li>
                     <ul class="social">
-                        <li><a class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
+                        <li><a href="https://www.facebook.com/sanad.albirr/" class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a></li>
                         <li><a class="icons-sm pin-ic"><i class="fa fa-pinterest"> </i></a></li>
                         <li><a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
                         <li><a class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
@@ -179,6 +181,390 @@
                                 </ul>
                             </div>
                         </li>*@
+                        @if (User.IsInRole("cmEducation"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة القسم التعليمي   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmEducation" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("cmProfessional"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة القسم المهني   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmProfessional" }, htmlAttributes: new { @class = "waves-effect" })
+                                            
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("cmChildProtection"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة حماية الطفل   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                          @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmChildProtection" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                        }
+                        @if (User.IsInRole("cmPsychologicalSupport1"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة الدعم النفسي 1   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmPsychologicalSupport1" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                        }
+                        @if (User.IsInRole("cmPsychologicalSupport2"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة الدعم النفسي 2   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmPsychologicalSupport2" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                        }
+                        @if (User.IsInRole("cmPsychologicalSupport3"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة الدعم النفسي 3   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmPsychologicalSupport3" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                        }
+                        @if (User.IsInRole("cmDayCare"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة الرعاية المنزلية   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmDayCare" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
+                        }
+                        @if (User.IsInRole("cmAwareness"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة التوعية    <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmAwareness" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("cmSmallProjects"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة المشاريع الصغيرة   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmSmallProjects" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("cmIOutReachTeam"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة فريق وصول  <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmIOutReachTeam" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("cmInkindAssistance"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة المساعدات العينية   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmInkindAssistance" }, htmlAttributes: new { @class = "waves-effect" })
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("coEducation"))
+                        {
+                           
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق القسم التعليمي   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("coProfessional"))
+                        {
+                            
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق القسم المهني   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("coChildProtection"))
+                        {
+                          
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق قسم حماية الطفل   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("coPsychologicalSupport"))
+                        {
+                          
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق القسم الدعم النفسي   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new { }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("coDayCare"))
+                        {
+                            
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق قسم الرعاية النهارية    <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("coHomeCare"))
+                        {
+                          
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق قسم الرعاية المنزلة    <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("coAwareness"))
+                        {
+                            
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق قسم التوعية     <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("coSmallProjects"))
+                        {
+                            
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق قسم المشاريع الصغيرة     <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("coOutReachTeam"))
+                        {
+                           
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق قسم فريق وصول     <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                        @if (User.IsInRole("coInkindAssistance"))
+                        {
+                          
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق قسم المساعدات العينية     <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+
+                                        <li>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                        </li>
+                                        <li>
+                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                        }
                         @if (User.IsInRole("admin"))
                         {
                             <li>
@@ -311,7 +697,8 @@
             @RenderBody()
             <hr />
             <footer>
-                <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لصالح جمعية البر والخدمات الاجتماعية </p>
+                <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لصالح جمعية البر والخدمات الاجتماعية-سند </p>
+                <p>       طوّر بواسطة مكتب تقانة المعلومات      </p>
             </footer>
         </div>
     </main>

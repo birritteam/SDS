@@ -8,10 +8,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SDS_SanadDistributedSystem.Models;
+using Microsoft.AspNet.Identity;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    [Authorize(Roles = "superadmin,admin")]
+    [Authorize(Roles = "superadmin,admin,coEducation,coProfessional,coChildProtection,coPsychologicalSupport,coDayCare,coHomeCare,coAwareness,coSmallProjects,coOutReachTeam,coInkindAssistance")]
     public class servicesController : Controller
     {
         private sds_dbEntities db = new sds_dbEntities();
@@ -25,8 +26,19 @@ namespace SDS_SanadDistributedSystem.Controllers
             return View(await services.ToListAsync());
         }
 
+        [Authorize(Roles = "superadmin,admin,coEducation,coProfessional,coChildProtection,coPsychologicalSupport,coDayCare,coHomeCare,coAwareness,coSmallProjects,coOutReachTeam,coInkindAssistance")]
+        public async Task<ActionResult> IndexCO()
+        {
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+
+            var services = db.services.Include(s => s.AspNetRole).Include(s => s.@case);
+            return View(await services.ToListAsync());
+        }
+        
+
+
         // GET: services/Details/5
-        [Authorize(Roles = "superadmin,admin")]
+        [Authorize(Roles = "superadmin,admin,coEducation,coProfessional,coChildProtection,coPsychologicalSupport,coDayCare,coHomeCare,coAwareness,coSmallProjects,coOutReachTeam,coInkindAssistance")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -109,6 +121,41 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
             ViewBag.idrole_FK = new SelectList(db.AspNetRoles, "Id", "Name", service.idrole_FK);
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", service.idcase_FK);
+            ViewBag.enableOptions = enable;
+            return View(service);
+        }
+        [Authorize(Roles = "superadmin,admin,coEducation,coProfessional,coChildProtection,coPsychologicalSupport,coDayCare,coHomeCare,coAwareness,coSmallProjects,coOutReachTeam,coInkindAssistance")]
+        public async Task<ActionResult> EditEnable(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            service service = await db.services.FindAsync(id);
+            if (service == null)
+            {
+                return HttpNotFound();
+            }
+          
+            ViewBag.enableOptions = enable;
+            return View(service);
+        }
+
+        // POST: services/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "superadmin,admin,coEducation,coProfessional,coChildProtection,coPsychologicalSupport,coDayCare,coHomeCare,coAwareness,coSmallProjects,coOutReachTeam,coInkindAssistance")]
+        public async Task<ActionResult> EditEnable([Bind(Include = "idservice,idcase_FK,name,enabled,description,idrole_FK")] service service)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(service).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("IndexCO");
+            }
+         
             ViewBag.enableOptions = enable;
             return View(service);
         }

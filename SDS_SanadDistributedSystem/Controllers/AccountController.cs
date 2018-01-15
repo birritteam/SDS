@@ -14,7 +14,7 @@ using System.Collections.Generic;
 namespace SDS_SanadDistributedSystem.Controllers
 {
     [System.Web.Mvc.Authorize(Roles = "superadmin,admin")]
-     public class AccountController : Controller
+    public class AccountController : Controller
     {
         private bool[] enable = { true, false };
         private ApplicationSignInManager _signInManager;
@@ -24,7 +24,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +36,9 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -122,7 +122,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-          
+
             switch (result)
             {
 
@@ -133,10 +133,19 @@ namespace SDS_SanadDistributedSystem.Controllers
                     string controller_name = "";
                     if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
                         || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
-                        || roles.Equals("cmAwareness") 
+                        || roles.Equals("cmAwareness")
                         || roles.Equals("cmSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
                     {
                         action_name = "index";
+                        controller_name = "referalpersons";
+                    }
+                    else if (roles.Equals("coEducation") || roles.Equals("coProfessional") || roles.Equals("coChildProtection")
+                        || roles.Equals("coPsychologicalSupport")
+                        || roles.Equals("coDayCare") || roles.Equals("coHomeCare")
+                        || roles.Equals("coAwareness")
+                        || roles.Equals("coSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
+                    {
+                        action_name = "IndexCo";
                         controller_name = "referalpersons";
                     }
                     else if (roles.Equals("receptionist"))
@@ -190,7 +199,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/VerifyCode
         [HttpPost]
-  //      [AllowAnonymous]
+        //      [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> VerifyCode(VerifyCodeViewModel model)
@@ -204,7 +213,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -266,8 +275,8 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         public JsonResult IsAlreadySignedUserName(string UserName)
         {
-            if(!string.IsNullOrEmpty(UserName))
-            return Json(IsUserAvailable(UserName));
+            if (!string.IsNullOrEmpty(UserName))
+                return Json(IsUserAvailable(UserName));
             return Json(true);
         }
         public bool IsUserAvailable(string UserName)
@@ -296,7 +305,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         public JsonResult IsAlreadySignedEmail(string Email)
         {
-            if(!string.IsNullOrEmpty(Email))
+            if (!string.IsNullOrEmpty(Email))
                 return Json(IsEmailAvailable(Email));
             return Json(true);
         }
@@ -326,8 +335,8 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         public JsonResult IsAlreadySignedPhone(string phone)
         {
-            if(!string.IsNullOrEmpty(phone))
-              return Json(IsPhoneAvailable(phone));
+            if (!string.IsNullOrEmpty(phone))
+                return Json(IsPhoneAvailable(phone));
             return Json(true);
 
         }
@@ -374,7 +383,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-//        [AllowAnonymous]
+        //        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> Register(RegisterViewModel model, string[] RolesID)//, string idCenter_FK)//
@@ -385,7 +394,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -397,7 +406,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     //return new JsonResult { Data = "" };//
                     RedirectToAction("Register", "Account");
                 }
-                if (result.Succeeded== false)
+                if (result.Succeeded == false)
                 {
                     var exceptionText = result.Errors.Aggregate("User Creation Failed - Identity Exception. Errors were: \n\r\n\r", (current, error) => current + (" - " + error + "\n\r"));
                     throw new Exception(exceptionText);
@@ -446,7 +455,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/ForgotPassword
         [HttpPost]
-//        [AllowAnonymous]
+        //        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
@@ -474,7 +483,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/ForgotPasswordConfirmation
-     //   [AllowAnonymous]
+        //   [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
             return View();
@@ -482,7 +491,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //
         // GET: /Account/ResetPassword
-       // [AllowAnonymous]
+        // [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
             return code == null ? View("Error") : View();
@@ -491,7 +500,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/ResetPassword
         [HttpPost]
-       // [AllowAnonymous]
+        // [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
 
@@ -529,7 +538,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
-//        [AllowAnonymous]
+        //        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
 
@@ -559,7 +568,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/SendCode
         [HttpPost]
-//        [AllowAnonymous]
+        //        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
 

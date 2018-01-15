@@ -31,7 +31,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/referalpersons/GetNotificationsReferal',
+            url: '/sds/referalpersons/GetNotificationsReferal',
             success: function (response) {
                 //alert("dasdad")
                 $('#notiContent').empty();
@@ -40,8 +40,8 @@
 
                 }
                 $.each(response, function (index, value) {
-                    //var contactid = value.Contactid;/referalpersons/Edit?idreferalperson=30&idperson=12345C3&idcase=4
-                    $('#notiContent').append($("<li> <a href='/referalpersons/Edit?idreferalperson=" + value.idreferalperson + "&idperson=" + value.idperson_FK + "&idcase=" + value.idcase_FK + "' target='_blank'> حالة جديدة: <br />'" + value.personname + "' ('" + value.serviceType + "') </a> </li>"));
+                    //var contactid = value.Contactid;/sds/referalpersons/Edit?idreferalperson=30&idperson=12345C3&idcase=4
+                    $('#notiContent').append($("<li> <a href='/sds/referalpersons/Edit?idreferalperson=" + value.idreferalperson + "&idperson=" + value.idperson_FK + "&idcase=" + value.idcase_FK + "' target='_blank'> حالة جديدة: <br />'" + value.personname + "' ('" + value.serviceType + "') </a> </li>"));
                 });
             },
 

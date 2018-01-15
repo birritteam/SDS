@@ -950,30 +950,30 @@
                     </div>
                     <div class="col-md-6 "></div>
                 </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="button" value="بحث" class="btn btn-default" onclick="searchByName()" />
-                        </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="button" value="بحث" class="btn btn-default" onclick="searchByName()" />
                     </div>
+                </div>
             }
             @using (Html.BeginForm())
             {
                 @*@Html.HiddenFor(model => model.ElementAt(0).idcase_FK, new { Value = Model.ElementAt(0).idcase_FK });*@
                 <input type="hidden" value="@ViewBag.role_id" id="role_id" />
-                        <div class="md-form">
-                            <div class="col-md-6">
-                                @*@{var  today = DateTime.Now.ToShortDateString('YYYY-MM-DD');}*@
-                                <input placeholder="Selected date" type="date" id="datepickerfrom" value="2018-01-01">
-                                <label for="date-picker-example">من</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input placeholder="Selected date" type="date" id="datepickerto" value="2018-12-01">
-                                <label for="date-picker-example">إلى</label>
-                            </div>
+                <div class="md-form">
+                    <div class="col-md-6">
+                        @*@{var  today = DateTime.Now.ToShortDateString('YYYY-MM-DD');}*@
+                        <input placeholder="Selected date" type="date" id="datepickerfrom" value="2018-01-01">
+                        <label for="date-picker-example">من</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input placeholder="Selected date" type="date" id="datepickerto" value="2018-12-01">
+                        <label for="date-picker-example">إلى</label>
+                    </div>
 
 
 
-                        </div>
+                </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="button" value="بحث" class="btn btn-default" onclick="searcByDate()" />
@@ -1032,161 +1032,161 @@
                     <li role="presentation"> <a href="#eighth_2" aria-controls="eighth_2" role="tab" data-toggle="tab">قيد المتابعة</a></li>
                 </ul>
                 <div class="tab-content">
-                       <div role="tabpanel" class="tab-pane active card z-depth-1" id="eighth_1">
-                            <table id="All8" class="display table table-bordered" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            اسم الشخص
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.submittingdate)
-                                        </th>
-                                        @*<th>
-                            @Html.DisplayNameFor(model => model.referalstate)
-                            </th>*@
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.referaldate)
-                                        </th>
-                                        @*<th>
-                            @Html.DisplayNameFor(model => model.servicestate)
-                            </th>*@
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.servicestartdate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.serviceenddate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.senderevalution)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.recieverevalution)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.outreachnote)
-                                        </th>
+                    <div role="tabpanel" class="tab-pane active card z-depth-1" id="eighth_1">
+                        <table id="All8" class="display table table-bordered" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        اسم الشخص
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.submittingdate)
+                                    </th>
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.referalstate)
+                                        </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.referaldate)
+                                    </th>
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.servicestate)
+                                        </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.servicestartdate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.serviceenddate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.senderevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.recieverevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.outreachnote)
+                                    </th>
 
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in ViewBag.temporal)
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.temporal)
+                                {
+                                    if (item.servicestate == "Pending" && item.referalstate == "Pending")
                                     {
-                                        if (item.servicestate == "Pending" && item.referalstate == "Pending")
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @item.fname @item.lname
-                                                </td>
-                                                <td>
-                                                    @item.submittingdate
-                                                </td>
-                                                <td>
-                                                    @item.referaldate
-                                                </td>
+                                        <tr>
+                                            <td>
+                                                @item.fname @item.lname
+                                            </td>
+                                            <td>
+                                                @item.submittingdate
+                                            </td>
+                                            <td>
+                                                @item.referaldate
+                                            </td>
 
-                                                <td>
-                                                    @item.servicestartdate
-                                                </td>
-                                                <td>
-                                                    @item.serviceenddate
-                                                </td>
-                                                <td>
-                                                    @item.iduser_FK
-                                                </td>
-                                                <td>
-                                                    @item.recieverevalution
-                                                </td>
-                                                <td>
-                                                    @item.outreachnote
-                                                </td>
-                                                <td>
-                                                    @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
+                                            <td>
+                                                @item.servicestartdate
+                                            </td>
+                                            <td>
+                                                @item.serviceenddate
+                                            </td>
+                                            <td>
+                                                @item.iduser_FK
+                                            </td>
+                                            <td>
+                                                @item.recieverevalution
+                                            </td>
+                                            <td>
+                                                @item.outreachnote
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
 
-                                                </td>
-                                            </tr>
-                                        }
+                                            </td>
+                                        </tr>
                                     }
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div role="tabpanel" class="tab-pane card" id="eighth_2">
-                            <table id="All9" class="display table table-bordered" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            اسم الشخص
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.submittingdate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.referaldate)
-                                        </th>
-
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.servicestartdate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.serviceenddate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.senderevalution)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.recieverevalution)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.outreachnote)
-                                        </th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in ViewBag.temporal)
-                                    {
-                                        if (item.servicestate == "In prgress" && item.referalstate == "Approved")
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @item.fname @item.lname
-                                                </td>
-                                                <td>
-                                                    @item.submittingdate
-                                                </td>
-                                                <td>
-                                                    @item.referaldate
-                                                </td>
-
-                                                <td>
-                                                    @item.servicestartdate
-                                                </td>
-                                                <td>
-                                                    @item.serviceenddate
-                                                </td>
-                                                <td>
-                                                    @item.iduser_FK
-                                                </td>
-                                                <td>
-                                                    @item.recieverevalution
-                                                </td>
-                                                <td>
-                                                    @item.outreachnote
-                                                </td>
-                                                <td>
-                                                    @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
-
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                                }
+                            </tbody>
+                        </table>
                     </div>
+
+                    <div role="tabpanel" class="tab-pane card" id="eighth_2">
+                        <table id="All9" class="display table table-bordered" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        اسم الشخص
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.submittingdate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.referaldate)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.servicestartdate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.serviceenddate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.senderevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.recieverevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.outreachnote)
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.temporal)
+                                {
+                                    if (item.servicestate == "In prgress" && item.referalstate == "Approved")
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.fname @item.lname
+                                            </td>
+                                            <td>
+                                                @item.submittingdate
+                                            </td>
+                                            <td>
+                                                @item.referaldate
+                                            </td>
+
+                                            <td>
+                                                @item.servicestartdate
+                                            </td>
+                                            <td>
+                                                @item.serviceenddate
+                                            </td>
+                                            <td>
+                                                @item.iduser_FK
+                                            </td>
+                                            <td>
+                                                @item.recieverevalution
+                                            </td>
+                                            <td>
+                                                @item.outreachnote
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         }
     </div>

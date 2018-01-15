@@ -498,6 +498,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\birr.jpg" />
+    <Content Include="images\sanad.ico" />
     <Content Include="images\sanad.jpg" />
     <Content Include="images\user-200x200.png" />
     <Content Include="Models\sdsModel.Context.tt">
@@ -812,6 +813,10 @@
     <Content Include="Views\services\Index.cshtml" />
     <Content Include="Views\Account\AdminPage.cshtml" />
     <Content Include="Views\temporals\EditReferal.cshtml" />
+    <Content Include="Views\referalpersons\IndexCo.cshtml" />
+    <Content Include="Views\referalpersons\IndexByRoleName.cshtml" />
+    <Content Include="Views\services\IndexCO.cshtml" />
+    <Content Include="Views\services\EditEnable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

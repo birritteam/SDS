@@ -53,7 +53,7 @@ label{
 input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.md-textarea{
     /*font-family: 'Droid Arabic Kufi';*/
     /*font-family: 'Cairo', sans-serif;*/ 
-     font-size: 14px;
+     font-size: 12px;
       direction: rtl;
       /*width:300px;*/
      }

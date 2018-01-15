@@ -634,63 +634,68 @@ function OnFailureFillTable() {
 function FillReferalStateDropdown() {
 
     var ddl = document.getElementById("<%=servicestate.ClientID%>");
-    var servicestate_text = ddl.options[ddl.selectedIndex].value;
+   
     var ddl2 = document.getElementById("<%=referalstate.ClientID%>");
-    var referalstate_text = ddl2.options[ddl2.selectedIndex].value;
+    
+
+
+    if (ddl != null) {
+        var servicestate_text = ddl.options[ddl.selectedIndex].value;
+        var referalstate_text = ddl2.options[ddl2.selectedIndex].value;
+
+        if (servicestate_text == "Pending") {
+
+            $('#referalstate')
+        .empty()
+        .append('<option selected="selected" value="Pending">Pending</option>')
+             .append('<option selected="selected" value="Approved">Approved</option>')
+             .append('<option selected="selected" value="Rejected">Rejected</option>')
+
+             .append('<option selected="selected" value="OutReach">OutReach</option>')
+             .append('<option selected="selected" value="External">External</option>')
+            ;
 
 
 
-    if (servicestate_text == "Pending") {
+            $('select#referalstate option')
+       .each(function () { this.selected = (this.text == referalstate_text); });
 
-        $('#referalstate')
-    .empty()
-    .append('<option selected="selected" value="Pending">Pending</option>')
-         .append('<option selected="selected" value="Approved">Approved</option>')
-         .append('<option selected="selected" value="Rejected">Rejected</option>')
+            $('#referalstate').selectpicker('refresh');
 
-         .append('<option selected="selected" value="OutReach">OutReach</option>')
-         .append('<option selected="selected" value="External">External</option>')
-        ;
-
-
-
-        $('select#referalstate option')
-   .each(function () { this.selected = (this.text == referalstate_text); });
-
-        $('#referalstate').selectpicker('refresh');
-
-        //    $('.selectpicker #referalstate')
-        //.find('option')
-        //.remove()
-        //.end()
-        //.append('<option value="Pending">Pending</option>')
-        //.val('Pending')
-        //    ;
-        //  $("#referalstate").append(
-        //$('<option></option>').val("Pending").html("Pending"),
-        //$('<option></option>').val("Approved").html("Approved"),
-        //$('<option></option>').val("Rejected").html("Rejected"),
-        //$('<option></option>').val("OutReach").html("OutReach"),
-        //$('<option></option>').val("External").html("External"));
+            //    $('.selectpicker #referalstate')
+            //.find('option')
+            //.remove()
+            //.end()
+            //.append('<option value="Pending">Pending</option>')
+            //.val('Pending')
+            //    ;
+            //  $("#referalstate").append(
+            //$('<option></option>').val("Pending").html("Pending"),
+            //$('<option></option>').val("Approved").html("Approved"),
+            //$('<option></option>').val("Rejected").html("Rejected"),
+            //$('<option></option>').val("OutReach").html("OutReach"),
+            //$('<option></option>').val("External").html("External"));
 
 
+
+        }
+            // if (servicestate_text == "In prgress") else if (servicestate_text == "Closed")
+        else {
+
+            $('#referalstate')
+     .empty()
+          .append('<option selected="selected" value="Approved">Approved</option>')
+          .append('<option selected="selected" value="OutReach">OutReach</option>')
+            ;
+            $('select#referalstate option')
+        .each(function () { this.selected = (this.text == "Approved"); });
+
+            $('#referalstate').selectpicker('refresh');
+
+        }
 
     }
-        // if (servicestate_text == "In prgress") else if (servicestate_text == "Closed")
-    else {
-
-        $('#referalstate')
- .empty()
-      .append('<option selected="selected" value="Approved">Approved</option>')
-      .append('<option selected="selected" value="OutReach">OutReach</option>')
-        ;
-        $('select#referalstate option')
-    .each(function () { this.selected = (this.text == "Approved"); });
-
-        $('#referalstate').selectpicker('refresh');
-
-    }
-
+    
 
 }
 
@@ -804,6 +809,115 @@ function searcByDate() {
     }
 
 
+}
+
+function searchByNameCo() {
+    var name = document.getElementById("personname").value;
+    var idrole = document.getElementById("role_id").value;
+
+    if (name != "") {
+        $.ajax({
+            url: '/sds/referalpersons/searchReferalByName',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'name': name, 'idrole': idrole },
+            success: function (data) {
+                $('#referalbysearch').empty()
+                $.each(data, function (i, referal) {
+                    $("#referalbysearch").append(
+                    $('<tr></tr>')
+                    .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.submittingdate + '</td>')
+
+                    .append('<td>' + referal.referaldate + '</td>')
+
+                    .append('<td>' + referal.type + '</td>')
+
+                    .append('<td>' + referal.servicestartdate + '</td>')
+
+                    .append('<td>' + referal.serviceenddate + '</td>')
+
+                    .append('<td>' + referal.senderevalution + '</td>')
+                     
+                         .append('<td>' + referal.outreachnote + '</td>')
+
+                          );
+
+                });
+
+            },
+            error: function (xhr, status, error) {
+                // check status && error
+                toastr.error("فشلة عملية البحث ")
+            }
+        });
+
+
+
+    }
+
+
+}
+
+function searcByDateCo() {
+    var from = document.getElementById("datepickerfrom").value;
+    var to = document.getElementById("datepickerto").value;
+    var idrole = document.getElementById("role_id").value;
+
+    if (from != "" && to != "") {
+        $.ajax({
+            url: '/sds/referalpersons/searchReferalByDate',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'from': from, 'to': to, 'idrole': idrole },
+            success: function (data) {
+                $('#referalbysearch').empty()
+                $.each(data, function (i, referal) {
+                    $("#referalbysearch").append(
+                    $('<tr></tr>')
+                    .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.submittingdate + '</td>')
+
+                    .append('<td>' + referal.referaldate + '</td>')
+
+                    .append('<td>' + referal.type + '</td>')
+
+                    .append('<td>' + referal.servicestartdate + '</td>')
+
+                    .append('<td>' + referal.serviceenddate + '</td>')
+
+                    .append('<td>' + referal.senderevalution + '</td>')
+                
+                         .append('<td>' + referal.outreachnote + '</td>')
+
+                             
+
+
+                    );
+
+                });
+
+            },
+            error: function (xhr, status, error) {
+                // check status && error
+                toastr.error("فشلة عملية البحث ")
+            }
+        });
+
+
+
+    }
+
+
+}
+
+function successClose() {
+
+    toastr.success("تمت إغلاق الإحالة");
+}
+
+function OnFailureClose() {
+    toastr.error("فشلة عملية الإغلاق ")
 }
 
 

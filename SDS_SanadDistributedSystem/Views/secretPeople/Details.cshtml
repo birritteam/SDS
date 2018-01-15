@@ -5,207 +5,342 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<link href="~/Content/cardview.css" rel="stylesheet" />
 
-<div>
-    <h4>person</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fname)
-        </dt>
+<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
+@*<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />*@
+<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<div  class="tab-pane active card z-depth-2" >
+    <h2>تفاصيل بيانات</h2>
 
-        <dd>
-            @Html.DisplayFor(model => model.fname)
-        </dd>
+    <div>
+        <h4>@Html.DisplayFor(model => model.fname) @Html.DisplayFor(model => model.lname) </h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.fname)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lname)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.fname)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.lname)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.lname)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nationalnumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.lname)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.nationalnumber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.nationalnumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fathername)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.nationalnumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.fathername)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.fathername)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mothername)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.fathername)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.mothername)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.mothername)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.birthday)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.mothername)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.birthday)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.birthday)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.birthplace)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.birthday)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.birthplace)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.birthplace)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.gender)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.birthplace)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.gender)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.gender)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.nationality)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.gender)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.nationality)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.nationality)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.martial)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.nationality)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.martial)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.martial)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.relationtype)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.martial)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.relationtype)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.relationtype)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.onoffflag)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.relationtype)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.onoffflag)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.onoffflag)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.education)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.onoffflag)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.education)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.education)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.educationstate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.education)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.educationstate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.educationstate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.phone1)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.educationstate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.phone1)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.phone1)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.phone2)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.phone1)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.phone2)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.phone2)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.currentaddress)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.phone2)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.currentaddress)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.currentaddress)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.registrationdate)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.currentaddress)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.registrationdate)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.registrationdate)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.formnumber)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.registrationdate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.formnumber)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.formnumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.note)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.formnumber)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.note)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.note)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.is_secret)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.note)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.is_secret)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.is_secret)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.is_secret)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.center.name)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.AspNetUser.Email)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.center.name)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.center.name)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.family.familynature)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.center.name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.family.familynature)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.family.familynature)
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idperson }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.family.familynature)
+            </dd>
+
+        </dl>
+    </div>
+
+    <table id="All" class="display table table-bordered" cellspacing="0">
+        <thead>
+            <tr>
+                <th>
+                    اسم الشخص
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.referalpersons.First().submittingdate)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.referalpersons.First().referaldate)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.referalpersons.First().servicestartdate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.referalpersons.First().serviceenddate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.referalpersons.First().senderevalution)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.referalpersons.First().outreachnote)
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.referalpersons)
+            {
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.submittingdate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.referaldate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.servicestartdate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.serviceenddate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.senderevalution)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.recieverevalution)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.outreachnote)
+                    </td>
+
+                    <td>
+                        @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })*@
+                        @using (Ajax.BeginForm("closeSecretReferal", "referalpersons", new AjaxOptions { OnSuccess = "successClose", OnFailure = "OnFailureClose" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" id="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                            <input type="hidden" id="idcase" name="idcase" value="@item.idcase_FK" />
+                            <input type="hidden" id="idperson" name="idperson" value="@item.idperson_FK" />
+
+                            if (item.serviceenddate == null)
+                            {
+                            <input type="submit" value="إغلاق" class="btn btn-default"  />
+                            }
+                            else
+                            {
+
+                                <input type="submit" value="مغلق" class="btn btn-default disabled" disabled="disabled" />
+                            }
+                           
+                        }
+
+
+                        @*|
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    </div>
+
+
+    <p>
+        @Html.ActionLink("تعديل", "Edit", new { id = Model.idperson }) |
+        @Html.ActionLink("عودة إلى القائمة", "Index")
+    </p>
+
+
+    @section Scripts {
+
+        <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+        <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+
+        <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+        <script src="~/Scripts/DataTables/buttons.bootstrap.min.js"></script>
+        <script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+        <script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+        <script src="~/Scripts/DataTables/buttons.print.min.js"></script>
+
+
+        <script src="~/scripts/jszip.min.js"></script>
+        <script src="~/Scripts/DataTables/buttons.print.min.js"></script>
+        <script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+        <script src="~/Scripts/DataTables/responsive.jqueryui.min.js"></script>
+        <script src="~/Scripts/DataTables/buttons.colVis.min.js"></script>
+        <script src="~/Scripts/DataTables/dataTables.fixedColumns.min.js"></script>
+        <script src="~/Scripts/AllDataTablesDesign.js"></script>
+        @Scripts.Render("~/bundles/jqueryval")
+
+}

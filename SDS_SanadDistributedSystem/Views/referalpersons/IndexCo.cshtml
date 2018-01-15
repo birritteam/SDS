@@ -8,7 +8,7 @@
     int new_Count = 5;
 }
 
-<h2>الصفحة االرئيسية- مدير حالة قسم @ViewBag.case_manager</h2>
+<h2>الصفحة االرئيسية- منسق القسم @ViewBag.case_manager</h2>
 
 <link href="~/Content/cardview.css" rel="stylesheet" />
 
@@ -100,7 +100,7 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -154,14 +154,14 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*<td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                          @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
                         }
                     }
@@ -220,7 +220,7 @@
                         <th>
                             وصول
                         </th>
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -275,14 +275,14 @@
                                 <td>
                                     لا
                                 </td>
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*<td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                          @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
                         }
                         if (item.servicestate == "Pending" && item.referalstate == "OutReach")
@@ -334,14 +334,14 @@
                                 <td>
                                     نعم
                                 </td>
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*<td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                          @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
                         }
                     }
@@ -396,7 +396,7 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -448,14 +448,14 @@
                                 @*<td>
                                     @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                              @*  <td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
                         }
                     }
@@ -515,7 +515,7 @@
                         <th>
                             وصول
                         </th>
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -570,14 +570,14 @@
                                 <td>
                                     لا
                                 </td>
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*<td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                          @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
                         }
                         if (item.servicestate == "In prgress" && item.referalstate == "OutReach")
@@ -629,14 +629,14 @@
                                 <td>
                                     نعم
                                 </td>
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*<td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                          @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
 
                         }
@@ -696,7 +696,7 @@
                         <th>
                             وصول
                         </th>
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -751,14 +751,14 @@
                                 <td>
                                     لا
                                 </td>
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*<td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
                         }
                         if (item.servicestate == "Closed" && item.referalstate == "OutReach")
@@ -810,14 +810,14 @@
                                 <td>
                                     نعم
                                 </td>
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*<td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
                         }
                     }
@@ -872,7 +872,7 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -924,14 +924,14 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                                <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
-                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+                                @*<td>*@
+                                    @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
 
                                     @*|
                                         @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                                          @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-                                </td>
+                                @*</td>*@
                             </tr>
                         }
                     }
@@ -952,7 +952,7 @@
                 </div>
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
-                            <input type="button" value="بحث" class="btn btn-default" onclick="searchByName()" />
+                            <input type="button" value="بحث" class="btn btn-default" onclick="searchByNameCo()" />
                         </div>
                     </div>
             }
@@ -976,7 +976,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="button" value="بحث" class="btn btn-default" onclick="searcByDate()" />
+                                <input type="button" value="بحث" class="btn btn-default" onclick="searcByDateCo()" />
                             </div>
                         </div>
 
@@ -1007,14 +1007,14 @@
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
-                        </th>
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.outreachnote)
                         </th>
 
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody id="referalbysearch"></tbody>
@@ -1032,161 +1032,161 @@
                     <li role="presentation"> <a href="#eighth_2" aria-controls="eighth_2" role="tab" data-toggle="tab">قيد المتابعة</a></li>
                 </ul>
                 <div class="tab-content">
-                       <div role="tabpanel" class="tab-pane active card z-depth-1" id="eighth_1">
-                            <table id="All8" class="display table table-bordered" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            اسم الشخص
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.submittingdate)
-                                        </th>
-                                        @*<th>
-                            @Html.DisplayNameFor(model => model.referalstate)
-                            </th>*@
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.referaldate)
-                                        </th>
-                                        @*<th>
-                            @Html.DisplayNameFor(model => model.servicestate)
-                            </th>*@
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.servicestartdate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.serviceenddate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.senderevalution)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.recieverevalution)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.outreachnote)
-                                        </th>
+                    <div role="tabpanel" class="tab-pane card z-depth-2" id="eighth_1">
+                        <table id="All8" class="display table table-bordered" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        اسم الشخص
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.submittingdate)
+                                    </th>
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.referalstate)
+                                        </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.referaldate)
+                                    </th>
+                                    @*<th>
+                                        @Html.DisplayNameFor(model => model.servicestate)
+                                        </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.servicestartdate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.serviceenddate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.senderevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.recieverevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.outreachnote)
+                                    </th>
 
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in ViewBag.temporal)
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.temporal)
+                                {
+                                    if (item.servicestate == "Pending" && item.referalstate == "Pending")
                                     {
-                                        if (item.servicestate == "Pending" && item.referalstate == "Pending")
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @item.fname @item.lname
-                                                </td>
-                                                <td>
-                                                    @item.submittingdate
-                                                </td>
-                                                <td>
-                                                    @item.referaldate
-                                                </td>
+                                        <tr>
+                                            <td>
+                                                @item.fname @item.lname
+                                            </td>
+                                            <td>
+                                                @item.submittingdate
+                                            </td>
+                                            <td>
+                                                @item.referaldate
+                                            </td>
 
-                                                <td>
-                                                    @item.servicestartdate
-                                                </td>
-                                                <td>
-                                                    @item.serviceenddate
-                                                </td>
-                                                <td>
-                                                    @item.iduser_FK
-                                                </td>
-                                                <td>
-                                                    @item.recieverevalution
-                                                </td>
-                                                <td>
-                                                    @item.outreachnote
-                                                </td>
-                                                <td>
-                                                    @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
+                                            <td>
+                                                @item.servicestartdate
+                                            </td>
+                                            <td>
+                                                @item.serviceenddate
+                                            </td>
+                                            <td>
+                                                @item.iduser_FK
+                                            </td>
+                                            <td>
+                                                @item.recieverevalution
+                                            </td>
+                                            <td>
+                                                @item.outreachnote
+                                            </td>
+                                            @*<td>
+                                                @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
 
-                                                </td>
-                                            </tr>
-                                        }
+                                            </td>*@
+                                        </tr>
                                     }
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div role="tabpanel" class="tab-pane card" id="eighth_2">
-                            <table id="All9" class="display table table-bordered" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            اسم الشخص
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.submittingdate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.referaldate)
-                                        </th>
-
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.servicestartdate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.serviceenddate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.senderevalution)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.recieverevalution)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.outreachnote)
-                                        </th>
-
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in ViewBag.temporal)
-                                    {
-                                        if (item.servicestate == "In prgress" && item.referalstate == "Approved")
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @item.fname @item.lname
-                                                </td>
-                                                <td>
-                                                    @item.submittingdate
-                                                </td>
-                                                <td>
-                                                    @item.referaldate
-                                                </td>
-
-                                                <td>
-                                                    @item.servicestartdate
-                                                </td>
-                                                <td>
-                                                    @item.serviceenddate
-                                                </td>
-                                                <td>
-                                                    @item.iduser_FK
-                                                </td>
-                                                <td>
-                                                    @item.recieverevalution
-                                                </td>
-                                                <td>
-                                                    @item.outreachnote
-                                                </td>
-                                                <td>
-                                                    @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
-
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
+                                }
+                            </tbody>
+                        </table>
                     </div>
+
+                    <div role="tabpanel" class="tab-pane card" id="eighth_2">
+                        <table id="All9" class="display table table-bordered" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        اسم الشخص
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.submittingdate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.referaldate)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.servicestartdate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.serviceenddate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.senderevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.recieverevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.outreachnote)
+                                    </th>
+
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.temporal)
+                                {
+                                    if (item.servicestate == "In prgress" && item.referalstate == "Approved")
+                                    {
+                                        <tr>
+                                            <td>
+                                                @item.fname @item.lname
+                                            </td>
+                                            <td>
+                                                @item.submittingdate
+                                            </td>
+                                            <td>
+                                                @item.referaldate
+                                            </td>
+
+                                            <td>
+                                                @item.servicestartdate
+                                            </td>
+                                            <td>
+                                                @item.serviceenddate
+                                            </td>
+                                            <td>
+                                                @item.iduser_FK
+                                            </td>
+                                            <td>
+                                                @item.recieverevalution
+                                            </td>
+                                            <td>
+                                                @item.outreachnote
+                                            </td>
+                                            @*<td>
+                                                @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
+
+                                            </td>*@
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         }
     </div>
