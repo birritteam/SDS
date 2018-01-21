@@ -280,6 +280,7 @@
     <Compile Include="Models\temporal.cs">
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MultipleButtonAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\AspNetUserResource.Designer.cs">
       <AutoGen>True</AutoGen>

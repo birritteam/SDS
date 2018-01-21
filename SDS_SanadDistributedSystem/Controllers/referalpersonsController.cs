@@ -142,7 +142,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     ViewBag.role_id = role_id;
                     //  referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK ==user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
                     referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK != role_id && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(500);
-                    ViewBag.temporal = db.temporals.ToList();
+                    ViewBag.temporal = db.temporals.Where(t => t.idcenter_FK == user.idcenter_FK).ToList();
                     ViewBag.case_manager = "فريق وصول";
                 }
                 else if (User.IsInRole("cmInkindAssistance"))
@@ -221,6 +221,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                         ViewBag.case_manager = "مشاريع صغيرة";
                     if (rolename.Equals("cmIOutReachTeam"))
                     {
+                        // جلب كل الاحالة لوصول ما ضم مركز معين ما عدا إحالات SGBV 
+                        var role_id2 = db.AspNetRoles.Where(r => r.Name == "cmSGBV").First().Id;
+                        ViewBag.role_id = role_id2;
+                        //  referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK ==user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
+                        referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK != role_id2 && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(500);                      
                         ViewBag.case_manager = "فريق وصول";
                         ViewBag.temporal = db.temporals.Where(t=>t.idcenter_FK== user.idcenter_FK).ToList();
                     }
@@ -241,7 +246,6 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
             //if user in role then retuen row by role
             //by role (case manager) type  we return referal's people
-
             //----------------------------------------------المنسقين--------------------
             // coEducation       
             //coProfessional
@@ -852,7 +856,8 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.referalpersons.Add(referalperson);
+
+                db.referalpersons.Add(referalperson);           
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -902,6 +907,29 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.referalstate = new SelectList(referalstates, referalperson.referalstate);
             ViewBag.servicestate = new SelectList(serviceStates, referalperson.servicestate);
 
+            string state="xxxxx";
+            referalperson rr = referalperson;
+            if (rr.servicestate == "Pending" && rr.referalstate == "Pending")
+                state = "جديد";
+            else if (rr.servicestate == "Pending" && rr.referalstate == "Approved")
+                state = "مقبولة";
+            else if (rr.servicestate == "Pending" && rr.referalstate == "OutReach")
+                state = " مقبولة-وصول";
+            else if (rr.servicestate == "Pending" && rr.referalstate == "Rejected")
+                state = "مرفوضة";
+            else if (rr.servicestate == "Pending" && rr.referalstate == "External")
+                state = "خارجي";
+            else if (rr.servicestate == "In prgress" && rr.referalstate == "Approved")
+                state = "قيد المتابعة";
+            else if (rr.servicestate == "In prgress" && rr.referalstate == "OutReach")
+                state = "قيد المتابعة-وصول";
+            else if (rr.servicestate == "Closed" && rr.referalstate == "Approved")
+                state = "مغلقة";
+            else if (rr.servicestate == "Closed" && rr.referalstate == "OutReach")
+                state = "مغلقة-وصول";
+
+            ViewBag.state = state;
+
             return View(referalperson);
         }
 
@@ -909,11 +937,16 @@ namespace SDS_SanadDistributedSystem.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        [MultipleButton(Name = "action", Argument = "edit1")]
+        public async Task<ActionResult> edit1([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
         {
+          
             if (ModelState.IsValid)
             {
+                referalperson.referalstate = "Pending";
+                referalperson.servicestate = "Pending";
+                referalperson.referaldate = DateTime.Now;
+
                 db.Entry(referalperson).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -925,6 +958,187 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
             return View(referalperson);
         }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit2")]
+        public async Task<ActionResult> edit2([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        {
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "Approved";
+                referalperson.servicestate = "Pending";
+                referalperson.referaldate = DateTime.Now;
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+            ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+            ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+            ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+            ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+            return View(referalperson);
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit3")]
+        public async Task<ActionResult> edit3([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        {
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "OutReach";
+                referalperson.servicestate = "Pending";
+                referalperson.referaldate = DateTime.Now;
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+            ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+            ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+            ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+            ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+            return View(referalperson);
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit4")]
+        public async Task<ActionResult> edit4([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        {
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "Rejected";
+                referalperson.servicestate = "Pending";
+                referalperson.referaldate = DateTime.Now;
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+            ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+            ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+            ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+            ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+            return View(referalperson);
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit5")]
+        public async Task<ActionResult> edit5([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        {
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "Approved";
+                referalperson.servicestate = "In prgress";
+                referalperson.referaldate = DateTime.Now;
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+            ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+            ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+            ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+            ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+            return View(referalperson);
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit6")]
+        public async Task<ActionResult> edit6([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        {        
+         
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "OutReach";
+                referalperson.servicestate = "In prgress";
+                referalperson.referaldate = DateTime.Now;
+
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+            ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+            ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+            ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+            ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+            return View(referalperson);
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit7")]
+        public async Task<ActionResult> edit7([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        {  
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "Approved";
+                referalperson.servicestate = "Closed";
+                referalperson.referaldate = DateTime.Now;
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+            ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+            ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+            ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+            ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+            return View(referalperson);
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit8")]
+        public async Task<ActionResult> edit8([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        {
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "OutReach";
+                referalperson.servicestate = "Closed";
+                referalperson.referaldate = DateTime.Now;
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+            ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+            ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+            ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+            ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+            return View(referalperson);
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit9")]
+        public async Task<ActionResult> edit9([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        {     
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "External";
+                referalperson.servicestate = "Pending";
+                referalperson.referaldate = DateTime.Now;
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+            ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+            ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+            ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+            ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+            return View(referalperson);
+        }
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Edit([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(referalperson).State = EntityState.Modified;
+        //        await db.SaveChangesAsync();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.referalsender_FK = new SelectList(db.AspNetUsers, "Id", "Email", referalperson.referalsender_FK);
+        //    ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", referalperson.idcase_FK);
+        //    ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", referalperson.idcenter_FK);
+        //    ViewBag.idperson_FK = new SelectList(db.people, "idperson", "fname", referalperson.idperson_FK);
+        //    ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name", referalperson.idservice_FK);
+        //    return View(referalperson);
+        //}
 
         // GET: referalpersons/Delete/5
         public async Task<ActionResult> Delete(int? id)

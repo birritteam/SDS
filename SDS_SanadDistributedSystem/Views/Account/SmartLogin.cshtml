@@ -20,7 +20,7 @@
     @*<meta name="viewport" content="width=device-width, initial-scale=1">*@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
-<body class="md-12 centered-wrapper pulse wow fadeInUp" style=" margin:10px 10px 20px 20px ;padding:10px; ">
+<body class="md-form centered-wrapper pulse wow fadeInUp" style=" margin:10px 10px 10px 10px ;padding:10px; ">
     <!--header-->
     @*<div class="header-w3l">
         <h1>برنامج سند الموزع</h1>
@@ -28,20 +28,20 @@
     <!--//header-->
     <!--main-->
 
-        <div class="col-md-6 centered-content " >
-            <img src="~/images/sanad.jpg" alt="image">
+        <div class=" md-form  centered-content" >
+            <img src="~/images/sanad.jpg" alt="image" class="card z-depth-1" style="padding:20px">
             @*<h2>تسجيل الدخول الآن</h2>*@
         </div>
        
-    <div class=" col-md-6 centered-content " style=" margin:0px 0px 20px 0px ;">
+    <div class=" md-form  centered-content" style=" margin:0px 0px 10px 0px ;">
         @using (Html.BeginForm("SmartLogin", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <section class="form-simple centered-content" style="width: 28rem;">
+           
+            <section class="form-simple centered-content" style="width: 30rem;">
 
                 <!--Form with header-->
-                <div class="card" style="width: 28rem; padding:15px; align-items:center">
+                <div class=" card" style="width: 30rem; padding:20px; align-items:center">
 
                     <!--Header-->
                     <div class="header pt-3 grey lighten-2">
@@ -51,13 +51,13 @@
                             <div class="centered-content2 animated bounce infinite">
                                 <img  src="~/images/user-200x200.png" />
                             </div>
-                            <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-5 "> تسجيل دخول</h3>
+                            <h3 class="deep-grey-text mt-3 pb-1 mx-5 "> تسجيل دخول</h3>
                         </div>
                      
                     </div>
                     <!--Header-->
 
-                    <div class="card-body mx-4 mt-4">
+                    <div class="card-body mx-5 mt-3">
 
                         <!--Body--><i class="fa fa-user blue-text " style="font-size:2em"></i>
                         <div class="md-form">
@@ -68,7 +68,8 @@
                             @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
 
                         </div>
-                        <i class="fa fa-envelope prefix  blue-text" style="font-size:2em" ></i>
+                        <i class="fa fa-envelope   blue-text" style="font-size:2em" ></i>
+                    
                         <div class="md-form ">
 
                             @Html.PasswordFor(m => m.Password, new { @class = " validate", @required = "true" })
@@ -87,7 +88,7 @@
                         </div>
                        
 
-                            <div class="text-center mb-4">
+                            <div class="text-center mb-2">
                                 <button type="submit" class="btn   z-depth-2">تسجيل الدخول</button>
                             </div>
                             <p class="font-small grey-text d-flex justify-content-center">
@@ -101,6 +102,7 @@
                 <!--/Form with header-->
 
             </section>
+            <b>@Html.ValidationSummary(true, "", new { @class = "text-danger" })</b>
         }
     </div>
 

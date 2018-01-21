@@ -64,8 +64,12 @@
        background: #2196f3;
        width:150px; 
 }
-
-
+html {
+     direction: ltr; 
+}
+/*body {
+background:#1B2737
+}*/
 
 
                 
