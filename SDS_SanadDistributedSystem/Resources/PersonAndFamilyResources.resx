@@ -213,4 +213,16 @@
   <data name="evaluation" xml:space="preserve">
     <value>التقييم</value>
   </data>
+  <data name="age" xml:space="preserve">
+    <value>العمر</value>
+  </data>
+  <data name="applicant" xml:space="preserve">
+    <value>مقدم الطلب</value>
+  </data>
+  <data name="full_name" xml:space="preserve">
+    <value>الاسم الثلاثي</value>
+  </data>
+  <data name="serial_number" xml:space="preserve">
+    <value>الرقم التسلسلي ضمن المركز</value>
+  </data>
 </root>

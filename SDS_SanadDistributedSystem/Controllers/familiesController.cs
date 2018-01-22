@@ -26,7 +26,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
         // GET: families
         [Authorize(Roles = "receptionist,cmIOutReachTeam")]
-        public async Task<ActionResult> Index(string familyID, string lastName)
+        public async Task<ActionResult> Index(string familyID, string lastName, string SN)
         {
 
             var families = db.families.Include(f => f.AspNetUser);
@@ -40,7 +40,10 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 families = families.Where(s => s.lastname.Contains(lastName));
             }
-
+            if (!String.IsNullOrEmpty(SN))
+            {
+                families = families.Where(s => s.serial_number.Contains(SN));
+            }
             return View(await families.ToListAsync());
         }
 

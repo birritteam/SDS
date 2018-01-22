@@ -155,21 +155,51 @@
                 @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "" })
             </div>
         </div>
+        <div class="form-group row">
+            <h4 class="h4">الوثائق</h4>
+            @foreach (var document in ViewBag.documentsOptions)
+                {
+                <div class="col-md-4" dir="ltr">
+                    <div class="checkbox-inline">
+                        @if (ViewBag.selectedML.Contains(document.idmanagelist))
+                        {
+                            <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" checked="checked" />
+
+                        }
+                        else
+                        {
+                            <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" />
+
+                        }
+                        <label for="@document.idmanagelist">@document.name</label>
+                    </div>
+                </div>
+            }
+        </div>
 
         <div class="form-group">
             <h3 class="h3">نقاط الضعف</h3>
             @foreach (var weakness in ViewBag.weaknesses)
-            {<div class="card">
-                @foreach (var item in weakness)
+            {
+                foreach (var item in weakness)
+
                 {
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
+                    <div class="col-md-4" dir="ltr">
+                        <div class="checkbox-inline" dir="ltr">
+                            @if (ViewBag.selectedML.Contains(item.idmanagelist))
+                            {
+                                <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" checked="checked" />
+                            }
+                            else
+                            {
+                                <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
+                            }
+
                             <label for="@item.idmanagelist">@item.name</label>
                         </div>
                     </div>
                 }
-            </div>
+                
             }
 
 

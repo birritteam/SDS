@@ -20,7 +20,7 @@ $(document).ready(function () {
     $('select').prop('class', 'selectpicker');
     $('select').attr('data-live-search', true);
     $('.selectpicker').selectpicker({
-        style: 'btn-info',
+        style: 'btn-default',
         size: 7,
         //title:"لا يوجد"
         

@@ -51,6 +51,7 @@
         <AssociationConnector Association="sds_dbModel.FK_temporal_AspNetUsers" />
         <AssociationConnector Association="sds_dbModel.FK_temporal_AspNetUsers1" />
         <AssociationConnector Association="sds_dbModel.FK_temporal_center" />
+        <AssociationConnector Association="sds_dbModel.FK_family_center" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -98,61 +98,99 @@
         
         <div class="row panel"></div>
         <div class="row">
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.nationality, htmlAttributes: new { @class = "control-label col-md-4" })
-                @Html.DropDownList("nationality", new SelectList(ViewBag.nationalityOptions), htmlAttributes: new { @class = "col-md-8" })
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.nationality, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.DropDownList("nationality", new SelectList(ViewBag.nationalityOptions), htmlAttributes: new { @class = "col-md-8" })
+                </div>
             </div>
 
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.martial, htmlAttributes: new { @class = "control-label col-md-4" })
-                @Html.DropDownList("martial", new SelectList(ViewBag.martialOptions), htmlAttributes: new { @class = "col-md-8" })
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.DropDownList("martial", new SelectList(ViewBag.martialOptions), htmlAttributes: new { @class = "col-md-8" })
+                    @Html.LabelFor(model => model.martial, htmlAttributes: new { @class = "control-label col-md-4" })
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label col-md-4">طريقة التعرف على المركز</label>
+                    @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "" })
+                </div>
             </div>
         </div>
 
 
         <div class="row">
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-4" })
-                @Html.DropDownList("education", new SelectList(ViewBag.educationOptions), htmlAttributes: new { })
+            @*<div class="col-md-2"></div>*@
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.DropDownList("education", new SelectList(ViewBag.educationOptions), htmlAttributes: new { })
+                </div>
             </div>
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-4" })
-                @foreach (string item in ViewBag.educationstateOptions)
-                {
-                    @Html.RadioButtonFor(model => model.educationstate, item, new { @id = item })
-                    @Html.Label(item, new { @for = item })
-                }
-                @Html.ValidationMessageFor(model => model.educationstate, "", new { @class = "text-danger" })
+
+            @*<div class="col-md-4">
+
+            </div>*@
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @foreach (string item in ViewBag.educationstateOptions)
+                    {
+                        @Html.RadioButtonFor(model => model.educationstate, item, new { @id = item })
+                        @Html.Label(item, new { @for = item })
+                    }
+                    @Html.ValidationMessageFor(model => model.educationstate, "", new { @class = "text-danger" })
+                </div>
             </div>
+
         </div>
-
-
-
         <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
         <input type="hidden" name="registrationdate" id="registrationdate" />
 
         <div class="row">
-            <div class="form-group col-md-6">
-                <label class="control-label col-md-4" for="currentWorkID">العمل الحالي</label>
-                @Html.DropDownList("currentWorkID", null, htmlAttributes: new { @class = "form-control" })
+            @*<div class="col-md-2"></div>*@
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="currentWorkID">العمل الحالي</label>
+                    @Html.DropDownList("currentWorkID", null, htmlAttributes: new { @class = "form-control" })
+                </div>
             </div>
 
-            <div class="form-group col-md-6">
-                <label class="control-label col-md-4" for="previousWorkID">العمل السابق</label>
-                @Html.DropDownList("previousWorkID", null, htmlAttributes: new { @class = "form-control" })
+            @*<div class="col-md-4">
+            </div>*@
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label col-md-4" for="previousWorkID">العمل السابق</label>
+                    @Html.DropDownList("previousWorkID", null, htmlAttributes: new { @class = "form-control" })
+                </div>
             </div>
+
         </div>
 
         <div class="row">
-            <div class="form-group col-md-6">
-                @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-4" })
-                @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtypeOptions), htmlAttributes: new { @class = "" })
+
+
+
+        </div>
+
+        <div class="row">
+            @*<div class="col-md-2"></div>*@
+            <div class="col-md-4">
+                <div class="md-form">
+                    @Html.EditorFor(model => model.applicant, new { htmlAttributes = new { @class = "form-control validate", @id = "applicant" } })
+                    @Html.LabelFor(model => model.applicant, htmlAttributes: new { @for = "applicant" })
+                    @Html.ValidationMessageFor(model => model.applicant, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-4" })
+                    @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtypeOptions), htmlAttributes: new { @class = "form-control" })
+                </div>
             </div>
 
-            <div class="form-group col-md-6">
-                <label class="control-label col-md-4">طريقة التعرف على المركز</label>
-                @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "" })
-            </div>
         </div>
 
         @*@Html.HiddenFor(model=>model.idfamily_FK)

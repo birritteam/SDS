@@ -44,13 +44,13 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // GET: people
-        public async Task<ActionResult> Index(string lastName, string nationalNumber)
+        public async Task<ActionResult> Index(string full_name, string nationalNumber)
         {
             var people = db.people.Include(p => p.AspNetUser).Include(p => p.center).Include(p => p.family).Where(p => !p.is_secret);
 
-            if (!String.IsNullOrEmpty(lastName))
+            if (!String.IsNullOrEmpty(full_name))
             {
-                people = people.Where(s => s.lname.Contains(lastName));
+                people = people.Where(s => s.full_name.Contains(full_name));
             }
 
             if (!String.IsNullOrEmpty(nationalNumber))
