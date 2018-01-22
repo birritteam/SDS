@@ -19,7 +19,13 @@
         <dd>
             @Html.DisplayFor(model => model.idfamily)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.serial_number)
+        </dt>
 
+        <dd>
+            @Html.DisplayFor(model => model.serial_number)
+        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.personcount)
         </dt>
@@ -157,15 +163,15 @@
                     @Html.DisplayFor(modelItem => item.mothername)
                 </td>
                 <td>
-                    @{
+                    @*@{
                         var dob = item.birthday.GetValueOrDefault();
                         DateTime now = DateTime.Today;
                         int age = now.Year - dob.Year;
                         if (now < dob.AddYears(age))
                         { age--; }
                         @Html.DisplayFor(model => age);
-                    }
-                    @*@Html.DisplayFor(modelItem => item.age)*@
+                    }*@
+                    @Html.DisplayFor(modelItem => item.age)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.gender)

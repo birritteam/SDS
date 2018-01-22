@@ -13,8 +13,11 @@ function SuccessLoadForPerson(data) {
 
     $("#familymembers").append(
         "<tr><td>" + data.idperson + "</td><td>" +
-        data.fname + "</td><td>" + data.lname + "</td><td>" +
-        data.fathername + "</td><td>" + data.mothername + "</td><td>" +
+        //data.fname + "</td><td>" + data.lname + "</td><td>" +
+        //data.fathername +
+        data.fullname +
+        "</td><td>" +
+        data.mothername + "</td><td>" +
         data.age + "</td><td>" + data.gender + "</td><td>" +
 
         '<a href="/people/Edit/' +

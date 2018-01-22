@@ -26,7 +26,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
         // GET: families
         [Authorize(Roles = "receptionist,cmIOutReachTeam")]
-        public async Task<ActionResult> Index(string familyID, string lastName)
+        public async Task<ActionResult> Index(string familyID, string lastName, string SN)
         {
 
             var families = db.families.Include(f => f.AspNetUser);
@@ -40,7 +40,10 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 families = families.Where(s => s.lastname.Contains(lastName));
             }
-
+            if (!String.IsNullOrEmpty(SN))
+            {
+                families = families.Where(s => s.serial_number.Contains(SN));
+            }
             return View(await families.ToListAsync());
         }
 
@@ -82,6 +85,13 @@ namespace SDS_SanadDistributedSystem.Controllers
             if (ModelState.IsValid)
             {
                 family.iduser = User.Identity.GetUserId();
+                family.idcenter_FK = db.AspNetUsers.SingleOrDefault(u => u.Id == family.iduser).idcenter_FK;
+
+                int? maxcenterform = db.families.Where(p => p.idcenter_FK == family.idcenter_FK).Max(p => p.formnumber) + 1;
+                if (maxcenterform != null)
+                    family.formnumber = maxcenterform;
+                else family.formnumber = 1;
+ 
                 db.families.Add(family);
                 managelist managel = db.managelists.SingleOrDefault(ml => ml.idmanagelist == idmangelist);
                 managel.families.Add(family);

@@ -66,14 +66,19 @@ namespace SDS_SanadDistributedSystem.Models
         [Display(Name = "phone2owner", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone2owner { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
-
         [Display(Name = "evaluation", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<int> evaluation { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<person> people { get; set; }
+        [Display(Name = "formnumber", ResourceType = typeof(PersonAndFamilyResources))]
+        public Nullable<int> formnumber { get; set; }
+        public string idcenter_FK { get; set; }
+        [Display(Name = "serial_number", ResourceType = typeof(PersonAndFamilyResources))]
+        public string serial_number { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalfamily> referalfamilies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<managelist> managelists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<person> people { get; set; }
+        public virtual center center { get; set; }
     }
 }

@@ -95,7 +95,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.relationtype = relationtype;
             ViewBag.education = education;
 
-
+            ViewBag.documentsOptions = managelists.Where(ml => ml.flag == "D");
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
             //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
             //ViewBag.idfamily_FK = new SelectList(db.families, "idfamily", "familynature");
@@ -109,7 +109,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "cmSGBV")]
-        public async Task<ActionResult> Create([Bind(Include = "fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,is_secret")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, DateTime? servicestartdate, string senderevalution,string outreachnote)
+        public async Task<ActionResult> Create([Bind(Include = "fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,is_secret")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents, DateTime? servicestartdate, string senderevalution,string outreachnote)
         {
             referalperson rp = new referalperson();
             rp.servicestartdate = servicestartdate;
@@ -192,6 +192,20 @@ namespace SDS_SanadDistributedSystem.Controllers
                             managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == i)
                         };
                         db.personmanages.Add(weakness);
+                    }
+
+                if (documents != null)
+                    foreach (int i in documents)
+                    {
+                        personmanage document = new personmanage()
+                        {
+                            idperson_FK = person.idperson,
+                            idmanagelist_FK = i,
+                            person = person,
+                            eval = "",
+                            managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == i)
+                        };
+                        db.personmanages.Add(document);
                     }
 
                 await db.SaveChangesAsync();
@@ -323,6 +337,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.selectedML = selectedML;
             ViewBag.weaknesses = weaknesses;
 
+            ViewBag.documentsOptions = managelists.Where(ml => ml.flag == "D");
+
             ViewBag.genderOptions = gender;
             ViewBag.nationalityOptions = nationality;
             ViewBag.martialOptions = martial;
@@ -339,7 +355,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,is_secret")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses)
+        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,is_secret")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
         {
             if (ModelState.IsValid)
             {
@@ -421,6 +437,21 @@ namespace SDS_SanadDistributedSystem.Controllers
                             managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == i)
                         };
                         personmanages.Add(weakness);
+                    }
+
+                if (documents != null)
+                    foreach (var i in documents)
+                    {
+                        personmanage document = new personmanage()
+                        {
+                            idperson_FK = person.idperson,
+                            idmanagelist_FK = i,
+                            person = person,
+                            eval = "",
+                            managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == i)
+                        };
+                        personmanages.Add(document);
+
                     }
 
                 person.personmanages = personmanages;

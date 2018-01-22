@@ -61,6 +61,24 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to العمر.
+        /// </summary>
+        public static string age {
+            get {
+                return ResourceManager.GetString("age", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to مقدم الطلب.
+        /// </summary>
+        public static string applicant {
+            get {
+                return ResourceManager.GetString("applicant", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تاريخ الميلاد.
         /// </summary>
         public static string birthday {
@@ -156,6 +174,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         public static string formnumber {
             get {
                 return ResourceManager.GetString("formnumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الاسم الثلاثي.
+        /// </summary>
+        public static string full_name {
+            get {
+                return ResourceManager.GetString("full_name", resourceCulture);
             }
         }
         
@@ -345,6 +372,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         public static string relationtype {
             get {
                 return ResourceManager.GetString("relationtype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الرقم التسلسلي ضمن المركز.
+        /// </summary>
+        public static string serial_number {
+            get {
+                return ResourceManager.GetString("serial_number", resourceCulture);
             }
         }
     }

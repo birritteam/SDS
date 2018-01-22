@@ -25,6 +25,7 @@ namespace SDS_SanadDistributedSystem.Models
             this.referalpersons = new HashSet<referalperson>();
             this.people = new HashSet<person>();
             this.temporals = new HashSet<temporal>();
+            this.families = new HashSet<family>();
         }
 
         public string idcenter { get; set; }
@@ -39,7 +40,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string flag { get; set; }
         [Display(Name = "idpartner_FK", ResourceType = typeof(CenterResource))]
         public string idpartner_FK { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
         public virtual partner partner { get; set; }
@@ -51,5 +52,7 @@ namespace SDS_SanadDistributedSystem.Models
         public virtual ICollection<person> people { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<temporal> temporals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<family> families { get; set; }
     }
 }

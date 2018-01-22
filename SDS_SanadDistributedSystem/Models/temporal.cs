@@ -46,10 +46,12 @@ namespace SDS_SanadDistributedSystem.Models
         public string education { get; set; }
         [Display(Name = "educationstate", ResourceType = typeof(PersonAndFamilyResources))]
         public string educationstate { get; set; }
+        [Required]
         [Display(Name = "phone1", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone1 { get; set; }
         [Display(Name = "phone2", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone2 { get; set; }
+        [Required]
         [Display(Name = "currentaddress", ResourceType = typeof(PersonAndFamilyResources))]
         public string currentaddress { get; set; }
         [Display(Name = "registrationdate", ResourceType = typeof(PersonAndFamilyResources))]

@@ -44,13 +44,13 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // GET: people
-        public async Task<ActionResult> Index(string lastName, string nationalNumber)
+        public async Task<ActionResult> Index(string full_name, string nationalNumber)
         {
             var people = db.people.Include(p => p.AspNetUser).Include(p => p.center).Include(p => p.family).Where(p => !p.is_secret);
 
-            if (!String.IsNullOrEmpty(lastName))
+            if (!String.IsNullOrEmpty(full_name))
             {
-                people = people.Where(s => s.lname.Contains(lastName));
+                people = people.Where(s => s.full_name.Contains(full_name));
             }
 
             if (!String.IsNullOrEmpty(nationalNumber))
@@ -221,11 +221,12 @@ namespace SDS_SanadDistributedSystem.Controllers
                     Data = new
                     {
                         idperson = person.idperson,
-                        fname = person.fname,
-                        lname = person.lname,
-                        fathername = person.fathername,
+                        //fname = person.fname,
+                        //lname = person.lname,
+                        fullname = person.full_name,
+                        //fathername = person.fathername,
                         mothername = person.mothername,
-                        age = DateTime.Today.Year - person.birthday.GetValueOrDefault().Year,
+                        age = person.age,
                         gender = person.gender,
                         idfamily = person.idfamily_FK
                     },
