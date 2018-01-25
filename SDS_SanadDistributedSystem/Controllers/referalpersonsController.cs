@@ -20,7 +20,7 @@ namespace SDS_SanadDistributedSystem.Controllers
     [System.Web.Mvc.Authorize(Roles = "superadmin,admin,cmEducation,cmProfessional,cmChildProtection,cmPsychologicalSupport1,cmPsychologicalSupport2,cmPsychologicalSupport3,cmDayCare,cmHomeCare,cmAwareness,cmSGBV,cmSmallProjects ,cmIOutReachTeam,cmInkindAssistance,receptionist,"
         + "coEducation,coProfessional,coChildProtection,coPsychologicalSupport,coDayCare,coHomeCare,coAwareness,coSGBV,coSmallProjects,coOutReachTeam,coInkindAssistance")]
 
-    public class referalpersonsController : Controller
+    public class referalpersonsController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
         private static List<referalperson> referalpersonlist = new List<referalperson>();

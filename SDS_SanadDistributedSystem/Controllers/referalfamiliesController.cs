@@ -11,7 +11,7 @@ using SDS_SanadDistributedSystem.Models;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    public class referalfamiliesController : Controller
+    public class referalfamiliesController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
 

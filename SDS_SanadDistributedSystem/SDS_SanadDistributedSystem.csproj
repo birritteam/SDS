@@ -198,6 +198,7 @@
     <Compile Include="ArabicValidation\MyStringLengthAttributeAdapter.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AspNetUsersController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\centersController.cs" />
     <Compile Include="Controllers\familiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -818,9 +819,11 @@
     <Content Include="Views\referalpersons\IndexByRoleName.cshtml" />
     <Content Include="Views\services\IndexCO.cshtml" />
     <Content Include="Views\services\EditEnable.cshtml" />
+    <Content Include="Views\Shared\_Bar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

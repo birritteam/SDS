@@ -11,7 +11,7 @@ using System.Web.Mvc;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    public class secretPeopleController : Controller
+    public class secretPeopleController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
          DbSet<managelist> managelists;

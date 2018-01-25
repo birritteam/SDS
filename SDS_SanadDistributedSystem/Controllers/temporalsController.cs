@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    public class temporalsController : Controller
+    public class temporalsController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
 

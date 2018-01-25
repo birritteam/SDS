@@ -12,9 +12,14 @@
         @Scripts.Render("~/bundles/modernizr")
       
     <style>
+
+        .mdb-skin .navbar {
+    background-color: #1B2838;
+}
         .noti-content {
             position: fixed;
             right: 100px;
+
             background: #e5e5e5;
             border-radius: 4px;
             top: 47px;
@@ -62,9 +67,46 @@
             top: -3px;
         }
     </style>
+    @*@{*@ 
+       @*// var new= خدمات مشروع سند;*@
 
+    @*}*@
 </head>
 <body class="fixed-sn mdb-skin bg-skin-lp" style="padding-top:50px;">
+    <marquee direction="right" bgcolor="#1B2838" loop="infinity" behavior="scroll" scrollamount="5" ><font color="#fff">
+        @if (ViewBag.ServicesBar != null)
+        {
+            <span>
+                خدمات مشروع سند 
+                </span>
+                <span>
+                    &copy; @DateTime.Now.Year
+                </span>
+        }
+                    @foreach (var item in ViewBag.ServicesBar)
+                {
+                        <img src="~/Images/sanad.ico">
+                        <span>الخدمة:</span>
+
+                        @item.name
+                        <span>--</span>
+                        <span>الوصف:</span>
+
+                        @item.description
+
+                        <img src="~/Images/sanad.ico">
+                    }
+                                                                     @if (ViewBag.ServicesBar != null)
+                                                                     {
+                                                                         <span>
+                                                                             خدمات مشروع سند 
+                                                                         </span>
+                                                                        <span>
+                                                                            &copy; @DateTime.Now.Year
+                                                                        </span>
+                                                                     }
+</font>
+</marquee>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -707,6 +749,7 @@
     <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
     <script src="~/signalr/hubs"></script>
     <script src="~/Scripts/signalRJS.js"></script>
+    <script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
                   
     @RenderSection("scripts", required: false)
 

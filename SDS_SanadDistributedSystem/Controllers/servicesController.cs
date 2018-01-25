@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 namespace SDS_SanadDistributedSystem.Controllers
 {
     [Authorize(Roles = "superadmin,admin,coEducation,coProfessional,coChildProtection,coPsychologicalSupport,coDayCare,coHomeCare,coAwareness,coSmallProjects,coOutReachTeam,coInkindAssistance")]
-    public class servicesController : Controller
+    public class servicesController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
         private bool[] enable = { true, false };

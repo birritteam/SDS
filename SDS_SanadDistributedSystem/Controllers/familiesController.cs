@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    public class familiesController : Controller
+    public class familiesController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
 

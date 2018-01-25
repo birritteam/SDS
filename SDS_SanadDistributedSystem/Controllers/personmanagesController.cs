@@ -11,7 +11,7 @@ using SDS_SanadDistributedSystem.Models;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    public class personmanagesController : Controller
+    public class personmanagesController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
 

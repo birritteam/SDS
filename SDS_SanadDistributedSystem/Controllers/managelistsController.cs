@@ -12,7 +12,7 @@ using SDS_SanadDistributedSystem.Models;
 namespace SDS_SanadDistributedSystem.Controllers
 {
     //[Authorize(Roles = "admin")]
-    public class managelistsController : Controller
+    public class managelistsController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
 

@@ -57,6 +57,7 @@
         count = parseInt($('span.count').html()) || 0;
         count++;
         $('span.count').html(count);
+        $.playSound("http://www.noiseaddicts.com/samples_1w72b820/3724.mp3");
 
     }
     var notificationHub = $.connection.notificationHub;

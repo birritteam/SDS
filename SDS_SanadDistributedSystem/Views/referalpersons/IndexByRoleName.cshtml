@@ -1071,7 +1071,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in ViewBag.temporal)
+@try
+{
+                               foreach (var item in ViewBag.temporal)
                                 {
                                     if (item.servicestate == "Pending" && item.referalstate == "Pending")
                                     {
@@ -1108,6 +1110,8 @@
                                         </tr>
                                     }
                                 }
+                                }
+                                catch (Exception e) { }
                             </tbody>
                         </table>
                     </div>
@@ -1146,7 +1150,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var item in ViewBag.temporal)
+@try
+{
+                                foreach (var item in ViewBag.temporal)
                                 {
                                     if (item.servicestate == "In prgress" && item.referalstate == "Approved")
                                     {
@@ -1181,8 +1187,10 @@
 
                                             </td>
                                         </tr>
-                                    }
-                                }
+        }
+    }
+}
+catch (Exception e) { }
                             </tbody>
                         </table>
                     </div>

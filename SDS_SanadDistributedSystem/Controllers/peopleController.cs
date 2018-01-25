@@ -13,7 +13,7 @@ using System.Web.Mvc.Html;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
-    public class peopleController : Controller
+    public class peopleController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
 

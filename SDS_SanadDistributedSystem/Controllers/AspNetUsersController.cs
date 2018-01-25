@@ -14,7 +14,7 @@ using Microsoft.AspNet.Identity;
 namespace SDS_SanadDistributedSystem.Controllers
 {
     [Authorize(Roles = "superadmin,admin")]
-    public class AspNetUsersController : Controller
+    public class AspNetUsersController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
         private bool[] enable = { true, false };

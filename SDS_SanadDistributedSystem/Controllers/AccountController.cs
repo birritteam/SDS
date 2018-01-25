@@ -14,7 +14,7 @@ using System.Collections.Generic;
 namespace SDS_SanadDistributedSystem.Controllers
 {
     [System.Web.Mvc.Authorize(Roles = "superadmin,admin")]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private bool[] enable = { true, false };
         private ApplicationSignInManager _signInManager;
