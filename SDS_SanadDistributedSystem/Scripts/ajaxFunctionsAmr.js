@@ -1,33 +1,39 @@
 ﻿function FillServices() {
-    var caseId = $('#idcase_FK').val();
-    if (caseId!=null)
+    try{
+        var caseId = $('#idcase_FK').val();
+        if (caseId!=null)
         {        //toastr.error("sssssssssssss" + caseId);{
-        $.ajax({
-            url: '/sds/referalpersons/FillServices',
-            type: "GET",
-            dataType: "JSON",
-            data: { 'caseId': caseId },
-            success: function (data) {
-                $('#services').empty()
-                $.each(data, function (i, service) {
-                    $("#services").append(
-                    $('<option selected="selected"></option>').val(service.idservice).html(service.name));
-                    $("#referalReciver_FK").empty();
-                    $.each(service.recivers, function (i, reciver) {
-                        $("#referalReciver_FK").append(
-                        $('<option></option>').val(reciver.Id).html(reciver.UserName));
+            $.ajax({
+                url: '/sds/referalpersons/FillServices',
+                type: "GET",
+                dataType: "JSON",
+                data: { 'caseId': caseId },
+                success: function (data) {
+                    $('#services').empty()
+                    $.each(data, function (i, service) {
+                        $("#services").append(
+                        $('<option selected="selected"></option>').val(service.idservice).html(service.name));
+                        $("#referalReciver_FK").empty();
+                        $.each(service.recivers, function (i, reciver) {
+                            $("#referalReciver_FK").append(
+                            $('<option></option>').val(reciver.Id).html(reciver.UserName));
+                        });
                     });
-                });
 
-                $('#services').selectpicker('refresh');
-                $('#referalReciver_FK').selectpicker('refresh');
-            },
-            error: function (xhr, status, error) {
-                // check status && error
-                toastr.error("Whooaaa! Something went wrong.. FillServices")
-            }
-        });
-}
+                    $('#services').selectpicker('refresh');
+                    $('#referalReciver_FK').selectpicker('refresh');
+                },
+                error: function (xhr, status, error) {
+                    // check status && error
+                    toastr.error("Whooaaa! Something went wrong.. FillServices")
+                }
+            });
+        }
+    }
+        catch(err) {
+            
+        }
+
 }
 
 function FillRecivers() {

@@ -8,7 +8,7 @@
     int new_Count = 5;
 }
 
-<h2>الصفحة االرئيسية- مدير حالة قسم @ViewBag.case_manager</h2>
+<h3>الصفحة االرئيسية- مدير حالة قسم @ViewBag.case_manager</h3>
 
 <link href="~/Content/cardview.css" rel="stylesheet" />
 
@@ -79,6 +79,9 @@
                             @Html.DisplayNameFor(model => model.serviceenddate)
                         </th>
                         <th>
+                            المرسل
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
@@ -133,6 +136,9 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -155,7 +161,7 @@
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -194,6 +200,9 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.serviceenddate)
+                        </th>
+                        <th>
+                            المرسل
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
@@ -251,6 +260,10 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -276,7 +289,7 @@
                                     لا
                                 </td>
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -310,6 +323,9 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -335,7 +351,7 @@
                                     نعم
                                 </td>
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -373,6 +389,9 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.serviceenddate)
+                        </th>
+                        <th>
+                            المرسل
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
@@ -427,6 +446,9 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -449,7 +471,7 @@
                                     @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -489,6 +511,9 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.serviceenddate)
+                        </th>
+                        <th>
+                            المرسل
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
@@ -546,6 +571,9 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -571,7 +599,7 @@
                                     لا
                                 </td>
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -605,6 +633,9 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -630,7 +661,7 @@
                                     نعم
                                 </td>
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -670,6 +701,9 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.serviceenddate)
+                        </th>
+                        <th>
+                            المرسل
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
@@ -727,6 +761,9 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -752,7 +789,7 @@
                                     لا
                                 </td>
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -786,6 +823,9 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -811,7 +851,7 @@
                                     نعم
                                 </td>
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -849,6 +889,9 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.serviceenddate)
+                        </th>
+                        <th>
+                            المرسل
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
@@ -903,6 +946,9 @@
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
@@ -925,7 +971,7 @@
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 <td>
-                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
+                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
 
                                     @*|
@@ -1004,6 +1050,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.serviceenddate)
                         </th>
+                        @*<th>
+                               المرسل
+                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
@@ -1058,6 +1107,9 @@
                                         @Html.DisplayNameFor(model => model.serviceenddate)
                                     </th>
                                     <th>
+                                        المرسل
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.senderevalution)
                                     </th>
                                     <th>
@@ -1073,7 +1125,7 @@
                             <tbody>
 @try
 {
-                               foreach (var item in ViewBag.temporal)
+                                foreach (var item in ViewBag.temporal)
                                 {
                                     if (item.servicestate == "Pending" && item.referalstate == "Pending")
                                     {
@@ -1095,7 +1147,10 @@
                                                 @item.serviceenddate
                                             </td>
                                             <td>
-                                                @item.iduser_FK
+                                                @item.AspNetUser.Email
+                                            </td>
+                                            <td>
+                                                @item.senderevalution
                                             </td>
                                             <td>
                                                 @item.recieverevalution
@@ -1137,6 +1192,9 @@
                                         @Html.DisplayNameFor(model => model.serviceenddate)
                                     </th>
                                     <th>
+                                        المرسل
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.senderevalution)
                                     </th>
                                     <th>
@@ -1174,7 +1232,10 @@
                                                 @item.serviceenddate
                                             </td>
                                             <td>
-                                                @item.iduser_FK
+                                                @item.AspNetUser.Email
+                                            </td>
+                                            <td>
+                                                @item.senderevalution
                                             </td>
                                             <td>
                                                 @item.recieverevalution
@@ -1187,10 +1248,10 @@
 
                                             </td>
                                         </tr>
-        }
-    }
-}
-catch (Exception e) { }
+                                    }
+                                }
+                                }
+                                catch (Exception e) { }
                             </tbody>
                         </table>
                     </div>

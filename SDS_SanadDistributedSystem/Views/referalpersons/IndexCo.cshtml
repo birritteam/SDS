@@ -8,7 +8,7 @@
     int new_Count = 5;
 }
 
-<h2>الصفحة االرئيسية- منسق القسم @ViewBag.case_manager</h2>
+<h3>الصفحة االرئيسية- منسق القسم @ViewBag.case_manager</h3>
 
 <link href="~/Content/cardview.css" rel="stylesheet" />
 
@@ -79,6 +79,9 @@
                             @Html.DisplayNameFor(model => model.serviceenddate)
                         </th>
                         <th>
+                            المرسل
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
@@ -132,6 +135,10 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
                                 </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
@@ -196,6 +203,9 @@
                             @Html.DisplayNameFor(model => model.serviceenddate)
                         </th>
                         <th>
+                            المرسل
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
@@ -249,6 +259,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -308,6 +321,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -375,6 +391,9 @@
                             @Html.DisplayNameFor(model => model.serviceenddate)
                         </th>
                         <th>
+                            المرسل
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
@@ -425,6 +444,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -491,6 +513,9 @@
                             @Html.DisplayNameFor(model => model.serviceenddate)
                         </th>
                         <th>
+                            المرسل
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
@@ -544,6 +569,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -603,6 +631,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -672,6 +703,9 @@
                             @Html.DisplayNameFor(model => model.serviceenddate)
                         </th>
                         <th>
+                            المرسل
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
@@ -725,6 +759,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -784,6 +821,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -851,6 +891,9 @@
                             @Html.DisplayNameFor(model => model.serviceenddate)
                         </th>
                         <th>
+                            المرسل
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
@@ -901,6 +944,9 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.serviceenddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -1058,6 +1104,9 @@
                                         @Html.DisplayNameFor(model => model.serviceenddate)
                                     </th>
                                     <th>
+                                        المرسل
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.senderevalution)
                                     </th>
                                     <th>
@@ -1095,7 +1144,10 @@
                                                 @item.serviceenddate
                                             </td>
                                             <td>
-                                                @item.iduser_FK
+                                                @item.AspNetUser.Email
+                                            </td>
+                                            <td>
+                                                @item.senderevalution
                                             </td>
                                             <td>
                                                 @item.recieverevalution
@@ -1139,6 +1191,9 @@
                                         @Html.DisplayNameFor(model => model.serviceenddate)
                                     </th>
                                     <th>
+                                        المرسل
+                                    </th>
+                                    <th>
                                         @Html.DisplayNameFor(model => model.senderevalution)
                                     </th>
                                     <th>
@@ -1176,7 +1231,10 @@
                                                 @item.serviceenddate
                                             </td>
                                             <td>
-                                                @item.iduser_FK
+                                                @item.AspNetUser.Email
+                                            </td>
+                                            <td>
+                                                @item.senderevalution
                                             </td>
                                             <td>
                                                 @item.recieverevalution

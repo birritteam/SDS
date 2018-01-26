@@ -25,10 +25,19 @@
 		width: 25%;
         align-self:center
 	}*/
+main {
+    
+    margin-right: 0px;
+    margin-left: 0px;
+
+
+}
 .fixed-sn main{
     padding:0px;
 
 }
+
+
 
 .form-simple .font-small {
   font-size: 0.8rem; }

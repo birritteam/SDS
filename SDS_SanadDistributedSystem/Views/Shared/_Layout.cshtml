@@ -73,40 +73,7 @@
     @*}*@
 </head>
 <body class="fixed-sn mdb-skin bg-skin-lp" style="padding-top:50px;">
-    <marquee direction="right" bgcolor="#1B2838" loop="infinity" behavior="scroll" scrollamount="5" ><font color="#fff">
-        @if (ViewBag.ServicesBar != null)
-        {
-            <span>
-                خدمات مشروع سند 
-                </span>
-                <span>
-                    &copy; @DateTime.Now.Year
-                </span>
-        }
-                    @foreach (var item in ViewBag.ServicesBar)
-                {
-                        <img src="~/Images/sanad.ico">
-                        <span>الخدمة:</span>
 
-                        @item.name
-                        <span>--</span>
-                        <span>الوصف:</span>
-
-                        @item.description
-
-                        <img src="~/Images/sanad.ico">
-                    }
-                                                                     @if (ViewBag.ServicesBar != null)
-                                                                     {
-                                                                         <span>
-                                                                             خدمات مشروع سند 
-                                                                         </span>
-                                                                        <span>
-                                                                            &copy; @DateTime.Now.Year
-                                                                        </span>
-                                                                     }
-</font>
-</marquee>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -137,9 +104,49 @@
 
 
 
-        <header>
+        <header >
+            <marquee direction="right" bgcolor="#1B2838" loop="infinity" behavior="scroll" scrollamount="5">
+                <font color="#fff">
+                    @if (ViewBag.ServicesBar != null)
+                    {
+                        <span>
+                            خدمات مشروع سند
+                        </span>
+                            <span>
+                                &copy; @DateTime.Now.Year
+                            </span>
+                    }
+                    @foreach (var item in ViewBag.ServicesBar)
+                    {
+                        <img src="~/Images/sanad.ico">
+                        <span>الخدمة:</span>
+
+                            @item.name
+                            <span>--</span>
+                            <span>الوصف:</span>
+
+                            @item.description
+
+                            <img src="~/Images/sanad.ico">
+                    }
+                    @if (ViewBag.ServicesBar != null)
+                    {
+                        <span>
+                            خدمات مشروع سند
+                        </span>
+                            <span>
+                                &copy; @DateTime.Now.Year
+                            </span>
+                    }
+                </font>
+            </marquee>
+
+
+           
             <!-- Sidebar navigation -->
             <ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar" style="width: 310px;">
+            
+
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light special-logo" style="width: 310px;height:200px;">
@@ -160,11 +167,11 @@
                 <!--/Social-->
                 <!--Search Form-->
                 <li>
-                    <form class="search-form" role="search">
+                    @*<form class="search-form" role="search">*@
                         <div class="form-group waves-light">
-                            <input type="text" class="col-lg-10" placeholder="بحث">
+                            <input type="text" class="col-lg-10" placeholder="بحث" >
                         </div>
-                    </form>
+                    @*</form>*@
                 </li>
                 <!--/.Search Form-->
 
@@ -229,10 +236,9 @@
                                 <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة القسم التعليمي   <i class="fa fa-angle-down rotate-icon"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-
-                                        <li>
-                                            
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmEducation" }, htmlAttributes: new { @class = "waves-effect" })
+                                        
+                                        <li >
+                                          @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmEducation" }, htmlAttributes: new { @class = "fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -247,8 +253,9 @@
                                 <div class="collapsible-body">
                                     <ul>
 
-                                        <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmProfessional" }, htmlAttributes: new { @class = "waves-effect" })
+                                        <li >
+                                         
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmProfessional" }, htmlAttributes: new { @class = "fa fa-home waves-effect", @style = "color:white" })
                                             
                                         </li>
 
@@ -265,7 +272,8 @@
                                     <ul>
 
                                         <li>
-                                          @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmChildProtection" }, htmlAttributes: new { @class = "waves-effect" })
+                                           
+                                          @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmChildProtection" }, htmlAttributes: new { @class = "fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -277,12 +285,13 @@
                         @if (User.IsInRole("cmPsychologicalSupport1"))
                         {
                             <li>
-                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة الدعم النفسي 1   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مرشد نفسي   <i class="fa fa-angle-down rotate-icon"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
 
                                         <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmPsychologicalSupport1" }, htmlAttributes: new { @class = "waves-effect" })
+                                            
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmPsychologicalSupport1" }, htmlAttributes: new { @class = "fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -294,12 +303,13 @@
                         @if (User.IsInRole("cmPsychologicalSupport2"))
                         {
                             <li>
-                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة الدعم النفسي 2   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مسؤول تأهيل منزلي  <i class="fa fa-angle-down rotate-icon"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
 
                                         <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmPsychologicalSupport2" }, htmlAttributes: new { @class = "waves-effect" })
+                                          
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmPsychologicalSupport2" }, htmlAttributes: new { @class = " fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -311,12 +321,13 @@
                         @if (User.IsInRole("cmPsychologicalSupport3"))
                         {
                             <li>
-                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مدير حالة الدعم النفسي 3   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; مسؤول أنشطة   <i class="fa fa-angle-down rotate-icon"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
 
                                         <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmPsychologicalSupport3" }, htmlAttributes: new { @class = "waves-effect" })
+                                           
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmPsychologicalSupport3" }, htmlAttributes: new { @class = " fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -333,7 +344,8 @@
                                     <ul>
 
                                         <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmDayCare" }, htmlAttributes: new { @class = "waves-effect" })
+                                           
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmDayCare" }, htmlAttributes: new { @class = " fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -350,7 +362,8 @@
                                     <ul>
 
                                         <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmAwareness" }, htmlAttributes: new { @class = "waves-effect" })
+                                          
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmAwareness" }, htmlAttributes: new { @class = "fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -366,7 +379,8 @@
                                     <ul>
 
                                         <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmSmallProjects" }, htmlAttributes: new { @class = "waves-effect" })
+                                            
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmSmallProjects" }, htmlAttributes: new { @class = "fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -381,7 +395,8 @@
                                     <ul>
 
                                         <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmIOutReachTeam" }, htmlAttributes: new { @class = "waves-effect" })
+                                           
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmIOutReachTeam" }, htmlAttributes: new { @class = "fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -396,7 +411,8 @@
                                     <ul>
 
                                         <li>
-                                            @Html.ActionLink("الصفحة الرئيسية", "IndexByRoleName", "referalpersons", new { rolename = "cmInkindAssistance" }, htmlAttributes: new { @class = "waves-effect" })
+                                           
+                                            @Html.ActionLink(" الصفحة الرئيسية ", "IndexByRN", "referalpersons", new { rm = "cmInkindAssistance" }, htmlAttributes: new { @class = "fa fa-home waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -413,10 +429,11 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"> <i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+                                            
+                                            @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect" ,@style = "color:white" })
 
                                         </li>
 
@@ -433,10 +450,10 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"> <i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+                                            @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
 
                                         </li>
 
@@ -453,10 +470,10 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"><i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+                                           @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
 
                                         </li>
 
@@ -473,11 +490,10 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"> <i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new { }, htmlAttributes: new { @class = "waves-effect" })
-
+                                          @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -494,11 +510,10 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"> <i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
-
+                                           @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -512,12 +527,13 @@
                                 <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; منسق قسم الرعاية المنزلة    <i class="fa fa-angle-down rotate-icon"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
-
+                                         
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"> <i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
+                                            
+                                          @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
 
                                         </li>
 
@@ -534,11 +550,10 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"><i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
-
+                                        @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -555,11 +570,10 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"> <i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
-
+                                            @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -575,11 +589,10 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"><i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
-
+                                         @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -596,11 +609,10 @@
                                     <ul>
 
                                         <li>
-                                            <a href="~/referalpersons/IndexCo" class="waves-effect">الصفحة الرئيسية</a>
+                                            <a href="~/referalpersons/IndexCo" class="waves-effect"><i class="fa fa-home " style="color:white"></i> الصفحة الرئيسية</a>
                                         </li>
                                         <li>
-                                            @Html.ActionLink("الخدمات", "IndexCO", "services", new {  }, htmlAttributes: new { @class = "waves-effect" })
-
+                                            @Html.ActionLink(" الخدمات ", "IndexCO", "services", new { }, htmlAttributes: new { @class = "fa fa-list waves-effect", @style = "color:white" })
                                         </li>
 
                                     </ul>
@@ -614,10 +626,10 @@
                                 <div class="collapsible-body">
                                     <ul>
                                         <li>
-                                            <a href="~/Account/Register" class="waves-effect">إضافة مستخدم</a>
+                                            <a href="~/Account/Register" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-plus-circle" style="color:white"></i> إضافة مستخدم</a>
                                         </li>
                                         <li>
-                                            <a href="~/AspNetUsers/index" class="waves-effect">كافة المستخدمين</a>
+                                            <a href="~/AspNetUsers/index" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-list" style="color:white"></i> كافة المستخدمين</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -627,10 +639,10 @@
                                 <div class="collapsible-body">
                                     <ul>
                                         <li>
-                                            <a href="~/Centers/Create" class="waves-effect">إضافة مركز</a> 
+                                            <a href="~/Centers/Create" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-plus-circle" style="color:white"></i> إضافة مركز </a> 
                                         </li>
                                         <li>
-                                            <a href="~/Centers/index" class="waves-effect">كافة المراكز</a>
+                                            <a href="~/Centers/index" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-list" style="color:white"></i> كافة المراكز</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -640,10 +652,10 @@
                                 <div class="collapsible-body">
                                     <ul>
                                         <li>
-                                            <a href="~/Services/Create" class="waves-effect">إضافة خدمة</a>
+                                            <a href="~/Services/Create" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-plus-circle" style="color:white"></i> إضافة خدمة</a>
                                         </li>
                                         <li>
-                                            <a href="~/Services/index" class="waves-effect">كافة الخدمات</a>
+                                            <a href="~/Services/index" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-list" style="color:white"></i> كافة الخدمات</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -656,38 +668,38 @@
                                 <div class="collapsible-body">
                                     <ul>
                                         <li>
-                                            <a href="~/families/index" class="waves-effect">كافة العائلات المسجلة</a>
+                                            <a href="~/families/index" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-users" style="color:white"></i> كافة العائلات المسجلة</a>
                                         </li>
                                         @if (User.IsInRole("receptionist"))
                                         {
                                             <li>
-                                                <a href="~/families/Create" class="waves-effect">إضافة عائلة</a>
+                                                <a href="~/families/Create" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-plus-circle" style="color:white"></i> إضافة عائلة</a>
                                             </li>
                                         }                                                   
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; الأشخاص المسجلين   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; الأشخاص المسجلين   <i class="fa fa-angle-down rotate-icon" style="color:white"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
                                         <li>
-                                            <a href="~/people/index" class="waves-effect">كافة الأشخاص المسجلين</a>
+                                            <a href="~/people/index" class="waves-effect"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-users" style="color:white"></i> كافة الأشخاص المسجلين</a>
                                         </li>
                                     </ul>
                                 </div>
                             </li>
                             <li>
-                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; بيانات بحاجة لاستكمال   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; بيانات بحاجة لاستكمال   <i class="fa fa-angle-down rotate-icon" style="color:white"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
                                         <li>
-                                            <a href="~/temporals/Index" class="waves-effect">كافة الأشخاص</a>
+                                            <a href="~/temporals/Index" class="waves-effect"> &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-users" style="color:white"></i> كافة الأشخاص</a>
                                         </li>
                                         @if (User.IsInRole("receptionist"))
                                         {
                                             <li>
-                                                <a href="~/temporals/Create" class="waves-effect">إضافة شخص</a>
+                                            <a href="~/temporals/Create" class="waves-effect"> &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user-plus" style="color:white"></i> إضافة شخص</a>
                                             </li>
                                         }
                                     </ul>
@@ -697,22 +709,23 @@
                         @if(User.IsInRole("cmSGBV"))
                         {
                             <li>
-                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  الحالات السرية   <i class="fa fa-angle-down rotate-icon"></i></a>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  الحالات السرية   <i class="fa fa-angle-down rotate-icon" style="color:white"></i></a>
                                 <div class="collapsible-body">
                                     <ul>
                                         <li>
-                                            <a href="~/secretPeople/index" class="waves-effect">كافة الحالات المسجلة</a>
+                                            <a href="~/secretPeople/index" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp;<i class=" fa fa-user-secret" style="color:white"></i> كافة الحالات المسجلة</a>
                                         </li>
                                             <li>
-                                                <a href="~/secretPeople/Create" class="waves-effect">حالة جديدة</a>
+                                            <a href="~/secretPeople/Create" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-plus-circle" style="color:white"></i> حالة جديدة</a>
                                             </li>                                                                                
                                     </ul>
                                 </div>
                             </li>
                         }
-
-                        @Html.Partial("_LoginPartial")
-                    </ul>
+                        
+                            @Html.Partial("_LoginPartial")
+                           
+</ul>
                 </li>
                 <!--/. Side navigation links -->
                 @*<div class="sidenav-bg mask-strong"></div>*@
@@ -734,15 +747,20 @@
                 </div>
             </nav>
         </header>
-    <main>
+    <main style="
+    margin-right: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+">
         <div class="container-fluid" id="ParentDiv">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لصالح جمعية البر والخدمات الاجتماعية-سند </p>
-                <p>       طوّر بواسطة مكتب تقانة المعلومات      </p>
-            </footer>
-        </div>
+            <div id="content" style="height: 100%;">
+                @RenderBody()
+                </div>
+                <footer class="footer">
+                    <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لصالح جمعية البر والخدمات الاجتماعية-سند </p>
+                    <p>       طوّر بواسطة مكتب تقانة المعلومات      </p>
+                </footer>
+            </div>
     </main>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

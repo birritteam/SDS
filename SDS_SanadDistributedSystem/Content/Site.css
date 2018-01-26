@@ -35,7 +35,14 @@ textarea {
   
     /*font-family: 'Amiri', serif;*/
 }
-body,h1{
+main {
+    
+    margin-right: 0px;
+    margin-left: 0px;
+
+
+}
+h1{
     /*direction: rtl;*/
     /*font-family: 'Droid Arabic Kufi';*/
     /*font-family: 'Cairo', sans-serif;*/
@@ -85,4 +92,29 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {
     text-align: center;
+}
+.table a {
+    margin:0px;
+}
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: #efefef;
+  text-align: center;
+}
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
 }

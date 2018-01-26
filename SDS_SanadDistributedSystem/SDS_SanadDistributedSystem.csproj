@@ -816,7 +816,7 @@
     <Content Include="Views\Account\AdminPage.cshtml" />
     <Content Include="Views\temporals\EditReferal.cshtml" />
     <Content Include="Views\referalpersons\IndexCo.cshtml" />
-    <Content Include="Views\referalpersons\IndexByRoleName.cshtml" />
+    <Content Include="Views\referalpersons\IndexByRN.cshtml" />
     <Content Include="Views\services\IndexCO.cshtml" />
     <Content Include="Views\services\EditEnable.cshtml" />
     <Content Include="Views\Shared\_Bar.cshtml" />

@@ -4,23 +4,24 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-        <ul class="nav navbar-nav navbar-right">
-            
-                 <li>
+       
+            <ul>
+                @*class="nav navbar-nav navbar-right"*@
+                <li class="collapsible-header waves-effect arrow-r">
 
                     @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-                    <a href="/Manage/Index" class="waves-effect"><i class="fa fa-user-circle fa-5x"></i>  مرحباً <span id="loginusername">@User.Identity.GetUserName()</span></a>
+                    <a href="/sds/Manage/Index" class="waves-effect"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-user-circle fa-5x" style="color:white"></i> مرحباً <span id="loginusername">@User.Identity.GetUserName()</span></a>
 
                 </li>
-          
-          
-                <li>
 
-                    <a href="javascript:document.getElementById('logoutForm').submit()" class="waves-effect"><i class="fa fa-lock"></i>  تسجيل خروج  </a>
+
+                <li class="collapsible-header waves-effect arrow-r">
+
+                    <a href="javascript:document.getElementById('logoutForm').submit()" class="waves-effect"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-lock" style="color:white"></i> تسجيل خروج  </a>
                 </li>
-                       
-        </ul>
-            
+
+            </ul>
+
             }
             }
             else

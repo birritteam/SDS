@@ -17,21 +17,29 @@
     <div class="card" style="width: 100%; padding:15px; align-items:center">
 
         <!--Header-->
-        <div class="header pt-3 grey lighten-2 centered-wrapper">
+        <div class="header pt-3 grey centered-wrapper">
 
             <div class="row d-flex justify-content-start">
-                <h3 class="deep-grey-text mt-3 mb-4 pb-1 mx-4 "><b> تعديل بيانات الإحالة</b></h3>
-                <h4 class="deep-grey-text mt-3 mb-4 pb-1 mx-3 "><b> إحالة @ViewBag.state</b></h4>
+                <h4 class="deep-grey-text mt-3 mb-4 pb-1 mx-5 fa fa-edit" style="font-size:3rem ;color:#fff"><b> تعديل بيانات الإحالة - <span style="font-size:2rem ;color:#fff"> الإحالة @ViewBag.state</span></b></h4>
+                @*<h5 class="deep-grey-text mt-3 mb-4 pb-1 mx-3 "style="font-size:2rem ;color:#fff"><b> إحالة @ViewBag.state</b></h5>*@
             </div>
         </div>
-        @{var item=Model.person;}
+        @{
+            var item=Model.person;
+            var name = Model.person.fname + " " + Model.person.lname;
+            var gender = Model.person.gender;
+            }
         @*@using (Html.BeginForm())
         {*@
             <form action="" method="post">
                 @Html.AntiForgeryToken()
-
+                @if (gender == "ذكر")
+            {<h3><b>تعديل إحالة السيد @name </b></h3>}
+            else
+            {   <h3><b>تعديل إحالة السيدة @name </b></h3>}
                 <div class="form-horizontal centered-wrapper">
-                    <h3>@item.fname @item.lname</h3>
+                  
+              
                     <hr />
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     @Html.HiddenFor(model => model.idreferalperson)
