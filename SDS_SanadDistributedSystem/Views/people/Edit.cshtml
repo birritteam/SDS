@@ -94,8 +94,8 @@
                 </div>
             </div>
         </div>
-        
-        
+
+
         <div class="row panel"></div>
         <div class="row">
             <div class="col-md-4">
@@ -132,7 +132,7 @@
 
             @*<div class="col-md-4">
 
-            </div>*@
+                </div>*@
             <div class="col-md-4">
                 <div class="form-group">
                     @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -146,8 +146,6 @@
             </div>
 
         </div>
-        <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
-        <input type="hidden" name="registrationdate" id="registrationdate" />
 
         <div class="row">
             @*<div class="col-md-2"></div>*@
@@ -159,7 +157,7 @@
             </div>
 
             @*<div class="col-md-4">
-            </div>*@
+                </div>*@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label col-md-4" for="previousWorkID">العمل السابق</label>
@@ -193,12 +191,8 @@
 
         </div>
 
-        @*@Html.HiddenFor(model=>model.idfamily_FK)
-            @Html.HiddenFor(model => model.idcenter_FK)*@
-       @Html.HiddenFor(model => model.iduser)
-        @Html.HiddenFor(model => model.onoffflag)
-        @Html.HiddenFor(model => model.registrationdate)
-        @Html.HiddenFor(model => model.gender)
+       
+
         <div class="form-group row">
             <h4 class="h4">الوثائق</h4>
             @foreach (var document in ViewBag.documentsOptions)
@@ -207,7 +201,7 @@
                     <div class="checkbox-inline">
                         @if (ViewBag.selectedML.Contains(document.idmanagelist))
                         {
-                            <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" checked="checked"/>
+                            <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" checked="checked" />
 
                         }
                         else
@@ -246,7 +240,7 @@
                         </div>
                     </div>
                 }
-            //</div>
+                //</div>
             }
 
 
@@ -254,20 +248,20 @@
 
 
         <div class="row"></div>
-        <hr/>
+        <hr />
         <div class="row">
             @*@Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
 
-            <div class="md-form">
-                @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 })
-                @Html.Label(0 + " %", new { @for = "e" + 0 })
-                @foreach (int item in ViewBag.evaluationValues)
-                {
-                    @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e" + item })
-                    @Html.Label(item + " %", new { @for = "e" + item })
-                }
-                @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-            </div>*@
+                <div class="md-form">
+                    @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 })
+                    @Html.Label(0 + " %", new { @for = "e" + 0 })
+                    @foreach (int item in ViewBag.evaluationValues)
+                    {
+                        @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e" + item })
+                        @Html.Label(item + " %", new { @for = "e" + item })
+                    }
+                    @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+                </div>*@
 
             <div class="row">
                 <div class="col-md-2">
@@ -275,12 +269,12 @@
                 </div>
                 <div>
                     <div class="range-field">
-                        <input type="range" name="evaluation" id="evaluation" min="0" max="100" value="@Model.evaluation"/>
+                        <input type="range" name="evaluation" id="evaluation" min="0" max="100" value="@Model.evaluation" />
                     </div>
                 </div>
 
             </div>
-  <hr/>
+            <hr />
             <div class="md-form row">
 
                 @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
@@ -290,6 +284,13 @@
 
         </div>
 
+        @Html.HiddenFor(model => model.idfamily_FK)
+        @Html.HiddenFor(model => model.idcenter_FK)
+        @Html.HiddenFor(model => model.iduser)
+        @Html.HiddenFor(model => model.onoffflag)
+        @Html.HiddenFor(model => model.registrationdate)
+        @Html.HiddenFor(model => model.gender)
+        @Html.HiddenFor(model => model.formnumber)
 
 
         <div class="form-group">

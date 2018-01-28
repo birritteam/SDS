@@ -114,9 +114,12 @@
           @*      <td>@Html.DisplayFor(modelItem => item.registrationdate)</td>*@
 
                 <td>
-                    @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
-                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
-                    @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, "")
+                    @Html.ActionLink("تفاصيل", "Details", "people", new { id = item.idperson }, new { @class = "btn btn-primary btn-rounded p-0" })
+                    @Html.ActionLink("تعديل", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded p-0" })
+                    @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded" })
+
+
+
                
                     @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
                 </td>

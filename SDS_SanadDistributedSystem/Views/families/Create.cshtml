@@ -168,13 +168,16 @@
 
             </div>
             <hr /> 
+            <div class="row"></div>
+            <div class="row">
+                <div class="md-form">
 
-            <div class="md-form row">
-
-                @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
-                @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
-                @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                    @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
+                    @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
+                    @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                </div>
             </div>
+            
 
         </div>
 

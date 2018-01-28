@@ -820,6 +820,7 @@
     <Content Include="Views\services\IndexCO.cshtml" />
     <Content Include="Views\services\EditEnable.cshtml" />
     <Content Include="Views\Shared\_Bar.cshtml" />
+    <Content Include="Scripts\popper.min" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

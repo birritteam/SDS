@@ -401,8 +401,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                 {
                     UserViewModel uvm = new UserViewModel();
                     uvm.Id = "0";
-                    uvm.Email = "لايوجد مستقبِل";
-                    uvm.UserName = "لايوجد مستقبِل";
+                    uvm.Email = "لايوجد مستقبل";
+                    uvm.UserName = "لايوجد مستقبل";
                     user_list.Add(uvm);
 
                 }
@@ -421,8 +421,8 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                 UserViewModel uvm = new UserViewModel();
                 uvm.Id = "0";
-                uvm.Email = "لايوجد مستقبِل";
-                uvm.UserName = "لايوجد مستقبِل";
+                uvm.Email = "لايوجد مستقبل";
+                uvm.UserName = "لايوجد مستقبل";
                 List<UserViewModel> user_list = new List<UserViewModel>();
                 user_list.Add(uvm);
 
@@ -459,8 +459,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 UserViewModel uvm = new UserViewModel();
                 uvm.Id = "0";
-                uvm.Email = "لايوجد مستقبِل";
-                uvm.UserName = "لايوجد مستقبِل";
+                uvm.Email = "لايوجد مستقبل";
+                uvm.UserName = "لايوجد مستقبل";
                 user_list.Add(uvm);
 
             }
@@ -698,10 +698,10 @@ namespace SDS_SanadDistributedSystem.Controllers
                 List<AspNetUser> uu = new List<Models.AspNetUser>();
                 AspNetUser u = new AspNetUser();
                 u.Id = "0";
-                u.UserName = "لايوجد مستقبِل";
+                u.UserName = "لايوجد مستقبل";
                 uu.Add(u);
                 ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
-                ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبِل");
+                ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
             }
 
 
@@ -769,10 +769,10 @@ namespace SDS_SanadDistributedSystem.Controllers
                 List<AspNetUser> uu = new List<Models.AspNetUser>();
                 AspNetUser u = new AspNetUser();
                 u.Id = "0";
-                u.UserName = "لايوجد مستقبِل";
+                u.UserName = "لايوجد مستقبل";
                 uu.Add(u);
                 ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
-                ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبِل");
+                ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
             }
 
             

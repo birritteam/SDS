@@ -109,14 +109,11 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "cmSGBV")]
-        public async Task<ActionResult> Create([Bind(Include = "fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,is_secret")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents, DateTime? servicestartdate, string senderevalution,string outreachnote)
+        public async Task<ActionResult> Create([Bind(Include = "fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,is_secret,evaluation")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents
+            //, DateTime? servicestartdate, string senderevalution,string outreachnote
+            )
         {
-            referalperson rp = new referalperson();
-            rp.servicestartdate = servicestartdate;
-            rp.senderevalution = senderevalution;
-            rp.outreachnote = outreachnote;
             
-
             DateTime now = DateTime.Now;
             person.registrationdate = now;
 
@@ -131,19 +128,6 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             person.idperson = person.idcenter_FK.ToString() + person.formnumber.ToString();
             person.is_secret = true;
-            rp.idperson_FK = person.idperson;
-            rp.idcenter_FK = person.idcenter_FK;
-            rp.referaldate = DateTime.Now;
-            rp.submittingdate = DateTime.Now;
-            string idrole = db.AspNetRoles.Where(a => a.Name == "cmSGBV").First().Id;
-            int idcase = (int)db.AspNetRoles.Where(a => a.Name == "cmSGBV").First().idcase;
-            int idservice= db.services.Where(a => a.idcase_FK == idcase).First().idservice;
-
-            rp.idcase_FK = idcase;
-            rp.idservice_FK = idservice;
-            rp.referalstate = "Approved";
-            rp.servicestate = "In prgress";
-            person.referalpersons.Add(rp);
 
             if (ModelState.IsValid)
             {
@@ -207,6 +191,30 @@ namespace SDS_SanadDistributedSystem.Controllers
                         };
                         db.personmanages.Add(document);
                     }
+
+                //referal data
+
+                referalperson rp = new referalperson();
+                //rp.servicestartdate = servicestartdate;
+                //rp.senderevalution = person.evaluation.ToString();
+              //  rp.outreachnote = person.note;
+
+                rp.idperson_FK = person.idperson;
+                rp.idcenter_FK = person.idcenter_FK;
+                rp.referaldate = now;
+                rp.submittingdate = now;
+                rp.servicestartdate = now;
+
+                string idrole = db.AspNetRoles.Where(a => a.Name == "cmSGBV").First().Id;
+                int idcase = (int)db.AspNetRoles.Where(a => a.Name == "cmSGBV").First().idcase;
+                int idservice = db.services.Where(a => a.idcase_FK == idcase).First().idservice;
+
+                rp.idcase_FK = idcase;
+                rp.idservice_FK = idservice;
+                rp.referalstate = "Approved";
+                rp.servicestate = "In prgress";
+                person.referalpersons.Add(rp);
+
 
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

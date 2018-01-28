@@ -1,11 +1,100 @@
 ﻿@model SDS_SanadDistributedSystem.Models.family
 
 @{
-    ViewBag.Title = "تفاصيل";
+    ViewBag.Title = (" تفاصيل بيانات العائلة ");
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>تفاصيل العائلة</h2>
+<div class="card card-cascade">
+
+    <!--Card image-->
+    <div class="view card-header my-blue-gradient white-text">
+        <h3 class="h3-responsive card-header-content">تفاصيل بيانات العائلة</h3>
+        <p class="card-header-content sub-header h4-responsive">@Model.idfamily</p>
+    </div>
+    <!--/Card image-->
+    <!--Card content-->
+    <div class="card-body text-center">
+            <p class="card-text card-block">
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.serial_number)
+                    @Html.DisplayFor(model => model.serial_number)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.lastname)
+                    @Html.DisplayFor(model => model.lastname)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.familynature)
+                    @Html.DisplayFor(model => model.familynature)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.currentaddress)
+                    @Html.DisplayFor(model => model.currentaddress)
+                </div>
+                @if (!Model.familynature.Equals("فرد من المجتمع المضيف"))
+            {
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.lastaddress)
+                        @Html.DisplayFor(model => model.lastaddress)
+                    </div>
+                    <div class="col-md-3">
+                        @Html.LabelFor(model => model.displacementdate)
+                        @Html.DisplayFor(model => model.displacementdate)
+                    </div>
+                }
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.evaluation)
+                    @Html.DisplayFor(model => model.evaluation)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.phone1)
+                    @Html.DisplayFor(model => model.phone1)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.phone1owner)
+                    @Html.DisplayFor(model => model.phone1owner)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.phone2)
+                    @Html.DisplayFor(model => model.phone2)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.phone2owner)
+                    @Html.DisplayFor(model => model.phone2owner)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.personcount)
+                    @Html.DisplayFor(model => model.personcount)
+                </div>
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.note)
+                    @Html.DisplayFor(model => model.note)
+                </div>
+            </p>
+      
+        
+        <hr>
+        <div class="row">
+
+        </div>
+        <div class="row">
+            <p class="card-footer">
+                @Html.ActionLink(" ", "Edit", new { id = Model.idfamily }, new { @class = "btn btn-warning btn-rounded p-2 fa fa-edit" })
+                @Html.ActionLink(" ", "Create","people", new { id = Model.idfamily }, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus" })
+                @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-2 fa fa-list" })
+            </p>
+        </div>
+        
+
+        @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
+    </div>
+    <!--/.Card content-->
+
+</div>
+
+
+@*<h2>تفاصيل العائلة</h2>
 
 <div>
     
@@ -102,16 +191,16 @@
             @Html.DisplayFor(model => model.lastname)
         </dd>
 
-        @*<dt>
+        <dt>
             @Html.DisplayNameFor(model => model.AspNetUser.Email)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>*@
+        </dd>
 
     </dl>
-</div>
+</div>*@
 
 
 <h3>الأشخاص المسجلين ضمن العائلة</h3>
@@ -120,27 +209,21 @@
     <table class="table" id="familymembers">
         <tr>
             <th>
-                الرقم التسلسلي للشخص
+                @Html.DisplayNameFor(model => model.people.First().idperson)
             </th>
             <th>
-                الاسم الأول
+                @Html.DisplayNameFor(model => model.people.First().full_name)
             </th>
             <th>
-                الاسم الأخير
+                @Html.DisplayNameFor(model => model.people.First().mothername)
             </th>
             <th>
-                اسم الأب
+                @Html.DisplayNameFor(model => model.people.First().age)
             </th>
             <th>
-                اسم الأم
+                @Html.DisplayNameFor(model => model.people.First().gender)
             </th>
-            <th>
-                العمر
-            </th>
-            <th>
-                الجنس
-            </th>
-            @*<th></th>*@
+            <th></th>
         </tr>
 
         @foreach (var item in Model.people)
@@ -151,13 +234,7 @@
                     @Html.DisplayFor(modelItem => item.idperson)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.lname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fathername)
+                    @Html.DisplayFor(modelItem => item.full_name)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.mothername)
@@ -176,11 +253,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.gender)
                 </td>
-                @*<td>
-                    @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
-                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
-                    @Html.ActionLink("حذف", "Delete", new { id = item.idperson })
-                </td>*@
+                <td>
+                    @Html.ActionLink("تفاصيل", "Details", "people", new { id = item.idperson }, new { @class = "btn btn-primary btn-rounded p-0" })
+                    @Html.ActionLink("تعديل", "Edit","people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded p-0" })
+                    @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded" })
+
+              
+    @*  @Html.ActionLink("حذف", "Delete", "people", new { id = item.idperson }, new { @class = "btn btn-danger" })*@
+                </td>
             </tr>                             }
 
     </table>

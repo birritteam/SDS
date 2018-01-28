@@ -1,203 +1,344 @@
 ﻿@model SDS_SanadDistributedSystem.Models.person
 
 @{
-    ViewBag.Title = "تفاصيل بيانات الشخص";
+    ViewBag.Title = ("تفاصيل بيانات " + Model.full_name);
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>تفاصيل بيانات الشخص</h2>
+<!--Card-->
+<div class="card card-cascade">
 
-<div>
-    <h4>@Model.idperson</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fname)
-        </dt>
+    <!--Card image-->
+    <div class="view card-header my-blue-gradient white-text">
+        <h3 class="h3-responsive card-header-content">تفاصيل بيانات الشخص</h3>
+        <p class="card-header-content sub-header h4-responsive">@Model.idperson</p>
+    </div>
+    <!--/Card image-->
+    <!--Card content-->
+    <div class="card-body text-center">
 
-        <dd>
-            @Html.DisplayFor(model => model.fname)
-        </dd>
+        <p class="card-text card-block">
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.full_name)
+                @Html.DisplayFor(model => model.full_name)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.mothername)
+                @Html.DisplayFor(model => model.mothername)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.birthday)
+                @Html.DisplayFor(model => model.birthday)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.birthplace)
+                @Html.DisplayFor(model => model.birthplace)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.gender)
+                @Html.DisplayFor(model => model.gender)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.nationality)
+                @Html.DisplayFor(model => model.nationality)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.nationalnumber)
+                @Html.DisplayFor(model => model.nationalnumber)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.martial)
+                @Html.DisplayFor(model => model.martial)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.applicant)
+                @Html.DisplayFor(model => model.applicant)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.relationtype)
+                @Html.DisplayFor(model => model.relationtype)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.education)
+                @Html.DisplayFor(model => model.education)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.educationstate)
+                @Html.DisplayFor(model => model.educationstate)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.phone1)
+                @Html.DisplayFor(model => model.phone1)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.phone2)
+                @Html.DisplayFor(model => model.phone2)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.currentaddress)
+                @Html.DisplayFor(model => model.currentaddress)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.registrationdate)
+                @Html.DisplayFor(model => model.registrationdate)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.formnumber)
+                @Html.DisplayFor(model => model.formnumber)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.serial_number)
+                @Html.DisplayFor(model => model.serial_number)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.family.familynature)
+                @Html.DisplayFor(model => model.family.familynature)
+            </div>
+            <div class="col-md-3">
+                @Html.LabelFor(model => model.note)
+                @Html.DisplayFor(model => model.note)
+            </div>
+            @*@Html.DisplayNameFor(model => model.center.name)
+                    @Html.DisplayFor(model => model.center.name)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lname)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lname)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fathername)
-        </dt>
+                 @*<div class="col-md-3">
+                    @Html.LabelFor(model => model.AspNetUser.Email)
+                    @Html.DisplayFor(model => model.AspNetUser.Email)
+                </div>*@
 
-        <dd>
-            @Html.DisplayFor(model => model.fathername)
-        </dd>
+        </p>
+        <hr>
+        <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.mothername)
-        </dt>
+        </div>
+        <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.mothername)
-        </dd>
+            <p class="card-footer">
+                @*<i class="fa fa-magic ml-1"></i>*@
+                @Html.ActionLink(" ", "personReferal", "referalpersons", new { id = Model.idperson }, new { @class = "btn btn-secondary btn-rounded p-2 fa fa-arrow-circle-right" })
+                @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded fa fa-list p-2"})
+                @Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-2" })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.birthday)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.birthday)
-        </dd>
+            </p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.birthplace)
-        </dt>
+        </div>
+      
 
-        <dd>
-            @Html.DisplayFor(model => model.birthplace)
-        </dd>
+        @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
+    </div>
+    <!--/.Card content-->
 
-        <dt>
-            @Html.DisplayNameFor(model => model.gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.nationality)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nationality)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.martial)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.martial)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.relationtype)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.relationtype)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.onoffflag)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.onoffflag)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.education)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.education)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.educationstate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.educationstate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.phone1)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.phone1)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.phone2)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.phone2)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.currentaddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.currentaddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.registrationdate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.registrationdate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.formnumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.formnumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.note)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.note)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.nationalnumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nationalnumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AspNetUser.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.center.name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.center.name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.family.familynature)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.family.familynature)
-        </dd>
-
-    </dl>
 </div>
-<p>
-    @Html.ActionLink("تعديل", "Edit", new { id = Model.idperson }) |
-    @Html.ActionLink("عودة إلى قائمة الأشخاص", "Index")
-</p>
+<!--/.Card-->
+@*<!--Panel-->
+    <div class="card">
+        <div class="card-header deep-orange lighten-1 white-text">
+            Featured
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Special title treatment</h4>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a class="btn btn-deep-orange">@Html.ActionLink("تعديل", "Edit", new { id = Model.idperson })</a>
+
+        </div>
+    </div>
+    <!--/.Panel-->
+    <h2>تفاصيل بيانات الشخص</h2>
+
+    <div>
+        <h4>@Model.idperson</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.fname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.lname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.lname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fathername)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fathername)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.mothername)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mothername)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.birthday)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.birthday)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.birthplace)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.birthplace)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nationality)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nationality)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.martial)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.martial)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.relationtype)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.relationtype)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.onoffflag)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.onoffflag)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.education)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.education)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.educationstate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.educationstate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.phone1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phone1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.phone2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phone2)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.currentaddress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.currentaddress)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.registrationdate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.registrationdate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.formnumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.formnumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.note)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.note)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nationalnumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nationalnumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AspNetUser.Email)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.center.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.center.name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.family.familynature)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.family.familynature)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("تعديل", "Edit", new { id = Model.idperson }) |
+        @Html.ActionLink("عودة إلى قائمة الأشخاص", "Index")
+    </p>*@

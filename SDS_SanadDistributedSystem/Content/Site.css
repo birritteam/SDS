@@ -14,12 +14,12 @@
     padding-right: 15px;
 }*/
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-/*.dl-horizontal dt {
+/*Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column*/
+
+.dl-horizontal dt {
     white-space: normal;
-}*/
+}
 
 /* Set width on the form input elements since they're 100% wide by default */
 /*input,
@@ -28,93 +28,142 @@ textarea {
     max-width: 280px;
 }*/
 
-*{
+* {
     /*direction: rtl;*/
     font-family: 'Cairo', sans-serif;
     font-family: 'Noto Kufi Arabic', sans-serif;
-  
     /*font-family: 'Amiri', serif;*/
 }
+
 main {
-    
     margin-right: 0px;
     margin-left: 0px;
-
-
 }
-h1{
+
+h1 {
     /*direction: rtl;*/
     /*font-family: 'Droid Arabic Kufi';*/
     /*font-family: 'Cairo', sans-serif;*/
     padding-bottom: 20px;
 }
 
-label{
-    right:0px;
+label {
+    right: 0px;
+}
+
+.btn {
+    padding: 5px;
 }
 .bootstrap-select.btn-group .dropdown-menu.inner {
-   margin:10px;
+    margin: 10px;
 }
 
 
-input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.md-textarea{
+input[type=date], input[type=datetime-local], input[type=email], input[type=number], input[type=password], input[type=search-md], input[type=search], input[type=tel], input[type=text], input[type=time], input[type=url], textarea.md-textarea {
     /*font-family: 'Droid Arabic Kufi';*/
-    /*font-family: 'Cairo', sans-serif;*/ 
-     font-size: 12px;
-      direction: rtl;
-      /*width:300px;*/
-     }
+    /*font-family: 'Cairo', sans-serif;*/
+    font-size: 12px;
+    direction: rtl;
+    /*width:300px;*/
+}
 
 
-.md-form label,[type=radio]:checked+label, [type=radio]:not(:checked)+label, [type=checkbox]+label{
+.md-form label, [type=radio]:checked + label, [type=radio]:not(:checked) + label, [type=checkbox] + label {
     font-size: 11px;
-    right:0;
+    right: 0;
     left: unset;
-
 }
 
 
-.mb-2{
-     margin-bottom: 15px !important;
- }
- .mb-3 {
-      margin-bottom: 20px !important;
- }
-  .p-1{
-     padding:10px;
- }
- .p-2{
-     padding:20px;
- }
-.btn {
-    padding:5px;
+.mb-2 {
+    margin-bottom: 15px !important;
 }
+
+.mb-3 {
+    margin-bottom: 20px !important;
+}
+
+.p-0{
+padding: 5px;
+}
+
+.p-1 {
+    padding: 10px;
+}
+
+.p-2{
+    padding: 15px;
+}
+
+.p-3 {
+    padding: 20px;
+}
+
+
 
 .bootstrap-select.btn-group .dropdown-toggle .filter-option {
     text-align: center;
 }
+
 .table a {
-    margin:0px;
+    margin: 0px;
 }
 
 .footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #efefef;
-  text-align: center;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #e4e4e4;
+    text-align: center;
 }
-body {
-  position: relative;
-  margin: 0;
-  padding-bottom: 6rem;
-  min-height: 100%;
 
+body {
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
 }
 
 html {
-  height: 100%;
-  box-sizing: border-box;
+    height: 100%;
+    box-sizing: border-box;
 }
+
+.my-blue-gradient, .blue-skin .side-nav {
+    background: #1b2838;
+    background: -moz-linear-gradient(-45deg,#1b2838 0,#329ff1 100%);
+    background: -webkit-linear-gradient(-45deg,#1b2838 0,#329ff1 100%);
+    background: linear-gradient(135deg,#1b2838 0,#1b2838 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1b2838', endColorstr='#329ff1', GradientType=1 );
+    color: white;
+}
+
+.dark-blue-bg{
+    background: #1b2838;
+
+}
+
+.card-cascade .card .view {
+     border-radius: 15px; 
+     -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    
+}
+
+.card-header-content{
+    margin-right: 20px;
+    text-align:center;
+}
+
+.sub-header{
+    color: #329ff1
+}
+
+
+/*.btn-rounded{
+    padding:15px; margin-top:10px; margin-bottom:10px
+}*/
+
+
