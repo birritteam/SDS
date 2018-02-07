@@ -6,42 +6,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@*<link href="~/Content/cardview.css" rel="stylesheet" />*@
+
+@*<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/select.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/fixedColumns.dataTables.min.css" rel="stylesheet" />*@
+@*<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />*@
+@*<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />*@
+
 <h3>الحالات السرية الخاصة بالمستخدم</h3>
 <h4>@User.Identity.GetUserName()</h4>
 <p>
     @Html.ActionLink("إضافة حالة جديدة", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.martial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.education)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.currentaddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.registrationdate)
-        </th>
-        <th></th>
-    </tr>
+<table class="table display" id="All">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.lname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.martial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.education)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.currentaddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.registrationdate)
+            </th>
 
+            <th>حالة الخدمة</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 @foreach (var item in Model)
 {
     if (item.is_secret)
     {
-        <tr>
+        if (@item.referalpersons.FirstOrDefault().servicestate.Equals("Closed"))
+        {
+            @:<tr id=@(item.idperson+"row") class="grey lighten-3 grey-text">
+        }
+        else
+        {
+            @:<tr id=@(item.idperson+"row")>
+        }
+        //<tr>
             <td>
                 @Html.DisplayFor(modelItem => item.fname)
             </td>
@@ -64,15 +87,112 @@
             <td>
                 @Html.DisplayFor(modelItem => item.registrationdate)
             </td>
+            @*@if (@item.referalpersons.FirstOrDefault().servicestate.Equals("In prgress"))
+            {
+                <td id=@("serviceState"+@item.idperson)>
+                    قيد المتابعة
+                </td>
+
+            }
+            else if (@item.referalpersons.FirstOrDefault().servicestate.Equals("Closed"))
+            {
+                <td id=@("serviceState"+@item.idperson) class="grey">
+                    مغلقة
+                </td>
+            }*@
+            <td id=@("serviceState"+@item.idperson)>
+                @if (@item.referalpersons.FirstOrDefault().servicestate.Equals("In prgress"))
+                {
+                    <span class="">قيد المتابعة</span>
+
+                }
+                else if (@item.referalpersons.FirstOrDefault().servicestate.Equals("Closed"))
+                {                                      
+                    <span class="text-danger">مغلقة</span>
+                }
+            </td>
+            <td>
+                @using (Ajax.BeginForm("openSecretReferal", "referalpersons", null, new AjaxOptions { OnSuccess = "referalOpenedSuccessfully", OnFailure = "OnFailureClose" }, new { @style = "display:inline;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="idreferalperson" name="idreferalperson" value="@item.referalpersons.FirstOrDefault().idreferalperson" />
+                    <input type="hidden" id="idcase" name="idcase" value="@item.referalpersons.FirstOrDefault().idcase_FK" />
+                    <input type="hidden" id="idperson" name="idperson" value="@item.idperson" />
+
+
+                    if (@item.referalpersons.FirstOrDefault().serviceenddate != null)
+                    {
+                        <span id=@("openReferal"+@item.idperson) class="">
+                            <input type="submit" value="تفعيل" class="btn btn-success btn-rounded b-p-0" />
+                        </span>
+                    }
+                    else
+                    {
+                        <span id=@("openReferal"+@item.idperson) class="hidden">
+                            <input type="submit" value="تفعيل" class="btn btn-success btn-rounded b-p-0" />
+                        </span>
+                    }
+
+                }
+                @using (Ajax.BeginForm("closeSecretReferal", "referalpersons", null, new AjaxOptions { OnSuccess = "referalClosedSuccessfully", OnFailure = "OnFailureClose" }, new { @style = "display:inline;" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="idreferalperson" name="idreferalperson" value="@item.referalpersons.FirstOrDefault().idreferalperson" />
+                    <input type="hidden" id="idcase" name="idcase" value="@item.referalpersons.FirstOrDefault().idcase_FK" />
+                    <input type="hidden" id="idperson" name="idperson" value="@item.idperson" />
+
+
+                    if (@item.referalpersons.FirstOrDefault().serviceenddate == null)
+                    {
+                        <span id= @("closeReferal"+@item.idperson) class="">
+                            <input type="submit" value="إغلاق" class="btn btn-danger btn-rounded b-p-0" />
+                        </span>
+                    }
+                    else
+                    {
+                        <span id=@("closeReferal"+@item.idperson) class="hidden">
+                            <input type="submit" value="إغلاق" class="btn btn-danger btn-rounded b-p-0" />
+                        </span>
+                    }
+
+                }
+
+            </td>
             
             <td>
-                @Html.ActionLink("تفاصيل", "Details", "secretPeople", new { id = item.idperson }, new { @class = "btn btn-primary btn-rounded p-0" })
-                @Html.ActionLink("تعديل", "Edit", "secretPeople", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded p-0" })
+                @Html.ActionLink(" ", "Edit", "secretPeople", new { id = @item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" })
+                @Html.ActionLink(" ", "Details", "secretPeople", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card p-1" })
                  @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
+            
             </td>
-        </tr>
+            
+        @:</tr>
     }
 
 }
+        </tbody>
 
 </table>
+
+@section Scripts {
+@*<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+
+<script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.bootstrap.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.min.js"></script>
+
+
+<script src="~/scripts/jszip.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.print.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
+<script src="~/Scripts/DataTables/responsive.jqueryui.min.js"></script>
+<script src="~/Scripts/DataTables/buttons.colVis.min.js"></script>
+<script src="~/Scripts/DataTables/dataTables.fixedColumns.min.js"></script>
+<script src="~/Scripts/AllDataTablesDesign.js"></script>*@
+    <script src="~/Scripts/referalsChangeState.js"></script>
+@Scripts.Render("~/bundles/jqueryval")
+
+    }

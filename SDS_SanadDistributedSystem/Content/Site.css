@@ -1,7 +1,7 @@
 ﻿@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 @import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
 @import url('https://fonts.googleapis.com/css?family=Cairo');
-@import url('https://fonts.googleapis.com/css?family=Amiri');
+/*@import url('https://fonts.googleapis.com/css?family=Amiri');*/
 
 /*body {
     padding-top: 50px;
@@ -9,10 +9,11 @@
 }*/
 
 /* Set padding to keep content from hitting the edges */
-/*.body-content {
+.body-content {
     padding-left: 15px;
     padding-right: 15px;
-}*/
+    
+}
 
 /*Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column*/
@@ -31,6 +32,7 @@ textarea {
 * {
     /*direction: rtl;*/
     font-family: 'Cairo', sans-serif;
+    font-family: 'Droid Arabic Kufi', sans-serif;
     font-family: 'Noto Kufi Arabic', sans-serif;
     /*font-family: 'Amiri', serif;*/
 }
@@ -38,6 +40,10 @@ textarea {
 main {
     margin-right: 0px;
     margin-left: 0px;
+}
+
+.float-right{
+    direction:rtl !important;
 }
 
 h1 {
@@ -52,8 +58,10 @@ label {
 }
 
 .btn {
-    padding: 5px;
+    white-space: nowrap !important;
+    margin:auto;
 }
+
 .bootstrap-select.btn-group .dropdown-menu.inner {
     margin: 10px;
 }
@@ -74,6 +82,10 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
     left: unset;
 }
 
+.m-0{
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
 
 .mb-2 {
     margin-bottom: 15px !important;
@@ -84,7 +96,15 @@ input[type=date], input[type=datetime-local], input[type=email], input[type=numb
 }
 
 .p-0{
-padding: 5px;
+padding: 5px !important;
+}
+
+/*.waves-button-input{
+padding: unset;
+}*/
+
+.b-p-0{
+padding: 2.5px !important;
 }
 
 .p-1 {
@@ -124,6 +144,20 @@ body {
     margin: 0;
     padding-bottom: 6rem;
     min-height: 100%;
+    overflow-x:hidden!important;
+    overflow-wrap:break-word;
+    /*overflow:-webkit-paged-y !important;*/
+}
+
+.side-nav{
+    background: #070f19 !important;
+    font-size:small!important;
+    /*background: white !important;*/
+    /*color: #1b2838 !important;*/
+}
+
+html{
+    overflow-x:hidden!important;
 }
 
 html {
@@ -145,16 +179,33 @@ html {
 
 }
 
-.card-cascade .card .view {
-     border-radius: 15px; 
-     -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
+.card-cascade .card .view ,.card-footer .view {
+     border-radius: 50px; 
+     -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
     
 }
 
+.card-cascade .view, .card-cascade-2 .view {
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+}
+
+.card-cascade, .card-cascade-2 {
+    display: block;
+}
 .card-header-content{
     margin-right: 20px;
     text-align:center;
+}
+
+.card-footer, .card-data{
+    margin-top:15px;
+    margin-bottom:15px;
+    background-color:#e4e4e4 !important;
+    padding-top:12px !important;
+    padding-bottom:12px !important;
+    
 }
 
 .sub-header{
@@ -167,3 +218,97 @@ html {
 }*/
 
 
+i.btn-success{
+    background-color: #55ae31 !important
+}
+
+i.btn-danger{
+    background-color: #a92c2c !important
+}
+
+i.btn-default{
+
+}
+
+/*.btn-group{
+    padding:0px;
+    margin:0px;
+    
+}*/
+
+input[type=text][readonly=readonly][id=idperson] {
+    color: transparent;
+    border-bottom: 0px dotted rgba(0,0,0,.46);
+    background-color: transparent;
+    border:hidden !important;
+    box-shadow:none !important;
+    /*float:unset !important;*/
+    /*display:none !important;*/
+
+}
+
+/*.row{
+    padding-right:10px !important;
+    padding-left:10px !important;
+}*/
+
+.dropdown-menu{
+    border-radius:25px;
+    font-size:small;
+}
+
+.inner.open{
+    direction:rtl;
+    overflow-y:hidden !important;
+}
+
+.bootstrap-select.btn-group .dropdown-menu li a{
+    white-space:normal;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .caret {
+
+    left: 12px;
+    right:unset;
+}
+
+.bootstrap-select.btn-group .dropdown-menu {
+    padding-bottom:20px
+}
+
+hr{
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+
+/*.popover {
+    direction: rtl !important;
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    -moz-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    -o-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+}
+
+.popover-title {
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    -moz-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    -o-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+}
+
+.popover-content {
+    -webkit-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    -moz-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    -o-transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+    transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+}*/
+
+.card-title{
+    /*font-weight: bold !important;*/
+    /*color:#ff8800 !important;*/
+    
+    border:2px !important;
+    /*text-align:right!important;*/
+    /*right:10px!important;*/
+}

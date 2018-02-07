@@ -365,7 +365,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
         //
         // GET: /Account/Register
-        //        [AllowAnonymous]
+        //[AllowAnonymous]
         [Authorize(Roles = "superadmin,admin")]
         public ActionResult Register(string idcenter_FK)
         {
@@ -383,7 +383,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        //        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> Register(RegisterViewModel model, string[] RolesID)//, string idCenter_FK)//

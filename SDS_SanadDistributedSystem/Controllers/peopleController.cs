@@ -73,6 +73,106 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 return HttpNotFound();
             }
+
+            var managelists = db.managelists;
+
+            var works = managelists.Where(ma => ma.flag == "W");
+
+            //int? selectedCurrentWorkId = 0;
+            //int? selectedPreviousWorkId = 0;
+
+            string selectedCurrentWork = "";
+            string selectedPreviousWork = "";
+
+
+            foreach (var work in works)
+            {
+                foreach (var personmanage in work.personmanages)
+                {
+                    if (personmanage.idperson_FK == id && personmanage.eval.Equals("Current"))
+                    {
+                        selectedCurrentWork = personmanage.managelist.name;
+                    }
+                    if (personmanage.idperson_FK == id && personmanage.eval.Equals("Previous"))
+                    {
+                        selectedPreviousWork = personmanage.managelist.name;
+                    }
+                }
+            }
+
+
+            //int selectedKCID = 0;
+            string selectedKC = "";
+
+            var kc = managelists.Where(ma => ma.flag == "KC");
+
+            foreach (var item in kc)
+            {
+                foreach (var personmanage in item.personmanages)
+                {
+                    if (personmanage.idperson_FK == id)
+                    {
+                        selectedKC = personmanage.managelist.name;
+                    }
+                }
+            }
+
+
+            List<int> selectedML = new List<int>();
+            List<IQueryable> weaknesses = new List<IQueryable>();
+
+            foreach (var item in managelists)
+            {
+                foreach (var personmanage in item.personmanages)
+                {
+                    if (personmanage.idperson_FK == id)
+                    {
+                        selectedML.Add(personmanage.idmanagelist_FK);
+                    }
+                }
+            }
+
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WM"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WD"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WE"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WC"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WWD"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WWF"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WWS"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WP"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WF"));
+            weaknesses.Add(managelists.Where(ma => ma.flag == "WL"));
+
+            List<string> selectedWeaknesses = new List<string>();
+
+            foreach (var weaknessGroup in weaknesses)
+            {
+                foreach (managelist w in weaknessGroup)
+                {
+                    if (selectedML.Contains(w.idmanagelist))
+                    {
+                        selectedWeaknesses.Add(w.name);
+                    }
+                }
+            }
+   
+            List<string> selectedDocuments = new List<string>();
+
+            foreach (managelist d in managelists.Where(ml => ml.flag == "D"))
+            {
+                if (selectedML.Contains(d.idmanagelist))
+                {
+                    selectedDocuments.Add(d.name);
+                }
+            }
+
+            ViewBag.selectedDocuments = selectedDocuments;
+            ViewBag.selectedWeaknesses = selectedWeaknesses;
+            ViewBag.selectedCurrentWork = selectedCurrentWork;
+            ViewBag.selectedPreviousWork = selectedPreviousWork;
+            ViewBag.selectedKC = selectedKC;
+
+
             return View(person);
         }
         [Authorize(Roles = "receptionist")]

@@ -5,16 +5,327 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<link href="~/Content/cardview.css" rel="stylesheet" />
 
-<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/select.jqueryui.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet" />
-<link href="~/Content/DataTables/css/fixedColumns.dataTables.min.css" rel="stylesheet" />
-@*<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />*@
-<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
-<div  class="card z-depth-2" >
+<span style="position:fixed; bottom: 20px; left: 30px; z-index:99;"
+      @*tabindex="0"
+      data-toggle="tooltip"
+      title="عودة إلى قائمة العائلات"*@
+      class="shades">
+    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list" })
+</span>
+
+
+@*<link href="~/Content/cardview.css" rel="stylesheet" />
+
+    <link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/select.jqueryui.min.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/dataTables.jqueryui.min.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/fixedColumns.dataTables.min.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet"/>
+    <link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet"/>*@
+<div class="card card-cascade">
+
+    <!--Card image-->
+    <div class="view card-header my-blue-gradient white-text">
+        <h3 class="h3-responsive card-header-content">استمارة</h3>
+        <p class="card-header-content sub-header h4-responsive">@Model.full_name</p>
+    </div>
+    <!--/Card image-->
+    <!--Card content-->
+    <div class="card-body text-center">
+
+        <p class="card-text card-block">
+
+            <div class="row">
+                <div class="col-md-9">
+                    <h5 class="card-title">معلومات شخصية  <i class="fa fa-user-o" style="color:#ff8800"></i></h5>
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.full_name)
+                            @Html.DisplayFor(model => model.full_name)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.mothername)
+                            @Html.DisplayFor(model => model.mothername)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.gender)
+                            @Html.DisplayFor(model => model.gender)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.nationality)
+                            @Html.DisplayFor(model => model.nationality)
+                        </div>
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.birthday)
+                            @Html.DisplayFor(model => model.birthday)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.birthplace)
+                            @Html.DisplayFor(model => model.birthplace)
+                        </div>
+
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.nationalnumber)
+                            @Html.DisplayFor(model => model.nationalnumber)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.martial)
+                            @Html.DisplayFor(model => model.martial)
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="card-title">معلومات تواصل   <i class="fa fa-phone" style="color:#ff8800"></i></h5>
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.currentaddress)
+                            @Html.DisplayFor(model => model.currentaddress)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.phone1)
+                            @Html.DisplayFor(model => model.phone1)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.phone2)
+                            @Html.DisplayFor(model => model.phone2)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<hr />*@
+            <div class="row">
+
+                <div class="col-md-3">
+                    <h5 class="card-title">التعليم والعمل   <i class="fa fa-graduation-cap" style="color:#ff8800"></i></h5>
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.education)
+                            @Html.DisplayFor(model => model.education)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.educationstate)
+                            @Html.DisplayFor(model => model.educationstate)
+                        </div>
+
+                        <div class="col-md-12">
+                            <label>العمل الحالي</label>
+                            @ViewBag.selectedCurrentWork
+                        </div>
+                        <div class="col-md-12">
+                            <label>العمل السابق</label>
+                            @ViewBag.selectedPreviousWork
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <h5 class="card-title">معلومات التسجيل   <i class="fa fa-info" style="color:#ff8800"></i></h5>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.serial_number)
+                            @Html.DisplayFor(model => model.serial_number)
+                        </div>
+
+
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.registrationdate)
+                            @Html.DisplayFor(model => model.registrationdate)
+                        </div>
+
+
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.applicant)
+                            @Html.DisplayFor(model => model.applicant)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.relationtype)
+                            @Html.DisplayFor(model => model.relationtype)
+                        </div>
+                        <div class="col-md-6">
+                            <label>طريقة التعرف على المركز</label>
+                            @ViewBag.selectedKC
+                        </div>
+                        @*<div class="col-md-3">
+                            @Html.LabelFor(model => model.formnumber)
+                            @Html.DisplayFor(model => model.formnumber)
+                        </div>*@
+
+
+
+                        @*<div class="col-md-3">
+                            @Html.LabelFor(model => model.family.familynature)
+                            @Html.DisplayFor(model => model.family.familynature)
+                        </div>*@
+
+                        @*@Html.DisplayNameFor(model => model.center.name)
+                            @Html.DisplayFor(model => model.center.name)
+
+
+
+                         @*<div class="col-md-3">
+                            @Html.LabelFor(model => model.AspNetUser.Email)
+                            @Html.DisplayFor(model => model.AspNetUser.Email)
+                        </div>*@
+
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-3">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="card-title">نقاط الضعف   <i class="fa fa-wheelchair" style="color:#ff8800"> </i></h5>
+                            <hr />
+                            <ul class="list-inline">
+                                @*<content><label>نقاط الضعف:</label></content>*@
+                                @if (ViewBag.selectedWeaknesses.Count == 0)
+                                {
+                                    <text>لا يوجد نقاط ضعف</text>
+                                }
+                                else
+                                {
+                                    foreach (string w in ViewBag.selectedWeaknesses)
+                                    {
+                                        <li class="list-inline-item">@w</li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="card-title">الوثائق   <i class="fa fa-folder-open-o" style="color:#ff8800"></i></h5>
+                            <hr />
+                            <ul class="list-inline">
+
+                                @*<content><label>الوثائق:</label></content>*@
+                                @if (ViewBag.selectedDocuments.Count == 0)
+                                {
+                                    <text>لا يوجد وثائق</text>
+                                }
+                                else
+                                {
+                                    foreach (string d in ViewBag.selectedDocuments)
+                                    {
+                                        <li class="list-inline-item">@d</li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row col-md-12">
+                        <h5>ملاحظات  <i class="fa fa-sticky-note-o" style="color:#ff8800"></i></h5>
+                        @Html.DisplayFor(model => model.note)
+                    </div>
+                </div>
+
+            </div>
+            @*<hr />*@
+
+
+
+
+
+        </p>
+        <div class="row"></div>
+        <div class="row">
+            <div class="card-footer">
+                <p class="" style="display:inline;">
+
+                    @*<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Disabled tooltip">*@
+                    @*@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded fa fa-list p-1" })*@
+                    @*</span>*@
+                    @*<span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Disabled tooltip">*@
+                    @Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" })
+                    @*</span>*@
+
+                    @using (Ajax.BeginForm("openSecretReferal", "referalpersons", null, new AjaxOptions { OnSuccess = "referalOpenedSuccessfully", OnFailure = "OnFailureClose" }, new { @style = "display:inline;" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="idreferalperson" name="idreferalperson" value="@Model.referalpersons.FirstOrDefault().idreferalperson" />
+                        <input type="hidden" id="idcase" name="idcase" value="@Model.referalpersons.FirstOrDefault().idcase_FK" />
+                        <input type="hidden" id="idperson" name="idperson" value="@Model.idperson" />
+
+
+                        if (@Model.referalpersons.FirstOrDefault().serviceenddate != null)
+                        {
+                            <span id=@("openReferal"+Model.idperson) class="" style="padding-top:0px">
+                                <input type="submit" value="إعادة تفعيل الحالة" class="btn btn-success btn-rounded b-p-0" />
+                            </span>
+                        }
+                        else
+                        {
+                            <span id=@("openReferal"+Model.idperson) class="hidden" style="padding-top:0px">
+                                <input type="submit" value="إعادة تفعيل الحالة" class="btn btn-success btn-rounded b-p-0" />
+                            </span>
+                            //<input type="submit" value="الحالة قيد الخدمة" class="btn btn-success btn-rounded p-0 disabled" disabled="disabled" />
+                        }
+
+                    }
+
+                    @using (Ajax.BeginForm("closeSecretReferal", "referalpersons", null, new AjaxOptions { OnSuccess = "referalClosedSuccessfully", OnFailure = "OnFailureClose" }, new { @style = "display:inline;" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" id="idreferalperson" name="idreferalperson" value="@Model.referalpersons.FirstOrDefault().idreferalperson" />
+
+                        <input type="hidden" id="idcase" name="idcase" value="@Model.referalpersons.FirstOrDefault().idcase_FK" />
+
+                        <input type="hidden" id="idperson" name="idperson" value="@Model.idperson" />
+
+                        if (@Model.referalpersons.FirstOrDefault().serviceenddate == null)
+                        {
+                            <span id=@("closeReferal"+Model.idperson)
+                                  @*tabindex="0" data-toggle="tooltip"  title="Tooltip on top"*@>
+                                <input type="submit" value='إغلاق الحالة' class="btn btn-danger btn-rounded b-p-0" />
+                            </span>
+                        }
+                        else
+                        {
+                            <span id=@("closeReferal"+Model.idperson) class="hidden">
+                                <input type="submit" value='إغلاق الحالة' class="btn btn-danger btn-rounded b-p-0" 
+                                       @*style="padding-bottom: 13px!important;padding-top: 13px!important;"*@
+                                       />
+                            </span>
+                            // <input type="submit" value="الحالة مغلقة" class="btn btn-danger btn-rounded p-0 disabled" disabled="disabled" />
+                        }
+
+                    }
+
+
+
+
+
+                </p>
+            </div>
+        </div>
+        
+
+        
+
+    </div>
+</div>
+<!--/.Card content-->
+
+
+@*<div class="card z-depth-2">
     <h2>تفاصيل بيانات</h2>
 
     <div>
@@ -274,15 +585,15 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.senderevalution)
                     </td>
-                    @*<td>
+                    <td>
                             @Html.DisplayFor(modelItem => item.recieverevalution)
-                        </td>*@
+                        </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.outreachnote)
                     </td>
 
                     <td>
-                        @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })*@
+                        @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })
                         @using (Ajax.BeginForm("closeSecretReferal", "referalpersons", new AjaxOptions { OnSuccess = "successClose", OnFailure = "OnFailureClose" }))
                         {
                             @Html.AntiForgeryToken()
@@ -292,20 +603,20 @@
 
                             if (item.serviceenddate == null)
                             {
-                            <input type="submit" value="إغلاق" class="btn btn-default"  />
+                                <input type="submit" value="إغلاق" class="btn btn-default" />
                             }
                             else
                             {
 
                                 <input type="submit" value="مغلق" class="btn btn-default disabled" disabled="disabled" />
                             }
-                           
+
                         }
 
 
-                        @*|
+                        |
                             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                     </td>
                 </tr>
 
@@ -313,18 +624,19 @@
         </tbody>
     </table>
 
-    </div>
+</div>*@
 
 
-    <p>
-        @Html.ActionLink("تعديل", "Edit", new { id = Model.idperson }) |
-        @Html.ActionLink("عودة إلى القائمة", "Index")
-    </p>
+@*<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.idperson }) |
+    @Html.ActionLink("عودة إلى القائمة", "Index")
+</p>*@
 
 
-    @section Scripts {
+@section Scripts {
 
-        <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/referalsChangeState.js"></script>
+    @*<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
         <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
 
         <script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
@@ -340,7 +652,7 @@
         <script src="~/Scripts/DataTables/responsive.jqueryui.min.js"></script>
         <script src="~/Scripts/DataTables/buttons.colVis.min.js"></script>
         <script src="~/Scripts/DataTables/dataTables.fixedColumns.min.js"></script>
-        <script src="~/Scripts/AllDataTablesDesign.js"></script>
-        @Scripts.Render("~/bundles/jqueryval")
+        <script src="~/Scripts/AllDataTablesDesign.js"></script>*@
+    @Scripts.Render("~/bundles/jqueryval")
 
 }

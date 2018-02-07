@@ -5,100 +5,175 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<span style="position:fixed; bottom: 20px; left: 30px; z-index:99;"
+      @*tabindex="0"
+      data-toggle="tooltip"
+      title="عودة إلى قائمة الأشخاص"*@
+      class="shades">
+    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list" })
+</span>
+<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;"
+      @*tabindex="0"
+      data-toggle="tooltip"
+      title="عودة إلى العائلة"*@
+      class="shades">
+    @Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users" })
+</span>
+
+
+
+
+
+
 <!--Card-->
 <div class="card card-cascade">
 
     <!--Card image-->
     <div class="view card-header my-blue-gradient white-text">
-        <h3 class="h3-responsive card-header-content">تفاصيل بيانات الشخص</h3>
-        <p class="card-header-content sub-header h4-responsive">@Model.idperson</p>
+        <h3 class="h3-responsive card-header-content">استمارة</h3>
+        <p class="card-header-content sub-header h4-responsive">@Model.full_name</p>
     </div>
     <!--/Card image-->
     <!--Card content-->
     <div class="card-body text-center">
 
         <p class="card-text card-block">
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.full_name)
-                @Html.DisplayFor(model => model.full_name)
+            
+            <div class="row">
+                <div class="col-md-9">
+                    <h5 class="card-title">معلومات شخصية  <i class="fa fa-user-o" style="color:#ff8800"></i></h5>
+                    <hr />
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.full_name)
+                            @Html.DisplayFor(model => model.full_name)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.mothername)
+                            @Html.DisplayFor(model => model.mothername)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.gender)
+                            @Html.DisplayFor(model => model.gender)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.nationality)
+                            @Html.DisplayFor(model => model.nationality)
+                        </div>
+                        
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.birthday)
+                            @Html.DisplayFor(model => model.birthday)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.birthplace)
+                            @Html.DisplayFor(model => model.birthplace)
+                        </div>
+
+                        
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.nationalnumber)
+                            @Html.DisplayFor(model => model.nationalnumber)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.martial)
+                            @Html.DisplayFor(model => model.martial)
+                        </div>
+
+                        
+                        
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="card-title">معلومات تواصل   <i class="fa fa-phone" style="color:#ff8800"></i></h5>
+                    <hr />
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.currentaddress)
+                            @Html.DisplayFor(model => model.currentaddress)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.phone1)
+                            @Html.DisplayFor(model => model.phone1)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.phone2)
+                            @Html.DisplayFor(model => model.phone2)
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.mothername)
-                @Html.DisplayFor(model => model.mothername)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.birthday)
-                @Html.DisplayFor(model => model.birthday)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.birthplace)
-                @Html.DisplayFor(model => model.birthplace)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.gender)
-                @Html.DisplayFor(model => model.gender)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.nationality)
-                @Html.DisplayFor(model => model.nationality)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.nationalnumber)
-                @Html.DisplayFor(model => model.nationalnumber)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.martial)
-                @Html.DisplayFor(model => model.martial)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.applicant)
-                @Html.DisplayFor(model => model.applicant)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.relationtype)
-                @Html.DisplayFor(model => model.relationtype)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.education)
-                @Html.DisplayFor(model => model.education)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.educationstate)
-                @Html.DisplayFor(model => model.educationstate)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.phone1)
-                @Html.DisplayFor(model => model.phone1)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.phone2)
-                @Html.DisplayFor(model => model.phone2)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.currentaddress)
-                @Html.DisplayFor(model => model.currentaddress)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.registrationdate)
-                @Html.DisplayFor(model => model.registrationdate)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.formnumber)
-                @Html.DisplayFor(model => model.formnumber)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.serial_number)
-                @Html.DisplayFor(model => model.serial_number)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.family.familynature)
-                @Html.DisplayFor(model => model.family.familynature)
-            </div>
-            <div class="col-md-3">
-                @Html.LabelFor(model => model.note)
-                @Html.DisplayFor(model => model.note)
-            </div>
-            @*@Html.DisplayNameFor(model => model.center.name)
+            @*<hr />*@
+            <div class="row">
+                
+                <div class="col-md-3">
+                    <h5 class="card-title">التعليم والعمل   <i class="fa fa-graduation-cap" style="color:#ff8800"></i></h5>
+                    <hr />
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.education)
+                            @Html.DisplayFor(model => model.education)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.educationstate)
+                            @Html.DisplayFor(model => model.educationstate)
+                        </div>
+
+                        <div class="col-md-12">
+                            <label>العمل الحالي</label>
+                            @ViewBag.selectedCurrentWork
+                        </div>
+                        <div class="col-md-12">
+                            <label>العمل السابق</label>
+                            @ViewBag.selectedPreviousWork
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="col-md-6">
+                    <h5 class="card-title">معلومات التسجيل   <i class="fa fa-info" style="color:#ff8800"></i></h5>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.serial_number)
+                            @Html.DisplayFor(model => model.serial_number)
+                        </div>
+
+
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.registrationdate)
+                            @Html.DisplayFor(model => model.registrationdate)
+                        </div>
+                        
+                        
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.applicant)
+                            @Html.DisplayFor(model => model.applicant)
+                        </div>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.relationtype)
+                            @Html.DisplayFor(model => model.relationtype)
+                        </div>
+                        <div class="col-md-6">
+                            <label>طريقة التعرف على المركز</label>
+                            @ViewBag.selectedKC
+                        </div>
+                        @*<div class="col-md-3">
+                    @Html.LabelFor(model => model.formnumber)
+                    @Html.DisplayFor(model => model.formnumber)
+                </div>*@
+
+
+
+                        @*<div class="col-md-3">
+                    @Html.LabelFor(model => model.family.familynature)
+                    @Html.DisplayFor(model => model.family.familynature)
+                </div>*@
+
+                        @*@Html.DisplayNameFor(model => model.center.name)
                     @Html.DisplayFor(model => model.center.name)
 
 
@@ -108,8 +183,71 @@
                     @Html.DisplayFor(model => model.AspNetUser.Email)
                 </div>*@
 
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-3">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="card-title">نقاط الضعف   <i class="fa fa-wheelchair" style="color:#ff8800"> </i></h5>
+                            <hr />
+                            <ul class="list-inline">
+                                @*<content><label>نقاط الضعف:</label></content>*@
+                                @if (ViewBag.selectedWeaknesses.Count == 0)
+                                {
+                                    <text>لا يوجد نقاط ضعف</text>
+                                }
+                                else
+                                {
+                                    foreach (string w in ViewBag.selectedWeaknesses)
+                                    {
+                                        <li class="list-inline-item">@w</li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="card-title">الوثائق   <i class="fa fa-folder-open-o" style="color:#ff8800"></i></h5>
+                            <hr />
+                            <ul class="list-inline">
+
+                                @*<content><label>الوثائق:</label></content>*@
+                                @if (ViewBag.selectedDocuments.Count == 0)
+                                {
+                                    <text>لا يوجد وثائق</text>
+                                }
+                                else
+                                {
+                                    foreach (string d in ViewBag.selectedDocuments)
+                                    {
+                                        <li class="list-inline-item">@d</li>
+                                    }
+                                }
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row col-md-12">
+                        <h5>ملاحظات  <i class="fa fa-sticky-note-o" style="color:#ff8800"></i></h5>
+                        @Html.DisplayFor(model => model.note)
+                    </div>
+                </div>
+                
+            </div>
+            @*<hr />*@
+            
+            
+            
+            
+
         </p>
-        <hr>
+
         <div class="row">
 
         </div>
@@ -117,15 +255,16 @@
 
             <p class="card-footer">
                 @*<i class="fa fa-magic ml-1"></i>*@
-                @Html.ActionLink(" ", "personReferal", "referalpersons", new { id = Model.idperson }, new { @class = "btn btn-secondary btn-rounded p-2 fa fa-arrow-circle-right" })
-                @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded fa fa-list p-2"})
-                @Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-2" })
+                @Html.ActionLink(" ", "personReferal", "referalpersons", new { id = Model.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-arrow-circle-right" })
+                @*@Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-1 fa fa-users" })*@
+                @*@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded fa fa-list p-1" })*@
+                @Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" })
 
 
             </p>
 
         </div>
-      
+
 
         @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
     </div>

@@ -4,7 +4,13 @@
     ViewBag.Title = "إضافة حالة سرية";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<span style="position:fixed; bottom: 20px; left: 30px; z-index:99;"
+      @*tabindex="0"
+      data-toggle="tooltip"
+      title="عودة إلى قائمة العائلات"*@
+      class="shades">
+    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list" })
+</span>
 <h2>إضافة حالة سرية</h2>
 
 
@@ -273,7 +279,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
-                <input type="submit" value="إضافة" class="btn btn-default" />
+                <input type="submit" value="إضافة" class="btn btn-default btn-rounded p-1" />
             </div>
         </div>
 
@@ -284,11 +290,11 @@
     </div>
 }
 
-<div>
+@*<div>
     <div>
         @Html.ActionLink(" العودة إلى قائمة الحالات السرية", "Index")
     </div>
-</div>
+</div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

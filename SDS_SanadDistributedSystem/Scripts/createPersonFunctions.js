@@ -1,4 +1,4 @@
-﻿//PEOPLE SCRIPTS
+//PEOPLE SCRIPTS
 function SuccessLoadForPerson(data) {
 
     $("input[type='text'], input[type='datetime']").val("");
@@ -9,7 +9,7 @@ function SuccessLoadForPerson(data) {
     $("#idperson").val(data.idfamily);
     $("#idfamily_FK").val(data.idfamily);
 
-    toastr.success("نجاح", 'نجاح العملية');
+    toastr.success("تمت عملية الإضافة بنجاح", 'نجاح العملية');
 
     $("#familymembers").append(
         "<tr><td>" + data.idperson + "</td><td>" +
@@ -31,7 +31,7 @@ function SuccessLoadForPerson(data) {
 
 function FailureLoadForPerson(data) {
     //alert("Adding Person with ID: " + data + " Failed!!");
-    toastr.error("فشل", 'فشل العملية');
+    toastr.error("فشلت عملية الإضافة", 'فشل العملية');
 }
 
 var idFamily;
@@ -52,9 +52,12 @@ $(document).ready(function () {
     idFamily = $("#idperson").val();
     $('#idfamily_FK').val(idFamily);
     $("#ذكر").prop("checked", true).trigger("click");
-    $("#position").trigger("change");
-    $("#idperson").val(idFamily + "H");
-    $("#idperson").trigger("focusout");
+ //   $("input[type=radio][name=position]").trigger("change");
+    $("#idperson").val(idFamily + "H").trigger("change");
+    $("#idperson").trigger("focus");
+  //  $("#idperson").trigger("focusout");
+  //  $("#fname").trigger("focus");
+   // $("#idperson").validator();
 
     //$(function () {
 

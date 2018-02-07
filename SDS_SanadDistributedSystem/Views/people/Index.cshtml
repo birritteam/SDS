@@ -16,117 +16,117 @@
 
     @using (Html.BeginForm())
     {
-    <p>    
+    <p>
         <div class="md-form col-md-6">
             @Html.Editor("full_name", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "فلترة حسب الاسم الثلاثي" } })
         </div>
         <div class="md-form col-md-6">
-            @Html.Editor("NationalNumber","", new { htmlAttributes = new { @class = "form-control", @placeholder = "فلترة حسب الرقم الوطني" } })
+            @Html.Editor("NationalNumber", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "فلترة حسب الرقم الوطني" } })
         </div>
         @*<div class="md-form col-md-4">
-            @Html.Editor("age", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "فلترة حسب العمر" } })
-        </div>*@
+                @Html.Editor("age", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "فلترة حسب العمر" } })
+            </div>*@
         <input type="submit" value="بحث" class="btn btn-default hidden" />
         @*<div class="input-group md-form form-sm form-1 pl-0">
-            <span class="input-group-addon cyan lighten-2" id="basic-addon1"><i class="fa fa-search text-white" aria-hidden="true"></i></span>
-            <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
-        </div>*@
+                <span class="input-group-addon cyan lighten-2" id="basic-addon1"><i class="fa fa-search text-white" aria-hidden="true"></i></span>
+                <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+            </div>*@
     </p>
     }
 
-</p>
-<table class="table" id="familymembers">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idperson)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.full_name)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.fname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fathername)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.mothername)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.nationalnumber)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model=>model.registrationdate)
-        </th>*@
-        @*<th></th>*@
-        <th></th>
-    </tr>
-    @foreach (var item in Model)
-    {
-
-        if (!item.is_secret)
+    </p>
+    <table class="table" id="familymembers">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idperson)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.full_name)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.fname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fathername)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.mothername)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.gender)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nationalnumber)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model=>model.registrationdate)
+                </th>*@
+            @*<th></th>*@
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.idperson)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.full_name)
-                </td>
-                @*<td>
-                    @Html.DisplayFor(modelItem => item.fname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.lname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.fathername)
-                </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.mothername)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.age)
-                    @*@{
-                        var dob = item.birthday.GetValueOrDefault();
-                        DateTime now = DateTime.Today;
-                        int age = now.Year - dob.Year;
-                        if (now < dob.AddYears(age))
-                        { age--; }
-                        @Html.DisplayFor(model => age);
-                    }*@
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.gender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nationalnumber)
-                </td>
-          @*      <td>@Html.DisplayFor(modelItem => item.registrationdate)</td>*@
 
-                <td>
-                    @Html.ActionLink("تفاصيل", "Details", "people", new { id = item.idperson }, new { @class = "btn btn-primary btn-rounded p-0" })
-                    @Html.ActionLink("تعديل", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded p-0" })
-                    @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded" })
+            if (!item.is_secret)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idperson)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.full_name)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.fname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.lname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fathername)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mothername)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.age)
+                        @*@{
+                                var dob = item.birthday.GetValueOrDefault();
+                                DateTime now = DateTime.Today;
+                                int age = now.Year - dob.Year;
+                                if (now < dob.AddYears(age))
+                                { age--; }
+                                @Html.DisplayFor(model => age);
+                            }*@
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nationalnumber)
+                    </td>
+                    @*      <td>@Html.DisplayFor(modelItem => item.registrationdate)</td>*@
+
+                    <td>
+                        @Html.ActionLink("تفاصيل", "Details", "people", new { id = item.idperson }, new { @class = "btn btn-primary btn-rounded p-0" })
+                        @Html.ActionLink("تعديل", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded p-0" })
+                        @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-0" })
 
 
 
-               
-                    @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
-                </td>
 
-            </tr>
-                            }
-                        }
+                        @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
+                    </td>
 
-</table>
+                </tr>
+            }
+        }
+
+    </table>
 

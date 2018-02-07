@@ -160,7 +160,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> closeSecretReferal(int idreferalperson, string  idperson,int idcase )
+        public async Task<ActionResult> closeSecretReferal(int idreferalperson, string idperson, int idcase)
         {
             try
             {
@@ -173,14 +173,55 @@ namespace SDS_SanadDistributedSystem.Controllers
                 await db.SaveChangesAsync();
 
 
-                return new JsonResult { Data = "success" };
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new  {
+                        idperson = idperson,
+                        servicestate = "مغلقة"
+                    }, JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
             }
             catch (Exception e)
             {
                 return new JsonResult { Data = "error" };
             }
 
-           
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> openSecretReferal(int idreferalperson, string idperson, int idcase)
+        {
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = null;
+                rp.referalstate = "Approved";
+                rp.servicestate = "In prgress";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+                //return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        idperson = idperson,
+                        servicestate = "قيد المتابعة"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+
+
         }
 
         public async Task<ActionResult> IndexByRN(string rm)
@@ -199,8 +240,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                     var role_id = db.AspNetRoles.Where(r => r.Name == rm).First().Id;
                     ViewBag.role_id = role_id;
                     referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(200);
-                    if(rm.Equals("cmEducation"))
-                    ViewBag.case_manager = "تعليمي";
+                    if (rm.Equals("cmEducation"))
+                        ViewBag.case_manager = "تعليمي";
                     if (rm.Equals("cmProfessional"))
                         ViewBag.case_manager = "مهني";
                     if (rm.Equals("cmChildProtection"))
@@ -225,13 +266,13 @@ namespace SDS_SanadDistributedSystem.Controllers
                         var role_id2 = db.AspNetRoles.Where(r => r.Name == "cmSGBV").First().Id;
                         ViewBag.role_id = role_id2;
                         //  referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK ==user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
-                        referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK != role_id2 && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(500);                      
+                        referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK != role_id2 && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(500);
                         ViewBag.case_manager = "فريق وصول";
-                        ViewBag.temporal = db.temporals.Where(t=>t.idcenter_FK== user.idcenter_FK).ToList();
+                        ViewBag.temporal = db.temporals.Where(t => t.idcenter_FK == user.idcenter_FK).ToList();
                     }
                     if (rm.Equals("cmInkindAssistance"))
                         ViewBag.case_manager = "المساعدات العينية";
-            
+
                 }
 
             }
@@ -287,7 +328,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     var idcase = db.AspNetRoles.Where(r => r.Name == "coChildProtection").First().idcase;
                     ViewBag.role_id = idcase;
                     //return first 100 row order by submit  date
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r =>  r.service.idcase_FK == idcase && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idcase_FK == idcase && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
                     ViewBag.case_manager = "حماية الطفل";
                 }
                 else if (User.IsInRole("coPsychologicalSupport"))
@@ -444,7 +485,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             service s = db.services.Find(id);
             var currentuser = db.AspNetUsers.Find(User.Identity.GetUserId());
             List<UserViewModel> user_list = new List<UserViewModel>();
-            List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK)&& u.idcenter_FK== currentuser.idcenter_FK).ToList();
+            List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK) && u.idcenter_FK == currentuser.idcenter_FK).ToList();
             foreach (var u in recivers_users)
             {
                 UserViewModel uvm = new UserViewModel();
@@ -680,7 +721,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             var firstcaseid = db.cases.First().idcase;
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", firstcaseid);
             List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
-            service first_service_firstcase ;
+            service first_service_firstcase;
             if (service.Count != 0)
             {
                 first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
@@ -775,7 +816,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
             }
 
-            
+
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");
             ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name");
 
@@ -893,7 +934,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             if (ModelState.IsValid)
             {
 
-                db.referalpersons.Add(referalperson);           
+                db.referalpersons.Add(referalperson);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -943,7 +984,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.referalstate = new SelectList(referalstates, referalperson.referalstate);
             ViewBag.servicestate = new SelectList(serviceStates, referalperson.servicestate);
 
-            string state="xxxxx";
+            string state = "xxxxx";
             referalperson rr = referalperson;
             if (rr.servicestate == "Pending" && rr.referalstate == "Pending")
                 state = "جديد";
@@ -976,7 +1017,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [MultipleButton(Name = "action", Argument = "edit1")]
         public async Task<ActionResult> edit1([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
         {
-          
+
             if (ModelState.IsValid)
             {
                 referalperson.referalstate = "Pending";
@@ -1077,8 +1118,8 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "edit6")]
         public async Task<ActionResult> edit6([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
-        {        
-         
+        {
+
             if (ModelState.IsValid)
             {
                 referalperson.referalstate = "OutReach";
@@ -1099,7 +1140,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "edit7")]
         public async Task<ActionResult> edit7([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
-        {  
+        {
             if (ModelState.IsValid)
             {
                 referalperson.referalstate = "Approved";
@@ -1140,7 +1181,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [MultipleButton(Name = "action", Argument = "edit9")]
         public async Task<ActionResult> edit9([Bind(Include = "idreferalperson,idperson_FK,idcase_FK,idservice_FK,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalsender_FK,senderevalution,recieverevalution,idcenter_FK,outreachnote")] referalperson referalperson)
-        {     
+        {
             if (ModelState.IsValid)
             {
                 referalperson.referalstate = "External";

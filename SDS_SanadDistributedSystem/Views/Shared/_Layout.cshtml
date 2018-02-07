@@ -8,6 +8,10 @@
  
     <title>@ViewBag.Title - نظام سند الموزع</title>
     <link href="~/Content/Site.css" rel="stylesheet" />
+
+    <link href="tooltip-extended.css" rel="stylesheet">
+    <script src="bootstrap-tooltip-extended.js"></script>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @using System.Web.Security
@@ -72,7 +76,7 @@
 
     @*}*@
 </head>
-<body class="fixed-sn mdb-skin bg-skin-lp" style="padding-top:50px;">
+<body class="fixed-sn mdb-skin bg-skin-lp container-fluid" style="padding-top:50px;">
 
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
@@ -144,17 +148,20 @@
 
            
             <!-- Sidebar navigation -->
-            <ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar" style="width: 310px;">
+            <ul id="slide-out" class="side-nav fixed sn-bg-1 custom-scrollbar" style="width: initial; width: fit-content;">
 
 
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light special-logo" style="width: 310px;height:200px;">
                         @*special-logo : style.css*@
-                        @*<a href="#"><img src="" class="img-fluid flex-center z-depth-1 rounded-circle logo"></a> @*~/images/birr.jpg*@
+                        @*<a href="#"><img src="~/images/sanad.jpg" class="img-fluid flex-center z-depth-1 rounded-circle logo"></a> ~/images/birr.jpg*@
                     </div>
                 </li>
                 <!--/. Logo -->
+
+
+
                 <!--Social-->
                 @*<li>
                 <ul class="social">
@@ -163,7 +170,7 @@
                     <li><a class="icons-sm gplus-ic"><i class="fa fa-google-plus"> </i></a></li>
                     <li><a class="icons-sm tw-ic"><i class="fa fa-twitter"> </i></a></li>
                 </ul>
-            </li>*@
+            </li>
                 <!--/Social-->
                 <!--Search Form-->
                 @*<li>*@
@@ -768,17 +775,14 @@
                 </div>
             </nav>
         </header>
-    <main style="
-    margin-right: 0px;
-    margin-left: 0px;
-    padding-top: 0px;
-">
+    <main style="margin-right: 0px;margin-left: 0px;padding-top: 0px;">
+        
         <div class="container-fluid" id="ParentDiv">
             <div id="content" style="height: 100%;">
                 @RenderBody()
                 </div>
                 <footer class="footer">
-                    <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لصالح جمعية البر والخدمات الاجتماعية-سند </p>
+                    <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لصالح جمعية البر والخدمات الاجتماعية - سند </p>
                     <p>       طوّر بواسطة مكتب تقانة المعلومات      </p>
                 </footer>
             </div>

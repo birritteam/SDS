@@ -55,11 +55,27 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             family family = await db.families.FindAsync(id);
+            
             if (family == null)
             {
                 return HttpNotFound();
             }
+
+            string selectedAddressType = "";
+
+            foreach (managelist item in db.managelists)
+            {
+                if (item.families.Contains(family))
+                {
+                    selectedAddressType = item.name;
+                }
+            }           
+
+            ViewBag.addressType = selectedAddressType;
+
+
             return View(family);
         }
 
@@ -145,7 +161,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation")] family family, int idmangelist)
+        public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation,formnumber,idcenter_FK")] family family, int idmangelist)
         {
             if (ModelState.IsValid)
             {
