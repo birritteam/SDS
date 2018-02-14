@@ -160,7 +160,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> closeSecretReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> closeSecretReferal(int idreferalperson, int idperson, int idcase)
         {
             try
             {
@@ -193,7 +193,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> openSecretReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> openSecretReferal(int idreferalperson, int idperson, int idcase)
         {
             try
             {
@@ -705,7 +705,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [System.Web.Mvc.Authorize(Roles = "receptionist,cmSGBV")]
         //add new referal by Receptionist
-        public ActionResult personReferal(string id)
+        public ActionResult personReferal(int? id)
         {
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
             referalperson rp = new referalperson();
@@ -720,30 +720,30 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             var firstcaseid = db.cases.First().idcase;
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", firstcaseid);
-            List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
-            service first_service_firstcase;
-            if (service.Count != 0)
-            {
-                first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
-                ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
-                ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
+            //List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
+            //service first_service_firstcase;
+            //if (service.Count != 0)
+            //{
+            //    first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
+            //    ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
+            //    ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
 
-            }
-            else
-            {
-                List<service> ss = new List<Models.service>();
-                service s = new service();
-                s.idservice = 0;
-                s.name = "لايوجد خدمات مفّعلة";
-                ss.Add(s);
-                List<AspNetUser> uu = new List<Models.AspNetUser>();
-                AspNetUser u = new AspNetUser();
-                u.Id = "0";
-                u.UserName = "لايوجد مستقبل";
-                uu.Add(u);
-                ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
-                ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
-            }
+            //}
+            //else
+            //{
+            //    List<service> ss = new List<Models.service>();
+            //    service s = new service();
+            //    s.idservice = 0;
+            //    s.name = "لايوجد خدمات مفّعلة";
+            //    ss.Add(s);
+            //    List<AspNetUser> uu = new List<Models.AspNetUser>();
+            //    AspNetUser u = new AspNetUser();
+            //    u.Id = "0";
+            //    u.UserName = "لايوجد مستقبل";
+            //    uu.Add(u);
+            //    ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
+            //    ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
+            //}
 
 
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");
@@ -773,7 +773,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             return View(rp);
         }
         //add new referal by CaseManager
-        public ActionResult personReferalByCaseManager(string id, int idcase)
+        public ActionResult personReferalByCaseManager(int? id, int idcase)
         {
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
             referalperson rp = new referalperson();
@@ -787,34 +787,34 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             var firstcaseid = db.cases.Where(r => r.idcase != idcase).First().idcase;
 
-            List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
-            ViewBag.idcase_FK = new SelectList(db.cases.Where(r => r.idcase != idcase), "idcase", "name", firstcaseid);
+            //List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
+            //ViewBag.idcase_FK = new SelectList(db.cases.Where(r => r.idcase != idcase), "idcase", "name", firstcaseid);
 
-            service first_service_firstcase;
-            if (service.Count != 0)
-            {
-                first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
-                ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
+            //service first_service_firstcase;
+            //if (service.Count != 0)
+            //{
+            //    first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
+            //    ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
 
-                ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
+            //    ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
 
 
-            }
-            else
-            {
-                List<service> ss = new List<Models.service>();
-                service s = new service();
-                s.idservice = 0;
-                s.name = "لايوجد خدمات مفّعلة";
-                ss.Add(s);
-                List<AspNetUser> uu = new List<Models.AspNetUser>();
-                AspNetUser u = new AspNetUser();
-                u.Id = "0";
-                u.UserName = "لايوجد مستقبل";
-                uu.Add(u);
-                ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
-                ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
-            }
+            //}
+            //else
+            //{
+            //    List<service> ss = new List<Models.service>();
+            //    service s = new service();
+            //    s.idservice = 0;
+            //    s.name = "لايوجد خدمات مفّعلة";
+            //    ss.Add(s);
+            //    List<AspNetUser> uu = new List<Models.AspNetUser>();
+            //    AspNetUser u = new AspNetUser();
+            //    u.Id = "0";
+            //    u.UserName = "لايوجد مستقبل";
+            //    uu.Add(u);
+            //    ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
+            //    ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
+            //}
 
 
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");

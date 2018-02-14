@@ -34,6 +34,55 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<input type="hidden" value="@Model.idperson" id="idperson"/>*@
         @Html.HiddenFor(model => model.idperson)
+
+
+       @* <div class="row">
+            <div class="form-group">
+                <div class="col-md-2"><label class="control-label">موقع الشخص ضمن العائلة</label></div>
+                <div class="col-md-4">
+                    <div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary active">
+                            <input type="radio" name="position" id="H" value="H" autocomplete="off" checked> زوج
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="position" id="W" value="W" autocomplete="off"> زوجة
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="position" id="S" value="C" autocomplete="off"> ابن
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="position" id="D" value="C" autocomplete="off"> بنت
+                        </label>
+                    </div>
+
+                </div>
+                <div class="col-md-1">
+                    <input type="number" id="wifeOrder" class="hidden" min="1" max="4" value="1" />
+                    <input type="number" id="childOrder" class="hidden" min="1" max="20" value="1" />
+                </div>
+                @Html.ValidationMessageFor(model => model.family_order_id, "", new { @class = "text-danger col-md-3" })
+                <div class="col-md-1" style="">
+                    @Html.EditorFor(model => model.family_order_id, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.family.family_book_number, @readonly = "readonly" } })
+                </div>
+            </div>
+        </div>*@
+        @*<div class="row">
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @foreach (string item in ViewBag.genderOptions)
+                    {
+                        @Html.RadioButtonFor(model => model.gender, item, new { @id = item })
+                        @Html.Label(item, new { @for = item })
+                    }
+                </div>
+            </div>
+        </div>*@
+
+
+
+
+
         <div class="row">
             <div class="col-md-3">
                 <div class="md-form">
@@ -310,6 +359,8 @@
         @Html.HiddenFor(model => model.registrationdate)
         @Html.HiddenFor(model => model.gender)
         @Html.HiddenFor(model => model.formnumber)
+        @Html.HiddenFor(model => model.family_order_id)
+        
 
 
         <div class="form-group">

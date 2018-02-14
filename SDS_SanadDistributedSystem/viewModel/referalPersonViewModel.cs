@@ -11,7 +11,7 @@ namespace SDS_SanadDistributedSystem.viewModel
      //   public int idreferalperson { get; set; }
 
       
-        public string idperson_FK { get; set; }
+        public int idperson_FK { get; set; }
 
 
         public string idcase_FK { get; set; }

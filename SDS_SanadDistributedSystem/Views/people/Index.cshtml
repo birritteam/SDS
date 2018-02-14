@@ -38,7 +38,10 @@
     <table class="table" id="familymembers">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idperson)
+                @Html.DisplayNameFor(model => model.serial_number)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.family_order_id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.full_name)
@@ -77,7 +80,10 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => item.idperson)
+                        @Html.DisplayFor(modelItem => item.serial_number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.family_order_id)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.full_name)

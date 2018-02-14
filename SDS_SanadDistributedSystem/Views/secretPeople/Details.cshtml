@@ -257,7 +257,7 @@
                     @Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" })
                     @*</span>*@
 
-                    @using (Ajax.BeginForm("openSecretReferal", "referalpersons", null, new AjaxOptions { OnSuccess = "referalOpenedSuccessfully", OnFailure = "OnFailureClose" }, new { @style = "display:inline;" }))
+                    @using (Ajax.BeginForm("openSecretReferal", "referalpersons", null, new AjaxOptions { OnSuccess = "referalOpenedSuccessfully", OnFailure = "referalFailedToOpen" }, new { @style = "display:inline;" }))
                     {
                         @Html.AntiForgeryToken()
                         <input type="hidden" id="idreferalperson" name="idreferalperson" value="@Model.referalpersons.FirstOrDefault().idreferalperson" />
@@ -281,7 +281,7 @@
 
                     }
 
-                    @using (Ajax.BeginForm("closeSecretReferal", "referalpersons", null, new AjaxOptions { OnSuccess = "referalClosedSuccessfully", OnFailure = "OnFailureClose" }, new { @style = "display:inline;" }))
+                    @using (Ajax.BeginForm("closeSecretReferal", "referalpersons", null, new AjaxOptions { OnSuccess = "referalClosedSuccessfully", OnFailure = "referalFailedToClose" }, new { @style = "display:inline;" }))
                     {
                         @Html.AntiForgeryToken()
                         <input type="hidden" id="idreferalperson" name="idreferalperson" value="@Model.referalpersons.FirstOrDefault().idreferalperson" />

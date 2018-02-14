@@ -13,7 +13,7 @@ namespace SDS_SanadDistributedSystem.viewModel
         //  public string idperson_FK { get; set; }
 
         public string idcase { get; set; }
-        public string idperson { get; set; }
+        public int idperson { get; set; }
         public string idreferalperson { get; set; }
 
         public string name { get; set; }

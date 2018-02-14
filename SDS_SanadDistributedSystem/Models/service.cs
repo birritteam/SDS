@@ -13,11 +13,13 @@ namespace SDS_SanadDistributedSystem.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     public partial class service
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public service()
         {
+            this.centerservices = new HashSet<centerservice>();
             this.referalfamilies = new HashSet<referalfamily>();
             this.referalpersons = new HashSet<referalperson>();
         }
@@ -30,18 +32,18 @@ namespace SDS_SanadDistributedSystem.Models
         [Required]
         [Display(Name = "name", ResourceType = typeof(ServiceResource))]
         public string name { get; set; }
-        [Display(Name = "enabled", ResourceType = typeof(ServiceResource))]
-        public bool enabled { get; set; }
         [Required]
         [Display(Name = "description", ResourceType = typeof(ServiceResource))]
         public string description { get; set; }
         [Required]
         [Display(Name = "idrole_FK", ResourceType = typeof(ServiceResource))]
         public string idrole_FK { get; set; }
-
-
+        public Nullable<bool> is_activity { get; set; }
+    
         public virtual AspNetRole AspNetRole { get; set; }
         public virtual @case @case { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<centerservice> centerservices { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalfamily> referalfamilies { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

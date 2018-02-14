@@ -147,7 +147,7 @@
   <data name="gender" xml:space="preserve">
     <value>الجنس</value>
   </data>
-  <data name="idfamily" xml:space="preserve">
+  <data name="family_book_number" xml:space="preserve">
     <value>رقم دفتر العائلة</value>
   </data>
   <data name="iduser" xml:space="preserve">
@@ -224,5 +224,14 @@
   </data>
   <data name="serial_number" xml:space="preserve">
     <value>الرقم التسلسلي ضمن المركز</value>
+  </data>
+  <data name="family_head" xml:space="preserve">
+    <value>المسؤول عن العائلة</value>
+  </data>
+  <data name="sector" xml:space="preserve">
+    <value>القطاع</value>
+  </data>
+  <data name="family_order_id" xml:space="preserve">
+    <value>الرقم التسلسلي ضمن العائلة</value>
   </data>
 </root>

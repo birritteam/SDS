@@ -9,9 +9,9 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
-    using Resources;
     using System;
     using System.Collections.Generic;
+    using Resources;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
@@ -20,20 +20,18 @@ namespace SDS_SanadDistributedSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public family()
         {
+            this.familymanages = new HashSet<familymanage>();
             this.people = new HashSet<person>();
             this.referalfamilies = new HashSet<referalfamily>();
-            this.managelists = new HashSet<managelist>();
         }
-        [Remote("idAlreadyExisted", "families",
-            ErrorMessageResourceType = typeof(ErrorResource),
-            ErrorMessageResourceName = "id_existed")
-            ]
-        [RegularExpression(@"^[0-9]+$")]
-        [Required]
-        [Display(Name = "idfamily", ResourceType = typeof(PersonAndFamilyResources))]
-        public string idfamily { get; set; }
+
+        //[Required]
+        //[Display(Name = "idfamily", ResourceType = typeof(PersonAndFamilyResources))]
+        public int idfamily { get; set; }
         [Display(Name = "familynature", ResourceType = typeof(PersonAndFamilyResources))]
         public string familynature { get; set; }
+        [Display(Name = "lname", ResourceType = typeof(PersonAndFamilyResources))]
+        public string lastname { get; set; }
         [Display(Name = "personcount", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<int> personcount { get; set; }
         [Display(Name = "lastaddress", ResourceType = typeof(PersonAndFamilyResources))]
@@ -44,7 +42,6 @@ namespace SDS_SanadDistributedSystem.Models
         [DataType(DataType.Date, ErrorMessage = "’Ì€… «· «—ÌŒ €Ì— ’ÕÌÕ…")]
         [Display(Name = "displacementdate", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<System.DateTime> displacementdate { get; set; }
-
         [Required]
         [StringLength(10)]
         [RegularExpression(@"^[0-9]+$")]
@@ -58,14 +55,11 @@ namespace SDS_SanadDistributedSystem.Models
         public string note { get; set; }
         [Display(Name = "iduser", ResourceType = typeof(PersonAndFamilyResources))]
         public string iduser { get; set; }
-        [Display(Name = "lname", ResourceType = typeof(PersonAndFamilyResources))]
-        public string lastname { get; set; }
         [Required]
         [Display(Name = "phone1owner", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone1owner { get; set; }
         [Display(Name = "phone2owner", ResourceType = typeof(PersonAndFamilyResources))]
         public string phone2owner { get; set; }
-        public virtual AspNetUser AspNetUser { get; set; }
         [Display(Name = "evaluation", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<int> evaluation { get; set; }
         [Display(Name = "formnumber", ResourceType = typeof(PersonAndFamilyResources))]
@@ -73,12 +67,26 @@ namespace SDS_SanadDistributedSystem.Models
         public string idcenter_FK { get; set; }
         [Display(Name = "serial_number", ResourceType = typeof(PersonAndFamilyResources))]
         public string serial_number { get; set; }
+        [Remote("idAlreadyExisted", "families",
+            ErrorMessageResourceType = typeof(ErrorResource),
+            ErrorMessageResourceName = "family_book_number_existed", AdditionalFields = "idfamily",HttpMethod = "Post")
+            ]
+        [RegularExpression(@"^[0-9]+$")]
+        [Required]
+        [Display(Name = "family_book_number", ResourceType = typeof(PersonAndFamilyResources))]
+        public string family_book_number { get; set; }
+        [Display(Name = "family_head", ResourceType = typeof(PersonAndFamilyResources))]
+        public string family_head { get; set; }
+        [Display(Name = "sector", ResourceType = typeof(PersonAndFamilyResources))]
+        public string sector { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
+        public virtual center center { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<referalfamily> referalfamilies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<managelist> managelists { get; set; }
+        public virtual ICollection<familymanage> familymanages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<person> people { get; set; }
-        public virtual center center { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<referalfamily> referalfamilies { get; set; }
     }
 }

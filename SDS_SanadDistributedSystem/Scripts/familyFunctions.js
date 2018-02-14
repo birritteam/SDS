@@ -1,12 +1,13 @@
 ﻿//FAMILIES SCRIPT
 $("#familynature").on("change", function () {
-    if ($(this).val() == "فرد من المجتمع المضيف") {
-        $("#displacementdate").addClass("hidden");
-        $("#lastaddress").addClass("hidden");
-    }
-    else {
+    if ($(this).val() == "نازح داخلي") {
         $("#displacementdate").removeClass("hidden");
         $("#lastaddress").removeClass("hidden");
+        
+    }
+    else {
+        $("#displacementdate").addClass("hidden");
+        $("#lastaddress").addClass("hidden");
     }
 })
 

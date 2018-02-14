@@ -20,17 +20,12 @@ namespace SDS_SanadDistributedSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public person()
         {
-            this.referalpersons = new HashSet<referalperson>();
             this.personmanages = new HashSet<personmanage>();
+            this.referalpersons = new HashSet<referalperson>();
         }
 
-        [Remote("idAlreadyExisted", "people",
-            ErrorMessageResourceType = typeof(ErrorResource),
-            ErrorMessageResourceName = "id_existed")
-            ]
-        //[Required]
         [Display(Name = "person_id", ResourceType = typeof(PersonAndFamilyResources))]
-        public string idperson { get; set; }
+        public int idperson { get; set; }
 
         [Required]
         [Display(Name = "fname", ResourceType = typeof(PersonAndFamilyResources))]
@@ -42,6 +37,10 @@ namespace SDS_SanadDistributedSystem.Models
         [StringLength(11)]
         [RegularExpression(@"^[0-9]+$")]
         [Range(00000000000, 99999999999)]
+        [Remote("nationalNumberAlreadyExisted", "people",
+            ErrorMessageResourceType = typeof(ErrorResource),
+            ErrorMessageResourceName = "national_number_existed", AdditionalFields = "idperson", HttpMethod = "Post")
+            ]
         [Display(Name = "nationalnumber", ResourceType = typeof(PersonAndFamilyResources))]
         public string nationalnumber { get; set; }
         [Display(Name = "fathername", ResourceType = typeof(PersonAndFamilyResources))]
@@ -83,7 +82,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string currentaddress { get; set; }
         [Display(Name = "registrationdate", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<System.DateTimeOffset> registrationdate { get; set; }
-        public string idfamily_FK { get; set; }
+        public Nullable<int> idfamily_FK { get; set; }
         public string idcenter_FK { get; set; }
         [Display(Name = "formnumber", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<int> formnumber { get; set; }
@@ -99,14 +98,23 @@ namespace SDS_SanadDistributedSystem.Models
         public Nullable<int> age { get; set; }
         [Display(Name = "full_name", ResourceType = typeof(PersonAndFamilyResources))]
         public string full_name { get; set; }
+
+
+        [Remote("idAlreadyExisted", "people",
+            ErrorMessageResourceType = typeof(ErrorResource),
+            ErrorMessageResourceName = "id_existed", AdditionalFields = "idperson", HttpMethod = "Post")
+            ]
+        [Display(Name = "family_order_id", ResourceType = typeof(PersonAndFamilyResources))]
+
+        public string family_order_id { get; set; }
         public string iduser { get; set; }
         public bool is_secret { get; set; }
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual center center { get; set; }
         public virtual family family { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<referalperson> referalpersons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<personmanage> personmanages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<referalperson> referalpersons { get; set; }
     }
 }

@@ -17,20 +17,20 @@ namespace SDS_SanadDistributedSystem.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AspNetRole()
         {
-            this.AspNetUsers = new HashSet<AspNetUser>();
             this.services = new HashSet<service>();
+            this.AspNetUsers = new HashSet<AspNetUser>();
         }
     
         public string Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> idcase { get; set; }
         public string NameAR { get; set; }
         public string description { get; set; }
+        public Nullable<int> idcase { get; set; }
     
         public virtual @case @case { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<service> services { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
     }
 }

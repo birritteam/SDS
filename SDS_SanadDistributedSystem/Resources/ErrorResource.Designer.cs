@@ -61,6 +61,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to رقم دفتر العائلة موجود مسبقا.
+        /// </summary>
+        internal static string family_book_number_existed {
+            get {
+                return ResourceManager.GetString("family_book_number_existed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to الرمز المميز موجود مسبقا.
         /// </summary>
         internal static string flag_existed {
@@ -75,6 +84,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         internal static string id_existed {
             get {
                 return ResourceManager.GetString("id_existed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الرقم الوطني موجود مسبقا.
+        /// </summary>
+        internal static string national_number_existed {
+            get {
+                return ResourceManager.GetString("national_number_existed", resourceCulture);
             }
         }
     }

@@ -31,10 +31,28 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
-
-        public JsonResult idAlreadyExisted(string idperson)
+        public JsonResult nationalNumberAlreadyExisted(string nationalnumber, int? idperson)
         {
-            bool existed = db.people.Any(x => x.idperson.Equals(idperson));
+            bool existed;
+            if (idperson == null)
+            {
+                existed = db.people.Any(x => x.nationalnumber.Equals(nationalnumber));
+            }
+            else
+                existed = db.people.Any(x => x.nationalnumber.Equals(nationalnumber) && x.idperson != idperson);
+
+            return Json(!existed, JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult idAlreadyExisted(string family_order_id, int? idperson)
+        {
+            bool existed;
+            if (idperson == null) {
+                existed = db.people.Any(x => x.family_order_id.Equals(family_order_id));
+
+            }
+            else
+                existed = db.people.Any(x => x.family_order_id.Equals(family_order_id) && x.idperson != idperson);
+
             return Json(!existed, JsonRequestBehavior.AllowGet);
         }
 
@@ -42,7 +60,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
 
 
-        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam,mobileTeamReceptionist")]
         // GET: people
         public async Task<ActionResult> Index(string full_name, string nationalNumber)
         {
@@ -60,9 +78,9 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(await people.ToListAsync());
         }
-        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam,mobileTeamReceptionist")]
         // GET: people/Details/5
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -175,9 +193,9 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(person);
         }
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,mobileTeamReceptionist")]
         // GET: people/Create
-        public ActionResult Create(string id)
+        public ActionResult Create(int id)
         {
             person person = new person();
 
@@ -229,7 +247,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(person);
         }
-        [Authorize(Roles = "receptionist")]
+        [Authorize(Roles = "receptionist,mobileTeamReceptionist")]
         // POST: people/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -237,7 +255,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // removed formnumber from the Bind parameters 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser,evaluation,applicant")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
+        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser,evaluation,applicant,family_order_id")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
         {
             if (ModelState.IsValid)
             {
@@ -246,6 +264,14 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                 person.iduser = User.Identity.GetUserId();
                 person.idcenter_FK = db.AspNetUsers.SingleOrDefault(u => u.Id == person.iduser).idcenter_FK;
+
+                int? maxPersonId = db.people.Where(f => f.idcenter_FK == person.idcenter_FK).Max(f => (int?)f.idperson);
+                if (maxPersonId != null)
+                    person.idperson = maxPersonId.GetValueOrDefault() + 1;
+                else
+                {
+                    person.idperson = db.centers.SingleOrDefault(c => c.idcenter == person.idcenter_FK).min_person_id;
+                }
 
                 int? maxcenterform = db.people.Where(p => p.idcenter_FK == person.idcenter_FK).Max(p => p.formnumber) + 1;
                 if (maxcenterform != null)
@@ -313,6 +339,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                         db.personmanages.Add(document);
                     }
 
+                person.family = db.families.SingleOrDefault(f => f.idfamily == person.idfamily_FK);
                 await db.SaveChangesAsync();
                 //return RedirectToAction("Create");
 
@@ -321,6 +348,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     Data = new
                     {
                         idperson = person.idperson,
+                        family_order_id = person.family_order_id,
                         //fname = person.fname,
                         //lname = person.lname,
                         fullname = person.full_name,
@@ -328,16 +356,17 @@ namespace SDS_SanadDistributedSystem.Controllers
                         mothername = person.mothername,
                         age = person.age,
                         gender = person.gender,
-                        idfamily = person.idfamily_FK
+                        idfamily = person.idfamily_FK,
+                        family_book_number = person.family.family_book_number
                     },
                     JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
             return new JsonResult { Data = "Failed" };
         }
-        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam,mobileTeamReceptionist")]
         // GET: people/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -445,15 +474,19 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.educationOptions = education;
             ViewBag.evaluationValues = evaluationValues;
 
+            person.family = db.families.SingleOrDefault(f => f.idfamily == person.idfamily_FK);
+
+            ViewBag.family = person.family;
+
             return View(person);
         }
-        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam,mobileTeamReceptionist")]
         // POST: people/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber,evaluation,applicant")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
+        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber,evaluation,applicant,family_order_id")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
         {
           //  List<int> weaknessesList = weaknesses.ToList();
             if (ModelState.IsValid)

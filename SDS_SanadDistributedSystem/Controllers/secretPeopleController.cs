@@ -45,7 +45,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         // GET: secretPeople/Details/5
         [Authorize(Roles = "cmSGBV")]
-        public async Task<ActionResult> Details(string id)
+        public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
@@ -218,13 +218,24 @@ namespace SDS_SanadDistributedSystem.Controllers
             person.iduser = User.Identity.GetUserId();
             person.idcenter_FK = db.AspNetUsers.SingleOrDefault(u => u.Id == person.iduser).idcenter_FK;
 
+            int? maxPersonId = db.people.Where(f => f.idcenter_FK == person.idcenter_FK).Max(f => (int?)f.idperson);
+            if (maxPersonId != null)
+                person.idperson = maxPersonId.GetValueOrDefault() + 1;
+            else
+            {
+                person.idperson = db.centers.SingleOrDefault(c => c.idcenter == person.idcenter_FK).min_person_id;
+            }
+
+
             int? maxcenterform = db.people.Where(p => p.idcenter_FK == person.idcenter_FK).Max(p => p.formnumber) + 1;
             if (maxcenterform != null)
                 person.formnumber = maxcenterform;
             else person.formnumber = 1;
 
 
-            person.idperson = person.idcenter_FK.ToString() + person.formnumber.ToString();
+
+
+         //   person.idperson = person.idcenter_FK.ToString() + person.formnumber.ToString();
             person.is_secret = true;
 
             if (ModelState.IsValid)
@@ -350,12 +361,14 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.relationtype = relationtype;
             ViewBag.education = education;
 
+            ViewBag.documentsOptions = managelists.Where(ml => ml.flag == "D");
+
             return View(person);
         }
 
         // GET: secretPeople/Edit/5
         [Authorize(Roles = "cmSGBV")]
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {

@@ -20,23 +20,23 @@
     @Html.ActionLink(" ", "Details", "families", new { id = @ViewBag.family.idfamily }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users" })
 </span>
 
-    <h2>إضافة شخص للعائلة رقم:  </h2>
+    <h2>إضافة شخص للعائلة   </h2>
 
 
-    <div class="container-fluid">
+    <div class="container-fluid" id="">
         @using (Ajax.BeginForm("Create", "people", new AjaxOptions
         {
             OnSuccess = "SuccessLoadForPerson",
             OnFailure = "FailureLoadForPerson",
             //UpdateTargetId = "ParentDiv",
             HttpMethod = "POST",
-            InsertionMode = InsertionMode.Replace
+            //InsertionMode = InsertionMode.Replace
         }, new { @id = "personCreationForm" }))
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal container-fluid">
-                <h4 class="h4">@ViewBag.family.idfamily</h4>
+            <div class="form-horizontal">
+                <h4 class="h4">@ViewBag.family.serial_number</h4>
 
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -74,9 +74,10 @@
                             <input type="number" id="wifeOrder" class="hidden" min="1" max="4" value="1" />
                             <input type="number" id="childOrder" class="hidden" min="1" max="20" value="1" />
                         </div>
-                        @Html.ValidationMessageFor(model => model.idperson, "", new { @class = "text-danger col-md-3" })
+                        @Html.ValidationMessageFor(model => model.family_order_id, "", new { @class = "text-danger col-md-3" })
                         <div class="col-md-1" style="">
-                            @Html.EditorFor(model => model.idperson, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                            @*<input type="text" id="family_order_id" name="family_order_id" value="@ViewBag.family.family_book_number" readonly="readonly"/>*@
+                            @Html.EditorFor(model => model.family_order_id, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.family.family_book_number, @readonly = "readonly" } })
                         </div>
                     </div>
                 </div>
@@ -85,8 +86,8 @@
                         @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @foreach (string item in ViewBag.genderOptions)
-                {
-                                @Html.RadioButtonFor(model => model.gender, item, new { @id = item })
+                                {
+                                    @Html.RadioButtonFor(model => model.gender, item, new { @id = item })
                                 @Html.Label(item, new { @for = item })
                             }
                         </div>
@@ -382,7 +383,9 @@
 
                 <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
                 <input type="hidden" name="registrationdate" id="registrationdate" />
-                <input type="hidden" name="idfamily_FK" id="idfamily_FK" />
+                
+                <input class="hidden" name="idfamily_FK" id="idfamily_FK" value="@ViewBag.family.idfamily" />
+ 
                 <input type="hidden" name="idcenter_FK" id="idcenter_FK" />
                 <input type="hidden" name="iduser" id="iduser" />
 
@@ -399,7 +402,7 @@
                     <table class="table" id="familymembers">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.idperson)
+                                @Html.DisplayNameFor(model => model.family_order_id)
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.full_name)
@@ -430,7 +433,7 @@
                     {
                                 <tr>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.idperson)
+                                        @Html.DisplayFor(modelItem => item.family_order_id)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.full_name)

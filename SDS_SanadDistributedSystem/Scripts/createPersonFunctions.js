@@ -6,13 +6,14 @@ function SuccessLoadForPerson(data) {
     $("input[type='number']").val(1);
     $("input[type='number']").text(1);
 
-    $("#idperson").val(data.idfamily);
+    $("#family_order_id").val(data.family_book_number);
+
     $("#idfamily_FK").val(data.idfamily);
 
     toastr.success("تمت عملية الإضافة بنجاح", 'نجاح العملية');
 
     $("#familymembers").append(
-        "<tr><td>" + data.idperson + "</td><td>" +
+        "<tr><td>" + data.family_order_id + "</td><td>" +
         //data.fname + "</td><td>" + data.lname + "</td><td>" +
         //data.fathername +
         data.fullname +
@@ -49,12 +50,12 @@ $(document).ready(function () {
     //        highlightWeek: true
     //    });
     $.validator.unobtrusive.parse("#ParentDiv > form");
-    idFamily = $("#idperson").val();
-    $('#idfamily_FK').val(idFamily);
+    idFamily = $("#family_order_id").val();
+    //$('#idfamily_FK').val(idFamily);
     $("#ذكر").prop("checked", true).trigger("click");
  //   $("input[type=radio][name=position]").trigger("change");
-    $("#idperson").val(idFamily + "H").trigger("change");
-    $("#idperson").trigger("focus");
+    $("#family_order_id").val(idFamily + "H").trigger("change");
+    $("#family_order_id").trigger("focus");
   //  $("#idperson").trigger("focusout");
   //  $("#fname").trigger("focus");
    // $("#idperson").validator();
@@ -110,25 +111,25 @@ $("input[type=radio][name=position]").on("change", function () {
             $("#childOrder").removeClass("hidden");
             $("#wifeOrder").addClass("hidden");
             $("#أنثى").prop("checked", true).trigger("click");
-            $("#idperson").val(idFamily + type + $("#childOrder").val()).trigger("focusout");
+            $("#family_order_id").val(idFamily + type + $("#childOrder").val()).trigger("focusout");
             break;
         case "S":
             $("#childOrder").removeClass("hidden");
             $("#wifeOrder").addClass("hidden");
             $("#ذكر").prop("checked", true).trigger("click");
-            $("#idperson").val(idFamily + type + $("#childOrder").val()).trigger("focusout");
+            $("#family_order_id").val(idFamily + type + $("#childOrder").val()).trigger("focusout");
             break;
         case "W":
             $("#wifeOrder").removeClass("hidden");
             $("#childOrder").addClass("hidden");
             $("#أنثى").prop("checked", true).trigger("click");
-            $("#idperson").val(idFamily + type + $("#wifeOrder").val()).trigger("focusout");
+            $("#family_order_id").val(idFamily + type + $("#wifeOrder").val()).trigger("focusout");
             break;
         case "H":
             $("#wifeOrder").addClass("hidden");
             $("#childOrder").addClass("hidden");
             $("#ذكر").prop("checked", true).trigger("click");
-            $("#idperson").val(idFamily + type).trigger("focusout");
+            $("#family_order_id").val(idFamily + type).trigger("focusout");
             break;
         default:
             $("#wifeOrder").addClass("hidden");
@@ -141,11 +142,11 @@ $("input[type=radio][name=position]").on("change", function () {
 $("#childOrder").on("change", function () {
 
     var childOrder = $("#childOrder").val();
-    $("#idperson").val(idFamily + type + childOrder).trigger("focusout");;
+    $("#family_order_id").val(idFamily + type + childOrder).trigger("focusout");;
 
 });
 
 $("#wifeOrder").on("change", function () {
     var wifeOrder = $("#wifeOrder").val();
-    $("#idperson").val(idFamily + type + wifeOrder).trigger("focusout");;
+    $("#family_order_id").val(idFamily + type + wifeOrder).trigger("focusout");;
 });

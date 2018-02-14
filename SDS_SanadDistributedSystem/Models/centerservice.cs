@@ -12,13 +12,16 @@ namespace SDS_SanadDistributedSystem.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class personmanage
+    public partial class centerservice
     {
-        public int idperson_FK { get; set; }
-        public int idmanagelist_FK { get; set; }
-        public string eval { get; set; }
+        public string idcenter_FK { get; set; }
+        public int idservice_FK { get; set; }
+        public bool enabled { get; set; }
+        public string location { get; set; }
+        public Nullable<System.DateTime> start_date { get; set; }
+        public Nullable<System.DateTime> end_date { get; set; }
     
-        public virtual managelist managelist { get; set; }
-        public virtual person person { get; set; }
+        public virtual center center { get; set; }
+        public virtual service service { get; set; }
     }
 }

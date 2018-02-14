@@ -12,13 +12,13 @@ namespace SDS_SanadDistributedSystem.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class personmanage
+    public partial class familymanage
     {
-        public int idperson_FK { get; set; }
+        public int idfamily_FK { get; set; }
         public int idmanagelist_FK { get; set; }
         public string eval { get; set; }
     
+        public virtual family family { get; set; }
         public virtual managelist managelist { get; set; }
-        public virtual person person { get; set; }
     }
 }

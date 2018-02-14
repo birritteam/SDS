@@ -142,6 +142,33 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to رقم دفتر العائلة.
+        /// </summary>
+        public static string family_book_number {
+            get {
+                return ResourceManager.GetString("family_book_number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to المسؤول عن العائلة.
+        /// </summary>
+        public static string family_head {
+            get {
+                return ResourceManager.GetString("family_head", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to الرقم التسلسلي ضمن العائلة.
+        /// </summary>
+        public static string family_order_id {
+            get {
+                return ResourceManager.GetString("family_order_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to طبيعة العائلة.
         /// </summary>
         public static string familynature {
@@ -192,15 +219,6 @@ namespace SDS_SanadDistributedSystem.Resources {
         public static string gender {
             get {
                 return ResourceManager.GetString("gender", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to رقم دفتر العائلة.
-        /// </summary>
-        public static string idfamily {
-            get {
-                return ResourceManager.GetString("idfamily", resourceCulture);
             }
         }
         
@@ -372,6 +390,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         public static string relationtype {
             get {
                 return ResourceManager.GetString("relationtype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to القطاع.
+        /// </summary>
+        public static string sector {
+            get {
+                return ResourceManager.GetString("sector", resourceCulture);
             }
         }
         

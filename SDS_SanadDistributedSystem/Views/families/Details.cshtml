@@ -62,32 +62,43 @@
     <div class="card-body text-center">
         <p class="card-text card-block">
             <div class="col-md-3">
-                @Html.LabelFor(model => model.idfamily)
-                @Html.DisplayFor(model => model.idfamily)
+                @Html.LabelFor(model => model.family_book_number)
+                @Html.DisplayFor(model => model.family_book_number)
             </div>
             <div class="col-md-3">
                 @Html.LabelFor(model => model.lastname)
                 @Html.DisplayFor(model => model.lastname)
             </div>
             <div class="col-md-3">
+                @Html.LabelFor(model => model.family_head)
+                @Html.DisplayFor(model => model.family_head)
+            </div>
+            <div class="col-md-3">
                 @Html.LabelFor(model => model.familynature)
                 @Html.DisplayFor(model => model.familynature)
             </div>
-            <div class="col-md-3">
+            @*<div class="col-md-3">
                 @Html.LabelFor(model => model.currentaddress)
                 @Html.DisplayFor(model => model.currentaddress)
+            </div>*@
+            <div class="col-md-3">
+                <label>السكن الحالي</label>
+                @ViewBag.selectedCurrentAddress
             </div>
-
+            
             <div class="col-md-3">
                 <label>نوع السكن</label>
-               @ViewBag.addressType
+               @ViewBag.selectedAddressType
             </div>
-            @if (!Model.familynature.Equals("فرد من المجتمع المضيف"))
-            {
-                <div class="col-md-3">
+            @if (Model.familynature.Equals("نازح داخلي"))
+            {<div class="col-md-3">
+                <label>السكن السابق</label>
+                @ViewBag.selectedPreviousAddress
+            </div>
+                @*<div class="col-md-3">
                     @Html.LabelFor(model => model.lastaddress)
                     @Html.DisplayFor(model => model.lastaddress)
-                </div>
+                </div>*@
                     <div class="col-md-3">
                         @Html.LabelFor(model => model.displacementdate)
                         @Html.DisplayFor(model => model.displacementdate)
@@ -279,7 +290,7 @@
     <table class="table" id="familymembers">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.people.First().idperson)
+                @Html.DisplayNameFor(model => model.people.First().family_order_id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.people.First().full_name)
@@ -301,7 +312,7 @@
 
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.idperson)
+                    @Html.DisplayFor(modelItem => item.family_order_id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.full_name)

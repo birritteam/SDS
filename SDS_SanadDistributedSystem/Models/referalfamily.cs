@@ -15,7 +15,7 @@ namespace SDS_SanadDistributedSystem.Models
     public partial class referalfamily
     {
         public int idreferalfamily { get; set; }
-        public string idfamily_FK { get; set; }
+        public int idfamily_FK { get; set; }
         public int idcase_FK { get; set; }
         public Nullable<int> idservice_FK { get; set; }
         public Nullable<System.DateTime> submittingdate { get; set; }
@@ -25,17 +25,17 @@ namespace SDS_SanadDistributedSystem.Models
         public Nullable<System.DateTime> servicestartdate { get; set; }
         public Nullable<System.DateTime> serviceenddate { get; set; }
         public string referalsender_FK { get; set; }
+        public string referalreciever_FK { get; set; }
         public string senderevalution { get; set; }
         public string recieverevalution { get; set; }
         public string idcenter_FK { get; set; }
         public string outreachnote { get; set; }
-        public string referalreciever_FK { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
+        public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual @case @case { get; set; }
         public virtual center center { get; set; }
         public virtual family family { get; set; }
-        public virtual AspNetUser AspNetUser1 { get; set; }
         public virtual service service { get; set; }
     }
 }

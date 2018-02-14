@@ -31,13 +31,15 @@ namespace SDS_SanadDistributedSystem.Models
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<@case> cases { get; set; }
         public virtual DbSet<center> centers { get; set; }
+        public virtual DbSet<centerservice> centerservices { get; set; }
+        public virtual DbSet<family> families { get; set; }
+        public virtual DbSet<familymanage> familymanages { get; set; }
         public virtual DbSet<managelist> managelists { get; set; }
         public virtual DbSet<partner> partners { get; set; }
-        public virtual DbSet<referalfamily> referalfamilies { get; set; }
-        public virtual DbSet<referalperson> referalpersons { get; set; }
-        public virtual DbSet<family> families { get; set; }
         public virtual DbSet<person> people { get; set; }
         public virtual DbSet<personmanage> personmanages { get; set; }
+        public virtual DbSet<referalfamily> referalfamilies { get; set; }
+        public virtual DbSet<referalperson> referalpersons { get; set; }
         public virtual DbSet<service> services { get; set; }
         public virtual DbSet<temporal> temporals { get; set; }
     }

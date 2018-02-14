@@ -78,12 +78,28 @@
           <Property Name="location" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="idpartner_FK" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="flag" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="min_family_id" Type="int" Nullable="false" />
+          <Property Name="max_family_id" Type="int" Nullable="false" />
+          <Property Name="min_person_id" Type="int" Nullable="false" />
+          <Property Name="max_person_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="centerservice">
+          <Key>
+            <PropertyRef Name="idcenter_FK" />
+            <PropertyRef Name="idservice_FK" />
+          </Key>
+          <Property Name="idcenter_FK" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="idservice_FK" Type="int" Nullable="false" />
+          <Property Name="enabled" Type="bit" Nullable="false" />
+          <Property Name="location" Type="nvarchar" MaxLength="20" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
         </EntityType>
         <EntityType Name="family">
           <Key>
             <PropertyRef Name="idfamily" />
           </Key>
-          <Property Name="idfamily" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idfamily" Type="int" Nullable="false" />
           <Property Name="familynature" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="personcount" Type="int" />
@@ -100,14 +116,19 @@
           <Property Name="formnumber" Type="int" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" />
           <Property Name="serial_number" Type="varchar" MaxLength="17" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="family_book_number" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="family_head" Type="varchar" MaxLength="50" />
+          <Property Name="sector" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="familymanage">
           <Key>
             <PropertyRef Name="idfamily_FK" />
             <PropertyRef Name="idmanagelist_FK" />
+            <PropertyRef Name="eval" />
           </Key>
-          <Property Name="idfamily_FK" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idfamily_FK" Type="int" Nullable="false" />
           <Property Name="idmanagelist_FK" Type="int" Nullable="false" />
+          <Property Name="eval" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="managelist">
           <Key>
@@ -129,7 +150,7 @@
           <Key>
             <PropertyRef Name="idperson" />
           </Key>
-          <Property Name="idperson" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idperson" Type="int" Nullable="false" />
           <Property Name="fname" Type="varchar" MaxLength="20" />
           <Property Name="lname" Type="varchar" MaxLength="20" />
           <Property Name="nationalnumber" Type="varchar" MaxLength="11" />
@@ -148,7 +169,7 @@
           <Property Name="phone2" Type="varchar" MaxLength="20" />
           <Property Name="currentaddress" Type="varchar" MaxLength="100" />
           <Property Name="registrationdate" Type="datetimeoffset" Precision="7" />
-          <Property Name="idfamily_FK" Type="varchar" MaxLength="20" />
+          <Property Name="idfamily_FK" Type="int" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" />
           <Property Name="formnumber" Type="int" />
           <Property Name="note" Type="text" />
@@ -158,7 +179,8 @@
           <Property Name="applicant" Type="varchar" MaxLength="50" />
           <Property Name="serial_number" Type="varchar" MaxLength="17" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="age" Type="int" StoreGeneratedPattern="Computed" />
-          <Property Name="full_name" Type="varchar" MaxLength="72" StoreGeneratedPattern="Computed" />
+          <Property Name="full_name" Type="varchar" MaxLength="72" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="family_order_id" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="personmanage">
           <Key>
@@ -166,7 +188,7 @@
             <PropertyRef Name="idmanagelist_FK" />
             <PropertyRef Name="eval" />
           </Key>
-          <Property Name="idperson_FK" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idperson_FK" Type="int" Nullable="false" />
           <Property Name="idmanagelist_FK" Type="int" Nullable="false" />
           <Property Name="eval" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -177,7 +199,7 @@
             <PropertyRef Name="idcase_FK" />
           </Key>
           <Property Name="idreferalfamily" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idfamily_FK" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idfamily_FK" Type="int" Nullable="false" />
           <Property Name="idcase_FK" Type="int" Nullable="false" />
           <Property Name="idservice_FK" Type="int" />
           <Property Name="submittingdate" Type="date" />
@@ -200,7 +222,7 @@
             <PropertyRef Name="idcase_FK" />
           </Key>
           <Property Name="idreferalperson" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idperson_FK" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idperson_FK" Type="int" Nullable="false" />
           <Property Name="idcase_FK" Type="int" Nullable="false" />
           <Property Name="idservice_FK" Type="int" />
           <Property Name="submittingdate" Type="date" />
@@ -223,9 +245,9 @@
           <Property Name="idservice" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="idcase_FK" Type="int" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="enabled" Type="bit" Nullable="false" />
           <Property Name="description" Type="text" />
-          <Property Name="idrole_FK" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="idrole_FK" Type="nvarchar" MaxLength="128" />
+          <Property Name="is_activity" Type="bit" />
         </EntityType>
         <EntityType Name="temporal">
           <Key>
@@ -312,6 +334,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_centerservice_center">
+          <End Role="center" Type="Self.center" Multiplicity="1" />
+          <End Role="centerservice" Type="Self.centerservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="center">
+              <PropertyRef Name="idcenter" />
+            </Principal>
+            <Dependent Role="centerservice">
+              <PropertyRef Name="idcenter_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_centerservice_service">
+          <End Role="service" Type="Self.service" Multiplicity="1" />
+          <End Role="centerservice" Type="Self.centerservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="idservice" />
+            </Principal>
+            <Dependent Role="centerservice">
+              <PropertyRef Name="idservice_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -393,7 +439,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_familymanage_family">
-          <End Role="family" Type="Self.family" Multiplicity="1" />
+          <End Role="family" Type="Self.family" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="familymanage" Type="Self.familymanage" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="family">
@@ -441,7 +489,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_person_family">
-          <End Role="family" Type="Self.family" Multiplicity="0..1" />
+          <End Role="family" Type="Self.family" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="person" Type="Self.person" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="family">
@@ -527,7 +577,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_referalfamily_family">
-          <End Role="family" Type="Self.family" Multiplicity="1" />
+          <End Role="family" Type="Self.family" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="referalfamily" Type="Self.referalfamily" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="family">
@@ -539,7 +591,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_referalfamily_service">
-          <End Role="service" Type="Self.service" Multiplicity="0..1" />
+          <End Role="service" Type="Self.service" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="referalfamily" Type="Self.referalfamily" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="service">
@@ -613,7 +667,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_referalperson_service">
-          <End Role="service" Type="Self.service" Multiplicity="0..1" />
+          <End Role="service" Type="Self.service" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="referalperson" Type="Self.referalperson" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="service">
@@ -625,7 +681,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_service_AspNetRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="0..1" />
           <End Role="service" Type="Self.service" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AspNetRoles">
@@ -692,6 +748,7 @@
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cases" EntityType="Self.cases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="center" EntityType="Self.center" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="centerservice" EntityType="Self.centerservice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="family" EntityType="Self.family" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="familymanage" EntityType="Self.familymanage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="managelist" EntityType="Self.managelist" Schema="dbo" store:Type="Tables" />
@@ -717,6 +774,14 @@
           <AssociationSet Name="FK_center_partner" Association="Self.FK_center_partner">
             <End Role="partner" EntitySet="partner" />
             <End Role="center" EntitySet="center" />
+          </AssociationSet>
+          <AssociationSet Name="FK_centerservice_center" Association="Self.FK_centerservice_center">
+            <End Role="center" EntitySet="center" />
+            <End Role="centerservice" EntitySet="centerservice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_centerservice_service" Association="Self.FK_centerservice_service">
+            <End Role="service" EntitySet="service" />
+            <End Role="centerservice" EntitySet="centerservice" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -843,28 +908,187 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="sds_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="sds_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="sds_dbModel.AspNetRole" />
+          <EntitySet Name="AspNetUserClaims" EntityType="sds_dbModel.AspNetUserClaim" />
+          <EntitySet Name="AspNetUserLogins" EntityType="sds_dbModel.AspNetUserLogin" />
+          <EntitySet Name="AspNetUsers" EntityType="sds_dbModel.AspNetUser" />
+          <EntitySet Name="cases" EntityType="sds_dbModel.case" />
+          <EntitySet Name="centers" EntityType="sds_dbModel.center" />
+          <EntitySet Name="centerservices" EntityType="sds_dbModel.centerservice" />
+          <EntitySet Name="families" EntityType="sds_dbModel.family" />
+          <EntitySet Name="familymanages" EntityType="sds_dbModel.familymanage" />
+          <EntitySet Name="managelists" EntityType="sds_dbModel.managelist" />
+          <EntitySet Name="partners" EntityType="sds_dbModel.partner" />
+          <EntitySet Name="people" EntityType="sds_dbModel.person" />
+          <EntitySet Name="personmanages" EntityType="sds_dbModel.personmanage" />
+          <EntitySet Name="referalfamilies" EntityType="sds_dbModel.referalfamily" />
+          <EntitySet Name="referalpersons" EntityType="sds_dbModel.referalperson" />
+          <EntitySet Name="services" EntityType="sds_dbModel.service" />
+          <EntitySet Name="temporals" EntityType="sds_dbModel.temporal" />
+          <AssociationSet Name="FK_AspNetRoles_cases" Association="sds_dbModel.FK_AspNetRoles_cases">
+            <End Role="case" EntitySet="cases" />
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_AspNetRoles" Association="sds_dbModel.FK_service_AspNetRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="service" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="sds_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaim" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="sds_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogin" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUsers_center" Association="sds_dbModel.FK_AspNetUsers_center">
+            <End Role="center" EntitySet="centers" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_family_AspNetUsers" Association="sds_dbModel.FK_family_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="family" EntitySet="families" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_AspNetUsers" Association="sds_dbModel.FK_person_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="person" EntitySet="people" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_AspNetUsers" Association="sds_dbModel.FK_referalfamily_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="referalfamily" EntitySet="referalfamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_AspNetUsers1" Association="sds_dbModel.FK_referalfamily_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="referalfamily" EntitySet="referalfamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalperson_AspNetUsers" Association="sds_dbModel.FK_referalperson_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="referalperson" EntitySet="referalpersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalperson_AspNetUsers1" Association="sds_dbModel.FK_referalperson_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="referalperson" EntitySet="referalpersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_temporal_AspNetUsers" Association="sds_dbModel.FK_temporal_AspNetUsers">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="temporal" EntitySet="temporals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_temporal_AspNetUsers1" Association="sds_dbModel.FK_temporal_AspNetUsers1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="temporal" EntitySet="temporals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_case_partner" Association="sds_dbModel.FK_case_partner">
+            <End Role="partner" EntitySet="partners" />
+            <End Role="case" EntitySet="cases" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_case" Association="sds_dbModel.FK_referalfamily_case">
+            <End Role="case" EntitySet="cases" />
+            <End Role="referalfamily" EntitySet="referalfamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalperson_case" Association="sds_dbModel.FK_referalperson_case">
+            <End Role="case" EntitySet="cases" />
+            <End Role="referalperson" EntitySet="referalpersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_service_case" Association="sds_dbModel.FK_service_case">
+            <End Role="case" EntitySet="cases" />
+            <End Role="service" EntitySet="services" />
+          </AssociationSet>
+          <AssociationSet Name="FK_center_partner" Association="sds_dbModel.FK_center_partner">
+            <End Role="partner" EntitySet="partners" />
+            <End Role="center" EntitySet="centers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_centerservice_center" Association="sds_dbModel.FK_centerservice_center">
+            <End Role="center" EntitySet="centers" />
+            <End Role="centerservice" EntitySet="centerservices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_family_center" Association="sds_dbModel.FK_family_center">
+            <End Role="center" EntitySet="centers" />
+            <End Role="family" EntitySet="families" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_center" Association="sds_dbModel.FK_person_center">
+            <End Role="center" EntitySet="centers" />
+            <End Role="person" EntitySet="people" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_center" Association="sds_dbModel.FK_referalfamily_center">
+            <End Role="center" EntitySet="centers" />
+            <End Role="referalfamily" EntitySet="referalfamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalperson_center" Association="sds_dbModel.FK_referalperson_center">
+            <End Role="center" EntitySet="centers" />
+            <End Role="referalperson" EntitySet="referalpersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_temporal_center" Association="sds_dbModel.FK_temporal_center">
+            <End Role="center" EntitySet="centers" />
+            <End Role="temporal" EntitySet="temporals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_centerservice_service" Association="sds_dbModel.FK_centerservice_service">
+            <End Role="service" EntitySet="services" />
+            <End Role="centerservice" EntitySet="centerservices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_familymanage_family" Association="sds_dbModel.FK_familymanage_family">
+            <End Role="family" EntitySet="families" />
+            <End Role="familymanage" EntitySet="familymanages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_person_family" Association="sds_dbModel.FK_person_family">
+            <End Role="family" EntitySet="families" />
+            <End Role="person" EntitySet="people" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_family" Association="sds_dbModel.FK_referalfamily_family">
+            <End Role="family" EntitySet="families" />
+            <End Role="referalfamily" EntitySet="referalfamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_familymanage_managelist" Association="sds_dbModel.FK_familymanage_managelist">
+            <End Role="managelist" EntitySet="managelists" />
+            <End Role="familymanage" EntitySet="familymanages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personmanage_managelist" Association="sds_dbModel.FK_personmanage_managelist">
+            <End Role="managelist" EntitySet="managelists" />
+            <End Role="personmanage" EntitySet="personmanages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_personmanage_person" Association="sds_dbModel.FK_personmanage_person">
+            <End Role="person" EntitySet="people" />
+            <End Role="personmanage" EntitySet="personmanages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalperson_person" Association="sds_dbModel.FK_referalperson_person">
+            <End Role="person" EntitySet="people" />
+            <End Role="referalperson" EntitySet="referalpersons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalfamily_service" Association="sds_dbModel.FK_referalfamily_service">
+            <End Role="service" EntitySet="services" />
+            <End Role="referalfamily" EntitySet="referalfamilies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_referalperson_service" Association="sds_dbModel.FK_referalperson_service">
+            <End Role="service" EntitySet="services" />
+            <End Role="referalperson" EntitySet="referalpersons" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="sds_dbModel.AspNetUserRoles">
+            <End Role="AspNetRole" EntitySet="AspNetRoles" />
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="idcase" Type="Int32" />
-          <NavigationProperty Name="case" Relationship="Self.FK_AspNetRoles_cases" FromRole="AspNetRoles" ToRole="cases" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
-          <NavigationProperty Name="services" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="AspNetRole" ToRole="service" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="NameAR" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idcase" Type="Int32" />
+          <NavigationProperty Name="case" Relationship="sds_dbModel.FK_AspNetRoles_cases" FromRole="AspNetRole" ToRole="case" />
+          <NavigationProperty Name="services" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="AspNetRole" ToRole="service" />
+          <NavigationProperty Name="AspNetUsers" Relationship="sds_dbModel.AspNetUserRoles" FromRole="AspNetRole" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserClaim">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaim" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUserLogin">
           <Key>
@@ -872,16 +1096,16 @@
             <PropertyRef Name="ProviderKey" />
             <PropertyRef Name="UserId" />
           </Key>
-          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogin" ToRole="AspNetUser" />
         </EntityType>
         <EntityType Name="AspNetUser">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
           <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -892,21 +1116,21 @@
           <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
           <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetUserClaims" Relationship="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
-          <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
-          <NavigationProperty Name="center" Relationship="Self.FK_AspNetUsers_center" FromRole="AspNetUsers" ToRole="center" />
-          <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_AspNetUsers" FromRole="AspNetUsers" ToRole="referalfamily" />
-          <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_AspNetUsers" FromRole="AspNetUsers" ToRole="referalperson" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="sds_dbModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserClaim" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="sds_dbModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUser" ToRole="AspNetUserLogin" />
+          <NavigationProperty Name="center" Relationship="sds_dbModel.FK_AspNetUsers_center" FromRole="AspNetUser" ToRole="center" />
           <NavigationProperty Name="families" Relationship="sds_dbModel.FK_family_AspNetUsers" FromRole="AspNetUser" ToRole="family" />
           <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_AspNetUsers" FromRole="AspNetUser" ToRole="person" />
-          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="referalfamilies" Relationship="sds_dbModel.FK_referalfamily_AspNetUsers" FromRole="AspNetUser" ToRole="referalfamily" />
           <NavigationProperty Name="referalfamilies1" Relationship="sds_dbModel.FK_referalfamily_AspNetUsers1" FromRole="AspNetUser" ToRole="referalfamily" />
+          <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_AspNetUsers" FromRole="AspNetUser" ToRole="referalperson" />
           <NavigationProperty Name="referalpersons1" Relationship="sds_dbModel.FK_referalperson_AspNetUsers1" FromRole="AspNetUser" ToRole="referalperson" />
           <NavigationProperty Name="temporals" Relationship="sds_dbModel.FK_temporal_AspNetUsers" FromRole="AspNetUser" ToRole="temporal" />
           <NavigationProperty Name="temporals1" Relationship="sds_dbModel.FK_temporal_AspNetUsers1" FromRole="AspNetUser" ToRole="temporal" />
+          <NavigationProperty Name="AspNetRoles" Relationship="sds_dbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
         </EntityType>
         <EntityType Name="case">
           <Key>
@@ -915,28 +1139,89 @@
           <Property Name="idcase" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idpartner_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetRoles" Relationship="Self.FK_AspNetRoles_cases" FromRole="cases" ToRole="AspNetRoles" />
-          <NavigationProperty Name="partner" Relationship="Self.FK_case_partner" FromRole="cases" ToRole="partner" />
-          <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_case" FromRole="cases" ToRole="referalfamily" />
-          <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_case" FromRole="cases" ToRole="referalperson" />
+          <NavigationProperty Name="AspNetRoles" Relationship="sds_dbModel.FK_AspNetRoles_cases" FromRole="case" ToRole="AspNetRole" />
+          <NavigationProperty Name="partner" Relationship="sds_dbModel.FK_case_partner" FromRole="case" ToRole="partner" />
+          <NavigationProperty Name="referalfamilies" Relationship="sds_dbModel.FK_referalfamily_case" FromRole="case" ToRole="referalfamily" />
+          <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_case" FromRole="case" ToRole="referalperson" />
           <NavigationProperty Name="services" Relationship="sds_dbModel.FK_service_case" FromRole="case" ToRole="service" />
         </EntityType>
         <EntityType Name="center">
           <Key>
             <PropertyRef Name="idcenter" />
           </Key>
-          <Property Name="idcenter" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idpartner_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_AspNetUsers_center" FromRole="center" ToRole="AspNetUsers" />
-          <NavigationProperty Name="partner" Relationship="Self.FK_center_partner" FromRole="center" ToRole="partner" />
-          <NavigationProperty Name="referalfamilies" Relationship="Self.FK_referalfamily_center" FromRole="center" ToRole="referalfamily" />
-          <NavigationProperty Name="referalpersons" Relationship="Self.FK_referalperson_center" FromRole="center" ToRole="referalperson" />
-          <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_center" FromRole="center" ToRole="person" />
+          <Property Name="idcenter" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idpartner_FK" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="flag" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="temporals" Relationship="sds_dbModel.FK_temporal_center" FromRole="center" ToRole="temporal" />
+          <Property Name="min_family_id" Type="Int32" Nullable="false" />
+          <Property Name="max_family_id" Type="Int32" Nullable="false" />
+          <Property Name="min_person_id" Type="Int32" Nullable="false" />
+          <Property Name="max_person_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="sds_dbModel.FK_AspNetUsers_center" FromRole="center" ToRole="AspNetUser" />
+          <NavigationProperty Name="partner" Relationship="sds_dbModel.FK_center_partner" FromRole="center" ToRole="partner" />
+          <NavigationProperty Name="centerservices" Relationship="sds_dbModel.FK_centerservice_center" FromRole="center" ToRole="centerservice" />
           <NavigationProperty Name="families" Relationship="sds_dbModel.FK_family_center" FromRole="center" ToRole="family" />
+          <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_center" FromRole="center" ToRole="person" />
+          <NavigationProperty Name="referalfamilies" Relationship="sds_dbModel.FK_referalfamily_center" FromRole="center" ToRole="referalfamily" />
+          <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_center" FromRole="center" ToRole="referalperson" />
+          <NavigationProperty Name="temporals" Relationship="sds_dbModel.FK_temporal_center" FromRole="center" ToRole="temporal" />
+        </EntityType>
+        <EntityType Name="centerservice">
+          <Key>
+            <PropertyRef Name="idcenter_FK" />
+            <PropertyRef Name="idservice_FK" />
+          </Key>
+          <Property Name="idcenter_FK" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="idservice_FK" Type="Int32" Nullable="false" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <Property Name="location" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="start_date" Type="DateTime" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="center" Relationship="sds_dbModel.FK_centerservice_center" FromRole="centerservice" ToRole="center" />
+          <NavigationProperty Name="service" Relationship="sds_dbModel.FK_centerservice_service" FromRole="centerservice" ToRole="service" />
+        </EntityType>
+        <EntityType Name="family">
+          <Key>
+            <PropertyRef Name="idfamily" />
+          </Key>
+          <Property Name="idfamily" Type="Int32" Nullable="false" />
+          <Property Name="familynature" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="personcount" Type="Int32" />
+          <Property Name="lastaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="currentaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="displacementdate" Type="DateTime" Precision="0" />
+          <Property Name="phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="iduser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="phone1owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="phone2owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="evaluation" Type="Int32" />
+          <Property Name="formnumber" Type="Int32" />
+          <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="serial_number" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="family_book_number" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="family_head" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="sector" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_family_AspNetUsers" FromRole="family" ToRole="AspNetUser" />
+          <NavigationProperty Name="center" Relationship="sds_dbModel.FK_family_center" FromRole="family" ToRole="center" />
+          <NavigationProperty Name="familymanages" Relationship="sds_dbModel.FK_familymanage_family" FromRole="family" ToRole="familymanage" />
+          <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_family" FromRole="family" ToRole="person" />
+          <NavigationProperty Name="referalfamilies" Relationship="sds_dbModel.FK_referalfamily_family" FromRole="family" ToRole="referalfamily" />
+        </EntityType>
+        <EntityType Name="familymanage">
+          <Key>
+            <PropertyRef Name="idfamily_FK" />
+            <PropertyRef Name="idmanagelist_FK" />
+            <PropertyRef Name="eval" />
+          </Key>
+          <Property Name="idfamily_FK" Type="Int32" Nullable="false" />
+          <Property Name="idmanagelist_FK" Type="Int32" Nullable="false" />
+          <Property Name="eval" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="family" Relationship="sds_dbModel.FK_familymanage_family" FromRole="familymanage" ToRole="family" />
+          <NavigationProperty Name="managelist" Relationship="sds_dbModel.FK_familymanage_managelist" FromRole="familymanage" ToRole="managelist" />
         </EntityType>
         <EntityType Name="managelist">
           <Key>
@@ -945,434 +1230,24 @@
           <Property Name="idmanagelist" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="flag" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="families" Relationship="sds_dbModel.familymanage" FromRole="managelist" ToRole="family" />
+          <NavigationProperty Name="familymanages" Relationship="sds_dbModel.FK_familymanage_managelist" FromRole="managelist" ToRole="familymanage" />
           <NavigationProperty Name="personmanages" Relationship="sds_dbModel.FK_personmanage_managelist" FromRole="managelist" ToRole="personmanage" />
         </EntityType>
         <EntityType Name="partner">
           <Key>
             <PropertyRef Name="idpartner" />
           </Key>
-          <Property Name="idpartner" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="location" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="cases" Relationship="Self.FK_case_partner" FromRole="partner" ToRole="cases" />
-          <NavigationProperty Name="centers" Relationship="Self.FK_center_partner" FromRole="partner" ToRole="center" />
+          <Property Name="idpartner" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="location" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="cases" Relationship="sds_dbModel.FK_case_partner" FromRole="partner" ToRole="case" />
+          <NavigationProperty Name="centers" Relationship="sds_dbModel.FK_center_partner" FromRole="partner" ToRole="center" />
         </EntityType>
-        <EntityType Name="referalfamily">
-          <Key>
-            <PropertyRef Name="idreferalfamily" />
-            <PropertyRef Name="idfamily_FK" />
-            <PropertyRef Name="idcase_FK" />
-          </Key>
-          <Property Name="idreferalfamily" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idfamily_FK" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idcase_FK" Type="Int32" Nullable="false" />
-          <Property Name="idservice_FK" Type="Int32" />
-          <Property Name="submittingdate" Type="DateTime" Precision="0" />
-          <Property Name="referalstate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="referaldate" Type="DateTime" Precision="0" />
-          <Property Name="servicestate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="servicestartdate" Type="DateTime" Precision="0" />
-          <Property Name="serviceenddate" Type="DateTime" Precision="0" />
-          <Property Name="referalsender_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="senderevalution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="recieverevalution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="outreachnote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_referalfamily_AspNetUsers" FromRole="referalfamily" ToRole="AspNetUsers" />
-          <NavigationProperty Name="case" Relationship="Self.FK_referalfamily_case" FromRole="referalfamily" ToRole="cases" />
-          <NavigationProperty Name="center" Relationship="Self.FK_referalfamily_center" FromRole="referalfamily" ToRole="center" />
-          <NavigationProperty Name="family" Relationship="sds_dbModel.FK_referalfamily_family" FromRole="referalfamily" ToRole="family" />
-          <Property Name="referalreciever_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_referalfamily_AspNetUsers1" FromRole="referalfamily" ToRole="AspNetUser" />
-          <NavigationProperty Name="service" Relationship="sds_dbModel.FK_referalfamily_service" FromRole="referalfamily" ToRole="service" />
-        </EntityType>
-        <EntityType Name="referalperson">
-          <Key>
-            <PropertyRef Name="idreferalperson" />
-            <PropertyRef Name="idperson_FK" />
-            <PropertyRef Name="idcase_FK" />
-          </Key>
-          <Property Name="idreferalperson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="idperson_FK" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="idcase_FK" Type="Int32" Nullable="false" />
-          <Property Name="idservice_FK" Type="Int32" />
-          <Property Name="submittingdate" Type="DateTime" Precision="0" />
-          <Property Name="referalstate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="referaldate" Type="DateTime" Precision="0" />
-          <Property Name="servicestate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="servicestartdate" Type="DateTime" Precision="0" />
-          <Property Name="serviceenddate" Type="DateTime" Precision="0" />
-          <Property Name="referalsender_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="senderevalution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="recieverevalution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="outreachnote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="AspNetUser" Relationship="Self.FK_referalperson_AspNetUsers" FromRole="referalperson" ToRole="AspNetUsers" />
-          <NavigationProperty Name="case" Relationship="Self.FK_referalperson_case" FromRole="referalperson" ToRole="cases" />
-          <NavigationProperty Name="center" Relationship="Self.FK_referalperson_center" FromRole="referalperson" ToRole="center" />
-          <NavigationProperty Name="person" Relationship="sds_dbModel.FK_referalperson_person" FromRole="referalperson" ToRole="person" />
-          <Property Name="referalreicver_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_referalperson_AspNetUsers1" FromRole="referalperson" ToRole="AspNetUser" />
-          <NavigationProperty Name="service" Relationship="sds_dbModel.FK_referalperson_service" FromRole="referalperson" ToRole="service" />
-        </EntityType>
-        <Association Name="FK_AspNetRoles_cases">
-          <End Role="cases" Type="Self.case" Multiplicity="0..1" />
-          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cases">
-              <PropertyRef Name="idcase" />
-            </Principal>
-            <Dependent Role="AspNetRoles">
-              <PropertyRef Name="idcase" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaim" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserClaims">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogin" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserLogins">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AspNetUsers_center">
-          <End Role="center" Type="Self.center" Multiplicity="0..1" />
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="center">
-              <PropertyRef Name="idcenter" />
-            </Principal>
-            <Dependent Role="AspNetUsers">
-              <PropertyRef Name="idcenter_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalfamily_AspNetUsers">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
-          <End Role="referalfamily" Type="Self.referalfamily" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="referalfamily">
-              <PropertyRef Name="referalsender_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalperson_AspNetUsers">
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="0..1" />
-          <End Role="referalperson" Type="Self.referalperson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="referalperson">
-              <PropertyRef Name="referalsender_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_case_partner">
-          <End Role="partner" Type="Self.partner" Multiplicity="0..1" />
-          <End Role="cases" Type="Self.case" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="partner">
-              <PropertyRef Name="idpartner" />
-            </Principal>
-            <Dependent Role="cases">
-              <PropertyRef Name="idpartner_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalfamily_case">
-          <End Role="cases" Type="Self.case" Multiplicity="1" />
-          <End Role="referalfamily" Type="Self.referalfamily" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cases">
-              <PropertyRef Name="idcase" />
-            </Principal>
-            <Dependent Role="referalfamily">
-              <PropertyRef Name="idcase_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalperson_case">
-          <End Role="cases" Type="Self.case" Multiplicity="1" />
-          <End Role="referalperson" Type="Self.referalperson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="cases">
-              <PropertyRef Name="idcase" />
-            </Principal>
-            <Dependent Role="referalperson">
-              <PropertyRef Name="idcase_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_center_partner">
-          <End Role="partner" Type="Self.partner" Multiplicity="1" />
-          <End Role="center" Type="Self.center" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="partner">
-              <PropertyRef Name="idpartner" />
-            </Principal>
-            <Dependent Role="center">
-              <PropertyRef Name="idpartner_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalfamily_center">
-          <End Role="center" Type="Self.center" Multiplicity="0..1" />
-          <End Role="referalfamily" Type="Self.referalfamily" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="center">
-              <PropertyRef Name="idcenter" />
-            </Principal>
-            <Dependent Role="referalfamily">
-              <PropertyRef Name="idcenter_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalperson_center">
-          <End Role="center" Type="Self.center" Multiplicity="1" />
-          <End Role="referalperson" Type="Self.referalperson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="center">
-              <PropertyRef Name="idcenter" />
-            </Principal>
-            <Dependent Role="referalperson">
-              <PropertyRef Name="idcenter_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AspNetUserRoles">
-          <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
-          <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="sds_dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
-          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
-          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
-          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUser" />
-          <EntitySet Name="cases" EntityType="Self.case" />
-          <EntitySet Name="centers" EntityType="Self.center" />
-          <EntitySet Name="managelists" EntityType="Self.managelist" />
-          <EntitySet Name="partners" EntityType="Self.partner" />
-          <EntitySet Name="referalfamilies" EntityType="Self.referalfamily" />
-          <EntitySet Name="referalpersons" EntityType="Self.referalperson" />
-          <AssociationSet Name="FK_AspNetRoles_cases" Association="Self.FK_AspNetRoles_cases">
-            <End Role="cases" EntitySet="cases" />
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AspNetUsers_center" Association="Self.FK_AspNetUsers_center">
-            <End Role="center" EntitySet="centers" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalfamily_AspNetUsers" Association="Self.FK_referalfamily_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="referalfamily" EntitySet="referalfamilies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalperson_AspNetUsers" Association="Self.FK_referalperson_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="referalperson" EntitySet="referalpersons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_case_partner" Association="Self.FK_case_partner">
-            <End Role="partner" EntitySet="partners" />
-            <End Role="cases" EntitySet="cases" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalfamily_case" Association="Self.FK_referalfamily_case">
-            <End Role="cases" EntitySet="cases" />
-            <End Role="referalfamily" EntitySet="referalfamilies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalperson_case" Association="Self.FK_referalperson_case">
-            <End Role="cases" EntitySet="cases" />
-            <End Role="referalperson" EntitySet="referalpersons" />
-          </AssociationSet>
-          <AssociationSet Name="FK_center_partner" Association="Self.FK_center_partner">
-            <End Role="partner" EntitySet="partners" />
-            <End Role="center" EntitySet="centers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalfamily_center" Association="Self.FK_referalfamily_center">
-            <End Role="center" EntitySet="centers" />
-            <End Role="referalfamily" EntitySet="referalfamilies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalperson_center" Association="Self.FK_referalperson_center">
-            <End Role="center" EntitySet="centers" />
-            <End Role="referalperson" EntitySet="referalpersons" />
-          </AssociationSet>
-          <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-          </AssociationSet>
-          <EntitySet Name="families" EntityType="sds_dbModel.family" />
-          <AssociationSet Name="FK_family_AspNetUsers" Association="sds_dbModel.FK_family_AspNetUsers">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="family" EntitySet="families" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalfamily_family" Association="sds_dbModel.FK_referalfamily_family">
-            <End Role="family" EntitySet="families" />
-            <End Role="referalfamily" EntitySet="referalfamilies" />
-          </AssociationSet>
-          <AssociationSet Name="familymanage" Association="sds_dbModel.familymanage">
-            <End Role="family" EntitySet="families" />
-            <End Role="managelist" EntitySet="managelists" />
-          </AssociationSet>
-          <EntitySet Name="people" EntityType="sds_dbModel.person" />
-          <AssociationSet Name="FK_person_AspNetUsers" Association="sds_dbModel.FK_person_AspNetUsers">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="person" EntitySet="people" />
-          </AssociationSet>
-          <AssociationSet Name="FK_person_center" Association="sds_dbModel.FK_person_center">
-            <End Role="center" EntitySet="centers" />
-            <End Role="person" EntitySet="people" />
-          </AssociationSet>
-          <AssociationSet Name="FK_person_family" Association="sds_dbModel.FK_person_family">
-            <End Role="family" EntitySet="families" />
-            <End Role="person" EntitySet="people" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalperson_person" Association="sds_dbModel.FK_referalperson_person">
-            <End Role="person" EntitySet="people" />
-            <End Role="referalperson" EntitySet="referalpersons" />
-          </AssociationSet>
-          <EntitySet Name="personmanages" EntityType="sds_dbModel.personmanage" />
-          <AssociationSet Name="FK_personmanage_managelist" Association="sds_dbModel.FK_personmanage_managelist">
-            <End Role="managelist" EntitySet="managelists" />
-            <End Role="personmanage" EntitySet="personmanages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_personmanage_person" Association="sds_dbModel.FK_personmanage_person">
-            <End Role="person" EntitySet="people" />
-            <End Role="personmanage" EntitySet="personmanages" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalfamily_AspNetUsers1" Association="sds_dbModel.FK_referalfamily_AspNetUsers1">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="referalfamily" EntitySet="referalfamilies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalperson_AspNetUsers1" Association="sds_dbModel.FK_referalperson_AspNetUsers1">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="referalperson" EntitySet="referalpersons" />
-          </AssociationSet>
-          <EntitySet Name="services" EntityType="sds_dbModel.service" />
-          <AssociationSet Name="FK_service_AspNetRoles" Association="sds_dbModel.FK_service_AspNetRoles">
-            <End Role="AspNetRole" EntitySet="AspNetRoles" />
-            <End Role="service" EntitySet="services" />
-          </AssociationSet>
-          <AssociationSet Name="FK_service_case" Association="sds_dbModel.FK_service_case">
-            <End Role="case" EntitySet="cases" />
-            <End Role="service" EntitySet="services" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalfamily_service" Association="sds_dbModel.FK_referalfamily_service">
-            <End Role="service" EntitySet="services" />
-            <End Role="referalfamily" EntitySet="referalfamilies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_referalperson_service" Association="sds_dbModel.FK_referalperson_service">
-            <End Role="service" EntitySet="services" />
-            <End Role="referalperson" EntitySet="referalpersons" />
-          </AssociationSet>
-          <EntitySet Name="temporals" EntityType="sds_dbModel.temporal" />
-          <AssociationSet Name="FK_temporal_AspNetUsers" Association="sds_dbModel.FK_temporal_AspNetUsers">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="temporal" EntitySet="temporals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_temporal_AspNetUsers1" Association="sds_dbModel.FK_temporal_AspNetUsers1">
-            <End Role="AspNetUser" EntitySet="AspNetUsers" />
-            <End Role="temporal" EntitySet="temporals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_temporal_center" Association="sds_dbModel.FK_temporal_center">
-            <End Role="center" EntitySet="centers" />
-            <End Role="temporal" EntitySet="temporals" />
-          </AssociationSet>
-          <AssociationSet Name="FK_family_center" Association="sds_dbModel.FK_family_center">
-            <End Role="center" EntitySet="centers" />
-            <End Role="family" EntitySet="families" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="family">
-          <Key>
-            <PropertyRef Name="idfamily" />
-          </Key>
-          <Property Name="idfamily" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="familynature" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="personcount" Type="Int32" />
-          <Property Name="lastaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="currentaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="displacementdate" Type="DateTime" Precision="0" />
-          <Property Name="phone1owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="phone2owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="iduser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_family_AspNetUsers" FromRole="family" ToRole="AspNetUser" />
-          <NavigationProperty Name="referalfamilies" Relationship="sds_dbModel.FK_referalfamily_family" FromRole="family" ToRole="referalfamily" />
-          <NavigationProperty Name="managelists" Relationship="sds_dbModel.familymanage" FromRole="family" ToRole="managelist" />
-          <NavigationProperty Name="people" Relationship="sds_dbModel.FK_person_family" FromRole="family" ToRole="person" />
-          <Property Name="phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="evaluation" Type="Int32" />
-          <Property Name="formnumber" Type="Int32" />
-          <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="serial_number" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="center" Relationship="sds_dbModel.FK_family_center" FromRole="family" ToRole="center" />
-        </EntityType>
-        <Association Name="FK_family_AspNetUsers">
-          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-          <End Type="sds_dbModel.family" Role="family" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="family">
-              <PropertyRef Name="iduser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalfamily_family">
-          <End Type="sds_dbModel.family" Role="family" Multiplicity="1" />
-          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="family">
-              <PropertyRef Name="idfamily" />
-            </Principal>
-            <Dependent Role="referalfamily">
-              <PropertyRef Name="idfamily_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="familymanage">
-          <End Type="sds_dbModel.family" Role="family" Multiplicity="*" />
-          <End Type="sds_dbModel.managelist" Role="managelist" Multiplicity="*" />
-        </Association>
         <EntityType Name="person">
           <Key>
             <PropertyRef Name="idperson" />
           </Key>
-          <Property Name="idperson" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idperson" Type="Int32" Nullable="false" />
           <Property Name="fname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="lname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="nationalnumber" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
@@ -1391,131 +1266,94 @@
           <Property Name="phone2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="currentaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="registrationdate" Type="DateTimeOffset" Precision="7" />
-          <Property Name="idfamily_FK" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idfamily_FK" Type="Int32" />
           <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="formnumber" Type="Int32" />
           <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="iduser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_person_AspNetUsers" FromRole="person" ToRole="AspNetUser" />
-          <NavigationProperty Name="center" Relationship="sds_dbModel.FK_person_center" FromRole="person" ToRole="center" />
-          <NavigationProperty Name="family" Relationship="sds_dbModel.FK_person_family" FromRole="person" ToRole="family" />
-          <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_person" FromRole="person" ToRole="referalperson" />
-          <NavigationProperty Name="personmanages" Relationship="sds_dbModel.FK_personmanage_person" FromRole="person" ToRole="personmanage" />
           <Property Name="is_secret" Type="Boolean" Nullable="false" />
           <Property Name="evaluation" Type="Int32" />
           <Property Name="applicant" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="serial_number" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="age" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="full_name" Type="String" MaxLength="72" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="full_name" Type="String" Nullable="false" MaxLength="72" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="family_order_id" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_person_AspNetUsers" FromRole="person" ToRole="AspNetUser" />
+          <NavigationProperty Name="center" Relationship="sds_dbModel.FK_person_center" FromRole="person" ToRole="center" />
+          <NavigationProperty Name="family" Relationship="sds_dbModel.FK_person_family" FromRole="person" ToRole="family" />
+          <NavigationProperty Name="personmanages" Relationship="sds_dbModel.FK_personmanage_person" FromRole="person" ToRole="personmanage" />
+          <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_person" FromRole="person" ToRole="referalperson" />
         </EntityType>
-        <Association Name="FK_person_AspNetUsers">
-          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-          <End Type="sds_dbModel.person" Role="person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="person">
-              <PropertyRef Name="iduser" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_person_center">
-          <End Type="sds_dbModel.center" Role="center" Multiplicity="0..1" />
-          <End Type="sds_dbModel.person" Role="person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="center">
-              <PropertyRef Name="idcenter" />
-            </Principal>
-            <Dependent Role="person">
-              <PropertyRef Name="idcenter_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_person_family">
-          <End Type="sds_dbModel.family" Role="family" Multiplicity="0..1" />
-          <End Type="sds_dbModel.person" Role="person" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="family">
-              <PropertyRef Name="idfamily" />
-            </Principal>
-            <Dependent Role="person">
-              <PropertyRef Name="idfamily_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalperson_person">
-          <End Type="sds_dbModel.person" Role="person" Multiplicity="1" />
-          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="person">
-              <PropertyRef Name="idperson" />
-            </Principal>
-            <Dependent Role="referalperson">
-              <PropertyRef Name="idperson_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="personmanage">
           <Key>
             <PropertyRef Name="idperson_FK" />
             <PropertyRef Name="idmanagelist_FK" />
             <PropertyRef Name="eval" />
           </Key>
-          <Property Name="idperson_FK" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idperson_FK" Type="Int32" Nullable="false" />
           <Property Name="idmanagelist_FK" Type="Int32" Nullable="false" />
           <Property Name="eval" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="managelist" Relationship="sds_dbModel.FK_personmanage_managelist" FromRole="personmanage" ToRole="managelist" />
           <NavigationProperty Name="person" Relationship="sds_dbModel.FK_personmanage_person" FromRole="personmanage" ToRole="person" />
         </EntityType>
-        <Association Name="FK_personmanage_managelist">
-          <End Type="sds_dbModel.managelist" Role="managelist" Multiplicity="1" />
-          <End Type="sds_dbModel.personmanage" Role="personmanage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="managelist">
-              <PropertyRef Name="idmanagelist" />
-            </Principal>
-            <Dependent Role="personmanage">
-              <PropertyRef Name="idmanagelist_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_personmanage_person">
-          <End Type="sds_dbModel.person" Role="person" Multiplicity="1" />
-          <End Type="sds_dbModel.personmanage" Role="personmanage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="person">
-              <PropertyRef Name="idperson" />
-            </Principal>
-            <Dependent Role="personmanage">
-              <PropertyRef Name="idperson_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalfamily_AspNetUsers1">
-          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="referalfamily">
-              <PropertyRef Name="referalreciever_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalperson_AspNetUsers1">
-          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
-          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="referalperson">
-              <PropertyRef Name="referalreicver_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="referalfamily">
+          <Key>
+            <PropertyRef Name="idreferalfamily" />
+            <PropertyRef Name="idfamily_FK" />
+            <PropertyRef Name="idcase_FK" />
+          </Key>
+          <Property Name="idreferalfamily" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idfamily_FK" Type="Int32" Nullable="false" />
+          <Property Name="idcase_FK" Type="Int32" Nullable="false" />
+          <Property Name="idservice_FK" Type="Int32" />
+          <Property Name="submittingdate" Type="DateTime" Precision="0" />
+          <Property Name="referalstate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="referaldate" Type="DateTime" Precision="0" />
+          <Property Name="servicestate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="servicestartdate" Type="DateTime" Precision="0" />
+          <Property Name="serviceenddate" Type="DateTime" Precision="0" />
+          <Property Name="referalsender_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="referalreciever_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="senderevalution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="recieverevalution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="outreachnote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_referalfamily_AspNetUsers" FromRole="referalfamily" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_referalfamily_AspNetUsers1" FromRole="referalfamily" ToRole="AspNetUser" />
+          <NavigationProperty Name="case" Relationship="sds_dbModel.FK_referalfamily_case" FromRole="referalfamily" ToRole="case" />
+          <NavigationProperty Name="center" Relationship="sds_dbModel.FK_referalfamily_center" FromRole="referalfamily" ToRole="center" />
+          <NavigationProperty Name="family" Relationship="sds_dbModel.FK_referalfamily_family" FromRole="referalfamily" ToRole="family" />
+          <NavigationProperty Name="service" Relationship="sds_dbModel.FK_referalfamily_service" FromRole="referalfamily" ToRole="service" />
+        </EntityType>
+        <EntityType Name="referalperson">
+          <Key>
+            <PropertyRef Name="idreferalperson" />
+            <PropertyRef Name="idperson_FK" />
+            <PropertyRef Name="idcase_FK" />
+          </Key>
+          <Property Name="idreferalperson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idperson_FK" Type="Int32" Nullable="false" />
+          <Property Name="idcase_FK" Type="Int32" Nullable="false" />
+          <Property Name="idservice_FK" Type="Int32" />
+          <Property Name="submittingdate" Type="DateTime" Precision="0" />
+          <Property Name="referalstate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="referaldate" Type="DateTime" Precision="0" />
+          <Property Name="servicestate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="servicestartdate" Type="DateTime" Precision="0" />
+          <Property Name="serviceenddate" Type="DateTime" Precision="0" />
+          <Property Name="referalsender_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="referalreicver_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="senderevalution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="recieverevalution" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idcenter_FK" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="outreachnote" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_referalperson_AspNetUsers" FromRole="referalperson" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_referalperson_AspNetUsers1" FromRole="referalperson" ToRole="AspNetUser" />
+          <NavigationProperty Name="case" Relationship="sds_dbModel.FK_referalperson_case" FromRole="referalperson" ToRole="case" />
+          <NavigationProperty Name="center" Relationship="sds_dbModel.FK_referalperson_center" FromRole="referalperson" ToRole="center" />
+          <NavigationProperty Name="person" Relationship="sds_dbModel.FK_referalperson_person" FromRole="referalperson" ToRole="person" />
+          <NavigationProperty Name="service" Relationship="sds_dbModel.FK_referalperson_service" FromRole="referalperson" ToRole="service" />
+        </EntityType>
         <EntityType Name="service">
           <Key>
             <PropertyRef Name="idservice" />
@@ -1523,62 +1361,15 @@
           <Property Name="idservice" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idcase_FK" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="enabled" Type="Boolean" Nullable="false" />
-          <Property Name="description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="idrole_FK" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idrole_FK" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="is_activity" Type="Boolean" />
           <NavigationProperty Name="AspNetRole" Relationship="sds_dbModel.FK_service_AspNetRoles" FromRole="service" ToRole="AspNetRole" />
           <NavigationProperty Name="case" Relationship="sds_dbModel.FK_service_case" FromRole="service" ToRole="case" />
+          <NavigationProperty Name="centerservices" Relationship="sds_dbModel.FK_centerservice_service" FromRole="service" ToRole="centerservice" />
           <NavigationProperty Name="referalfamilies" Relationship="sds_dbModel.FK_referalfamily_service" FromRole="service" ToRole="referalfamily" />
           <NavigationProperty Name="referalpersons" Relationship="sds_dbModel.FK_referalperson_service" FromRole="service" ToRole="referalperson" />
         </EntityType>
-        <Association Name="FK_service_AspNetRoles">
-          <End Type="sds_dbModel.AspNetRole" Role="AspNetRole" Multiplicity="1" />
-          <End Type="sds_dbModel.service" Role="service" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetRole">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="service">
-              <PropertyRef Name="idrole_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_service_case">
-          <End Type="sds_dbModel.case" Role="case" Multiplicity="1" />
-          <End Type="sds_dbModel.service" Role="service" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="case">
-              <PropertyRef Name="idcase" />
-            </Principal>
-            <Dependent Role="service">
-              <PropertyRef Name="idcase_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalfamily_service">
-          <End Type="sds_dbModel.service" Role="service" Multiplicity="0..1" />
-          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="service">
-              <PropertyRef Name="idservice" />
-            </Principal>
-            <Dependent Role="referalfamily">
-              <PropertyRef Name="idservice_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_referalperson_service">
-          <End Type="sds_dbModel.service" Role="service" Multiplicity="0..1" />
-          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="service">
-              <PropertyRef Name="idservice" />
-            </Principal>
-            <Dependent Role="referalperson">
-              <PropertyRef Name="idservice_FK" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="temporal">
           <Key>
             <PropertyRef Name="idperson" />
@@ -1619,6 +1410,142 @@
           <NavigationProperty Name="AspNetUser1" Relationship="sds_dbModel.FK_temporal_AspNetUsers1" FromRole="temporal" ToRole="AspNetUser" />
           <NavigationProperty Name="center" Relationship="sds_dbModel.FK_temporal_center" FromRole="temporal" ToRole="center" />
         </EntityType>
+        <Association Name="FK_AspNetRoles_cases">
+          <End Type="sds_dbModel.case" Role="case" Multiplicity="0..1" />
+          <End Type="sds_dbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="case">
+              <PropertyRef Name="idcase" />
+            </Principal>
+            <Dependent Role="AspNetRole">
+              <PropertyRef Name="idcase" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_AspNetRoles">
+          <End Type="sds_dbModel.AspNetRole" Role="AspNetRole" Multiplicity="0..1" />
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="idrole_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.AspNetUserClaim" Role="AspNetUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.AspNetUserLogin" Role="AspNetUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUsers_center">
+          <End Type="sds_dbModel.center" Role="center" Multiplicity="0..1" />
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="center">
+              <PropertyRef Name="idcenter" />
+            </Principal>
+            <Dependent Role="AspNetUser">
+              <PropertyRef Name="idcenter_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_family_AspNetUsers">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.family" Role="family" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="family">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_AspNetUsers">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.person" Role="person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="person">
+              <PropertyRef Name="iduser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalfamily_AspNetUsers">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="referalsender_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalfamily_AspNetUsers1">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="referalreciever_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalperson_AspNetUsers">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="referalsender_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalperson_AspNetUsers1">
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="referalreicver_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_temporal_AspNetUsers">
           <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="0..1" />
           <End Type="sds_dbModel.temporal" Role="temporal" Multiplicity="*" />
@@ -1643,14 +1570,74 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_temporal_center">
-          <End Type="sds_dbModel.center" Role="center" Multiplicity="0..1" />
-          <End Type="sds_dbModel.temporal" Role="temporal" Multiplicity="*" />
+        <Association Name="FK_case_partner">
+          <End Type="sds_dbModel.partner" Role="partner" Multiplicity="0..1" />
+          <End Type="sds_dbModel.case" Role="case" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="partner">
+              <PropertyRef Name="idpartner" />
+            </Principal>
+            <Dependent Role="case">
+              <PropertyRef Name="idpartner_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalfamily_case">
+          <End Type="sds_dbModel.case" Role="case" Multiplicity="1" />
+          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="case">
+              <PropertyRef Name="idcase" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="idcase_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalperson_case">
+          <End Type="sds_dbModel.case" Role="case" Multiplicity="1" />
+          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="case">
+              <PropertyRef Name="idcase" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="idcase_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_service_case">
+          <End Type="sds_dbModel.case" Role="case" Multiplicity="1" />
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="case">
+              <PropertyRef Name="idcase" />
+            </Principal>
+            <Dependent Role="service">
+              <PropertyRef Name="idcase_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_center_partner">
+          <End Type="sds_dbModel.partner" Role="partner" Multiplicity="1" />
+          <End Type="sds_dbModel.center" Role="center" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="partner">
+              <PropertyRef Name="idpartner" />
+            </Principal>
+            <Dependent Role="center">
+              <PropertyRef Name="idpartner_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_centerservice_center">
+          <End Type="sds_dbModel.center" Role="center" Multiplicity="1" />
+          <End Type="sds_dbModel.centerservice" Role="centerservice" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="center">
               <PropertyRef Name="idcenter" />
             </Principal>
-            <Dependent Role="temporal">
+            <Dependent Role="centerservice">
               <PropertyRef Name="idcenter_FK" />
             </Dependent>
           </ReferentialConstraint>
@@ -1667,7 +1654,193 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_person_center">
+          <End Type="sds_dbModel.center" Role="center" Multiplicity="0..1" />
+          <End Type="sds_dbModel.person" Role="person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="center">
+              <PropertyRef Name="idcenter" />
+            </Principal>
+            <Dependent Role="person">
+              <PropertyRef Name="idcenter_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalfamily_center">
+          <End Type="sds_dbModel.center" Role="center" Multiplicity="0..1" />
+          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="center">
+              <PropertyRef Name="idcenter" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="idcenter_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalperson_center">
+          <End Type="sds_dbModel.center" Role="center" Multiplicity="1" />
+          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="center">
+              <PropertyRef Name="idcenter" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="idcenter_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_temporal_center">
+          <End Type="sds_dbModel.center" Role="center" Multiplicity="0..1" />
+          <End Type="sds_dbModel.temporal" Role="temporal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="center">
+              <PropertyRef Name="idcenter" />
+            </Principal>
+            <Dependent Role="temporal">
+              <PropertyRef Name="idcenter_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_centerservice_service">
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="1" />
+          <End Type="sds_dbModel.centerservice" Role="centerservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="idservice" />
+            </Principal>
+            <Dependent Role="centerservice">
+              <PropertyRef Name="idservice_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_familymanage_family">
+          <End Type="sds_dbModel.family" Role="family" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.familymanage" Role="familymanage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="family">
+              <PropertyRef Name="idfamily" />
+            </Principal>
+            <Dependent Role="familymanage">
+              <PropertyRef Name="idfamily_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_person_family">
+          <End Type="sds_dbModel.family" Role="family" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.person" Role="person" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="family">
+              <PropertyRef Name="idfamily" />
+            </Principal>
+            <Dependent Role="person">
+              <PropertyRef Name="idfamily_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalfamily_family">
+          <End Type="sds_dbModel.family" Role="family" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="family">
+              <PropertyRef Name="idfamily" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="idfamily_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_familymanage_managelist">
+          <End Type="sds_dbModel.managelist" Role="managelist" Multiplicity="1" />
+          <End Type="sds_dbModel.familymanage" Role="familymanage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="managelist">
+              <PropertyRef Name="idmanagelist" />
+            </Principal>
+            <Dependent Role="familymanage">
+              <PropertyRef Name="idmanagelist_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personmanage_managelist">
+          <End Type="sds_dbModel.managelist" Role="managelist" Multiplicity="1" />
+          <End Type="sds_dbModel.personmanage" Role="personmanage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="managelist">
+              <PropertyRef Name="idmanagelist" />
+            </Principal>
+            <Dependent Role="personmanage">
+              <PropertyRef Name="idmanagelist_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_personmanage_person">
+          <End Type="sds_dbModel.person" Role="person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.personmanage" Role="personmanage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="idperson" />
+            </Principal>
+            <Dependent Role="personmanage">
+              <PropertyRef Name="idperson_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalperson_person">
+          <End Type="sds_dbModel.person" Role="person" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="person">
+              <PropertyRef Name="idperson" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="idperson_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalfamily_service">
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.referalfamily" Role="referalfamily" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="idservice" />
+            </Principal>
+            <Dependent Role="referalfamily">
+              <PropertyRef Name="idservice_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_referalperson_service">
+          <End Type="sds_dbModel.service" Role="service" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="sds_dbModel.referalperson" Role="referalperson" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="service">
+              <PropertyRef Name="idservice" />
+            </Principal>
+            <Dependent Role="referalperson">
+              <PropertyRef Name="idservice_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="sds_dbModel.AspNetRole" Role="AspNetRole" Multiplicity="*" />
+          <End Type="sds_dbModel.AspNetUser" Role="AspNetUser" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1676,30 +1849,30 @@
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="sds_dbModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="idcase" ColumnName="idcase" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="NameAR" ColumnName="NameAR" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="idcase" ColumnName="idcase" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserClaims">
             <EntityTypeMapping TypeName="sds_dbModel.AspNetUserClaim">
               <MappingFragment StoreEntitySet="AspNetUserClaims">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
                 <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AspNetUserLogins">
             <EntityTypeMapping TypeName="sds_dbModel.AspNetUserLogin">
               <MappingFragment StoreEntitySet="AspNetUserLogins">
-                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
-                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1707,125 +1880,74 @@
             <EntityTypeMapping TypeName="sds_dbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
                 <ScalarProperty Name="enabled" ColumnName="enabled" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
-                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
-                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
-                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
-                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="idcenter_FK" ColumnName="idcenter_FK" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="cases">
             <EntityTypeMapping TypeName="sds_dbModel.case">
               <MappingFragment StoreEntitySet="cases">
-                <ScalarProperty Name="idcase" ColumnName="idcase" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="idpartner_FK" ColumnName="idpartner_FK" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idcase" ColumnName="idcase" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="centers">
             <EntityTypeMapping TypeName="sds_dbModel.center">
               <MappingFragment StoreEntitySet="center">
+                <ScalarProperty Name="max_person_id" ColumnName="max_person_id" />
+                <ScalarProperty Name="min_person_id" ColumnName="min_person_id" />
+                <ScalarProperty Name="max_family_id" ColumnName="max_family_id" />
+                <ScalarProperty Name="min_family_id" ColumnName="min_family_id" />
                 <ScalarProperty Name="flag" ColumnName="flag" />
-                <ScalarProperty Name="idcenter" ColumnName="idcenter" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="idpartner_FK" ColumnName="idpartner_FK" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="managelists">
-            <EntityTypeMapping TypeName="sds_dbModel.managelist">
-              <MappingFragment StoreEntitySet="managelist">
-                <ScalarProperty Name="idmanagelist" ColumnName="idmanagelist" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="flag" ColumnName="flag" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="partners">
-            <EntityTypeMapping TypeName="sds_dbModel.partner">
-              <MappingFragment StoreEntitySet="partner">
-                <ScalarProperty Name="idpartner" ColumnName="idpartner" />
-                <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idcenter" ColumnName="idcenter" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="referalfamilies">
-            <EntityTypeMapping TypeName="sds_dbModel.referalfamily">
-              <MappingFragment StoreEntitySet="referalfamily">
-                <ScalarProperty Name="referalreciever_FK" ColumnName="referalreciever_FK" />
-                <ScalarProperty Name="idreferalfamily" ColumnName="idreferalfamily" />
-                <ScalarProperty Name="idfamily_FK" ColumnName="idfamily_FK" />
-                <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
+          <EntitySetMapping Name="centerservices">
+            <EntityTypeMapping TypeName="sds_dbModel.centerservice">
+              <MappingFragment StoreEntitySet="centerservice">
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
                 <ScalarProperty Name="idservice_FK" ColumnName="idservice_FK" />
-                <ScalarProperty Name="submittingdate" ColumnName="submittingdate" />
-                <ScalarProperty Name="referalstate" ColumnName="referalstate" />
-                <ScalarProperty Name="referaldate" ColumnName="referaldate" />
-                <ScalarProperty Name="servicestate" ColumnName="servicestate" />
-                <ScalarProperty Name="servicestartdate" ColumnName="servicestartdate" />
-                <ScalarProperty Name="serviceenddate" ColumnName="serviceenddate" />
-                <ScalarProperty Name="referalsender_FK" ColumnName="referalsender_FK" />
-                <ScalarProperty Name="senderevalution" ColumnName="senderevalution" />
-                <ScalarProperty Name="recieverevalution" ColumnName="recieverevalution" />
                 <ScalarProperty Name="idcenter_FK" ColumnName="idcenter_FK" />
-                <ScalarProperty Name="outreachnote" ColumnName="outreachnote" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="referalpersons">
-            <EntityTypeMapping TypeName="sds_dbModel.referalperson">
-              <MappingFragment StoreEntitySet="referalperson">
-                <ScalarProperty Name="referalreicver_FK" ColumnName="referalreicver_FK" />
-                <ScalarProperty Name="idreferalperson" ColumnName="idreferalperson" />
-                <ScalarProperty Name="idperson_FK" ColumnName="idperson_FK" />
-                <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
-                <ScalarProperty Name="idservice_FK" ColumnName="idservice_FK" />
-                <ScalarProperty Name="submittingdate" ColumnName="submittingdate" />
-                <ScalarProperty Name="referalstate" ColumnName="referalstate" />
-                <ScalarProperty Name="referaldate" ColumnName="referaldate" />
-                <ScalarProperty Name="servicestate" ColumnName="servicestate" />
-                <ScalarProperty Name="servicestartdate" ColumnName="servicestartdate" />
-                <ScalarProperty Name="serviceenddate" ColumnName="serviceenddate" />
-                <ScalarProperty Name="referalsender_FK" ColumnName="referalsender_FK" />
-                <ScalarProperty Name="senderevalution" ColumnName="senderevalution" />
-                <ScalarProperty Name="recieverevalution" ColumnName="recieverevalution" />
-                <ScalarProperty Name="idcenter_FK" ColumnName="idcenter_FK" />
-                <ScalarProperty Name="outreachnote" ColumnName="outreachnote" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="AspNetUserRoles" TypeName="sds_dbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
-            <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="families">
             <EntityTypeMapping TypeName="sds_dbModel.family">
               <MappingFragment StoreEntitySet="family">
+                <ScalarProperty Name="sector" ColumnName="sector" />
+                <ScalarProperty Name="family_head" ColumnName="family_head" />
+                <ScalarProperty Name="family_book_number" ColumnName="family_book_number" />
                 <ScalarProperty Name="serial_number" ColumnName="serial_number" />
                 <ScalarProperty Name="idcenter_FK" ColumnName="idcenter_FK" />
                 <ScalarProperty Name="formnumber" ColumnName="formnumber" />
                 <ScalarProperty Name="evaluation" ColumnName="evaluation" />
-                <ScalarProperty Name="phone2" ColumnName="phone2" />
-                <ScalarProperty Name="phone1" ColumnName="phone1" />
-                <ScalarProperty Name="iduser" ColumnName="iduser" />
-                <ScalarProperty Name="note" ColumnName="note" />
                 <ScalarProperty Name="phone2owner" ColumnName="phone2owner" />
                 <ScalarProperty Name="phone1owner" ColumnName="phone1owner" />
+                <ScalarProperty Name="iduser" ColumnName="iduser" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="phone2" ColumnName="phone2" />
+                <ScalarProperty Name="phone1" ColumnName="phone1" />
                 <ScalarProperty Name="displacementdate" ColumnName="displacementdate" />
                 <ScalarProperty Name="currentaddress" ColumnName="currentaddress" />
                 <ScalarProperty Name="lastaddress" ColumnName="lastaddress" />
@@ -1836,17 +1958,37 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="familymanage" TypeName="sds_dbModel.familymanage" StoreEntitySet="familymanage">
-            <EndProperty Name="managelist">
-              <ScalarProperty Name="idmanagelist" ColumnName="idmanagelist_FK" />
-            </EndProperty>
-            <EndProperty Name="family">
-              <ScalarProperty Name="idfamily" ColumnName="idfamily_FK" />
-            </EndProperty>
-          </AssociationSetMapping>
+          <EntitySetMapping Name="familymanages">
+            <EntityTypeMapping TypeName="sds_dbModel.familymanage">
+              <MappingFragment StoreEntitySet="familymanage">
+                <ScalarProperty Name="eval" ColumnName="eval" />
+                <ScalarProperty Name="idmanagelist_FK" ColumnName="idmanagelist_FK" />
+                <ScalarProperty Name="idfamily_FK" ColumnName="idfamily_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="managelists">
+            <EntityTypeMapping TypeName="sds_dbModel.managelist">
+              <MappingFragment StoreEntitySet="managelist">
+                <ScalarProperty Name="flag" ColumnName="flag" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idmanagelist" ColumnName="idmanagelist" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="partners">
+            <EntityTypeMapping TypeName="sds_dbModel.partner">
+              <MappingFragment StoreEntitySet="partner">
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="idpartner" ColumnName="idpartner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="people">
             <EntityTypeMapping TypeName="sds_dbModel.person">
               <MappingFragment StoreEntitySet="person">
+                <ScalarProperty Name="family_order_id" ColumnName="family_order_id" />
                 <ScalarProperty Name="full_name" ColumnName="full_name" />
                 <ScalarProperty Name="age" ColumnName="age" />
                 <ScalarProperty Name="serial_number" ColumnName="serial_number" />
@@ -1889,12 +2031,56 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="referalfamilies">
+            <EntityTypeMapping TypeName="sds_dbModel.referalfamily">
+              <MappingFragment StoreEntitySet="referalfamily">
+                <ScalarProperty Name="outreachnote" ColumnName="outreachnote" />
+                <ScalarProperty Name="idcenter_FK" ColumnName="idcenter_FK" />
+                <ScalarProperty Name="recieverevalution" ColumnName="recieverevalution" />
+                <ScalarProperty Name="senderevalution" ColumnName="senderevalution" />
+                <ScalarProperty Name="referalreciever_FK" ColumnName="referalreciever_FK" />
+                <ScalarProperty Name="referalsender_FK" ColumnName="referalsender_FK" />
+                <ScalarProperty Name="serviceenddate" ColumnName="serviceenddate" />
+                <ScalarProperty Name="servicestartdate" ColumnName="servicestartdate" />
+                <ScalarProperty Name="servicestate" ColumnName="servicestate" />
+                <ScalarProperty Name="referaldate" ColumnName="referaldate" />
+                <ScalarProperty Name="referalstate" ColumnName="referalstate" />
+                <ScalarProperty Name="submittingdate" ColumnName="submittingdate" />
+                <ScalarProperty Name="idservice_FK" ColumnName="idservice_FK" />
+                <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
+                <ScalarProperty Name="idfamily_FK" ColumnName="idfamily_FK" />
+                <ScalarProperty Name="idreferalfamily" ColumnName="idreferalfamily" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="referalpersons">
+            <EntityTypeMapping TypeName="sds_dbModel.referalperson">
+              <MappingFragment StoreEntitySet="referalperson">
+                <ScalarProperty Name="outreachnote" ColumnName="outreachnote" />
+                <ScalarProperty Name="idcenter_FK" ColumnName="idcenter_FK" />
+                <ScalarProperty Name="recieverevalution" ColumnName="recieverevalution" />
+                <ScalarProperty Name="senderevalution" ColumnName="senderevalution" />
+                <ScalarProperty Name="referalreicver_FK" ColumnName="referalreicver_FK" />
+                <ScalarProperty Name="referalsender_FK" ColumnName="referalsender_FK" />
+                <ScalarProperty Name="serviceenddate" ColumnName="serviceenddate" />
+                <ScalarProperty Name="servicestartdate" ColumnName="servicestartdate" />
+                <ScalarProperty Name="servicestate" ColumnName="servicestate" />
+                <ScalarProperty Name="referaldate" ColumnName="referaldate" />
+                <ScalarProperty Name="referalstate" ColumnName="referalstate" />
+                <ScalarProperty Name="submittingdate" ColumnName="submittingdate" />
+                <ScalarProperty Name="idservice_FK" ColumnName="idservice_FK" />
+                <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
+                <ScalarProperty Name="idperson_FK" ColumnName="idperson_FK" />
+                <ScalarProperty Name="idreferalperson" ColumnName="idreferalperson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="services">
             <EntityTypeMapping TypeName="sds_dbModel.service">
               <MappingFragment StoreEntitySet="service">
+                <ScalarProperty Name="is_activity" ColumnName="is_activity" />
                 <ScalarProperty Name="idrole_FK" ColumnName="idrole_FK" />
                 <ScalarProperty Name="description" ColumnName="description" />
-                <ScalarProperty Name="enabled" ColumnName="enabled" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="idcase_FK" ColumnName="idcase_FK" />
                 <ScalarProperty Name="idservice" ColumnName="idservice" />
@@ -1939,6 +2125,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="sds_dbModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUser">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRole">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

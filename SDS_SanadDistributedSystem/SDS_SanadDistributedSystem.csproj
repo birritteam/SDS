@@ -237,7 +237,13 @@
     <Compile Include="Models\center.cs">
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\centerservice.cs">
+      <DependentUpon>sdsModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\family.cs">
+      <DependentUpon>sdsModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\familymanage.cs">
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />

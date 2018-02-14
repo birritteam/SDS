@@ -13,19 +13,20 @@
         @Html.ActionLink("إضافة عائلة جديدة", "Create")<br />
         @Html.ActionLink("إضافة شخص ببيانات غير مكتملة", "Create", "temporals")
     }
-   
 
 
+</p>
 
     @using (Html.BeginForm())
     {
     <p>
         <div class="md-form col-md-4">
-            @Html.Editor("familyID", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "البحث حسب رقم دفتر العائلة" } })
-        </div>
-        <div class="md-form col-md-4">
             @Html.Editor("SN", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "البحث حسب الرقم التسلسلي" } })
         </div>
+        <div class="md-form col-md-4">
+            @Html.Editor("family_book_number", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "البحث حسب رقم دفتر العائلة" } })
+        </div>
+        
         <div class="md-form col-md-4">
             @Html.Editor("LastName", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "البحث حسب الاسم الأخير" } })
         </div>
@@ -33,11 +34,11 @@
     </p>
     }
 
-    </p>
+    
     <table class="table">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.idfamily)
+                @Html.DisplayNameFor(model => model.family_book_number)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.serial_number)
@@ -54,12 +55,16 @@
             <th>
                 عدد الأفراد المسجلين
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.family_head)
+            </th>
             @*<th>
                 @Html.DisplayNameFor(model => model.lastaddress)
             </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.currentaddress)
-            </th>
+            @*<th>
+                العنوان الحالي
+                @*@@*@Html.DisplayNameFor(model => model.familymanages.Where(f=>f.eval.Equals("Current")))*@@*@
+            </th>*@
             @*<th>
                 @Html.DisplayNameFor(model => model.displacementdate)
             </th>*@
@@ -91,7 +96,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.idfamily)
+                    @Html.DisplayFor(modelItem => item.family_book_number)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.serial_number)
@@ -108,12 +113,16 @@
                 <td>
                     @item.people.Count()
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.family_head)
+                </td>
                 @*<td>
                     @Html.DisplayFor(modelItem => item.lastaddress)
                 </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.currentaddress)
-                </td>
+                @*<td>*@
+@*@Html.DisplayFor(modelItem => item.currentaddress)*@
+                    @*@item.familymanages.Where(f=>f.managelist.flag.Equals("A")&&f.eval.Equals("Current")).Select(f=>f.managelist.name)*@
+                @*</td>*@
                 @*<td>
                     @Html.DisplayFor(modelItem => item.displacementdate)
                 </td>*@
