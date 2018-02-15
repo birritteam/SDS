@@ -31,6 +31,8 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
+
+
         public JsonResult nationalNumberAlreadyExisted(string nationalnumber, int? idperson)
         {
             bool existed;
@@ -204,12 +206,28 @@ namespace SDS_SanadDistributedSystem.Controllers
             person.idperson = id;
 
             ViewBag.family = person.family;
+            
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
             //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
 
             ViewBag.evaluationValues = evaluationValues;
 
             var managelists = db.managelists;
+
+            string selectedCurrentAddress = "";
+            var familymanages = db.familymanages.Where(f => f.idfamily_FK == person.family.idfamily);
+            if(familymanages!=null)
+            foreach (familymanage fm in familymanages )
+            {
+                
+                if (fm.managelist.flag.Equals("A")&& fm.eval.Equals("Current"))
+                {
+                        selectedCurrentAddress = fm.managelist.name;
+                    
+                }
+            }
+
+            ViewBag.selectedCurrentAddress = selectedCurrentAddress;
 
             var works = new SelectList(managelists.Where(ma => ma.flag == "W"), "idmanagelist", "name");
             ViewBag.currentWorkID = works;

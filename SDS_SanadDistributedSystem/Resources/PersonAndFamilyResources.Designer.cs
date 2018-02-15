@@ -106,6 +106,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to تفاصيل العنوان الحالي.
+        /// </summary>
+        public static string currentaddress_details {
+            get {
+                return ResourceManager.GetString("currentaddress_details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to تاريخ النزوح.
         /// </summary>
         public static string displacementdate {
@@ -246,6 +255,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         public static string lastaddress {
             get {
                 return ResourceManager.GetString("lastaddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تفاصيل العنوان السابق.
+        /// </summary>
+        public static string lastaddress_details {
+            get {
+                return ResourceManager.GetString("lastaddress_details", resourceCulture);
             }
         }
         

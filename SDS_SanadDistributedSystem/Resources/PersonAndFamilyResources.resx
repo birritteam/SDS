@@ -234,4 +234,10 @@
   <data name="family_order_id" xml:space="preserve">
     <value>الرقم التسلسلي ضمن العائلة</value>
   </data>
+  <data name="currentaddress_details" xml:space="preserve">
+    <value>تفاصيل العنوان الحالي</value>
+  </data>
+  <data name="lastaddress_details" xml:space="preserve">
+    <value>تفاصيل العنوان السابق</value>
+  </data>
 </root>

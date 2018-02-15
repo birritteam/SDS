@@ -104,7 +104,7 @@
                     </div>
                     <div class="col-md-3">
                         <div class="md-form">
-                            @Html.EditorFor(model => model.lname, new { htmlAttributes = new { @class = "form-control validate" } })
+                            @Html.EditorFor(model => model.lname, new { htmlAttributes = new { @class = "form-control validate", @Value = @ViewBag.family.lastname } })
                             @Html.LabelFor(model => model.lname, htmlAttributes: new { })
                             @Html.ValidationMessageFor(model => model.lname, "", new { @class = "text-danger" })
                         </div>
@@ -161,7 +161,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="md-form ui-widget ">
-                            @Html.EditorFor(model => model.currentaddress, new { htmlAttributes = new { @class = "form-control validate" } })
+                            @Html.EditorFor(model => model.currentaddress, new { htmlAttributes = new { @class = "form-control validate" , @Value = @ViewBag.selectedCurrentAddress + " - " + @ViewBag.family.currentaddress_details } })
                             @Html.LabelFor(model => model.currentaddress, htmlAttributes: new { })
                             @Html.ValidationMessageFor(model => model.currentaddress, "", new { @class = "text-danger" })
                         </div>

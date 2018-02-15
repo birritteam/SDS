@@ -1,14 +1,30 @@
+
+
+var idFamily;
+var type;
+
+
 //PEOPLE SCRIPTS
 function SuccessLoadForPerson(data) {
 
-    $("input[type='text'], input[type='datetime']").val("");
-    $("input[type='text'], input[type='datetime']").text("");
-    $("input[type='number']").val(1);
-    $("input[type='number']").text(1);
+    //$("input[type='text'], input[type='datetime']").val("");
+    //$("input[type='text'], input[type='datetime']").text("");
+    //$("input[type='number']").val(1);
+    //$("input[type='number']").text(1);
 
-    $("#family_order_id").val(data.family_book_number);
+    $("#fname, #phone1, #phone2, #nationalnumber, #birthday").val(null).focusout();
+    $("#fname, #phone1, #phone2, #nationalnumber, #birthday").text(null).focusout();
 
+    idFamily = data.family_book_number;
+    $("#family_order_id").val(idFamily);
+    
     $("#idfamily_FK").val(data.idfamily);
+
+    //$("#ذكر").prop("checked", true).trigger("click");
+    $("input[type=radio][name=position]").trigger("change");
+    //$("#family_order_id").val(idFamily + "H").trigger("change");
+    $("#family_order_id").trigger("focus");
+
 
     toastr.success("تمت عملية الإضافة بنجاح", 'نجاح العملية');
 
@@ -35,10 +51,11 @@ function FailureLoadForPerson(data) {
     toastr.error("فشلت عملية الإضافة", 'فشل العملية');
 }
 
-var idFamily;
-var type;
 
 $(document).ready(function () {
+
+
+
     //$('#birthday').datepicker({
     //        dateFormat: "dd/mm/yy",
     //        showStatus: true,

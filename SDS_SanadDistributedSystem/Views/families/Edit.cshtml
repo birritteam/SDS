@@ -65,7 +65,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label col-md-4">نوع السكن</label>
+                    <div class="col-md-4"><label class="control-label">نوع السكن</label></div>
                     <div class="col-md-8">
                         @Html.DropDownList("addressTypeID", null, htmlAttributes: new { @class = "form-control" })
                     </div>
@@ -73,27 +73,45 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="currentAddressID">العنوان الحالي</label>
-                    @Html.DropDownList("currentAddressID", null, htmlAttributes: new { @class = "form-control" })
+                    <div class="col-md-4"><label class="control-label" for="currentAddressID">العنوان الحالي</label></div>
+                    <div class="col-md-8">
+                        @Html.DropDownList("currentAddressID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
                 </div>
             </div>
+
             @if (User.IsInRole("mobileTeamReceptionist"))
-                {
+            {
+
+
                 <div class="col-md-4">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.sector, htmlAttributes: new { @class = "control-label col-md-4" })
+                        <div class="col-md-4">@Html.LabelFor(model => model.sector, htmlAttributes: new { @class = "control-label" })</div>
                         <div class="col-md-8">
                             @Html.DropDownList("sector", new SelectList(ViewBag.sectorValues), htmlAttributes: new { @class = "" })
                         </div>
                     </div>
                 </div>
-            }
-        </div>
 
+
+
+            }
+
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="md-form">
+                    @Html.EditorFor(model => model.currentaddress_details, new { htmlAttributes = new { @class = "form-control validate" } })
+                    @Html.LabelFor(model => model.currentaddress_details, htmlAttributes: new { })
+                    @Html.ValidationMessageFor(model => model.currentaddress_details, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.familynature, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-4">@Html.LabelFor(model => model.familynature, htmlAttributes: new { @class = "control-label" })</div>
                     <div class="col-md-8">
                         @Html.DropDownList("familynature", new SelectList(ViewBag.familynatureValues), htmlAttributes: new { @class = "" })
                         @*<select id="familynature" name="familynature" class="form-control">
@@ -108,12 +126,29 @@
             </div>
             <div class="col-md-4" id="lastaddress">
                 <div class="form-group">
-                    <label class="control-label col-md-4" for="previousAddressID">العنوان السابق</label>
-                    @Html.DropDownList("previousAddressID", null, htmlAttributes: new { @class = "form-control" })
+                    <div class="col-md-4"><label class="control-label" for="previousAddressID">العنوان السابق</label></div>
+                    <div class="col-md-8">@Html.DropDownList("previousAddressID", null, htmlAttributes: new { @class = "form-control" })</div>
                 </div>
             </div>
 
+            <div class="col-md-4"></div>
 
+
+
+
+
+
+
+
+            @*<div class="col-md-4 hidden" id="lastaddress">
+                <div class="md-form">
+                    @Html.EditorFor(model => model.lastaddress, new { htmlAttributes = new { @class = "form-control validate" } })
+                    @Html.LabelFor(model => model.lastaddress, htmlAttributes: new { })
+                    @Html.ValidationMessageFor(model => model.lastaddress, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        </div>
+        <div class="row">
             <div id="displacementdate" class="col-md-4">
                 <label class="col-md-4">تاريخ النزوح</label>
 
@@ -125,14 +160,14 @@
                 </div>
 
             </div>
-
-            @*<div class="col-md-4 hidden" id="lastaddress">
+            <div class="col-md-4" id="lastaddress_details">
                 <div class="md-form">
-                    @Html.EditorFor(model => model.lastaddress, new { htmlAttributes = new { @class = "form-control validate" } })
-                    @Html.LabelFor(model => model.lastaddress, htmlAttributes: new { })
-                    @Html.ValidationMessageFor(model => model.lastaddress, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.lastaddress_details, new { htmlAttributes = new { @class = "form-control validate" } })
+                    @Html.LabelFor(model => model.lastaddress_details, htmlAttributes: new { })
+                    @Html.ValidationMessageFor(model => model.lastaddress_details, "", new { @class = "text-danger" })
                 </div>
-            </div>*@
+            </div>
+
         </div>
         <div class="row">
             <div class="col-md-6">

@@ -34,10 +34,10 @@ namespace SDS_SanadDistributedSystem.Models
         public string lastname { get; set; }
         [Display(Name = "personcount", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<int> personcount { get; set; }
-        [Display(Name = "lastaddress", ResourceType = typeof(PersonAndFamilyResources))]
-        public string lastaddress { get; set; }
-        [Display(Name = "currentaddress", ResourceType = typeof(PersonAndFamilyResources))]
-        public string currentaddress { get; set; }
+        [Display(Name = "lastaddress_details", ResourceType = typeof(PersonAndFamilyResources))]
+        public string lastaddress_details { get; set; }
+        [Display(Name = "currentaddress_details", ResourceType = typeof(PersonAndFamilyResources))]
+        public string currentaddress_details { get; set; }
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date, ErrorMessage = "’Ì€… «· «—ÌŒ €Ì— ’ÕÌÕ…")]
         [Display(Name = "displacementdate", ResourceType = typeof(PersonAndFamilyResources))]

@@ -103,8 +103,8 @@
           <Property Name="familynature" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="personcount" Type="int" />
-          <Property Name="lastaddress" Type="varchar" MaxLength="100" />
-          <Property Name="currentaddress" Type="varchar" MaxLength="100" />
+          <Property Name="lastaddress_details" Type="varchar" MaxLength="100" />
+          <Property Name="currentaddress_details" Type="varchar" MaxLength="100" />
           <Property Name="displacementdate" Type="date" />
           <Property Name="phone1" Type="varchar" MaxLength="15" />
           <Property Name="phone2" Type="varchar" MaxLength="15" />
@@ -1189,8 +1189,8 @@
           <Property Name="familynature" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="personcount" Type="Int32" />
-          <Property Name="lastaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="currentaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lastaddress_details" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="currentaddress_details" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="displacementdate" Type="DateTime" Precision="0" />
           <Property Name="phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
@@ -1949,8 +1949,8 @@
                 <ScalarProperty Name="phone2" ColumnName="phone2" />
                 <ScalarProperty Name="phone1" ColumnName="phone1" />
                 <ScalarProperty Name="displacementdate" ColumnName="displacementdate" />
-                <ScalarProperty Name="currentaddress" ColumnName="currentaddress" />
-                <ScalarProperty Name="lastaddress" ColumnName="lastaddress" />
+                <ScalarProperty Name="currentaddress_details" ColumnName="currentaddress_details" />
+                <ScalarProperty Name="lastaddress_details" ColumnName="lastaddress_details" />
                 <ScalarProperty Name="personcount" ColumnName="personcount" />
                 <ScalarProperty Name="lastname" ColumnName="lastname" />
                 <ScalarProperty Name="familynature" ColumnName="familynature" />

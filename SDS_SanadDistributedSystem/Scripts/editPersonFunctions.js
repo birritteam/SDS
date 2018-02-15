@@ -6,9 +6,9 @@ $(document).ready(function () {
 
     idFamily = $("#family_book_number").val();
 
-    $("#ذكر").prop("checked", true).trigger("click");id
-    $("#family_order_id").val(idFamily + "H").trigger("change");
-    $("#family_order_id").trigger("focus");
+    //$("#ذكر").prop("checked", true).trigger("click");
+    //$("#family_order_id").val(idFamily + "H").trigger("change");
+    //$("#family_order_id").trigger("focus");
  
 });
 

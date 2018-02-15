@@ -81,13 +81,13 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 if (m.flag == "A")
                 {
-                    foreach(var p in m.personmanages)
+                    foreach(var f in m.familymanages)
                     {
-                        if (p.idperson_FK == id && p.eval.Equals("Current"))
+                        if (f.idfamily_FK == id && f.eval.Equals("Current"))
                         {
                             selectedCurrentAddress = m.name;
                         }
-                        if (p.idperson_FK == id && p.eval.Equals("Previous"))
+                        if (f.idfamily_FK == id && f.eval.Equals("Previous"))
                         {
                             selectedPreviousAddress = m.name;
                         }
@@ -137,7 +137,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [Authorize(Roles = "receptionist")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation,family_book_number,family_head")] family family, int currentAddressID, int previousAddressID, int addressTypeID)
+        public async Task<ActionResult> Create([Bind(Include = "familynature,personcount,lastaddress_details,currentaddress_details,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation,family_book_number,family_head")] family family, int currentAddressID, int previousAddressID, int addressTypeID)
         {
             if (ModelState.IsValid)
             {
@@ -271,7 +271,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress,currentaddress,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation,formnumber,idcenter_FK,family_book_number,family_head")] family family, int currentAddressID, int previousAddressID, int addressTypeID)
+        public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress_details,currentaddress_details,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation,formnumber,idcenter_FK,family_book_number,family_head")] family family, int currentAddressID, int previousAddressID, int addressTypeID)
         {
             if (ModelState.IsValid)
             {
