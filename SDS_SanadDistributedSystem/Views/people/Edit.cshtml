@@ -34,9 +34,10 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<input type="hidden" value="@Model.idperson" id="idperson"/>*@
         @Html.HiddenFor(model => model.idperson)
+        <input type="hidden" id="family_book_number" name="family_book_number" value="@ViewBag.family.family_book_number" />
 
 
-       @* <div class="row">
+        <div class="row">
             <div class="form-group">
                 <div class="col-md-2"><label class="control-label">موقع الشخص ضمن العائلة</label></div>
                 <div class="col-md-4">
@@ -62,11 +63,11 @@
                 </div>
                 @Html.ValidationMessageFor(model => model.family_order_id, "", new { @class = "text-danger col-md-3" })
                 <div class="col-md-1" style="">
-                    @Html.EditorFor(model => model.family_order_id, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.family.family_book_number, @readonly = "readonly" } })
+                    @Html.EditorFor(model => model.family_order_id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 </div>
             </div>
-        </div>*@
-        @*<div class="row">
+        </div>
+        <div class="row">
             <div class="form-group hidden">
                 @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -77,7 +78,7 @@
                     }
                 </div>
             </div>
-        </div>*@
+        </div>
 
 
 
@@ -376,5 +377,5 @@
 </div>*@
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/editPersonFunctions.js", "~/bundles/jqueryval")
 }
