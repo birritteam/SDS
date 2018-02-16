@@ -20,6 +20,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string location { get; set; }
         public Nullable<System.DateTime> start_date { get; set; }
         public Nullable<System.DateTime> end_date { get; set; }
+        public int Id { get; set; }
     
         public virtual center center { get; set; }
         public virtual service service { get; set; }

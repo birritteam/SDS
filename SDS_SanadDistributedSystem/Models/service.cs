@@ -39,7 +39,7 @@ namespace SDS_SanadDistributedSystem.Models
         [Display(Name = "idrole_FK", ResourceType = typeof(ServiceResource))]
         public string idrole_FK { get; set; }
         public Nullable<bool> is_activity { get; set; }
-    
+
         public virtual AspNetRole AspNetRole { get; set; }
         public virtual @case @case { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
