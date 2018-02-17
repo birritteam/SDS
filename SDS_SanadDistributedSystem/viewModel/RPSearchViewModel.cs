@@ -18,12 +18,9 @@ namespace SDS_SanadDistributedSystem.viewModel
 
         public string name { get; set; }
 
+        //    public string referalreciever_FK { get; set; }
 
-       
-
-    //    public string referalreciever_FK { get; set; }
-
-         public string submittingdate { get; set; }
+        public string submittingdate { get; set; }
 
         //public string referalstate { get; set; }
 
@@ -35,10 +32,9 @@ namespace SDS_SanadDistributedSystem.viewModel
 
         public string servicestartdate { get; set; }
 
-
         public string serviceenddate { get; set; }
 
-        //public string referalsender_FK { get; set; }
+        public string referalsender_FK { get; set; }
 
         public string senderevalution { get; set; }
 

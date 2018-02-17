@@ -88,3 +88,106 @@ input[type=date] + label {
     padding-bottom: 0px;
 }
 
+.modal-dialog { position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto; width: 500px; height: 300px; }
+
+
+.panel-group {
+    width:130px;
+    z-index: 100;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateX(-100%) rotate(270deg);
+    -webkit-transform-origin: right top;
+    -moz-transform: translateX(-100%) rotate(270deg);
+    -moz-transform-origin: right top;
+    -o-transform: translateX(-100%) rotate(270deg);
+    -o-transform-origin: right top;
+    transform: translateX(-100%) rotate(270deg);
+    transform-origin: right top;
+}
+.panel-heading {
+    width: 100px;
+}
+.panel-title {
+    height:18px
+}
+.panel-title a {
+    float:right;
+    text-decoration:none;
+    padding: 10px 10px;
+    margin: -10px -10px;
+}
+.panel-body {
+    width:130px;
+}
+.panel-group button {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translateX(-100%) rotate(90deg);
+    -webkit-transform-origin: right top;
+    -moz-transform: translateX(-100%) rotate(90deg);
+    -moz-transform-origin: right top;
+    -o-transform: translateX(-100%) rotate(90deg);
+    -o-transform-origin: right top;
+    transform: translateX(-100%) rotate(90deg);
+    transform-origin: right top;
+}
+.panel-group .panel img {
+    margin-left:400px;
+    margin-top:800px;
+    position: absolute;
+}
+td .collapsible {
+
+      width:200px;
+}
+
+.form-inline .form-group {
+    margin-right: 0rem;
+    margin-left: 2rem;
+}
+
+.PendingReReferal {
+
+    width:40px;
+    height:30px
+}
+
+.PendingApproved {
+
+     width:40px;
+    height:30px
+}
+.PendingOutReach {
+
+    width:40px;
+    height:30px
+}
+.PendingRejected {
+
+    width:40px;
+    height:30px
+}
+.PendingExternal {
+
+     width:40px;
+    height:30px
+}
+.ApprovedInprgress {
+
+    width:40px;
+    height:35px
+}
+.OutReachInprgress {
+
+     width:40px;
+    height:30px
+}
+.closed {
+
+      width:40px;
+    height:30px
+}
+.OutReachClosed {
+
+     width:40px;
+    height:30px
+}

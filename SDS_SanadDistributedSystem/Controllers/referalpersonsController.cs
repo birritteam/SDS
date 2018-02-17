@@ -158,6 +158,359 @@ namespace SDS_SanadDistributedSystem.Controllers
             //return View(await referalpersons.Where(x=>x.servicestate == "Pending" && x.referalstate=="Pending").ToListAsync());
             return View(await referalpersons.ToListAsync());
         }
+
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> PendingReReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "Pending";
+                rp.servicestate = "Pending";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> PendingApprovedReReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "Approved";
+                rp.servicestate = "Pending";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> PendingOutReachReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "OutReach";
+                rp.servicestate = "Pending";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> PendingRejectedReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "Rejected";
+                rp.servicestate = "Pending";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> PendingExternalReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "External";
+                rp.servicestate = "Pending";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ApprovedInprgressReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "Approved";
+                rp.servicestate = "In prgress";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> OutReachInprgressReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "OutReach";
+                rp.servicestate = "In prgress";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CloseReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "Approved";
+                rp.servicestate = "Closed";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+
+        [HttpPost]
+        // [ValidateAntiForgeryToken]
+        public async Task<ActionResult> OutReachClosedReReferal(int idreferalperson, string idperson, int idcase)
+        {//,string idfrom,string idto,int rowid
+            try
+            {
+                referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
+                rp.serviceenddate = DateTime.Now;
+                rp.referalstate = "OutReach";
+                rp.servicestate = "Closed";
+                db.Entry(rp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+
+                RPSearchViewModel rps = getRP(rp);
+                //  return new JsonResult { Data = "success" };
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        rps
+                        //   Data = "sucsses"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+        }
+
+        public RPSearchViewModel getRP(referalperson rp)
+        {
+            RPSearchViewModel rps = new RPSearchViewModel();
+
+            rps.idcase = rp.idcase_FK.ToString();
+            rps.idperson = rp.idperson_FK;
+            rps.idreferalperson = rp.idreferalperson.ToString();
+            rps.name = rp.person.fname + " " + rp.person.lname;
+            rps.submittingdate = rp.submittingdate.Value.ToShortDateString();
+            if (rp.referaldate != null)
+                rps.referaldate = rp.referaldate.Value.ToShortDateString();
+            else
+                rps.referaldate = "لم يحدد التاريخ";
+
+
+
+            if (rp.servicestartdate != null)
+                rps.servicestartdate = rp.servicestartdate.Value.ToShortDateString();
+            else
+                rps.servicestartdate = "لم يحدد التاريخ";
+
+            if (rp.serviceenddate != null)
+                rps.serviceenddate = rp.serviceenddate.Value.ToShortDateString();
+            else
+                rps.serviceenddate = "لم يحدد التاريخ";
+
+            if (rp.senderevalution != null)
+                rps.senderevalution = rp.senderevalution;
+            else
+                rps.senderevalution = "لم يحدد ";
+
+            if (rp.recieverevalution != null)
+                rps.recieverevalution = rp.recieverevalution;
+            else
+                rps.recieverevalution = "لم يحدد ";
+
+            if (rp.outreachnote != null)
+                rps.outreachnote = rp.outreachnote;
+            else
+                rps.outreachnote = "لم يحدد ";
+
+            rps.referalsender_FK = db.AspNetUsers.Find(rp.referalsender_FK).Email;
+
+            return rps;
+
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> closeSecretReferal(int idreferalperson, int idperson, int idcase)
@@ -177,10 +530,12 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                 return new JsonResult
                 {
-                    Data = new  {
+                    Data = new
+                    {
                         idperson = idperson,
                         servicestate = "مغلقة"
-                    }, JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
                 };
             }
             catch (Exception e)
@@ -433,7 +788,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     UserViewModel uvm = new UserViewModel();
                     uvm.Id = u.Id;
                     uvm.Email = u.Email;
-                    uvm.UserName = u.UserName;
+                    uvm.UserName = u.UserName + "-" + u.center.name;
 
                     user_list.Add(uvm);
                 }
@@ -485,13 +840,14 @@ namespace SDS_SanadDistributedSystem.Controllers
             service s = db.services.Find(id);
             var currentuser = db.AspNetUsers.Find(User.Identity.GetUserId());
             List<UserViewModel> user_list = new List<UserViewModel>();
-            List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK) && u.idcenter_FK == currentuser.idcenter_FK).ToList();
+            //   List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK) && u.idcenter_FK == currentuser.idcenter_FK).ToList();
+            List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK)).ToList();
             foreach (var u in recivers_users)
             {
                 UserViewModel uvm = new UserViewModel();
                 uvm.Id = u.Id;
                 uvm.Email = u.Email;
-                uvm.UserName = u.UserName;
+                uvm.UserName = u.UserName + "-" + u.center.name;
 
                 user_list.Add(uvm);
             }
@@ -576,7 +932,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 else
                     rps.outreachnote = "لم يحدد ";
 
-
+                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
 
                 RPSearchViewModels.Add(rps);
             }
@@ -653,7 +1009,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 else
                     rps.outreachnote = "لم يحدد ";
 
-
+                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
 
                 RPSearchViewModels.Add(rps);
             }
@@ -702,7 +1058,6 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         //    return Json(referalpersonlistviewmodel, JsonRequestBehavior.AllowGet);
         //}
-
         [System.Web.Mvc.Authorize(Roles = "receptionist,cmSGBV")]
         //add new referal by Receptionist
         public ActionResult personReferal(int? id)
@@ -720,30 +1075,42 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             var firstcaseid = db.cases.First().idcase;
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", firstcaseid);
-            //List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
-            //service first_service_firstcase;
-            //if (service.Count != 0)
-            //{
-            //    first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
-            //    ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
-            //    ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
+            // List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
+            List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid ).ToList();
+            service first_service_firstcase;
+            if (service.Count != 0)
+            {
+                //first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
+                //ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
+                first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid ).First();
+                ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid ), "idservice", "name", first_service_firstcase.name);
 
-            //}
-            //else
-            //{
-            //    List<service> ss = new List<Models.service>();
-            //    service s = new service();
-            //    s.idservice = 0;
-            //    s.name = "لايوجد خدمات مفّعلة";
-            //    ss.Add(s);
-            //    List<AspNetUser> uu = new List<Models.AspNetUser>();
-            //    AspNetUser u = new AspNetUser();
-            //    u.Id = "0";
-            //    u.UserName = "لايوجد مستقبل";
-            //    uu.Add(u);
-            //    ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
-            //    ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
-            //}
+                List<AspNetUser> recivers = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK)).ToList();//<<<<<<<<<<<<<<<get all recivers in all centers
+                IEnumerable<SelectListItem> items = recivers.Select(c => new SelectListItem
+                {
+                    Value = c.Id,
+                    Text = c.UserName + "-" + c.center.name
+
+                });
+                //  ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
+                ViewBag.referalReciver_FK = items;
+
+            }
+            else
+            {
+                List<service> ss = new List<Models.service>();
+                service s = new service();
+                s.idservice = 0;
+                s.name = "لايوجد خدمات مفّعلة";
+                ss.Add(s);
+                List<AspNetUser> uu = new List<Models.AspNetUser>();
+                AspNetUser u = new AspNetUser();
+                u.Id = "0";
+                u.UserName = "لايوجد مستقبل";
+                uu.Add(u);
+                ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
+                ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
+            }
 
 
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");
@@ -788,33 +1155,42 @@ namespace SDS_SanadDistributedSystem.Controllers
             var firstcaseid = db.cases.Where(r => r.idcase != idcase).First().idcase;
 
             //List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
-            //ViewBag.idcase_FK = new SelectList(db.cases.Where(r => r.idcase != idcase), "idcase", "name", firstcaseid);
+            List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid).ToList();
+            ViewBag.idcase_FK = new SelectList(db.cases.Where(r => r.idcase != idcase), "idcase", "name", firstcaseid);
 
-            //service first_service_firstcase;
-            //if (service.Count != 0)
-            //{
-            //    first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
-            //    ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
+            service first_service_firstcase;
+            if (service.Count != 0)
+            {
+                //first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
+                //ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
+                first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid ).First();
+                ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid ), "idservice", "name", first_service_firstcase.name);
 
-            //    ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
+                List<AspNetUser> recivers = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK)).ToList();//<<<<<<<<<<<<<<<get all recivers in all centers
+                IEnumerable<SelectListItem> items = recivers.Select(c => new SelectListItem
+                {
+                    Value = c.Id,
+                    Text = c.UserName + "-" + c.center.name
 
-
-            //}
-            //else
-            //{
-            //    List<service> ss = new List<Models.service>();
-            //    service s = new service();
-            //    s.idservice = 0;
-            //    s.name = "لايوجد خدمات مفّعلة";
-            //    ss.Add(s);
-            //    List<AspNetUser> uu = new List<Models.AspNetUser>();
-            //    AspNetUser u = new AspNetUser();
-            //    u.Id = "0";
-            //    u.UserName = "لايوجد مستقبل";
-            //    uu.Add(u);
-            //    ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
-            //    ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
-            //}
+                });
+                //  ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
+                ViewBag.referalReciver_FK = items;
+            }
+            else
+            {
+                List<service> ss = new List<Models.service>();
+                service s = new service();
+                s.idservice = 0;
+                s.name = "لايوجد خدمات مفّعلة";
+                ss.Add(s);
+                List<AspNetUser> uu = new List<Models.AspNetUser>();
+                AspNetUser u = new AspNetUser();
+                u.Id = "0";
+                u.UserName = "لايوجد مستقبل";
+                uu.Add(u);
+                ViewBag.services = new SelectList(ss, "idservice", "name", "لايوجد خدمات مفّعلة");
+                ViewBag.referalReciver_FK = new SelectList(uu, "Id", "UserName", "لايوجد مستقبل");
+            }
 
 
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");
