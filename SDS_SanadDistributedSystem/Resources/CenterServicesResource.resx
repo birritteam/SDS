@@ -117,25 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="description" xml:space="preserve">
-    <value>وصف الخدمة</value>
-  </data>
   <data name="enabled" xml:space="preserve">
-    <value>تفعيل الخدمة</value>
+    <value>حالة الخدمة</value>
   </data>
-  <data name="idcase_FK" xml:space="preserve">
-    <value>القسم</value>
+  <data name="end_date" xml:space="preserve">
+    <value>تاريخ انتهاء تفعيل الخدمة</value>
   </data>
-  <data name="idrole_FK" xml:space="preserve">
-    <value>صلاحيات الوصول إلى الخدمة</value>
+  <data name="idcenter_FK" xml:space="preserve">
+    <value>المركز</value>
   </data>
-  <data name="idservice" xml:space="preserve">
-    <value>معرف الخدمة</value>
+  <data name="idservice_FK" xml:space="preserve">
+    <value>الخدمة</value>
   </data>
-  <data name="is_activity" xml:space="preserve">
-    <value>النوع</value>
+  <data name="location" xml:space="preserve">
+    <value>الموقع</value>
   </data>
-  <data name="name" xml:space="preserve">
-    <value>اسم الخدمة</value>
+  <data name="start_date" xml:space="preserve">
+    <value>تاريخ بدء تفعيل الخدمة</value>
   </data>
 </root>

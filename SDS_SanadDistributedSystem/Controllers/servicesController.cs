@@ -23,6 +23,90 @@ namespace SDS_SanadDistributedSystem.Controllers
         public async Task<ActionResult> Index()
         {
             var services = db.services.Include(s => s.AspNetRole).Include(s => s.@case);
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+            // var services = db.services.ToList();
+            var roles = user.AspNetRoles.ToList();
+            var role_id = "";
+
+            //displaying the centers that doesn't have a current enabled service
+            //foreach (var centerItem in centers)
+            //{
+            //    foreach (var item in centerservices)
+            //    {
+            //        if (item.idcenter_FK.Equals(centerItem.idcenter) && item.enabled == true)
+            //        {
+            //            displayCenters.Remove(centerItem);
+            //        }
+            //    }
+            //}
+            if (roles.Count > 0)
+            {
+                if (User.IsInRole("admin") || User.IsInRole("superadmin"))
+                {  //return first 100 row order by submit  date
+                    role_id = db.AspNetRoles.Where(r => r.Name == "admin").First().Id;
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case);
+                }
+                if (User.IsInRole("coEducation"))
+                {  //return first 100 row order by submit  date
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coEducation").First().Id;
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else
+                if (User.IsInRole("coProfessional"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coProfessional").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else if (User.IsInRole("coChildProtection"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coChildProtection").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else if (User.IsInRole("coPsychologicalSupport"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coPsychologicalSupport").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else if (User.IsInRole("coDayCare"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coDayCare").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else if (User.IsInRole("coHomeCare"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coHomeCare").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else if (User.IsInRole("coAwareness"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coAwareness").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else if (User.IsInRole("coSmallProjects"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coSmallProjects").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else if (User.IsInRole("coOutReachTeam"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coOutReachTeam").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+                else if (User.IsInRole("coInkindAssistance"))
+                {
+                    role_id = db.AspNetRoles.Where(r => r.Name == "coInkindAssistance").First().Id;
+
+                    services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).Where(r => r.idrole_FK == role_id);
+                }
+            }
             return View(await services.ToListAsync());
         }
 
@@ -34,7 +118,6 @@ namespace SDS_SanadDistributedSystem.Controllers
             var services = db.services.Include(s => s.AspNetRole).Include(s => s.@case);
             return View(await services.ToListAsync());
         }
-        
 
 
         // GET: services/Details/5
@@ -71,7 +154,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
 
-        public async Task<ActionResult> Create([Bind(Include = "idservice,idcase_FK,name,enabled,description,idrole_FK")] service service)
+        public async Task<ActionResult> Create([Bind(Include = "idservice,idcase_FK,name,is_activity,description,idrole_FK")] service service)
         {
             if (ModelState.IsValid)
             {
@@ -111,7 +194,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
-        public async Task<ActionResult> Edit([Bind(Include = "idservice,idcase_FK,name,enabled,description,idrole_FK")] service service)
+        public async Task<ActionResult> Edit([Bind(Include = "idservice,idcase_FK,name,is_activity,description,idrole_FK")] service service)
         {
             if (ModelState.IsValid)
             {
@@ -136,7 +219,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 return HttpNotFound();
             }
-          
+
             ViewBag.enableOptions = enable;
             return View(service);
         }
@@ -147,7 +230,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin,coEducation,coProfessional,coChildProtection,coPsychologicalSupport,coDayCare,coHomeCare,coAwareness,coSmallProjects,coOutReachTeam,coInkindAssistance")]
-        public async Task<ActionResult> EditEnable([Bind(Include = "idservice,idcase_FK,name,enabled,description,idrole_FK")] service service)
+        public async Task<ActionResult> EditEnable([Bind(Include = "idservice,idcase_FK,name,is_activity,description,idrole_FK")] service service)
         {
             if (ModelState.IsValid)
             {
@@ -155,7 +238,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("IndexCO");
             }
-         
+
             ViewBag.enableOptions = enable;
             return View(service);
         }

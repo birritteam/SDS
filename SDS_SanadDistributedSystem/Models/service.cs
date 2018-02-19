@@ -38,6 +38,8 @@ namespace SDS_SanadDistributedSystem.Models
         [Required]
         [Display(Name = "idrole_FK", ResourceType = typeof(ServiceResource))]
         public string idrole_FK { get; set; }
+
+        [Display(Name = "idrole_FK", ResourceType = typeof(ServiceResource))]
         public Nullable<bool> is_activity { get; set; }
 
         public virtual AspNetRole AspNetRole { get; set; }

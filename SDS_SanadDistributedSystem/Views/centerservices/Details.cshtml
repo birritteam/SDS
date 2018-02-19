@@ -1,0 +1,82 @@
+﻿@model SDS_SanadDistributedSystem.Models.centerservice
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>تفاصيل</h2>
+
+<div>
+    <h4>الخدمة</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.center.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.center.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.service.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.service.name)
+        </dd>
+
+           <dt>
+            @Html.DisplayNameFor(model => model.enabled)
+        </dt>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.enabled)
+        </dd>*@
+
+        <dd>
+            @if (Model.enabled == true)
+            {
+                //       @Html.Label("مفعلة", new { @font-weight = "normal" })
+                <div class="display-label" style="font-weight: normal">مفعلة</div>
+            }
+            @if (Model.enabled == false)
+            {
+                //    @Html.Label("غير مفعلة", new { @font = "normal" })
+                <div class="display-label" style="font-weight: normal">غير مفعلة</div>
+
+            }
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.start_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.start_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.end_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.end_date)
+        </dd>
+
+     
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("تعديل", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("عودة إلى القائمة", "Index")
+</p>

@@ -19,7 +19,7 @@
             @Html.DisplayNameFor(model => model.description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.enabled)
+            @Html.DisplayNameFor(model => model.is_activity)
         </th>
         <th>
             @*   @Html.DisplayNameFor(model => model.@case.name)*@
@@ -40,15 +40,15 @@
                 @Html.DisplayFor(modelItem => item.description)
             </td>
             <td>
-                @if (item.enabled == true)
+                @if (item.is_activity == true)
                 {
                     //       @Html.Label("مفعلة", new { @font-weight = "normal" })
-                    <div class="display-label" style="font-weight: normal">مفعلة</div>
+                    <div class="display-label" style="font-weight: normal">خدمة</div>
                 }
-                @if (item.enabled == false)
+                @if (item.is_activity == false)
                 {
                     //    @Html.Label("غير مفعلة", new { @font = "normal" })
-                    <div class="display-label" style="font-weight: normal">غير مفعلة</div>
+                    <div class="display-label" style="font-weight: normal">نشاط</div>
 
                 }
             </td>

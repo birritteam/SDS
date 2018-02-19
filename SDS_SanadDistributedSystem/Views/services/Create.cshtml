@@ -33,23 +33,24 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.enabled, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.is_activity, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @foreach (bool item in ViewBag.enableOptions)
                 {
                     if (item == true)
                     {
-                        @Html.RadioButtonFor(model => model.enabled, true, new { @id = item, @checked = "checked" })
-                        @Html.Label(item.ToString(), "تفعيل", new { @for = item })
+                        @Html.RadioButtonFor(model => model.is_activity, true, new { @id = item, @checked = "checked" })
+                        @Html.Label(item.ToString(), "خدمة", new { @for = item })
                     }
                     if (item == false)
                     {
-                        @Html.RadioButtonFor(model => model.enabled, false, new { @id = item })
-                        @Html.Label(item.ToString(), "إلغاء تفعيل", new { @for = item })
+                        @Html.RadioButtonFor(model => model.is_activity, false, new { @id = item })
+                        @Html.Label(item.ToString(), "نشاط", new { @for = item })
                     }
                 }
             </div>
-            </div>
+        </div>
+
 
             <div class="form-group">
                 @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })

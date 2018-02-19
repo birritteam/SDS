@@ -229,8 +229,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                     }
                 //(aspNetUser, aspNetUser.PasswordHash);
                 ApplicationUserManager usrMngr = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-                IPasswordHasher hash = usrMngr.PasswordHasher;//(aspNetUser, aspNetUser.PasswordHash);
-                aspNetUser.PasswordHash = hash.HashPassword(aspNetUser.PasswordHash);
+      //          IPasswordHasher hash = usrMngr.PasswordHasher;//(aspNetUser, aspNetUser.PasswordHash);
+      //          aspNetUser.PasswordHash = hash.HashPassword(aspNetUser.PasswordHash);
                 // IdentityResult i =  await usrMngr.UpdateSecurityStampAsync(aspNetUser.Id);
                 aspNetUser.SecurityStamp = Guid.NewGuid().ToString();//usrMngr.GetSecurityStamp(aspNetUser.Id);
                 await db.SaveChangesAsync();

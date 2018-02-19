@@ -1,0 +1,104 @@
+﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.centerservice>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>الخدمات</h2>
+
+<p>
+    @Html.ActionLink("تفعيل خدمة جديدة", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.center.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.service.name)
+        </th>
+        <th>
+            @*  @Html.DisplayNameFor(model => model.enabled)*@
+            حالة الخدمة
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.start_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.end_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.enabled)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.enabled)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.center.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.service.name)
+            </td>
+            <td>
+                @if (item.enabled == true)
+                {
+                    //       @Html.Label("مفعلة", new { @font-weight = "normal" })
+                    <div class="display-label" style="font-weight: normal">مفعلة</div>
+                }
+                @if (item.enabled == false)
+                {
+                    //    @Html.Label("غير مفعلة", new { @font = "normal" })
+                    <div class="display-label" style="font-weight: normal">غير مفعلة</div>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.start_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.end_date)
+            </td>
+            <td>
+                @if (item.enabled == true)
+                {
+                    //       @Html.Label("مفعلة", new { @font-weight = "normal" })
+                    @*<div class="display-label" style="font-weight: normal">مفعلة</div>*@
+                    @Html.ActionLink("إلغاء تفعيل", "enableService", new
+           {
+               Id = item.Id,
+               idcenter_FK = item.idcenter_FK,
+               idservice_FK = item.idservice_FK,
+               start_date = item.start_date,
+               location = item.location,
+               enabled = false
+           })
+                }
+                @if (item.enabled == false)
+                {
+                    //    @Html.Label("غير مفعلة", new { @font = "normal" })
+                    <div class="display-label" style="font-weight: normal">غير مفعلة</div>
+                    //  @Html.ActionLink("تفعيل", "","",new { @disable = true })
+                }
+            </td>
+            <td>
+                @Html.ActionLink("تعديل", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("تفاصيل", "Details", new { id = item.Id })
+                @*|
+                    @Html.ActionLink("حذف", "Delete", new { id=item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>

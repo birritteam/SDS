@@ -22,14 +22,14 @@ namespace SDS_SanadDistributedSystem.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ServiceResource {
+    public class CenterServicesResource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ServiceResource() {
+        internal CenterServicesResource() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace SDS_SanadDistributedSystem.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SDS_SanadDistributedSystem.Resources.ServiceResource", typeof(ServiceResource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SDS_SanadDistributedSystem.Resources.CenterServicesResource", typeof(CenterServicesResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,16 +61,7 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to وصف الخدمة.
-        /// </summary>
-        public static string description {
-            get {
-                return ResourceManager.GetString("description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to تفعيل الخدمة.
+        ///   Looks up a localized string similar to حالة الخدمة.
         /// </summary>
         public static string enabled {
             get {
@@ -79,47 +70,47 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to القسم.
+        ///   Looks up a localized string similar to تاريخ انتهاء تفعيل الخدمة.
         /// </summary>
-        public static string idcase_FK {
+        public static string end_date {
             get {
-                return ResourceManager.GetString("idcase_FK", resourceCulture);
+                return ResourceManager.GetString("end_date", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to صلاحيات الوصول إلى الخدمة.
+        ///   Looks up a localized string similar to المركز.
         /// </summary>
-        public static string idrole_FK {
+        public static string idcenter_FK {
             get {
-                return ResourceManager.GetString("idrole_FK", resourceCulture);
+                return ResourceManager.GetString("idcenter_FK", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to معرف الخدمة.
+        ///   Looks up a localized string similar to الخدمة.
         /// </summary>
-        public static string idservice {
+        public static string idservice_FK {
             get {
-                return ResourceManager.GetString("idservice", resourceCulture);
+                return ResourceManager.GetString("idservice_FK", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to النوع.
+        ///   Looks up a localized string similar to الموقع.
         /// </summary>
-        public static string is_activity {
+        public static string location {
             get {
-                return ResourceManager.GetString("is_activity", resourceCulture);
+                return ResourceManager.GetString("location", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to اسم الخدمة.
+        ///   Looks up a localized string similar to تاريخ بدء تفعيل الخدمة.
         /// </summary>
-        public static string name {
+        public static string start_date {
             get {
-                return ResourceManager.GetString("name", resourceCulture);
+                return ResourceManager.GetString("start_date", resourceCulture);
             }
         }
     }

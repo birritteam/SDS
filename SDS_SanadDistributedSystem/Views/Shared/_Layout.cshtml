@@ -120,18 +120,21 @@
                                 &copy; @DateTime.Now.Year
                             </span>
                     }
-                    @foreach (var item in ViewBag.ServicesBar)
+                    @if (ViewBag.ServicesBar != null)
                     {
-                        <img src="~/Images/sanad.ico">
-                        <span>الخدمة:</span>
-
-                            @item.name
-                            <span>--</span>
-                            <span>الوصف:</span>
-
-                            @item.description
-
+                        foreach (var item in ViewBag.ServicesBar)
+                        {
                             <img src="~/Images/sanad.ico">
+                            <span>الخدمة:</span>
+
+                                @item.name
+                                <span>--</span>
+                                <span>الوصف:</span>
+
+                                @item.description
+
+                                <img src="~/Images/sanad.ico">
+                        }
                     }
                     @if (ViewBag.ServicesBar != null)
                     {

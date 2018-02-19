@@ -202,6 +202,7 @@
     <Compile Include="Controllers\AspNetUsersController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\centersController.cs" />
+    <Compile Include="Controllers\centerservicesController.cs" />
     <Compile Include="Controllers\familiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Models\centerservice.cs">
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\customValidation\CenterServiceValidation.cs" />
     <Compile Include="Models\family.cs">
       <DependentUpon>sdsModel.tt</DependentUpon>
     </Compile>
@@ -299,6 +301,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CenterResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\CenterServicesResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CenterServicesResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\ErrorResource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -873,6 +880,11 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\centerservices\Create.cshtml" />
+    <Content Include="Views\centerservices\Delete.cshtml" />
+    <Content Include="Views\centerservices\Details.cshtml" />
+    <Content Include="Views\centerservices\Edit.cshtml" />
+    <Content Include="Views\centerservices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -898,6 +910,10 @@
     <EmbeddedResource Include="Resources\CenterResource.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CenterResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\CenterServicesResource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CenterServicesResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\ErrorResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
