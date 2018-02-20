@@ -118,65 +118,67 @@ namespace SDS_SanadDistributedSystem.Controllers
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
             var centerservices = db.centerservices.Include(c => c.center).Include(c => c.service);
             var roles = user.AspNetRoles.ToList();
-            var role_id = "";
+       //     var case_role_id = 0;
             if (roles.Count > 0)
             {
                 if (User.IsInRole("coEducation"))
                 {  //return first 100 row order by submit  date
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coEducation").First().Id;
-                    centerservices = db.centerservices.Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coEducation").First().idcase;
+                  
+                    centerservices = db.centerservices.Where(r => r.service.idcase_FK == case_role_id);
                     //              centerservices = db.centerservices.Include(c => c.center).Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
                 }
                 else
                 if (User.IsInRole("coProfessional"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coProfessional").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coProfessional").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                     //                centerservices = db.centerservices.Include(c => c.center).Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
                 }
                 else if (User.IsInRole("coChildProtection"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coChildProtection").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coChildProtection").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                     //                  centerservices = db.centerservices.Include(c => c.center).Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
                 }
                 else if (User.IsInRole("coPsychologicalSupport"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coPsychologicalSupport").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coPsychologicalSupport").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                     //                    centerservices = db.centerservices.Include(c => c.center).Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
                 }
                 else if (User.IsInRole("coDayCare"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coDayCare").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coDayCare").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                 }
                 else if (User.IsInRole("coHomeCare"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coHomeCare").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coHomeCare").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                 }
                 else if (User.IsInRole("coAwareness"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coAwareness").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coAwareness").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                 }
                 else if (User.IsInRole("coSmallProjects"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coSmallProjects").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coSmallProjects").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                 }
                 else if (User.IsInRole("coOutReachTeam"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coOutReachTeam").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coOutReachTeam").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                 }
                 else if (User.IsInRole("coInkindAssistance"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coInkindAssistance").First().Id;
-                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coInkindAssistance").First().idcase;
+                    centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == case_role_id);
                 }
-                //      centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idrole_FK == role_id);
+             //   centerservices = db.centerservices.Include(c => c.service).Where(r => r.service.idcase_FK == role_id);
+
             }
             return View(await centerservices.ToListAsync());
         }
@@ -223,56 +225,58 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 if (User.IsInRole("coEducation"))
                 {  //return first 100 row order by submit  date
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coEducation").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coEducation").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else
                 if (User.IsInRole("coProfessional"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coProfessional").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coProfessional").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coChildProtection"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coChildProtection").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coChildProtection").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coPsychologicalSupport"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coPsychologicalSupport").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coPsychologicalSupport").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coDayCare"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coDayCare").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coDayCare").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coHomeCare"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coHomeCare").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coHomeCare").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coAwareness"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coAwareness").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coAwareness").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coSmallProjects"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coSmallProjects").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coSmallProjects").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coOutReachTeam"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coOutReachTeam").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coOutReachTeam").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coInkindAssistance"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coInkindAssistance").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coInkindAssistance").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
+                //               user = db.AspNetUsers.Find(User.Identity.GetUserId());
 
+                //                services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).ToList();
             }
 
             var displayedServices = services;
@@ -353,56 +357,58 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 if (User.IsInRole("coEducation"))
                 {  //return first 100 row order by submit  date
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coEducation").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coEducation").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else
                 if (User.IsInRole("coProfessional"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coProfessional").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coProfessional").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coChildProtection"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coChildProtection").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coChildProtection").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coPsychologicalSupport"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coPsychologicalSupport").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coPsychologicalSupport").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coDayCare"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coDayCare").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coDayCare").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coHomeCare"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coHomeCare").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coHomeCare").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coAwareness"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coAwareness").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coAwareness").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coSmallProjects"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coSmallProjects").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coSmallProjects").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coOutReachTeam"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coOutReachTeam").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coOutReachTeam").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
                 else if (User.IsInRole("coInkindAssistance"))
                 {
-                    role_id = db.AspNetRoles.Where(r => r.Name == "coInkindAssistance").First().Id;
-                    services = db.services.Where(r => r.idrole_FK == role_id).ToList();
+                    var case_role_id = db.AspNetRoles.Where(r => r.Name == "coInkindAssistance").First().idcase;
+                    services = db.services.Where(r => r.idcase_FK == case_role_id).ToList();
                 }
+                //               user = db.AspNetUsers.Find(User.Identity.GetUserId());
 
+                //                services = db.services.Include(s => s.AspNetRole).Include(s => s.@case).ToList();
             }
 
             var displayedServices = services;
