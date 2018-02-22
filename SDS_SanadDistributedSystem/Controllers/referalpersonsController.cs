@@ -162,7 +162,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PendingReReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> PendingReReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -196,7 +196,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PendingApprovedReReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> PendingApprovedReReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -229,7 +229,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PendingOutReachReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> PendingOutReachReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -264,7 +264,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PendingRejectedReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> PendingRejectedReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -297,7 +297,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> PendingExternalReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> PendingExternalReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -331,7 +331,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> ApprovedInprgressReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> ApprovedInprgressReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -365,7 +365,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> OutReachInprgressReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> OutReachInprgressReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -399,7 +399,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> CloseReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> CloseReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -433,7 +433,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         // [ValidateAntiForgeryToken]
-        public async Task<ActionResult> OutReachClosedReReferal(int idreferalperson, string idperson, int idcase)
+        public async Task<ActionResult> OutReachClosedReReferal(int idreferalperson, int idperson, int idcase)
         {//,string idfrom,string idto,int rowid
             try
             {
@@ -764,12 +764,13 @@ namespace SDS_SanadDistributedSystem.Controllers
             return new JsonResult { Data = list.Select(r => new { idreferalperson = r.idreferalperson, idperson_FK = r.idperson_FK, idcase_FK = r.idcase_FK, personname = r.person.fname + " " + r.person.lname, serviceType = r.service.name }), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
-        public ActionResult FillServices(string caseId)
+        public ActionResult FillServices(string caseId, string centerId)
         {
             // List<service> servicedata = new List<service>();
-            int id = Int32.Parse(caseId);
+            int idcase = Int32.Parse(caseId);
 
-            List<service> services_case = db.services.Where(c => c.idcase_FK == id).OrderByDescending(ser => ser.idservice).ToList();
+            List<service> services_case = db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == centerId) && u.idcase_FK == idcase).ToList();
+            //List<service> services_case = db.services.Where(c => c.idcase_FK == id).OrderByDescending(ser => ser.idservice).ToList();
             List<serviceViewModel> jsonservices = new List<serviceViewModel>();
             for (int i = 0; i < services_case.Count; i++)
             {
@@ -781,7 +782,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
 
                 List<UserViewModel> user_list = new List<UserViewModel>();
-                List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK)).ToList();
+                List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK) && u.center.idcenter == centerId).ToList();
 
                 foreach (var u in recivers_users)
                 {
@@ -832,7 +833,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
 
-        public ActionResult FillRecivers(string serviceId)
+        public ActionResult FillRecivers(string serviceId, string centerId)
         {
 
             int id = Int32.Parse(serviceId);
@@ -841,7 +842,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             var currentuser = db.AspNetUsers.Find(User.Identity.GetUserId());
             List<UserViewModel> user_list = new List<UserViewModel>();
             //   List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK) && u.idcenter_FK == currentuser.idcenter_FK).ToList();
-            List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK)).ToList();
+            List<AspNetUser> recivers_users = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == s.idrole_FK) && u.center.idcenter == centerId).ToList();
             foreach (var u in recivers_users)
             {
                 UserViewModel uvm = new UserViewModel();
@@ -1076,16 +1077,19 @@ namespace SDS_SanadDistributedSystem.Controllers
             var firstcaseid = db.cases.First().idcase;
             ViewBag.idcase_FK = new SelectList(db.cases, "idcase", "name", firstcaseid);
             // List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
-            List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid ).ToList();
+            //List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid ).ToList();
+            List<service> service = db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == user.center.idcenter) && u.idcase_FK == firstcaseid).ToList();
             service first_service_firstcase;
             if (service.Count != 0)
             {
                 //first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
                 //ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
-                first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid ).First();
-                ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid ), "idservice", "name", first_service_firstcase.name);
+                //first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid ).First();
+                //ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid ), "idservice", "name", first_service_firstcase.name);
+                first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid).First();
+                ViewBag.services = new SelectList(db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == user.center.idcenter) && u.idcase_FK == firstcaseid), "idservice", "name", first_service_firstcase.name);
 
-                List<AspNetUser> recivers = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK)).ToList();//<<<<<<<<<<<<<<<get all recivers in all centers
+                List<AspNetUser> recivers = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.center.idcenter == user.center.idcenter).ToList();//<<<<<<<<<<<<<<<get all recivers in all centers
                 IEnumerable<SelectListItem> items = recivers.Select(c => new SelectListItem
                 {
                     Value = c.Id,
@@ -1116,6 +1120,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");
             ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name");
 
+            ViewBag.centers = new SelectList(db.centers, "idcenter", "name", user.center.name);
 
             //0------------------------------------------------------------------------------------00000000000000000000000000000000000000000
             //ViewBag.cmEducation = new SelectList(db.services.Where(s => s.idcase_FK == 1), "idservice", "name");
@@ -1155,7 +1160,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             var firstcaseid = db.cases.Where(r => r.idcase != idcase).First().idcase;
 
             //List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).ToList();
-            List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid).ToList();
+            //List<service> service = db.services.Where(s => s.idcase_FK == firstcaseid).ToList();
+            List<service> service = db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == user.center.idcenter) && u.idcase_FK == firstcaseid).ToList();
             ViewBag.idcase_FK = new SelectList(db.cases.Where(r => r.idcase != idcase), "idcase", "name", firstcaseid);
 
             service first_service_firstcase;
@@ -1163,10 +1169,12 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 //first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled).First();
                 //ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid && s.enabled), "idservice", "name", first_service_firstcase.name);
-                first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid ).First();
-                ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid ), "idservice", "name", first_service_firstcase.name);
+                //first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid ).First();
+                //ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid ), "idservice", "name", first_service_firstcase.name);
+                first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid).First();
+                ViewBag.services = new SelectList(db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == user.center.idcenter) && u.idcase_FK == firstcaseid), "idservice", "name", first_service_firstcase.name);
 
-                List<AspNetUser> recivers = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK)).ToList();//<<<<<<<<<<<<<<<get all recivers in all centers
+                List<AspNetUser> recivers = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.center.idcenter == user.center.idcenter).ToList();//<<<<<<<<<<<<<<<get all recivers in all centers
                 IEnumerable<SelectListItem> items = recivers.Select(c => new SelectListItem
                 {
                     Value = c.Id,
@@ -1195,7 +1203,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             ViewBag.idcenter_FK = new SelectList(db.centers.Where(c => c.idcenter == user.idcenter_FK), "idcenter", "name");
             ViewBag.idservice_FK = new SelectList(db.services, "idservice", "name");
-
+            ViewBag.centers = new SelectList(db.centers, "idcenter", "name", user.center.name);
 
             //0------------------------------------------------------------------------------------00000000000000000000000000000000000000000
             //ViewBag.cmEducation = new SelectList(db.services.Where(s => s.idcase_FK == 1), "idservice", "name");
@@ -1324,7 +1332,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: referalpersons/Edit/5
-        public async Task<ActionResult> Edit(int? idreferalperson, string idperson, int? idcase)
+        public async Task<ActionResult> Edit(int? idreferalperson, int idperson, int? idcase)
         {
             if (idreferalperson == null || idperson == null || idcase == null)
             {

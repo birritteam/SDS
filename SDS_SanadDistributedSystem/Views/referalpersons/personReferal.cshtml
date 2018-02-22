@@ -67,23 +67,23 @@
             else
             {   <h3><b>*إضافة إحالة للسيدة @name </b></h3>}
             <div class="col-md-12">
-                <h3 class="lighten-2 grey" style="padding:10px">البيانات الشخصية:</h3>
+                <h3 class="lighten-2 grey" style="padding:10px"><i class="fa fa-user-o" style="color:#000000"></i> المعلومات الشخصية:</h3>
 
             </div>
             <div class="form-group">
 
                 <div class="col-md-12">
                     <div class="col-md-4">
-                        <b>  الاسم الثلاثي :@name</b>
+                        <h5><b>  الاسم الثلاثي :</b>@name</h5>
                     </div>
                     <div class="col-md-2">
-                        <b>  اسم الإب: @fathername</b>
+                        <b>  اسم الإب: </b>@fathername
                     </div>
                     <div class="col-md-3">
-                        <b>  اسم الأم: @mothername</b>
+                        <h5><b>  اسم الأم:</b>@mothername</h5>
                     </div>
                     <div class="col-md-3">
-                        <b> تاريخ الميلاد: @birthday</b>
+                        <h5><b> تاريخ الميلاد:</b>@birthday</h5>
                     </div>
                 </div>
                 <div class="clearfix">
@@ -94,13 +94,13 @@
                 <div class="form-group">
                     <div class="col-md-12">
                         <div class="col-md-4">
-                            <b>  مكان الولادة:@birthplace</b>
+                            <h5><b>  مكان الولادة:</b>@birthplace</h5>
                         </div>
                         <div class="col-md-2">
-                            <b>  الجنسية:@nationality</b>
+                            <h5><b>  الجنسية:</b>@nationality</h5>
                         </div>
                         <div class="col-md-6">
-                            <b>   العنوان الحالي:@currentaddress</b>
+                            <h5><b>   العنوان الحالي:</b>@currentaddress</h5>
                         </div>
 
                     </div>
@@ -110,11 +110,21 @@
             <div class="col-md-12">
 
 
-                <h3 class="lighten-2 grey" style="padding:10px">بيانات الإحالة:</h3>
+                <h3 class="lighten-2 grey" style="padding:10px"><i class="fa fa-info" style="color:#000000"></i> معلومات الإحالة: </h3>
 
 
             </div>
+            <hr style="width:2px; color:#fff;padding:10px" />
+            <div class="row">
+                <div class="form-group col-md-4 centered-wrapper">
+                    @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-4">
+                        @Html.DropDownList("centers", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
+                        @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
+            </div>
 
 
             @using (Html.BeginForm())
@@ -123,7 +133,6 @@
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.idperson_FK, new { Value = Model.person.idperson });
                 <div class="form-horizontal centered-wrapper">
-
 
                     @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="form-group col-md-4">
@@ -185,7 +194,7 @@
                     @*<div class="form-group">
                             @Html.LabelFor(model => model.referalstate, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.DropDownList("referalstate",null, htmlAttributes : new { @class = "form-control", @readonly = "readonly" } )
+                                @Html.  ("referalstate",null, htmlAttributes : new { @class = "form-control", @readonly = "readonly" } )
                                 @Html.ValidationMessageFor(model => model.referalstate, "", new { @class = "text-danger" })
                             </div>
                         </div>*@
