@@ -1,0 +1,34 @@
+﻿
+<div class="col-md-4" id="ReportForm">
+    @using (Ajax.BeginForm("GetCounts", "Reporting", new AjaxOptions { HttpMethod = "GET", OnSuccess = "SuccessGetReport", OnFailure = "FaildGetReport", OnBegin = "BeginGetReport" , OnComplete = "CompleteGetReport"}))
+    {
+        <div class="row">
+            <div class="col-md-5"><label>تاريخ البداية</label></div>
+            <div class="col-md-7">
+                <div class="md-form">
+                    <input class="form-control" type="date" name="startDate" id="startDate" />
+                </div>
+            </div>
+            <div class="col-md-5"><label>تاريخ النهاية</label></div>
+            <div class="col-md-7">
+                <div class="md-form">
+                    <input class="form-control" type="date" name="endDate" id="endDate" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="md-form">
+                <div class="col-md-12">
+                    <input type="submit" name="submit" value="عدد المسجلين الجدد" class="btn btn-default btn-rounded p-1"/>
+                    <input type="submit" name="submit" value="أكثر ثلاث عناوين مكررة" class="btn btn-default btn-rounded p-1" />
+                    <input type="submit" name="submit" value="أكثر ثلاث طرق للتعرف  على المركز المجتمعي" class="btn btn-default btn-rounded p-1" />
+                </div>
+                <div class="col-md-1 p-1" id="loading"></div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts{
+  
+}
