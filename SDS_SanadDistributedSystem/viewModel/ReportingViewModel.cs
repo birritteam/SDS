@@ -67,9 +67,12 @@ namespace SDS_SanadDistributedSystem.viewModel
         public int refugeewantedfemalecount { get; set; }
 
 
-        public int inprogressstatecount { get; set; }
+        public int? inprogressstatemalecount { get; set; }
+        public int? inprogressstatefemalecount { get; set; }
 
-        public int closedstatecount { get; set; }
+        public int? closedstatemalecount { get; set; }
+
+        public int? closedstatefemalecount { get; set; }
 
     }
 }

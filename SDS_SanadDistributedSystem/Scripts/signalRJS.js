@@ -8,9 +8,9 @@
         count = parseInt($('span.count').html()) || 0;
         //only load notifcation if not alerady loaded
 
-        if (count > 0) {
+        //if (count > 0) {
             updateNotification();
-        }
+        //}
         $('span.count', this).html('&nbsp;')
 
     });
@@ -31,17 +31,20 @@
 
         $.ajax({
             type: 'GET',
-            url: '/sds/referalpersons/GetNotificationsReferal',
+            url: '/referalpersons/GetNotificationsReferal',
             success: function (response) {
                 //alert("dasdad")
                 $('#notiContent').empty();
                 if (response.length == 0) {
-                    $("#notiContent").append($('<li> لا يوجد أي إشعارات</li>'));
+                    $("#notiContent").append($('<li> لا يوجد إحالات جديدة لك</li>'));
 
                 }
                 $.each(response, function (index, value) {
                     //var contactid = value.Contactid;/sds/referalpersons/Edit?idreferalperson=30&idperson=12345C3&idcase=4
-                    $('#notiContent').append($("<li> <a href='/sds/referalpersons/Edit?idreferalperson=" + value.idreferalperson + "&idperson=" + value.idperson_FK + "&idcase=" + value.idcase_FK + "' target='_blank'> حالة جديدة: <br />'" + value.personname + "' ('" + value.serviceType + "') </a> </li>"));
+                    $('#notiContent').append($("<a class='col-md-12 list-group-item' href='/sds/referalpersons/Edit?idreferalperson=" + value.idreferalperson + "&idperson=" + value.idperson_FK + "&idcase=" + value.idcase_FK + "' target='_blank'>" +
+                                                 "<div class='col-md-2'> <i class='fa fa-newspaper-o fa-lg' aria-hidden='true'></i></div> " +
+                                               "<div class='col-md-10'> <p style='font-size:12px'> تمت إحالة " + value.personname + " إلى خدمة " + value.serviceType + " من قبل " + value.senderuserrole + " </p>  <small style='float: left; font-size:10px;'> <i class='fa fa-home fa-lg' aria-hidden='true'></i> " + value.center + " - <i class='fa fa-calendar' aria-hidden='true'></i> " + value.referaldate.toString() + "</small> </div>" +
+                                               "</div></a> "));
                 });
             },
 
@@ -70,6 +73,7 @@
         var loginusername = $('#loginusername').html();
         if (message && message.toLowerCase() == "added" && username == loginusername) {
             updateNotificationCount();
+            toastr.success('لقد وصلتك إحالة جديدة .. من فضلك راجع الإشعارات');
         }
 
     }

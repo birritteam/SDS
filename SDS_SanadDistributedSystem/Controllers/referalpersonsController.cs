@@ -50,6 +50,10 @@ namespace SDS_SanadDistributedSystem.Controllers
             //يتم الفلترة بعد تحديد المستخدم ثم الحصول على اسم الرول ثم الحصول  على  مجدول الخدمات على  الخدمات المرتبة بهذه الرول
 
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+
+            // جلب عدد الحالات التي تم إرسالها إلى مدير الحالة المسجل دخول حاليا والتي كان فيها أوف لاين
+            BaseController.CountNotificationOffilicn = db.referalpersons.Where(rp => rp.servicestate == "Pending" && rp.referalstate == "Pending" && rp.AspNetUser1.UserName == user.UserName).Count();
+
             var referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
             var roles = user.AspNetRoles.ToList();
             if (roles.Count > 0)

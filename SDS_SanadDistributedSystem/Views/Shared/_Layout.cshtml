@@ -22,18 +22,18 @@
 }
         .noti-content {
             position: fixed;
-            right: 100px;
+            left: 100px;
 
             background: #e5e5e5;
             border-radius: 4px;
             top: 47px;
-            width: 250px;
+            width: 350px;
             display: none;
             border: 1px solid #9E988B;
         }
 
         ul#notiContent {
-            max-height: 200px;
+            max-height: 300px;
             overflow: auto;
             padding: 0px;
             margin: 0px;
@@ -42,7 +42,7 @@
 
             ul#notiContent li {
                 margin: 3px;
-                padding: 6px;
+                padding: 3px;
                 background: #FFF;
             }
 
@@ -52,7 +52,7 @@
             border-style: dashed dashed solid;
             border-width: 0 8.5px 8.5px;
             position: absolute;
-            right: 23px;
+            left: 42px;
             top: -8px;
         }
 
@@ -60,7 +60,7 @@
             color: #FFF;
             margin: 15px;
             position: fixed;
-            right: 109px;
+            left: 109px;
             top:0pc;
             font-size: 18px;
             cursor: pointer;
@@ -770,10 +770,10 @@
                 </div>
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-dn mr-auto float-left">
-                    <span class="noti fa fa-bell"><span class="count">&nbsp; </span></span>
+                    <span class="noti fa fa-bell"><span class="badge badge-primary badge-pill count">&nbsp; @ViewBag.CountNotficationOffline </span></span>
                     <div class="noti-content">
                         <div class="noti-top-arrow"></div>
-                        <ul id="notiContent"></ul>
+                        <ul id="notiContent" class="list-group"></ul>
                     </div>
                 </div>
             </nav>

@@ -1,7 +1,6 @@
-﻿
+﻿@model IEnumerable<SDS_SanadDistributedSystem.viewModel.ReportingViewModel>
 @{
     ViewBag.Title = "التقرير";
-    int totalcount = 0;
 }
 <link href="~/Content/cardview.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
@@ -12,99 +11,102 @@
 @*<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />*@
 <link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
 
-
-<table id="All" class="display table table-bordered All" cellspacing="0">
-    <thead>
-        <tr>
-            <th></th>
-            <th colspan="3">
-                إجمالي
-            </th>
-            <th colspan="6">
-                الفئات العمرية
-            </th>
-            <th colspan="10">
-                الملف
-            </th>
-            <th colspan="4">
-                 الحالة
-            </th>
-        </tr>
-        <tr>
-            <th></th>
-            <th colspan="3"></th>
-            <th colspan="2"> < 18 </th>
-            <th colspan="2"> 18 - 59</th>
-            <th colspan="2"> 60 + </th>
-            <th colspan="2"> نازح</th>
-            <th colspan="2"> مجتمع مضيف</th>
-            <th colspan="2"> نازح عائد</th>
-            <th colspan="2"> لاجئ عائد</th>
-            <th colspan="2"> لاجئ / طالب لجوء</th>
-            <th colspan="2"> قيد المعالجة</th>
-            <th colspan="2"> مغلقة</th>
-        </tr>
-        <tr>
-            <th>الفئة الفرعية</th>
-            <th>إناث وذكور</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>ذكور</th>
-            <th>إناث</th>
-            <th>قيد المتابعة</th>
-            <th>مغلقة</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach( var item in ViewBag.servicesreport)
-        {
-            <tr>
-                <td>@item.servicename</td>
-                <td>@item.count</td>
-                <td>@item.malecount</td>
-                <td>@item.femalecount</td>
-                <td>@item.lesseighteenmalecount</td>
-                <td>@item.lesseighteenfemalecount</td>
-                <td>@item.betweenmalecount</td>
-                <td>@item.betweenfemalecount</td>
-                <td>@item.heighersixtymalecount</td>
-                <td>@item.heighersixtyfemalecount</td>
-                <td>@item.internaldisplacemenmalecount</td>
-                <td>@item.internaldisplacemenfemalecount</td>
-                <td>@item.hostcommunirtmalecount</td>
-                <td>@item.hostcommunirtfemalecount</td>
-                <td>@item.internaldisplacedreturneemalecount</td>
-                <td>@item.internaldisplacedreturnefeemalecount</td>
-                <td>@item.refugeereturningtosyriamalecount</td>
-                <td>@item.refugeereturningtosyriafemalecount</td>
-                <td>@item.refugeewantedmalecount</td>
-                <td>@item.refugeewantedfemalecount</td>
-                <td></td>
-                <td></td>
-
+<div class="col-md-12">
+    <table id="All" class="display table table-bordered All" cellspacing="0">
+        <thead>
+           <tr>
+                <th></th>
+                <th colspan="3">
+                    إجمالي
+                </th>
+                <th colspan="6">
+                    الفئات العمرية
+                </th>
+                <th colspan="10">
+                    الملف
+                </th>
+                <th colspan="4">
+                    الحالة
+                </th>
             </tr>
-        }
+            <tr>
+                <th></th>
+                <th colspan="3"></th>
+                <th colspan="2"> < 18 </th>
+                <th colspan="2"> 18 - 59</th>
+                <th colspan="2"> 60 + </th>
+                <th colspan="2"> نازح</th>
+                <th colspan="2"> مجتمع مضيف</th>
+                <th colspan="2"> نازح عائد</th>
+                <th colspan="2"> لاجئ عائد</th>
+                <th colspan="2"> لاجئ / طالب لجوء</th>
+                <th colspan="2"> قيد المعالجة</th>
+                <th colspan="2"> مغلقة</th>
+            </tr>
+            <tr>
+                <th>الفئة الفرعية</th>
+                <th>إناث وذكور</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+                <th>ذكور</th>
+                <th>إناث</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.servicename</td>
+                    <td>@item.count</td>
+                    <td>@item.malecount</td>
+                    <td>@item.femalecount</td>
+                    <td>@item.lesseighteenmalecount</td>
+                    <td>@item.lesseighteenfemalecount</td>
+                    <td>@item.betweenmalecount</td>
+                    <td>@item.betweenfemalecount</td>
+                    <td>@item.heighersixtymalecount</td>
+                    <td>@item.heighersixtyfemalecount</td>
+                    <td>@item.internaldisplacemenmalecount</td>
+                    <td>@item.internaldisplacemenfemalecount</td>
+                    <td>@item.hostcommunirtmalecount</td>
+                    <td>@item.hostcommunirtfemalecount</td>
+                    <td>@item.internaldisplacedreturneemalecount</td>
+                    <td>@item.internaldisplacedreturnefeemalecount</td>
+                    <td>@item.refugeereturningtosyriamalecount</td>
+                    <td>@item.refugeereturningtosyriafemalecount</td>
+                    <td>@item.refugeewantedmalecount</td>
+                    <td>@item.refugeewantedfemalecount</td>
+                    <td>@item.inprogressstatemalecount</td>
+                    <td>@item.inprogressstatefemalecount</td>
+                    <td>@item.closedstatemalecount</td>
+                    <td>@item.closedstatefemalecount</td>
 
-    </tbody>
-</table>
+                </tr>
+            }
 
-    <div class="col-md-12">
+        </tbody>
+    </table>
+</div>
+    @*<div class="col-md-12">
         <h2>الأعداد الكلية للأشخاص المسجلين</h2>
         <table id="All" class="display table table-bordered All" cellspacing="0">
             <thead>
@@ -220,7 +222,7 @@
         </tbody>
     </table>
 
-</div>
+</div>*@
 
 
 
