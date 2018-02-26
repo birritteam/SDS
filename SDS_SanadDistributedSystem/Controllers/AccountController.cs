@@ -163,6 +163,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                         action_name = "AdminPage";
                         controller_name = "Account";
                     }
+                    else if (roles.Equals("reporter"))
+                    {
+                        action_name = "index";
+                        controller_name = "Reporting";
+                    }
                     else
                     {
                         action_name = "index";

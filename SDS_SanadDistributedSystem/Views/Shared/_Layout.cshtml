@@ -15,62 +15,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @using System.Web.Security
-    <style>
-
-        .mdb-skin .navbar {
-    background-color: #1B2838;
-}
-        .noti-content {
-            position: fixed;
-            left: 100px;
-
-            background: #e5e5e5;
-            border-radius: 4px;
-            top: 47px;
-            width: 350px;
-            display: none;
-            border: 1px solid #9E988B;
-        }
-
-        ul#notiContent {
-            max-height: 300px;
-            overflow: auto;
-            padding: 0px;
-            margin: 0px;
-            padding-left: 20px;
-        }
-
-            ul#notiContent li {
-                margin: 3px;
-                padding: 3px;
-                background: #FFF;
-            }
-
-        .noti-top-arrow {
-            border-color: transparent;
-            border-bottom-color: #F5DEB3;
-            border-style: dashed dashed solid;
-            border-width: 0 8.5px 8.5px;
-            position: absolute;
-            left: 42px;
-            top: -8px;
-        }
-
-        span.noti {
-            color: #FFF;
-            margin: 15px;
-            position: fixed;
-            left: 109px;
-            top:0pc;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        span.count {
-            position: relative;
-            top: -3px;
-        }
-    </style>
+    
     @*@{*@ 
        @*// var new= خدمات مشروع سند;*@
 
@@ -753,6 +698,21 @@
                             </li>
                         }
 
+                        @if (User.IsInRole("reporter"))
+                        {
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"><i></i>  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  معد التقارير   <i class="fa fa-angle-down rotate-icon" style="color:white"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/Reporting/index" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-list" style="color:white"></i> إعداد تقرير </a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>   
+                        }
+
                         @Html.Partial("_LoginPartial")
 
                     </ul>
@@ -770,11 +730,7 @@
                 </div>
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-dn mr-auto float-left">
-                    <span class="noti fa fa-bell"><span class="badge badge-primary badge-pill count">&nbsp; @ViewBag.CountNotficationOffline </span></span>
-                    <div class="noti-content">
-                        <div class="noti-top-arrow"></div>
-                        <ul id="notiContent" class="list-group"></ul>
-                    </div>
+                   @Html.Partial("_NotificationBell")
                 </div>
             </nav>
         </header>

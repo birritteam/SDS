@@ -927,6 +927,7 @@
     <Content Include="Views\centerservices\Index.cshtml" />
     <Content Include="Views\Reporting\Index.cshtml" />
     <Content Include="Views\Reporting\_GetCounts.cshtml" />
+    <Content Include="Views\Shared\_NotificationBell.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

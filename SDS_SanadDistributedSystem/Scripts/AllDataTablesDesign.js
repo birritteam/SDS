@@ -85,6 +85,94 @@ $(document).ready(function () {
         select: true
     });
 
+
+    var table = $('.ReportTable').DataTable({
+        dom: "<'row'<'col-md-6'f><'col-md-3'l><'col-md-3'B>>" +
+             "<'row'<'col-md-12'th>>" +
+               "<'row'<'col-md-12'tr>>" +
+             "<'row'<'col-md-7'p><'col-md-5'i>>",
+
+        buttons: [{
+            extend: 'print',
+            exportOptions: {
+                columns: ':visible'
+            },
+            text: "طباعة <i class='fa fa-print'></i>",
+            key: {
+                key: "p",
+                altkey: true
+            },
+        },
+        {
+            extend: 'copy',
+            text: "نسخ <i class='fa fa fa-copy'></i>",
+            key: {
+                key: "c",
+                altkey: true
+            }
+        }, {
+            extend: 'excel',
+            exportOptions: {
+                columns: ':visible'
+            },
+            text: "تصدير إلى Excel <i class='fa fa fa-file-excel-o'></i>",
+            key: {
+                key: "e",
+                altkey: true
+            }
+        }
+        //{
+        //    extend: 'pdf',
+        //    text: "تصدير إلى PDF <i class='fa fa fa-file-pdf-o'></i>"
+        //}
+        ],
+        "scrollX": true,
+
+
+
+        "lengthMenu": [[50, 75, 100, -1], [50, 75, 100, "الكل"]],
+        "columnDefs": [
+       //{ "targets": [0], "visible": false }
+        ],
+        language: {
+
+            "decimal": "",
+            "emptyTable": "لا يوجد أي بيانات لعرضها ضمن الجدول",
+            "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مُدخلات",
+            "infoEmpty": "إظهار 0 إلى 0 من أصل 0 مُدخلات",
+            "infoFiltered": "(تم البحث في   _MAX_  عناصر )",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "إظهار _MENU_ سجل",
+            "loadingRecords": "... جارٍ التحميل",
+            "processing": "... جارٍ المعالجة",
+            "search": " ابحث: ",
+            "zeroRecords": "لا يوجد أي تطابق من السجلات الموجودة",
+            "paginate": {
+                "first": "الأول",
+                "last": "الأخير",
+                "next": "التالي",
+                "previous": "السابق"
+            },
+
+            select: {
+
+                rows: {
+                    _: "  %d أسطر تم تحديدها",
+                    0: "  انقر لتحديد سطر",
+                    1: "  سطر واحد محدد",
+                }
+            },
+
+            //"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json",
+
+        },
+
+        select: true
+    });
+
+ 
+
     //$("th").addClass('dt-head-nowrap');
 
     //var counter = 0;

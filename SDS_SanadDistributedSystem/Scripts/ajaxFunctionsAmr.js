@@ -543,7 +543,7 @@ function successFillTableNew() {
 
     var recieverevalution;
 
-    //var idcenter_FK = document.getElementById("idcenter_FK").value;
+    //var idcenter_FK = document.getElementById("idcenr_FK").value;
     //var idcenter_FK_text = document.getElementById("idcenter_FK").options[document.getElementById("idcenter_FK").selectedIndex].text;
 
     var outreachnote = document.getElementById("outreachnote").value;
@@ -641,7 +641,7 @@ function successSendReferals() {
     $.ajax({
         // contentType: 'application/json; charset=utf-8',
         contentType: 'application/json',
-        url: '   /sds/referalpersons/sendReferals',
+        url: '/sds/referalpersons/sendReferals',
         type: "POST",
         dataType: "JSON",
         data: referals,
@@ -749,7 +749,7 @@ function searchByName() {
 
     if (name != "") {
         $.ajax({
-            url: '   /sds/referalpersons/searchReferalByName',
+            url: '/sds/referalpersons/searchReferalByName',
             type: "GET",
             dataType: "JSON",
             data: { 'name': name, 'idrole': idrole },

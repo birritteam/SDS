@@ -52,7 +52,9 @@ namespace SDS_SanadDistributedSystem.Controllers
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
 
             // جلب عدد الحالات التي تم إرسالها إلى مدير الحالة المسجل دخول حاليا والتي كان فيها أوف لاين
-            BaseController.CountNotificationOffilicn = db.referalpersons.Where(rp => rp.servicestate == "Pending" && rp.referalstate == "Pending" && rp.AspNetUser1.UserName == user.UserName).Count();
+            //BaseController.CountNotificationOffilicn = db.referalpersons.Where(rp => rp.servicestate == "Pending" && rp.referalstate == "Pending" && rp.AspNetUser1.UserName == user.UserName).Count();
+
+            ViewBag.CountNotficationOffline = db.referalpersons.Where(rp => rp.servicestate == "Pending" && rp.referalstate == "Pending" && rp.AspNetUser1.UserName == user.UserName).Count();
 
             var referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
             var roles = user.AspNetRoles.ToList();
@@ -765,7 +767,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             var list = NC.GetReferals(notificationRegisterTime, usertosend);
 
             Session["LastUpdated"] = DateTime.Now;
-            return new JsonResult { Data = list.Select(r => new { idreferalperson = r.idreferalperson, idperson_FK = r.idperson_FK, idcase_FK = r.idcase_FK, personname = r.person.fname + " " + r.person.lname, serviceType = r.service.name }), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return new JsonResult { Data = list.Select(r => new { idreferalperson = r.idreferalperson, idperson_FK = r.idperson_FK, idcase_FK = r.idcase_FK, personname = r.person.fname + " " + r.person.lname, serviceType = r.service.name, referaldate = r.submittingdate.Value.ToString("dd-MM-yyyy"), senderuserrole = r.AspNetUser.AspNetRoles.FirstOrDefault().NameAR, center = r.center.name }), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public ActionResult FillServices(string caseId, string centerId)
