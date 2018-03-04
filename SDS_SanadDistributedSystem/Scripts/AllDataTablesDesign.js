@@ -41,10 +41,9 @@ $(document).ready(function () {
         //}
         ],
         "scrollX": false,
+      
 
-
-
-        "lengthMenu": [[50, 75, 100, -1], [50, 75, 100, "الكل"]],
+        "lengthMenu": [[25, 50, 75, 100, -1], [25,50, 75, 100, "الكل"]],
         "columnDefs": [
        //{ "targets": [0], "visible": false }
         ],
@@ -68,7 +67,18 @@ $(document).ready(function () {
                 "next": "التالي",
                 "previous": "السابق"
             },
-
+      //      "columnDefs": [
+      //{ "width": "10px", "targets": 0 },
+      //{ "width": "40px", "targets": 1 },
+      //{ "width": "100px", "targets": 2 },
+      //{ "width": "70px", "targets": 3 },
+      //{ "width": "120px", "targets": 4 },
+      //{ "width": "440px", "targets": 5 },
+      //   { "width": "120px", "targets": 6 }, { "width": "100px", "targets": 7 }, { "width": "100px", "targets": 8 }, { "width": "100px", "targets": 9 },
+            //      ],
+                  "columnDefs": [
+            { "width": "120px", "targets": 10 },
+                  ],
             select: {
 
                 rows: {
@@ -82,7 +92,7 @@ $(document).ready(function () {
 
         },
 
-        select: true
+        select: false
     });
 
 
@@ -126,11 +136,11 @@ $(document).ready(function () {
         //    text: "تصدير إلى PDF <i class='fa fa fa-file-pdf-o'></i>"
         //}
         ],
-        "scrollX": true,
+        "scrollX": false,
 
 
 
-        "lengthMenu": [[50, 75, 100, -1], [50, 75, 100, "الكل"]],
+        "lengthMenu": [[25,50, 75, 100, -1], [25,50, 75, 100, "الكل"]],
         "columnDefs": [
        //{ "targets": [0], "visible": false }
         ],

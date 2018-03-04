@@ -65,7 +65,8 @@
     }
     var notificationHub = $.connection.notificationHub;
     $.connection.hub.start().done(function () {
-        console.log('Notification hub stareted')
+        console.log('Notification hub stareted' + $.connection.hub.id)
+       
     });
 
     //signalr method for push server message to client

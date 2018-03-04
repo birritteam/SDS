@@ -82,6 +82,12 @@ input[type=date] + label {
        width:auto; 
         text-align: center;
 }
+    /*.btn-rounded {
+        white-space: nowrap !important;
+    margin:auto;
+    padding:5px;
+
+    }*/
 
 
 .dataTables_length .input-sm {
@@ -174,7 +180,7 @@ td .collapsible {
 .ApprovedInprgress {
 
     width:40px;
-    height:35px
+    height:30px
 }
 .OutReachInprgress {
 
@@ -190,4 +196,38 @@ td .collapsible {
 
      width:40px;
     height:30px
+}
+
+.tab-content {
+    padding: 2rem 0.3rem 0.3rem;
+    z-index: 1;
+}
+th {padding:0px}
+.gre{
+
+    background:#55ae31 !important;
+       white-space: nowrap !important;
+    margin:auto;
+    padding:5px;
+}
+.ora{
+
+    background:#FF7300 !important;
+       white-space: nowrap !important;
+    margin:auto;
+    padding:5px;
+}
+.pur{
+
+    background:#B531C7 !important;
+       white-space: nowrap !important;
+    margin:auto;
+    padding:5px;
+}
+
+.container-fluid {
+     padding-left: 5px; 
+    padding-right: 5px; 
+    /*margin-left: auto;
+    margin-right: auto;*/
 }

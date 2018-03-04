@@ -28,7 +28,7 @@ namespace SDS_SanadDistributedSystem.viewModel
 
         public string type { get; set; }
 
-        //  public string servicestate { get; set; }
+        public string servicetype { get; set; }
 
         public string servicestartdate { get; set; }
 
