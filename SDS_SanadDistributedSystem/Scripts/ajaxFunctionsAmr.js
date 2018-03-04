@@ -780,7 +780,7 @@ function searchByName() {
                                     .append('<td>' +
                                   '<a href="   /sds/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
                                   '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
-                                    '<a length="0" href="   /sds/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase
+                                    '<a length="0" href="   /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
                                     + '">إحالة جديدة</a>' +
                                   '</td>')
 
@@ -840,7 +840,7 @@ function searcByDate() {
                                   .append('<td>' +
                                   '<a href="   /sds/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
                                   '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
-                                    '<a length="0" href="   /sds/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase
+                                    '<a length="0" href="   /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
                                     + '">إحالة جديدة</a>' +
                                   '</td>')
 
@@ -1082,8 +1082,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -1268,8 +1268,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
                                   //Pending 1
@@ -1445,8 +1445,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
                                 //Pending 1
@@ -1619,8 +1619,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
                          //Pending 1
@@ -1802,8 +1802,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -1989,8 +1989,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
                           //Pending 1
@@ -2167,8 +2167,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -2345,8 +2345,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -2524,8 +2524,8 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">' +
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
-                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/referalpersons/personReferalByCaseManager/' + referal.idreferalperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/sds/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
