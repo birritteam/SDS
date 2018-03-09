@@ -6,13 +6,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>كافة الأشخاص المسجلين</h2>
 
-<p>
+
+<h2>كافة الأشخاص المسجلين  
+    
     @if (User.IsInRole("receptionist"))
     {
-        @Html.ActionLink("إضافة شخص جديد", "Index", "families")
+        <small>@Html.ActionLink(" ", "Index", "families", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus", @title = "إضافة شخص جديد" })</small>
     }
+</h2>
+
+
+    @*@if (User.IsInRole("receptionist"))
+    {
+        @Html.ActionLink("إضافة شخص جديد", "Index", "families")
+    }*@
 
     @using (Html.BeginForm())
     {
@@ -34,105 +42,113 @@
     </p>
     }
 
-    </p>
-    <table class="table" id="familymembers">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.serial_number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.family_order_id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.full_name)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.fname)
+   
+    <table class="table table-hover" id="familymembers">
+        @*<thead >*@
+            <tr class="wow fadeIn">
+                <th>
+                    @Html.DisplayNameFor(model => model.serial_number)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.lname)
+                    @Html.DisplayNameFor(model => model.family_order_id)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.fathername)
-                </th>*@
-            <th>
-                @Html.DisplayNameFor(model => model.mothername)
+                    @Html.DisplayNameFor(model => model.full_name)
+                </th>
+                @*<th>
+                @Html.DisplayNameFor(model => model.fname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.age)
+                @Html.DisplayNameFor(model => model.lname)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nationalnumber)
-            </th>
-            @*<th>
-                    @Html.DisplayNameFor(model=>model.registrationdate)
-                </th>*@
-            @*<th></th>*@
-            <th></th>
-        </tr>
-        @foreach (var item in Model)
+                @Html.DisplayNameFor(model => model.fathername)
+            </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.mothername)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nationalnumber)
+                </th>
+                @*<th>
+                @Html.DisplayNameFor(model=>model.registrationdate)
+            </th>*@
+                @*<th></th>*@
+                <th></th>
+            </tr>
+        @*</thead>*@
+    
+    @foreach (var item in Model)
+    {
+
+        if (!item.is_secret)
         {
+            <tr class="wow fadeIn">
+                <td>
+                    @Html.DisplayFor(modelItem => item.serial_number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.family_order_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.full_name)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.fname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fathername)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.mothername)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.age)
+                    @*@{
+                            var dob = item.birthday.GetValueOrDefault();
+                            DateTime now = DateTime.Today;
+                            int age = now.Year - dob.Year;
+                            if (now < dob.AddYears(age))
+                            { age--; }
+                            @Html.DisplayFor(model => age);
+                        }*@
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gender)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nationalnumber)
+                </td>
+                @*      <td>@Html.DisplayFor(modelItem => item.registrationdate)</td>*@
 
-            if (!item.is_secret)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.serial_number)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.family_order_id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.full_name)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.fname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.lname)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.fathername)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.mothername)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.age)
-                        @*@{
-                                var dob = item.birthday.GetValueOrDefault();
-                                DateTime now = DateTime.Today;
-                                int age = now.Year - dob.Year;
-                                if (now < dob.AddYears(age))
-                                { age--; }
-                                @Html.DisplayFor(model => age);
-                            }*@
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.gender)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nationalnumber)
-                    </td>
-                    @*      <td>@Html.DisplayFor(modelItem => item.registrationdate)</td>*@
-
-                    <td>
-                        @Html.ActionLink("تفاصيل", "Details", "people", new { id = item.idperson }, new { @class = "btn btn-primary btn-rounded p-0" })
+                <td class="text-center">
+                    @*@Html.ActionLink("تفاصيل", "Details", "people", new { id = item.idperson }, new { @class = "btn btn-primary btn-rounded p-0" })
                         @Html.ActionLink("تعديل", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded p-0" })
-                        @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-0" })
+                        @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-0" })*@
+
+                    @Html.ActionLink(" ", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
+                    @Html.ActionLink(" ", "Details", "people", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card-o p-1", @title = "تفاصيل" })
+
+                    @Html.ActionLink(" ", "Details", "families", new { id = item.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-1 fa fa-users", @title = "عرض صفحة العائلة" })
+                    @Html.ActionLink(" ", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة" })
 
 
 
+                    @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
+                </td>
 
-                        @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
-                    </td>
-
-                </tr>
-            }
+            </tr>
         }
+    }
 
-    </table>
+</table>
 

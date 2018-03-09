@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
 <!DOCTYPE html>
-<html>
+<html id="top-section">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,8 +22,11 @@
 
     @*}*@
 </head>
-<body class="fixed-sn mdb-skin bg-skin-lp container-fluid" style="padding-top:50px;">
 
+
+
+<body class="fixed-sn mdb-skin bg-skin-lp container-fluid" style="padding-top:50px;">
+    
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
@@ -54,7 +57,7 @@
 
 
 
-        <header >
+        <header>
             <marquee direction="right" bgcolor="#1B2838" loop="infinity" behavior="scroll" scrollamount="5">
                 <font color="#fff">
                     @if (ViewBag.ServicesBar != null)
@@ -746,7 +749,7 @@
             </ul>
             <!--/. Sidebar navigation -->
             <!-- Navbar -->
-            <nav class="navbar navbar-fixed-top mobile-nofixed navbar-toggleable-md navbar-dark scrolling-navbar  top-nav-collapse">
+            <nav class="navbar navbar-fixed-top mobile-fixed navbar-toggleable-md navbar-dark scrolling-navbar  top-nav-collapse">
                 <!-- SideNav slide-out button -->
                 <div class="float-right" style="direction:ltr">
                     <a href="#" data-activates="slide-out" class="button-collapse" style="color:#fff;cursor:pointer"><i class="fa fa-bars"></i></a>
@@ -762,6 +765,11 @@
         <div class="container-fluid" id="ParentDiv">
             <div id="content" style="height: 100%;">
                 @RenderBody()
+                <span id="toTop" class="smooth-scroll" style="position:fixed; bottom: 10px; left: 20px; z-index:99;">
+                    <a href="#top-section" class="btn-floating btn-large" style="background-color:#1b2838">
+                        <i class="fa fa-arrow-up"></i>
+                    </a>
+                </span>
                 </div>
                 <footer class="footer">
                     <p>&copy; @DateTime.Now.Year - جميع الحقوق محفوظة لصالح جمعية البر والخدمات الاجتماعية - سند </p>

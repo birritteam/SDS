@@ -1,13 +1,52 @@
 ﻿@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 @import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
 @import url('https://fonts.googleapis.com/css?family=Cairo');
+@import url('https://fonts.googleapis.com/css?family=Dosis');
 /*@import url('https://fonts.googleapis.com/css?family=Amiri');*/
+
+/* @font-face kit by Fonts2u (http://www.fonts2u.com) */ 
+
+@font-face {
+    font-family:"GE SS Text Light";
+    src:url("GE_SS_Text_Light.eot?") format("eot"),
+        url("GE_SS_Text_Light.woff") format("woff"),
+        url("GE_SS_Text_Light.ttf") format("truetype"),
+        url("GE_SS_Text_Light.svg#GESSTextLight-Light") format("svg");
+    font-weight:normal;font-style:normal;
+
+}
+
+
 
 /*body {
     padding-top: 50px;
     padding-bottom: 20px;
 }*/
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6l, th{
+    /*font-family: 'GE SS Text Light', Cairo, sans-serif;*/
+    /*font-weight: 700;*/
+    line-height: 1.1;
+    color: #1b2838;
+}
 
+
+[type=radio]:checked+label, [type=radio]:not(:checked)+label, [type=checkbox]+label {
+    padding-right: 35px;
+}
+
+[type=checkbox]:checked + label:before {
+   
+    right: 5px;
+}
+
+
+[type=checkbox]+label:before,[type=radio]+label:before, [type=radio]+label:after{
+    right:0;
+}
+
+.card-header-content{
+    color: white;
+}
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -30,7 +69,8 @@ textarea {
 }*/
 
 * {
-    /*direction: rtl;*/
+    direction: rtl;
+    /*font-family: 'GE SS Text Light', Cairo, sans-serif;*/
     font-family: 'Cairo', sans-serif;
     font-family: 'Droid Arabic Kufi', sans-serif;
     font-family: 'Noto Kufi Arabic', sans-serif;
@@ -60,6 +100,7 @@ label {
 .btn {
     white-space: nowrap !important;
     margin:auto;
+    text-transform:unset !important;
 }
 
 .bootstrap-select.btn-group .dropdown-menu.inner {
@@ -174,8 +215,21 @@ html {
     color: white;
 }
 
+
+
+
 .dark-blue-bg{
-    background: #1b2838;
+    
+    background-color:#1b2838 !important;
+    
+    font-style:normal !important;
+}
+
+.dark-gray-bg{
+    
+    background-color:#9f9e9e !important;
+    padding: 10px;
+    /*color: #1b2838 !important;*/
 
 }
 
@@ -311,4 +365,20 @@ hr{
     border:2px !important;
     /*text-align:right!important;*/
     /*right:10px!important;*/
+}
+
+/*.btn-group > .btn:not(.dropdown-toggle){
+    border-radius:15px !important;
+    margin:10px;
+    padding:10px !important;
+}*/
+
+.btn-group > .btn:first-child:not(.dropdown-toggle) {
+    border-top-right-radius: 50px !important;
+    border-bottom-right-radius: 50px !important;
+}
+
+.btn-group > .btn:last-child:not(.dropdown-toggle) {
+    border-top-left-radius: 50px !important;
+    border-bottom-left-radius: 50px !important;
 }

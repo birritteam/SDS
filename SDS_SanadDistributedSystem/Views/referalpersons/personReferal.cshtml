@@ -12,323 +12,170 @@
     {
         return ViewBag.idcase_FK;
     }
-    //string id, SelectList s
-    //SelectList ssss = s;
 
 }
 <!DOCTYPE HTML>
 <html>
 <head>
 
-    <link href="~/Content/cardview.css" rel="stylesheet" />
+  @*  <link href="~/Content/cardview.css" rel="stylesheet" />*@
 
 </head>
 <body>
 
 
+    @*<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
+        @Html.ActionLink(" ", "Index", "people",null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list", @title = "عودة إلى قائمة الأشخاص" })
+    </span>*@
+    <span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
+        @Html.ActionLink(" ", "Details", "people", new { id = @Model.person.idperson}, new { @class = "btn btn-primary btn-rounded p-3 fa fa-id-card-o", @title = "عودة إلى استمارة " + @Model.person.fname  })
+    </span>
 
 
-    @*@using (Ht.BeginForm("personReferal", "referalpersons", new AjaxOptions { OnSuccess = "successFillTable", OnFailure = "OnFailureFillTable" }))*@
-    @{
+    <div class="card card-cascade">
 
-        var name = Model.person.fname + " " + Model.person.lname;
-        var birthday = "";
-        if (Model.person.birthday != null)
-        { birthday = Model.person.birthday.Value.ToShortDateString(); }
+        <!--Card image-->
+        <div class="view card-header dark-blue-bg white-text">
+            <h3 class="h3-responsive card-header-content">إضافة إحالات جديدة لـ:</h3>
+            <p class="card-header-content sub-header h4-responsive">@Model.person.full_name</p>
+        </div>
+        <!--/Card image-->
+        <!--Card content-->
+        <div class="card-body text-center">
 
-        var birthplace = "";
-        if (Model.person.birthplace != null)
-        { birthplace = Model.person.birthplace; }
+            <p class="card-text card-block">
 
-        var currentaddress = Model.person.currentaddress;
-
-        var fathername = Model.person.fathername;
-        var mothername = Model.person.mothername;
-        var nationality = Model.person.nationality;
-        var gender = Model.person.gender;
-
-    }
-
-    <section class="form-simple centered-content  ">
-
-        <!--Form with header-->
-        <div class="card" style="width: 100%; padding:15px; align-items:center">
-
-            <!--Header-->
-            <div class="header pt-3 grey centered-wrapper">
-
-                <div class="row d-flex justify-content-start">
-                    <h2 class=" deep-grey-text mt-3 mb-4 pb-1 mx-5 fa fa-plus-circle" style="font-size:3rem ;color:#fff"><b> إضافة إحالات</b></h2>
-                </div>
-            </div>
-
-            @if (gender == "ذكر")
-            {<h3><b> إضافة إحالة للسيد @name </b></h3>}
-            else
-            {   <h3><b>*إضافة إحالة للسيدة @name </b></h3>}
-            <div class="col-md-12">
-                <h3 class="lighten-2 grey" style="padding:10px"><i class="fa fa-user-o" style="color:#000000"></i> المعلومات الشخصية:</h3>
-
-            </div>
-            <div class="form-group">
-
-                <div class="col-md-12">
+                <div class="row col-md-12">
                     <div class="col-md-4">
-                        <h5><b>  الاسم الثلاثي :</b>@name</h5>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                            @Html.DropDownList("centers", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
+                            @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
+
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        <b>  اسم الإب: </b>@fathername
-                    </div>
-                    <div class="col-md-3">
-                        <h5><b>  اسم الأم:</b>@mothername</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <h5><b> تاريخ الميلاد:</b>@birthday</h5>
-                    </div>
-                </div>
-                <div class="clearfix">
-                    <br />
-                    <br />
+                    
 
                 </div>
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            <h5><b>  مكان الولادة:</b>@birthplace</h5>
-                        </div>
-                        <div class="col-md-2">
-                            <h5><b>  الجنسية:</b>@nationality</h5>
-                        </div>
-                        <div class="col-md-6">
-                            <h5><b>   العنوان الحالي:</b>@currentaddress</h5>
+                
+                    @using (Html.BeginForm())
+                    {
+
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.idperson_FK, new { @Value = Model.person.idperson });
+
+                        <div class="">
+                            <div class="row col-md-12">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.idcase_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                                        @Html.DropDownList("idcase_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
+                                        @Html.ValidationMessageFor(model => model.idcase_FK, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.referalreicver_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                                        @Html.DropDownList("referalReciver_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "" })
+                                        @Html.ValidationMessageFor(model => model.referalreicver_FK, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        @Html.DropDownList("services", null, htmlAttributes: new { @class = "form-control", @onchange = "FillRecivers()" })
+                                        @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                             </div>
+                            <div class="row col-md-12">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        @Html.TextAreaFor(model => model.senderevalution, new { @type = "text", @id = "senderevalution", @class = "md-textarea" })
+                                        @Html.LabelFor(model => model.senderevalution, htmlAttributes: new { @for = "senderevalution" })
+                                        @Html.ValidationMessageFor(model => model.senderevalution, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(model => model.outreachnote);
+
+                                <div class="col-md-2">
+                                    <div class="row" style="padding:25px;">
+
+                                    </div>
+                                    <div class="row">
+                                        <input type="button" value="إضافة" class="btn btn-default btn-rounded p-0" onclick="successFillTableNew()" />
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+
                         </div>
 
+
+
+                        
+                    }
+
+                <div class="row col-md-12">
+                    <div class="form-group">
+                        <table id="myTable" class="display table table-hover" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">الرقم التسلسلي</th>
+                                    <th class="text-center">القسم</th>
+                                    <th class="text-center">الخدمة</th>
+                                    <th class="text-center">التقييم الأولي</th>
+                                    <th class="text-center">المستقبل</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
+                    
                 </div>
-            </div>
+                
+            </p>
 
-            <div class="col-md-12">
-
-
-                <h3 class="lighten-2 grey" style="padding:10px"><i class="fa fa-info" style="color:#000000"></i> معلومات الإحالة: </h3>
-
-
-            </div>
-            <hr style="width:2px; color:#fff;padding:10px" />
             <div class="row">
-                <div class="form-group col-md-4 centered-wrapper">
-                    @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-4">
-                        @Html.DropDownList("centers", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
-                        @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-            </div>
-
-
-            @using (Html.BeginForm())
+                <div style="display:inline;">
+                    @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
+                    @using (Html.BeginForm())
             {
 
-                @Html.AntiForgeryToken()
-                @Html.HiddenFor(model => model.idperson_FK, new { Value = Model.person.idperson });
-                <div class="form-horizontal centered-wrapper">
-
-                    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-group col-md-4">
-                            @Html.LabelFor(model => model.idperson_FK, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-4">
-                                @Html.DropDownList("idperson_FK", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
-                                @Html.ValidationMessageFor(model => model.idperson_FK, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(model => model.idcase_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                        <div class="col-md-4">
-                            @Html.DropDownList("idcase_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
-                            @Html.ValidationMessageFor(model => model.idcase_FK, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                        <div class="col-md-4 ">
-                            <i>
-                                @Html.DropDownList("services", null, htmlAttributes: new { @class = "form-control", @onchange = "FillRecivers()" })
-
-                                @*@Html.DropDownList("cmEducation", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmProfessional", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmChildProtection", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmPsychologicalSupport1", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmPsychologicalSupport2", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmPsychologicalSupport3", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmDayCare", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmHomeCare", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmSGBV", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmSmallProjects", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmIOutReachTeam", null, htmlAttributes: new { @class = "form-control" })
-                                    @Html.DropDownList("cmInkindAssistance", null, htmlAttributes: new { @class = "form-control" })*@
-                                @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
-                            </i>
-                        </div>
-                    </div>
-
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(model => model.referalreicver_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                        <div class="col-md-4">
-                            @Html.DropDownList("referalReciver_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "" })
-                            @Html.ValidationMessageFor(model => model.referalreicver_FK, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.submittingdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.submittingdate, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                                @Html.TextBoxFor(model => model.submittingdate, new { @class = "form-control", @Value = @DateTime.Now.ToString("yyyy-MM-dd"), @readonly = "readonly" })
-                                @Html.ValidationMessageFor(model => model.submittingdate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.referalstate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.  ("referalstate",null, htmlAttributes : new { @class = "form-control", @readonly = "readonly" } )
-                                @Html.ValidationMessageFor(model => model.referalstate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.referaldate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.referaldate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.referaldate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.servicestate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("servicestate", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
-                                @Html.ValidationMessageFor(model => model.servicestate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.servicestartdate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.servicestartdate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.servicestartdate, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                        @Html.AntiForgeryToken()
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.serviceenddate, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.serviceenddate, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.serviceenddate, "", new { @class = "text-danger" })
+                            <div class="col-md-12 ">
+                                <input type="button" value="إرسال الإحالات" class="btn btn-default btn-rounded p-0" onclick="successSendReferals()" />
                             </div>
-                        </div>*@
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.referalsender_FK, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("referalsender_FK", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
-                                @Html.ValidationMessageFor(model => model.referalsender_FK, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.senderevalution, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.senderevalution, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.senderevalution, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-                    <div class="col-md-6">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.senderevalution, new { htmlAttributes = new { @class = "form-control validate col-md-6" } })
-                            @Html.LabelFor(model => model.senderevalution, htmlAttributes: new { })
-                            @Html.ValidationMessageFor(model => model.senderevalution, "", new { @class = "text-danger" })
                         </div>
-                    </div>
 
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.recieverevalution, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.recieverevalution, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.recieverevalution, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    @*<div class="form-group">
-                            @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("idcenter_FK", null, htmlAttributes: new { @class = "form-control", @readonly = "readonly" })
-                                @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
-
-                    <div class="col-md-6">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control validate col-md-6" } })
-                            @Html.LabelFor(model => model.outreachnote, htmlAttributes: new { })
-                            @Html.ValidationMessageFor(model => model.outreachnote, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class=" col-md-12">
-                            <input type="button" value="إضافة" class="btn btn-default centered-content " onclick="successFillTableNew()" />
-                        </div>
-                    </div>
+                    }
                 </div>
-            }
+            </div>
+            <div class="row">
+                
 
+                <p class="card-footer">
+                    
+                </p>
 
+            </div>
 
         </div>
-
-
-        <!--/Form with header-->
-
-    </section>
-    <div class="card centered-content" style="width: 100%; padding:15px; align-items:center">
-        <div class="form-group">
-            <table id="myTable" class="display table table-bordered" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>الرقم التسلسلي</th>
-                        <th>مدير الإحالة</th>
-                        <th>الخدمة</th>
-                        <th>التقييم الأولي</th>
-                        <th>المستقبل</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-        </div>
-        <div>
-            @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
-            @using (Html.BeginForm())
-            {
-
-                @Html.AntiForgeryToken()
-
-                <div class="form-group">
-                    <div class="col-md-12 ">
-                        <input type="button" value="حفظ" class="btn btn-default  centered-content" onclick="successSendReferals()" />
-                    </div>
-                </div>
-
-            }
-        </div>
-        @Html.ActionLink("عودة إلى قائمة الأشخاص", "index", "people", "", "")
     </div>
+
+
+   
 
 </body>
 </html>

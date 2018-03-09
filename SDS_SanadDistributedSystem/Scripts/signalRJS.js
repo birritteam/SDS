@@ -31,7 +31,7 @@
 
         $.ajax({
             type: 'GET',
-            url: '/sds/referalpersons/GetNotificationsReferal',
+            url: ' /referalpersons/GetNotificationsReferal',
             success: function (response) {
                 //alert("dasdad")
                 $('#notiContent').empty();

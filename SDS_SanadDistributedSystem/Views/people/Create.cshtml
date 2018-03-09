@@ -5,19 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<span style="position:fixed; bottom: 20px; left: 30px; z-index:99;"
+@*<span style="position:fixed; top: 60px; left: 30px; z-index:99;"
       @*tabindex="0"
       data-toggle="tooltip"
-      title="عودة إلى قائمة الأشخاص"*@
+      title="عودة إلى قائمة الأشخاص"
       class="shades">
-    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list" })
+    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list wow fadeInUp" })
 </span>
-<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;"
+<span style="position:fixed; top: 60px; left: 90px; z-index:99;"
       @*tabindex="0"
       data-toggle="tooltip"
-      title="عودة إلى العائلة"*@
+      title="عودة إلى العائلة"
       class="shades">
-    @Html.ActionLink(" ", "Details", "families", new { id = @ViewBag.family.idfamily }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users" })
+    @Html.ActionLink(" ", "Details", "families", new { id = @ViewBag.family.idfamily }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users wow fadeInUp" })
+</span>*@
+
+<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
+    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list wow fadeInUp", @title = "عودة إلى قائمة الأشخاص" })
+</span>
+<span style="position:fixed; bottom: 20px; left: 150px; z-index:99;">
+    @Html.ActionLink(" ", "Details", "families", new { id = @ViewBag.family.idfamily }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users wow fadeInUp", @title = "عودة إلى صفحة العائلة" })
 </span>
 
     <h2>إضافة شخص للعائلة   </h2>
@@ -34,6 +41,7 @@
         }, new { @id = "personCreationForm" }))
         {
             @Html.AntiForgeryToken()
+            <input type="hidden" id="family_book_number" name="family_book_number" value="@ViewBag.family.family_book_number" />
 
             <div class="form-horizontal">
                 <h4 class="h4">@ViewBag.family.serial_number</h4>
@@ -44,10 +52,10 @@
                 @* <input type="hidden" name="idperson" id="idperson" />*@
 
                 <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-2"><label class="control-label">موقع الشخص ضمن العائلة</label></div>
-                        <div class="col-md-4">
-                            <div class="btn-group" data-toggle="buttons">
+                    
+                        <div class="col-md-2"><label class="control-label" for="p_order">موقع الشخص ضمن العائلة</label></div>
+                        <div class="col-md-5">
+                            <div class="btn-group" data-toggle="buttons" id="p_order">
                                 <label class="btn btn-primary active">
                                     <input type="radio" name="position" id="H" value="H" autocomplete="off" checked> زوج
                                 </label>
@@ -75,11 +83,11 @@
                             <input type="number" id="childOrder" class="hidden" min="1" max="20" value="1" />
                         </div>
                         @Html.ValidationMessageFor(model => model.family_order_id, "", new { @class = "text-danger col-md-3" })
-                        <div class="col-md-1" style="">
+                        <div class="col-md-1">
                             @*<input type="text" id="family_order_id" name="family_order_id" value="@ViewBag.family.family_book_number" readonly="readonly"/>*@
                             @Html.EditorFor(model => model.family_order_id, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.family.family_book_number, @readonly = "readonly" } })
                         </div>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="form-group hidden">
@@ -129,7 +137,7 @@
                     <div class="col-md-1"><label>تاريخ الميلاد</label></div>
                     <div class="col-md-3">
                         <div class="md-form">
-                            @Html.EditorFor(model => model.birthday, new { htmlAttributes = new { @class = "form-control validate" } })
+                            @Html.EditorFor(model => model.birthday, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control validate" } })
                             @Html.ValidationMessageFor(model => model.birthday, "", new { @class = "text-danger" })
                             @*<label class="md-form">تاريخ الميلاد</label>*@
                             @*@Html.EditorFor(model => model.birthday, "{0:dd/MM/yyyy}",new  { htmlAttributes = new { @class = "form-control validate", @type = "text" } })*@
@@ -281,9 +289,9 @@
                 <div class="row">
                     <h4 class="h4">الوثائق</h4>
                     @foreach (var document in ViewBag.documentsOptions)
-                {
-                        <div class="col-md-4" dir="ltr">
-                            <div class="checkbox-inline">
+                        {
+                        <div class="col-md-4">
+                            <div class="checkbox-inline wow fadeIn">
                                 <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" />
                                 <label for="@document.idmanagelist">@document.name</label>
                             </div>
@@ -300,8 +308,8 @@
                     foreach (var item in weakness)
 
                     {
-                            <div class="col-md-4" dir="ltr">
-                                <div class="checkbox-inline" dir="rtl">
+                            <div class="col-md-4">
+                                <div class="checkbox-inline wow fadeIn">
                                     <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
                                     <label for="@item.idmanagelist">@item.name</label>
                                 </div>

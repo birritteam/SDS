@@ -23,7 +23,7 @@ function FillServices() {
     var selectedId = $('#idcase_FK').val();
     alert("sssssssssssss" + selectedId);
     $.ajax({
-        url: '/sds/services/FillServices',
+        url: '/services/FillServices',
         type: "GET",
         dataType: "JSON",
         data: { 'selectedId': selectedId },

@@ -613,6 +613,11 @@ namespace SDS_SanadDistributedSystem.Controllers
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", person.iduser);
             //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", person.idcenter_FK);
             //ViewBag.idfamily_FK = new SelectList(db.families, "idfamily", "familynature", person.idfamily_FK);
+
+
+
+
+
             return View(person);
         }
         [Authorize(Roles = "admin")]

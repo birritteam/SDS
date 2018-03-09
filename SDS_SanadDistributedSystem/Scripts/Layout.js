@@ -169,3 +169,11 @@ $(document).ready(function () {
 //    FillReferalStateDropdown();
 //});
 
+
+$(window).scroll(function () {
+    if ($(this).scrollTop()>30) {
+        $('#toTop:hidden').stop(true, true).fadeIn();
+    } else {
+        $('#toTop').stop(true, true).fadeOut();
+    }
+});

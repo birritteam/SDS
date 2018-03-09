@@ -67,12 +67,13 @@ $(document).ready(function () {
     //        highlightWeek: true
     //    });
     $.validator.unobtrusive.parse("#ParentDiv > form");
-    idFamily = $("#family_order_id").val();
+    idFamily = $("#family_book_number").val();
+   // idFamily = $("#family_order_id").val();
     //$('#idfamily_FK').val(idFamily);
-    $("#ذكر").prop("checked", true).trigger("click");
- //   $("input[type=radio][name=position]").trigger("change");
-    $("#family_order_id").val(idFamily + "H").trigger("change");
-    $("#family_order_id").trigger("focus");
+    //$("#ذكر").prop("checked", true).trigger("click");
+    $("input[type=radio][name=position][id=H]").trigger("click").trigger("change");
+    //$("#family_order_id").val(idFamily + "H").trigger("change");
+    //$("#family_order_id").trigger("focus");
   //  $("#idperson").trigger("focusout");
   //  $("#fname").trigger("focus");
    // $("#idperson").validator();

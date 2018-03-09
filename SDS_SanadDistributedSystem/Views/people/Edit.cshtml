@@ -4,33 +4,50 @@
     ViewBag.Title = "تعديل شخص";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@*<span style="position:fixed; bottom: 45%; left: 30px; z-index:99;">
+    <span style="position:absolute; bottom: 0px; left:0px;"
+          @*tabindex="0"
+      data-toggle="tooltip"
+      title="عودة إلى قائمة الأشخاص"
+          class="shades">
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list" })
+    </span>
+    <span style="position:absolute; bottom: 60px; left:0px;"
+          tabindex="0"
+      data-toggle="tooltip"
+      title="عودة إلى العائلة"
+          class="shades">
+        @Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users" })
+    </span>
+</span>*@
 
-<span style="position:fixed; bottom: 20px; left: 30px; z-index:99;"
+<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;"
       @*tabindex="0"
       data-toggle="tooltip"
       title="عودة إلى قائمة الأشخاص"*@
       class="shades">
-    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list" })
+    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list", @title = "عودة إلى قائمة الأشخاص" })
 </span>
-<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;"
+<span style="position:fixed; bottom: 20px; left: 150px; z-index:99;"
       @*tabindex="0"
       data-toggle="tooltip"
       title="عودة إلى العائلة"*@
       class="shades">
-    @Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users" })
+    @Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users", @title = "عودة إلى صفحة العائلة" })
 </span>
 
 
 
 <h2>تعديل بيانات : @Model.full_name</h2>
 
-@using (Html.BeginForm())
+<div class="container-fluid">
+    @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
 
-        <hr />        
+        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*<input type="hidden" value="@Model.idperson" id="idperson"/>*@
         @Html.HiddenFor(model => model.idperson)
@@ -38,9 +55,9 @@
 
 
         <div class="row">
-            <div class="form-group">
+            
                 <div class="col-md-2"><label class="control-label">موقع الشخص ضمن العائلة</label></div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn btn-primary">
                             <input type="radio" name="position" id="H" value="H" autocomplete="off"> زوج
@@ -65,7 +82,7 @@
                 <div class="col-md-1" style="">
                     @Html.EditorFor(model => model.family_order_id, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 </div>
-            </div>
+            
         </div>
         <div class="row">
             <div class="form-group hidden">
@@ -262,54 +279,79 @@
 
         <div class="form-group row">
             <h4 class="h4">الوثائق</h4>
+            @*<div class="btn-group" data-toggle="buttons">*@
             @foreach (var document in ViewBag.documentsOptions)
                 {
-                <div class="col-md-4" dir="ltr">
-                    <div class="checkbox-inline">
-                        @if (ViewBag.selectedML.Contains(document.idmanagelist))
-                        {
-                            <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" checked="checked" />
+                     <div class="col-md-4">
+                     <div class="checkbox-inline">
 
-                        }
-                        else
-                        {
-                            <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" />
+                    @if (ViewBag.selectedML.Contains(document.idmanagelist))
+                    {
+                    <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" checked="checked" />
 
-                        }
-                        <label for="@document.idmanagelist">@document.name</label>
-                    </div>
-                </div>
+                        @*<label class="btn btn-primary active">
+                                <input type="checkbox" checked autocomplete="off" id="@document.idmanagelist" value="@document.idmanagelist" name="documents"> @document.name
+                            </label>*@
+                }
+                else
+                {
+
+                    @*<label class="btn btn-primary">
+                            <input type="checkbox" autocomplete="off" id="@document.idmanagelist" value="@document.idmanagelist" name="documents"> @document.name
+                        </label>*@
+
+                    <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" />
+
+                }
+                <label for="@document.idmanagelist">@document.name</label>
+
+                  </div>
+                   </div>
             }
-
+            @*</div>*@
 
 
         </div>
 
-        <div class="form-group">
-            <h4 class="h4">نقاط الضعف</h4>
-            @foreach (var weakness in ViewBag.weaknesses)
-            {//<div class="row">
+        <div class="row form-group">
+            
+                <h4 class="h4">نقاط الضعف</h4>
+                @*<div class="btn-group" data-toggle="buttons">*@
+                @foreach (var weakness in ViewBag.weaknesses)
+                {//<div class="row">
+                    @*<div class="btn-group" data-toggle="buttons">*@
+
                 foreach (var item in weakness)
 
                 {
-                    <div class="col-md-4" dir="ltr">
-                        <div class="checkbox-inline" dir="ltr">
-                            @if (ViewBag.selectedML.Contains(item.idmanagelist))
-                            {
-                                <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" checked="checked" />
-                            }
-                            else
-                            {
-                                <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
-                            }
 
-                            <label for="@item.idmanagelist">@item.name</label>
-                        </div>
+                    <div class="col-md-4">
+                          <div class="checkbox-inline">
+                        @if (ViewBag.selectedML.Contains(item.idmanagelist))
+                        {
+                            <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" checked="checked" />
+
+                            @*<label class="btn btn-warning active wow fadeIn">
+                            <input type="checkbox" checked autocomplete="off" id="@item.idmanagelist" name="weaknesses" value="@item.idmanagelist"> @item.name
+                        </label>*@
+                        }
+                        else
+                        {
+                            @*<label class="btn btn-warning wow fadeIn">
+                            <input type="checkbox" autocomplete="off" id="@item.idmanagelist" name="weaknesses" value="@item.idmanagelist"> @item.name
+                        </label>*@
+                            <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
+                        }
+
+                        <label for="@item.idmanagelist">@item.name</label>
+                    </div>
                     </div>
                 }
-                //</div>
-            }
-
+                @*</div>*@
+                    //</div>
+                }
+                @*</div>*@
+          
 
         </div>
 
@@ -328,30 +370,30 @@
 
         </div>
         <hr />
-        
-            @*@Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
 
-                <div class="md-form">
-                    @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 })
-                    @Html.Label(0 + " %", new { @for = "e" + 0 })
-                    @foreach (int item in ViewBag.evaluationValues)
-                    {
-                        @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e" + item })
-                        @Html.Label(item + " %", new { @for = "e" + item })
-                    }
-                    @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-                </div>*@
+        @*@Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
 
-            
-            <div class="row">
-                <div class="md-form">
-                    @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
-                    @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
-                    @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
-                </div>
+            <div class="md-form">
+                @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 })
+                @Html.Label(0 + " %", new { @for = "e" + 0 })
+                @foreach (int item in ViewBag.evaluationValues)
+                {
+                    @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e" + item })
+                    @Html.Label(item + " %", new { @for = "e" + item })
+                }
+                @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+            </div>*@
+
+
+        <div class="row">
+            <div class="md-form">
+                @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
+                @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
+                @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
             </div>
+        </div>
 
-       
+
 
         @Html.HiddenFor(model => model.idfamily_FK)
         @Html.HiddenFor(model => model.idcenter_FK)
@@ -361,7 +403,7 @@
         @Html.HiddenFor(model => model.gender)
         @Html.HiddenFor(model => model.formnumber)
         @Html.HiddenFor(model => model.family_order_id)
-        
+
 
 
         <div class="form-group">
@@ -371,6 +413,9 @@
         </div>
     </div>
 }
+</div>
+
+
 
 @*<div>
     @Html.ActionLink("العودة إلى قائمة الأشخاص", "Index")
