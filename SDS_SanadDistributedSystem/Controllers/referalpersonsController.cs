@@ -173,7 +173,10 @@ namespace SDS_SanadDistributedSystem.Controllers
             try
             {
                 referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
-               // rp.serviceenddate = DateTime.Now;
+                // rp.serviceenddate = DateTime.Now;
+                rp.referaldate = DateTime.Now;
+                rp.servicestartdate = null;
+                rp.serviceenddate = null;
                 rp.referalstate = "Pending";
                 rp.servicestate = "Pending";
                 db.Entry(rp).State = EntityState.Modified;
@@ -353,7 +356,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
                 rp.referaldate = DateTime.Now;
-
+                rp.servicestartdate = DateTime.Now;
+                rp.serviceenddate = null;
                 rp.referalstate = "Approved";
                 rp.servicestate = "In prgress";
                 db.Entry(rp).State = EntityState.Modified;
@@ -388,7 +392,8 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
                 rp.referaldate = DateTime.Now;
-
+                rp.servicestartdate = DateTime.Now;
+                rp.serviceenddate = null;
                 rp.referalstate = "OutReach";
                 rp.servicestate = "In prgress";
                 db.Entry(rp).State = EntityState.Modified;
