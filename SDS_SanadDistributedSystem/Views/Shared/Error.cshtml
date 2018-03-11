@@ -1,9 +1,29 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
 
 @{
-    ViewBag.Title = "Error";
+    ViewBag.Title = "خطأ";
 }
 
-<h1 class="text-danger">Error.</h1>
-<h2 class="text-danger">An error occurred while processing your request.</h2>
+@*<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>*@
 
+
+<div style="background-color: #A52A2A; color: White; height: 10px;">
+</div>
+<div style="background-color: #F5F5DC; color: White; height: 170px;">
+    <div style="padding:20px;">
+        <h3>
+           خطأ:
+        </h3>
+        <h4>
+            عذرا حدث خطأ خلال معالجة الطلب.
+        </h4>
+
+        <img src="~/images/notfound.png" />
+        @*<h6>@Html.ActionLink("Go Back To Home Page", "Index", "Home")</h6>*@
+        <br />
+        <br />
+    </div>
+</div>
+<div style="background-color: #A52A2A; color: White; height: 20px;">
+</div>  

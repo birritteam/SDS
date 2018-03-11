@@ -528,7 +528,9 @@
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="404.aspx" />
     <Content Include="images\birr.jpg" />
+    <Content Include="images\notfound.png" />
     <Content Include="images\sanad.ico" />
     <Content Include="images\sanad.jpg" />
     <Content Include="images\user-200x200.png" />

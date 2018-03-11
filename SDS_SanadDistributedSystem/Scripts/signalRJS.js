@@ -31,7 +31,7 @@
 
         $.ajax({
             type: 'GET',
-            url: ' /referalpersons/GetNotificationsReferal',
+            url: ' /sds/referalpersons/GetNotificationsReferal',
             success: function (response) {
                 //alert("dasdad")
                 $('#notiContent').empty();
@@ -65,7 +65,8 @@
     }
     var notificationHub = $.connection.notificationHub;
     $.connection.hub.start().done(function () {
-        console.log('Notification hub stareted' + $.connection.hub.id)
+        //console.log('Notification hub stareted' + $.connection.hub.id)
+        console.log('Notification hub stareted' )
        
     });
 
