@@ -59,8 +59,8 @@ else if (User.IsInRole("cmIOutReachTeam"))
             @Html.HiddenFor(model => model.idperson)
             <input type="hidden" id="family_book_number" name="family_book_number" value="@ViewBag.family.family_book_number" />
 
-            @if (User.IsInRole("receptionist"))
-            {
+            @*@if (User.IsInRole("receptionist"))
+            {*@
                 <h2>تعديل بيانات : @Model.full_name</h2>
                 <hr />
                 <div class="row">
@@ -395,8 +395,8 @@ else if (User.IsInRole("cmIOutReachTeam"))
                             <input type="submit" value="حفظ التعديلات" class="btn btn-default btn-rounded p-1" />
                         </div>
                     </div>
-            }
-            else
+            @*}*@
+            @*else
             {
                 @Html.HiddenFor(model => model.idperson);
                 @Html.HiddenFor(model => model.fname);
@@ -511,7 +511,7 @@ else if (User.IsInRole("cmIOutReachTeam"))
                                     </div>
                                 </div>
                             </div>
-                            @*<hr />*@
+                            
                             <div class="row">
 
                                 <div class="col-md-3">
@@ -601,7 +601,7 @@ else if (User.IsInRole("cmIOutReachTeam"))
 
                                                 @*<content><label>الوثائق:</label></content>*@
 
-                                                @foreach (var document in ViewBag.documentsOptions)
+                                                @*@foreach (var document in ViewBag.documentsOptions)
                                                 {
 
                                                     if (ViewBag.selectedML.Contains(document.idmanagelist))
@@ -609,7 +609,7 @@ else if (User.IsInRole("cmIOutReachTeam"))
                                                         <li class="list-inline-item">@document.name</li>
 
                                                     }
-                                                }
+                                                }*@
 
                                                 @*@if (ViewBag.selectedDocuments.Count == 0)
                                                     {
@@ -623,59 +623,59 @@ else if (User.IsInRole("cmIOutReachTeam"))
                                                         }
                                                     }*@
 
-                                            </ul>
+                                            @*</ul>
                                         </div>
 
                                     </div>
 
                                 </div>
 
-                            </div>
+                            </div>*@
                             @*<hr />*@
 
 
 
 
-                            <div class="row">
+                            @*<div class="row">
                                 <div class="col-md-12" style="padding-right:60px; padding-left:40px;">
 
                                     <h5 class="card-title">    <i class="fa fa-wheelchair" style="color:#ff8800"> </i> نقاط الضعف   </h5>
-                                    <hr />
-                                    @*<div class="btn-group" data-toggle="buttons">*@
+                                    <hr />*@
+                                    @*<div class="btn-group" data-toggle="buttons">
                                     @foreach (var weakness in ViewBag.weaknesses)
                                     {//<div class="row">
-                                        @*<div class="btn-group" data-toggle="buttons">*@
+                                        @*<div class="btn-group" data-toggle="buttons">
 
                                     foreach (var item in weakness)
 
                                     {
 
                                         <div class="col-md-4 text-right font-weight-normal">
-                                            @*<div class="checkbox-inline">*@
+                                            @*<div class="checkbox-inline">
                                             @if (ViewBag.selectedML.Contains(item.idmanagelist))
                                             {
                                                 <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" checked="checked" />
 
                                                 @*<label class="btn btn-warning active wow fadeIn">
                                                         <input type="checkbox" checked autocomplete="off" id="@item.idmanagelist" name="weaknesses" value="@item.idmanagelist"> @item.name
-                                                    </label>*@
+                                                    </label>
                                             }
                                             else
                                             {
                                                 @*<label class="btn btn-warning wow fadeIn">
                                                         <input type="checkbox" autocomplete="off" id="@item.idmanagelist" name="weaknesses" value="@item.idmanagelist"> @item.name
-                                                    </label>*@
+                                                    </label>
                                                 <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
                                             }
 
                                             <label for="@item.idmanagelist">@item.name</label>
-                                            @*</div>*@
+                                            @*</div>
                                         </div>
                                     }
-                                    @*</div>*@
+                                    @*</div>
                                         //</div>
                                     }
-                                    @*</div>*@
+                                    @*</div>
 
 
                                 </div>
@@ -693,7 +693,7 @@ else if (User.IsInRole("cmIOutReachTeam"))
 
                             </div>
 
-                            @*@Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
+                            @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
 
                                 <div class="md-form">
                                     @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 })
@@ -704,7 +704,7 @@ else if (User.IsInRole("cmIOutReachTeam"))
                                         @Html.Label(item + " %", new { @for = "e" + item })
                                     }
                                     @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-                                </div>*@
+                                </div>
                             <div class="row" style="padding:10px"></div>
                             <div class="row"></div>
                             <hr style="padding:10px;" />
@@ -739,7 +739,7 @@ else if (User.IsInRole("cmIOutReachTeam"))
                         </div>
                     </div>
                 </div>
-            }
+            }*@
 
 
 
