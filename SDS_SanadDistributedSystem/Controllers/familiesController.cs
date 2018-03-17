@@ -161,7 +161,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                 if (maxcenterform != null)
                     family.formnumber = maxcenterform;
                 else family.formnumber = 1;
- 
+
+
+                family.is_visited = false;
+
+
                 db.families.Add(family);
 
                 familymanage currentAddress = new familymanage()
@@ -271,7 +275,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress_details,currentaddress_details,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation,formnumber,idcenter_FK,family_book_number,family_head")] family family, int currentAddressID, int previousAddressID, int addressTypeID)
+        public async Task<ActionResult> Edit([Bind(Include = "idfamily,familynature,personcount,lastaddress_details,currentaddress_details,displacementdate,phone1,phone2,note,iduser,lastname,phone1owner,phone2owner,evaluation,formnumber,idcenter_FK,family_book_number,family_head,is_visited ,last_visit_date")] family family, int currentAddressID, int previousAddressID, int addressTypeID)
         {
             if (ModelState.IsValid)
             {

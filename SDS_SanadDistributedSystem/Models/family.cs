@@ -69,7 +69,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string serial_number { get; set; }
         [Remote("idAlreadyExisted", "families",
             ErrorMessageResourceType = typeof(ErrorResource),
-            ErrorMessageResourceName = "family_book_number_existed", AdditionalFields = "idfamily",HttpMethod = "Post")
+            ErrorMessageResourceName = "family_book_number_existed", AdditionalFields = "idfamily", HttpMethod = "Post")
             ]
         [RegularExpression(@"^[0-9]+$")]
         [Required]
@@ -79,6 +79,12 @@ namespace SDS_SanadDistributedSystem.Models
         public string family_head { get; set; }
         [Display(Name = "sector", ResourceType = typeof(PersonAndFamilyResources))]
         public string sector { get; set; }
+        [Display(Name = "is_visited", ResourceType = typeof(PersonAndFamilyResources))]
+        public bool is_visited { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date, ErrorMessage = "’Ì€… «· «—ÌŒ €Ì— ’ÕÌÕ…")]
+        [Display(Name = "last_visit_date", ResourceType = typeof(PersonAndFamilyResources))]
+        public Nullable<System.DateTime> last_visit_date { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual center center { get; set; }

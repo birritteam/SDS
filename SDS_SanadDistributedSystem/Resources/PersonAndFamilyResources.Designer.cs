@@ -250,6 +250,24 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to زيارة وصول.
+        /// </summary>
+        public static string is_visited {
+            get {
+                return ResourceManager.GetString("is_visited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to تاريخ آخر زيارة.
+        /// </summary>
+        public static string last_visit_date {
+            get {
+                return ResourceManager.GetString("last_visit_date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to العنوان السابق.
         /// </summary>
         public static string lastaddress {

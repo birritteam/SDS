@@ -5,20 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;"
-      @*tabindex="0"
-      data-toggle="tooltip"
-      title="عودة إلى قائمة الأشخاص"*@
-      class="shades">
-    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list", @title = "عودة إلى قائمة الأشخاص" })
-</span>
-<span style="position:fixed; bottom: 20px; left: 150px; z-index:99;"
-      @*tabindex="0"
-      data-toggle="tooltip"
-      title="عودة إلى العائلة"*@
-      class="shades">
-    @Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users", @title = "عودة إلى صفحة العائلة" })
-</span>
+@if (User.IsInRole("receptionist"))
+{
+    <span style="position:fixed; bottom: 20px; left: 90px; z-index:99;"
+          class="shades">
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list", @title = "عودة إلى قائمة الأشخاص" })
+    </span>
+    <span style="position:fixed; bottom: 20px; left: 150px; z-index:99;"
+          class="shades">
+        @Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users", @title = "عودة إلى صفحة العائلة" })
+    </span>
+}
+else if (User.IsInRole("cmIOutReachTeam"))
+{
+    <span style="position:fixed; bottom: 20px; left: 90px; z-index:99;"
+          class="shades">
+        @Html.ActionLink(" ", "Index", "referalpersons", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list", @title = "عودة إلى قائمة الإحالات" })
+    </span>
+}
 
 
 
@@ -530,11 +534,12 @@
                 @*@Html.ActionLink(" ", "personReferal", "referalpersons", new { id = Model.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة جديدة" })*@
                 @*@Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-1 fa fa-users" })*@
                 @*@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded fa fa-list p-1" })*@
-                @if (User.IsInRole("receptionist"))
-                {
+               
+                 @*@if (User.IsInRole("receptionist"))
+                {*@
                     <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "people",new { id=Model.idperson})'><i class="fa fa-edit"></i>    تعديل  </a>
                         @*@Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" , @title = "تعديل بيانات الاستمارة" })*@
-                }
+                @*}*@
 
             </p>
 

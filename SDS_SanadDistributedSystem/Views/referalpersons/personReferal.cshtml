@@ -147,31 +147,34 @@
             </p>
 
             <div class="row">
-                <div style="display:inline;">
-                    @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
-                    @using (Html.BeginForm())
-            {
-
-                        @Html.AntiForgeryToken()
-
-                        <div class="form-group">
-                            <div class="col-md-12 ">
-                                <input type="button" value="إرسال الإحالات" class="btn btn-default btn-rounded p-0" onclick="successSendReferals()" />
-                            </div>
-                        </div>
-
-                    }
-                </div>
-            </div>
-            @*<div class="row">
                 
+            </div>
+<div class="row">
+    @using (Html.BeginForm("personReferal", "referalpersons", FormMethod.Post, new { @style = "display:inline;" }))
+    { @Html.AntiForgeryToken()
+        @*<div class="row" style="display:inline;">*@
 
-                <p class="card-footer">
-                    
-                </p>
 
-            </div>*@
+        <p class="card-footer">
+            @*<div>*@
+            @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
 
+
+
+
+            @*<div class="form-group">
+                <div class="col-md-12 ">*@
+            <input type="button" value="إرسال الإحالات" class="btn btn-default btn-rounded p-0" onclick="successSendReferals()" />
+            @*</div>
+                </div>*@
+
+
+            @*</div>*@
+        </p>
+
+                @*</div>*@
+    }
+</div>
         </div>
     </div>
 

@@ -608,7 +608,16 @@ namespace SDS_SanadDistributedSystem.Controllers
                 person.personmanages = personmanages;
 
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (User.IsInRole("receptionist"))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "referalpersons",null);
+                }
+
+                
             }
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", person.iduser);
             //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", person.idcenter_FK);

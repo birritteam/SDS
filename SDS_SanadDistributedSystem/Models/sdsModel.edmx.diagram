@@ -7,12 +7,12 @@
       <Diagram DiagramId="4df13dc03d96463488d9b4eb8b796abb" Name="Diagram1" ZoomLevel="72">
         <EntityTypeShape EntityType="sds_dbModel.AspNetRole" Width="1.5" PointX="5.25" PointY="21.75" />
         <EntityTypeShape EntityType="sds_dbModel.AspNetUserClaim" Width="1.5" PointX="9.75" PointY="26.25" />
-        <EntityTypeShape EntityType="sds_dbModel.AspNetUserLogin" Width="1.5" PointX="9.75" PointY="37.5" />
+        <EntityTypeShape EntityType="sds_dbModel.AspNetUserLogin" Width="1.5" PointX="9.75" PointY="44.5" />
         <EntityTypeShape EntityType="sds_dbModel.AspNetUser" Width="1.5" PointX="7.5" PointY="25.5" />
         <EntityTypeShape EntityType="sds_dbModel.case" Width="1.5" PointX="3" PointY="21.75" />
         <EntityTypeShape EntityType="sds_dbModel.center" Width="1.5" PointX="3" PointY="25.125" />
-        <EntityTypeShape EntityType="sds_dbModel.centerservice" Width="1.5" PointX="10.125" PointY="21.5" />
-        <EntityTypeShape EntityType="sds_dbModel.family" Width="1.5" PointX="15.75" PointY="25.375" />
+        <EntityTypeShape EntityType="sds_dbModel.centerservice" Width="1.5" PointX="9.75" PointY="22" />
+        <EntityTypeShape EntityType="sds_dbModel.family" Width="1.5" PointX="15.75" PointY="25.25" />
         <EntityTypeShape EntityType="sds_dbModel.familymanage" Width="1.5" PointX="21" PointY="27.375" />
         <EntityTypeShape EntityType="sds_dbModel.managelist" Width="1.5" PointX="18.75" PointY="21.375" />
         <EntityTypeShape EntityType="sds_dbModel.partner" Width="1.5" PointX="0.75" PointY="24.625" />

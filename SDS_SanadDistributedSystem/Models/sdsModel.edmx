@@ -119,6 +119,8 @@
           <Property Name="family_book_number" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="family_head" Type="varchar" MaxLength="50" />
           <Property Name="sector" Type="nvarchar" MaxLength="20" />
+          <Property Name="is_visited" Type="bit" Nullable="false" />
+          <Property Name="last_visit_date" Type="date" />
         </EntityType>
         <EntityType Name="familymanage">
           <Key>
@@ -1205,6 +1207,8 @@
           <Property Name="family_book_number" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="family_head" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sector" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="is_visited" Type="Boolean" Nullable="false" />
+          <Property Name="last_visit_date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_family_AspNetUsers" FromRole="family" ToRole="AspNetUser" />
           <NavigationProperty Name="center" Relationship="sds_dbModel.FK_family_center" FromRole="family" ToRole="center" />
           <NavigationProperty Name="familymanages" Relationship="sds_dbModel.FK_familymanage_family" FromRole="family" ToRole="familymanage" />
@@ -1936,6 +1940,8 @@
           <EntitySetMapping Name="families">
             <EntityTypeMapping TypeName="sds_dbModel.family">
               <MappingFragment StoreEntitySet="family">
+                <ScalarProperty Name="last_visit_date" ColumnName="last_visit_date" />
+                <ScalarProperty Name="is_visited" ColumnName="is_visited" />
                 <ScalarProperty Name="sector" ColumnName="sector" />
                 <ScalarProperty Name="family_head" ColumnName="family_head" />
                 <ScalarProperty Name="family_book_number" ColumnName="family_book_number" />

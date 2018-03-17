@@ -207,6 +207,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\centersController.cs" />
     <Compile Include="Controllers\centerservicesController.cs" />
+    <Compile Include="Controllers\families1Controller.cs" />
     <Compile Include="Controllers\familiesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -935,6 +936,11 @@
     <Content Include="Views\Reporting\_GetCounts.cshtml" />
     <Content Include="Views\Shared\_NotificationBell.cshtml" />
     <Content Include="Views\referalpersons\IndexCoByRN.cshtml" />
+    <Content Include="Views\families1\Create.cshtml" />
+    <Content Include="Views\families1\Delete.cshtml" />
+    <Content Include="Views\families1\Details.cshtml" />
+    <Content Include="Views\families1\Edit.cshtml" />
+    <Content Include="Views\families1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

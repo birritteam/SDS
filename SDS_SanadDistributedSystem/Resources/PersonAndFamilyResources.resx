@@ -240,4 +240,10 @@
   <data name="lastaddress_details" xml:space="preserve">
     <value>تفاصيل العنوان السابق</value>
   </data>
+  <data name="is_visited" xml:space="preserve">
+    <value>زيارة وصول</value>
+  </data>
+  <data name="last_visit_date" xml:space="preserve">
+    <value>تاريخ آخر زيارة</value>
+  </data>
 </root>

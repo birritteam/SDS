@@ -205,8 +205,8 @@
 
         </div>
 
-        <hr />
-        <div class="row">
+        <hr style="padding-top:5px;" />
+        <div class="row" style="padding-right:250px; padding-left:250px;">
             <div class="col-md-2">
                 @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
             </div>
@@ -217,15 +217,8 @@
             </div>
 
         </div>
-        <hr />
-        <div class="row">
-            <div class="md-form">
-
-                @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
-                @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
-                @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <hr style="padding:15px;" />
+        
         <div class="row">
             @*@Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label" })
 
@@ -242,8 +235,51 @@
             
 
         </div>
+        
+        <div class="row"></div>
+
+        <div class="row">
+            <div class="md-form">
+
+                @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
+                @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
+                @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <hr style="padding-bottom:15px;" />
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
 
 
+
+                @Html.LabelFor(model => model.is_visited, htmlAttributes: new { @class = "control-label col-md-4" })
+                <div class="col-md-8">
+                    @Html.RadioButtonFor(model => model.is_visited, true, new { @id = "visited" })
+                    @Html.Label("تمت الزيارة", new { @for = "visited" })
+                    @Html.RadioButtonFor(model => model.is_visited, false, new { @id = "not_visited" })
+                    @Html.Label("لم تتم الزيارة", new { @for = "not_visited" })
+
+                    @*<div class="checkbox">
+                        @Html.EditorFor(model => model.is_visited)
+                        @Html.ValidationMessageFor(model => model.is_visited, "", new { @class = "text-danger" })
+                    </div>*@
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-md-4"><label>تاريخ آخر زيارة</label></div>
+                <div class="col-md-8">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.last_visit_date, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control validate" } })
+                        @Html.ValidationMessageFor(model => model.last_visit_date, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+        <hr />
         <div class="form-group">
             <div class="col-md-offset-5 col-md-7">
                 <input type="submit" value="حفظ التعديلات" class="btn btn-default btn-rounded p-1" />
