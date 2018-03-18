@@ -44,9 +44,9 @@ $(document).ready(function () {
       
 
         "lengthMenu": [[25, 50, 75, 100, -1], [25,50, 75, 100, "الكل"]],
-        "columnDefs": [
-       //{ "targets": [0], "visible": false }
-        ],
+       // "columnDefs": [
+       ////{ "targets": [0], "visible": false }
+       // ],
         language: {
 
             "decimal": "",
@@ -76,9 +76,9 @@ $(document).ready(function () {
       //{ "width": "440px", "targets": 5 },
       //   { "width": "120px", "targets": 6 }, { "width": "100px", "targets": 7 }, { "width": "100px", "targets": 8 }, { "width": "100px", "targets": 9 },
             //      ],
-                  "columnDefs": [
-            { "width": "120px", "targets": 10 },
-                  ],
+            //      "columnDefs": [
+            //{ "width": "120px", "targets": 10 },
+            //      ],
             select: {
 
                 rows: {

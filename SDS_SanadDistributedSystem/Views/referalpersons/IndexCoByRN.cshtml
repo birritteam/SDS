@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.referalperson>
 
 @{
-  ViewBag.Title = "الصفحة الرئيسية";
+    ViewBag.Title = "الصفحة الرئيسية";
     Layout = "~/Views/Shared/_Layout.cshtml";
     //Layout = "_referallayout.cshtml";
 
@@ -1137,10 +1137,11 @@
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#eighth_1" aria-controls="eighth_1" role="tab" data-toggle="tab">جديد</a></li>
                     <li role="presentation"> <a href="#eighth_2" aria-controls="eighth_2" role="tab" data-toggle="tab">قيد المتابعة</a></li>
+                    <li role="presentation"> <a href="#eighth_3" aria-controls="eighth_3" role="tab" data-toggle="tab">مغلقة</a></li>
                 </ul>
                 <div class="tab-content">
-                    <div role="tabpanel" class="tab-pane card z-depth-2" id="eighth_1">
-                        <table id="All8" class="All display table table-bordered All" cellspacing="0">
+                    <div role="tabpanel" class="tab-pane active card z-depth-1" id="eighth_1">
+                        <table id="All8" class="display table table-bordered All " cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>
@@ -1149,15 +1150,9 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.submittingdate)
                                     </th>
-                                    @*<th>
-                                        @Html.DisplayNameFor(model => model.referalstate)
-                                        </th>*@
                                     <th>
                                         @Html.DisplayNameFor(model => model.referaldate)
                                     </th>
-                                    @*<th>
-                                        @Html.DisplayNameFor(model => model.servicestate)
-                                        </th>*@
                                     <th>
                                         @Html.DisplayNameFor(model => model.servicestartdate)
                                     </th>
@@ -1177,14 +1172,13 @@
                                         @Html.DisplayNameFor(model => model.outreachnote)
                                     </th>
 
-                                    @*<th></th>*@
+                                    @*<th>تعديل</th>*@
                                 </tr>
                             </thead>
                             <tbody>
                                 @try
                                 {
-
-                                    foreach (var item in ViewBag.temporal)
+                                    foreach (SDS_SanadDistributedSystem.Models.temporal item in ViewBag.temporal)
                                     {
                                         if (item.servicestate == "Pending" && item.referalstate == "Pending")
                                         {
@@ -1192,21 +1186,58 @@
                                                 <td>
                                                     @item.fname @item.lname
                                                 </td>
-                                                <td>
-                                                    @item.submittingdate
-                                                </td>
-                                                <td>
-                                                    @item.referaldate
-                                                </td>
+
+                                                @if (item.submittingdate == null)
+                                                {
+                                                    <td>
+                                                        @item.submittingdate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.submittingdate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+
+                                                @if (item.referaldate == null)
+                                                {
+                                                    <td>
+                                                        @item.referaldate
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.referaldate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+
+                                                @if (item.servicestartdate == null)
+                                                {
+                                                    <td>
+                                                        @item.servicestartdate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.servicestartdate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+
+                                                @if (item.serviceenddate == null)
+                                                {
+                                                    <td>
+                                                        @item.serviceenddate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.serviceenddate.Value.ToShortDateString()
+                                                    </td>
+                                                }
 
                                                 <td>
-                                                    @item.servicestartdate
-                                                </td>
-                                                <td>
-                                                    @item.serviceenddate
-                                                </td>
-                                                <td>
-                                                    @item.AspNetUser.Email
+                                                    @item.AspNetUser1.Email
                                                 </td>
                                                 <td>
                                                     @item.senderevalution
@@ -1222,18 +1253,20 @@
 
                                                     </td>*@
                                             </tr>
-
                                         }
                                     }
-
                                 }
-                                catch (Exception e) { }
+                                catch (Exception e)
+                                {
+
+                                    Console.Write("" + e);
+                                }
                             </tbody>
                         </table>
                     </div>
 
                     <div role="tabpanel" class="tab-pane card" id="eighth_2">
-                        <table id="All9" class="All display table table-bordered All" cellspacing="0">
+                        <table id="All9" class="display table table-bordered All" cellspacing="0">
                             <thead>
                                 <tr>
                                     <th>
@@ -1265,13 +1298,13 @@
                                         @Html.DisplayNameFor(model => model.outreachnote)
                                     </th>
 
-                                    @*<th></th>*@
+                                    @*<th>تعديل</th>*@
                                 </tr>
                             </thead>
                             <tbody>
                                 @try
                                 {
-                                    foreach (var item in ViewBag.temporal)
+                                    foreach (SDS_SanadDistributedSystem.Models.temporal item in ViewBag.temporal)
                                     {
                                         if (item.servicestate == "In prgress" && item.referalstate == "Approved")
                                         {
@@ -1279,21 +1312,56 @@
                                                 <td>
                                                     @item.fname @item.lname
                                                 </td>
-                                                <td>
-                                                    @item.submittingdate
-                                                </td>
-                                                <td>
-                                                    @item.referaldate
-                                                </td>
+                                                @if (item.submittingdate == null)
+                                                {
+                                                    <td>
+                                                        @item.submittingdate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.submittingdate.Value.ToShortDateString()
+                                                    </td>
+                                                }
 
+                                                @if (item.referaldate == null)
+                                                {
+                                                    <td>
+                                                        @item.referaldate
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.referaldate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+
+                                                @if (item.servicestartdate == null)
+                                                {
+                                                    <td>
+                                                        @item.servicestartdate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.servicestartdate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+
+                                                @if (item.serviceenddate == null)
+                                                {
+                                                    <td>
+                                                        @item.serviceenddate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.serviceenddate.Value.ToShortDateString()
+                                                    </td>
+                                                }
                                                 <td>
-                                                    @item.servicestartdate
-                                                </td>
-                                                <td>
-                                                    @item.serviceenddate
-                                                </td>
-                                                <td>
-                                                    @item.AspNetUser.Email
+                                                    @item.AspNetUser1.Email
                                                 </td>
                                                 <td>
                                                     @item.senderevalution
@@ -1312,7 +1380,133 @@
                                         }
                                     }
                                 }
-                                catch (Exception e) { }
+                                catch (Exception e)
+                                {
+                                    Console.Write("" + e);
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane card" id="eighth_3">
+                        <table id="All10" class="display table table-bordered All" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        اسم الشخص
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.submittingdate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.referaldate)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.servicestartdate)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.serviceenddate)
+                                    </th>
+                                    <th>
+                                        المرسل
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.senderevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.recieverevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.outreachnote)
+                                    </th>
+
+                                    @*<th>تعديل</th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @try
+                                {
+                                    foreach (SDS_SanadDistributedSystem.Models.temporal item in ViewBag.temporal)
+                                    {
+                                        if (item.servicestate == "Closed" && item.referalstate == "Approved")
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @item.fname @item.lname
+                                                </td>
+                                                @if (item.submittingdate == null)
+                                                {
+                                                    <td>
+                                                        @item.submittingdate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.submittingdate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+
+                                                @if (item.referaldate == null)
+                                                {
+                                                    <td>
+                                                        @item.referaldate
+                                                    </td>
+                                                }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.referaldate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+
+                                                @if (item.servicestartdate == null)
+                                                {
+                                                    <td>
+                                                        @item.servicestartdate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.servicestartdate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+
+                                                @if (item.serviceenddate == null)
+                                                {
+                                                    <td>
+                                                        @item.serviceenddate
+                                                    </td>    }
+                                                else
+                                                {
+                                                    <td>
+                                                        @item.serviceenddate.Value.ToShortDateString()
+                                                    </td>
+                                                }
+                                                <td>
+                                                    @item.AspNetUser1.Email
+                                                </td>
+                                                <td>
+                                                    @item.senderevalution
+                                                </td>
+                                                <td>
+                                                    @item.recieverevalution
+                                                </td>
+                                                <td>
+                                                    @item.outreachnote
+                                                </td>
+                                                @*<td>
+                                                        @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
+
+                                                    </td>*@
+                                            </tr>
+                                        }
+                                    }
+                                }
+                                catch (Exception e)
+                                {
+                                    Console.Write("" + e);
+                                }
                             </tbody>
                         </table>
                     </div>

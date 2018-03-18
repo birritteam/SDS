@@ -9,152 +9,141 @@
     <link href="~/Content/cardview.css" rel="stylesheet" />
 
 </head>
-<h2></h2>
-<section class="form-simple centered-content  ">
+    <h2></h2>
+    <section class="form-simple ">
 
-    <!--Form with header-->
-    <div class="card" style="width: 100%; padding:15px; align-items:center">
+        <!--Form with header-->
+        <div class="card" style="width: 100%; padding:15px; align-items:center">
 
-        <!--Header-->
-        <div class="header pt-3 grey lighten-2 centered-wrapper">
+            <!--Header-->
+            <div class="header pt-3 grey centered-wrapper">
 
-            <div class="row d-flex justify-content-start">
-                <h2 class="deep-grey-text mt-3 mb-4 pb-1 mx-5 "><b> تعديل</b></h2>
+                <div class="row d-flex justify-content-start">
+                    <h4 class="deep-grey-text mt-3 mb-4 pb-1 mx-5 fa fa-edit" style="font-size:3rem ;color:#fff"><b> تعديل بيانات الإحالة </b></h4>
+                    @*<h5 class="deep-grey-text mt-3 mb-4 pb-1 mx-3 "style="font-size:2rem ;color:#fff"><b> إحالة @ViewBag.state</b></h5>*@
+                </div>
             </div>
+            @{
+
+                var name = Model.fname + " " + Model.lname;
+                var gender = Model.gender;
+            }
+            @*@using (Html.BeginForm())
+                {*@
+            <form action="" method="post">
+                @Html.AntiForgeryToken()
+                @if (gender == "ذكر")
+            {<h3><b>تعديل إحالة السيد @name </b></h3>}
+            else
+            {   <h3><b>تعديل إحالة السيدة @name </b></h3>}
+                <div class="form-horizontal centered-wrapper">
+
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <input type="hidden" value="@Model.idperson" name="idperson" />
+                    @Html.HiddenFor(model => model.fname)
+                    @Html.HiddenFor(model => model.lname)
+                    @Html.HiddenFor(model => model.fathername)
+                    @Html.HiddenFor(model => model.mothername)
+                    @Html.HiddenFor(model => model.birthday)
+                    @Html.HiddenFor(model => model.birthplace)
+                    @Html.HiddenFor(model => model.gender)
+                    @Html.HiddenFor(model => model.nationality)
+                    @Html.HiddenFor(model => model.martial)
+                    @Html.HiddenFor(model => model.relationtype)
+                    @Html.HiddenFor(model => model.education)
+                    @Html.HiddenFor(model => model.educationstate)
+
+                    @Html.HiddenFor(model => model.phone1)
+
+                    @Html.HiddenFor(model => model.phone2)
+                    @Html.HiddenFor(model => model.currentaddress)
+                    @Html.HiddenFor(model => model.tempregistrationdate)
+                    @Html.HiddenFor(model => model.idcenter_FK)
+                    @Html.HiddenFor(model => model.formnumber)
+                    @Html.HiddenFor(model => model.note)
+                    @Html.HiddenFor(model => model.submittingdate)
+                
+                    @Html.HiddenFor(model => model.referaldate)
+                    @Html.HiddenFor(model => model.referaldate)
+                    @Html.HiddenFor(model => model.servicestate)
+
+                    @Html.HiddenFor(model => model.referalreicver_FK)
+                    @Html.HiddenFor(model => model.senderevalution)
+
+                    @Html.HiddenFor(model => model.onoffflag)
+                    @Html.HiddenFor(model => model.iduser_FK)
+
+
+
+                    <div class="col-md-6">
+
+                        <div class="md-form">
+                            @Html.EditorFor(model => model.servicestartdate, new { htmlAttributes = new { @class = "form-control validate", disabled = "disabled" } })
+                            @Html.LabelFor(model => model.servicestartdate, htmlAttributes: new { })
+                            @Html.ValidationMessageFor(model => model.servicestartdate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <div class="md-form">
+                            @Html.EditorFor(model => model.serviceenddate, new { htmlAttributes = new { @class = "form-control validate", disabled = "disabled" } })
+                            @Html.LabelFor(model => model.serviceenddate, htmlAttributes: new { })
+                            @Html.ValidationMessageFor(model => model.serviceenddate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="md-form">
+                            @Html.EditorFor(model => model.recieverevalution, new { htmlAttributes = new { @class = "form-control validate col-md-6" } })
+                            @Html.LabelFor(model => model.recieverevalution, htmlAttributes: new { })
+                            @Html.ValidationMessageFor(model => model.recieverevalution, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="md-form">
+                            @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control validate col-md-6" } })
+                            @Html.LabelFor(model => model.outreachnote, htmlAttributes: new { })
+                            @Html.ValidationMessageFor(model => model.outreachnote, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="submit" value="تعليق" class="btn btn-default" name="action:edit1" />
+                            @*<input type="submit" value="مقبولة ولم يخدم" class="btn btn-default" name="action:edit2" />
+                                <input type="submit" value="مقبولة ولم يخدم-وصول" class="btn btn-default" name="action:edit3" />
+                                <input type="submit" value="مرفوضة" class="btn btn-default" name="action:edit4" />*@
+                            <input type="submit" value="قيد المتابعة" class="btn btn-default" name="action:edit5" />
+                           @*<input type="submit" value="قيد المتابعة-وصول" class="btn btn-default" name="action:edit6" />*@
+                                <input type="submit" value="إغلاق" class="btn btn-default" name="action:edit7" />
+                               @* <input type="submit" value="مغلقة-وصول" class="btn btn-default" name="action:edit8" />
+    <input type="submit" value="خارجية" class="btn btn-default" name="action:edit9" />*@
+                        </div>
+                    </div>
+                </div>
+                @*}*@
+            </form>
         </div>
-        @{var item = Model;}
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-horizontal centered-wrapper">
-                <h3>@item.fname @item.lname</h3>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <input type="hidden" value="@Model.idperson" name="idperson" /> 
-                @Html.HiddenFor(model => model.fname)
-                @Html.HiddenFor(model => model.lname)
-                @Html.HiddenFor(model => model.fathername)
-                @Html.HiddenFor(model => model.mothername)
-                @Html.HiddenFor(model => model.birthday)
-                @Html.HiddenFor(model => model.birthplace)
-                @Html.HiddenFor(model => model.gender)
-                @Html.HiddenFor(model => model.nationality)
-                @Html.HiddenFor(model => model.martial)
-                @Html.HiddenFor(model => model.relationtype)
-                @Html.HiddenFor(model => model.education)
-                @Html.HiddenFor(model => model.educationstate)
-
-                @Html.HiddenFor(model => model.phone1)
-
-                @Html.HiddenFor(model => model.phone2)
-                @Html.HiddenFor(model => model.currentaddress)
-                @Html.HiddenFor(model => model.tempregistrationdate)
-                @Html.HiddenFor(model => model.idcenter_FK)
-                @Html.HiddenFor(model => model.formnumber)
-                @Html.HiddenFor(model => model.note)
-                @Html.HiddenFor(model => model.submittingdate)
-
-                @Html.HiddenFor(model => model.onoffflag)
-                @Html.HiddenFor(model => model.iduser_FK)
 
 
-       
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.servicestate, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-4">
-                        @Html.DropDownList("servicestate", null, htmlAttributes: new { @class = "form-control", @onchange = "FillReferalStateDropdown()" })
-                        @Html.ValidationMessageFor(model => model.servicestate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+        <!--/Form with header-->
 
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.referalstate, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-4">
-                        @Html.DropDownList("referalstate", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.referalstate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(model => model.referalreicver_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                    <div class="col-md-4">
-                        @Html.DropDownList("referalReciver_FK", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.referalreicver_FK, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class=" col-md-4">
-
-                    <div class="md-form">
-                        @Html.EditorFor(model => model.referaldate, new { htmlAttributes = new { @class = "form-control validate" } })
-                        @Html.LabelFor(model => model.referaldate, htmlAttributes: new { })
-                        @Html.ValidationMessageFor(model => model.referaldate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class=" col-md-4">
-
-                    <div class="md-form">
-                        @Html.EditorFor(model => model.servicestartdate, new { htmlAttributes = new { @class = "form-control validate" } })
-                        @Html.LabelFor(model => model.servicestartdate, htmlAttributes: new { })
-                        @Html.ValidationMessageFor(model => model.servicestartdate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-                <div class=" col-md-4">
-
-                    <div class="md-form">
-                        @Html.EditorFor(model => model.serviceenddate, new { htmlAttributes = new { @class = "form-control validate" } })
-                        @Html.LabelFor(model => model.serviceenddate, htmlAttributes: new { })
-                        @Html.ValidationMessageFor(model => model.serviceenddate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-     
-
-                <div class="col-md-4">
-                    <div class="md-form">
-                        @Html.EditorFor(model => model.recieverevalution, new { htmlAttributes = new { @class = "form-control validate col-md-4" } })
-                        @Html.LabelFor(model => model.recieverevalution, htmlAttributes: new { })
-                        @Html.ValidationMessageFor(model => model.recieverevalution, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-            
-
-                <div class="col-md-4">
-                    <div class="md-form">
-                        @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control validate col-md-4" } })
-                        @Html.LabelFor(model => model.outreachnote, htmlAttributes: new { })
-                        @Html.ValidationMessageFor(model => model.outreachnote, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="حفظ" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>
-        }
+    </section>
+    <div>
+        @Html.ActionLink("عودة إلى القائمة", "IndexOutReach", "referalpersons", "", "")
     </div>
 
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script>
 
-    <!--/Form with header-->
-
-</section>
-<div>
-    @Html.ActionLink("عودة إلى القائمة", "Index", "referalpersons", "","")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script>
-
-      $(document).ready(function () {
-          FillReferalStateDropdown();
-      });
-    </script>
-}
+            $(document).ready(function () {
+                FillReferalStateDropdown();
+            });
+        </script>
+    }

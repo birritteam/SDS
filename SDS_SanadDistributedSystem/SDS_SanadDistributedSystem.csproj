@@ -941,6 +941,7 @@
     <Content Include="Views\families1\Details.cshtml" />
     <Content Include="Views\families1\Edit.cshtml" />
     <Content Include="Views\families1\Index.cshtml" />
+    <Content Include="Views\referalpersons\IndexOutReach.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

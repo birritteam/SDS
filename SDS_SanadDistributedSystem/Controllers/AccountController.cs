@@ -134,16 +134,21 @@ namespace SDS_SanadDistributedSystem.Controllers
                     if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
                         || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
                         || roles.Equals("cmAwareness")
-                        || roles.Equals("cmSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
+                        || roles.Equals("cmSmallProjects") || roles.Equals("cmInkindAssistance"))
                     {
                         action_name = "index";
+                        controller_name = "referalpersons";
+                    }
+                    else if (roles.Equals("cmIOutReachTeam"))
+                    {
+                        action_name = "IndexOutReach";
                         controller_name = "referalpersons";
                     }
                     else if (roles.Equals("coEducation") || roles.Equals("coProfessional") || roles.Equals("coChildProtection")
                         || roles.Equals("coPsychologicalSupport")
                         || roles.Equals("coDayCare") || roles.Equals("coHomeCare")
                         || roles.Equals("coAwareness")
-                        || roles.Equals("coSmallProjects") || roles.Equals("cmIOutReachTeam") || roles.Equals("cmInkindAssistance"))
+                        || roles.Equals("coSmallProjects") || roles.Equals("coOutReachTeam") || roles.Equals("coInkindAssistance"))
                     {
                         action_name = "IndexCo";
                         controller_name = "referalpersons";

@@ -65,46 +65,6 @@ function FillRecivers() {
 
 }
 
-//function FillServicesByCenter() {
-
-//    try {
-//        var caseId = $('#idcase_FK').val();
-//        var centerId = $('#centers').val();
-//        if (caseId != null) {        //toastr.error("sssssssssssss" + caseId);{
-//            $.ajax({
-//                url: ' /referalpersons/FillServicesByCenter',
-//                type: "GET",
-//                dataType: "JSON",
-//                data: { 'caseId': caseId, 'centerId': centerId },
-//                success: function (data) {
-//                    $('#services').empty()
-//                    $.each(data, function (i, service) {
-//                        $("#services").append(
-//                        $('<option selected="selected"></option>').val(service.idservice).html(service.name));
-//                        $("#referalReciver_FK").empty();
-//                        $.each(service.recivers, function (i, reciver) {
-//                            $("#referalReciver_FK").append(
-//                            $('<option></option>').val(reciver.Id).html(reciver.UserName));
-//                        });
-//                    });
-
-//                    $('#services').selectpicker('refresh');
-//                    $('#referalReciver_FK').selectpicker('refresh');
-//                },
-//                error: function (xhr, status, error) {
-//                    // check status && error
-//                    toastr.error("Whooaaa! Something went wrong.. FillServices")
-//                }
-//            });
-//        }
-//    }
-//    catch (err) {
-
-//    }
-
-
-//}
-
 function FillRecivers_EDIT() {
 
     var serviceId = $('#idservice_FK').val();
@@ -802,6 +762,65 @@ function searchByName() {
 
 
 }
+
+function searchByNameOutReach() {
+    var name = document.getElementById("personname").value;
+    var idrole = document.getElementById("role_id").value;
+
+    if (name != "") {
+        $.ajax({
+            url: ' /referalpersons/searchReferalByName',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'name': name, 'idrole': idrole },
+            success: function (data) {
+                $('#All7').DataTable().clear().draw();
+                $.each(data, function (i, referal) {
+                    $("#All7").DataTable().row.add(
+                    $('<tr></tr>')
+                    .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.submittingdate + '</td>')
+
+                    .append('<td>' + referal.referaldate + '</td>')
+
+                    .append('<td>' + referal.type + '</td>')
+
+                    .append('<td>' + referal.servicestartdate + '</td>')
+
+                    .append('<td>' + referal.serviceenddate + '</td>')
+
+                    .append('<td>' + referal.referalsender_FK + '</td>')
+
+                    .append('<td>' + referal.senderevalution + '</td>')
+
+                    .append('<td>' + referal.recieverevalution + '</td>')
+
+                     .append('<td>' + referal.outreachnote + '</td>')
+
+                                    .append('<td>' +                                
+                                    '<a length="0" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
+                                    + '">إحالة جديدة</a>' +
+                                  '</td>')
+
+
+                    ).draw().node();
+
+                });
+
+            },
+            error: function (xhr, status, error) {
+                // check status && error
+                toastr.error("فشلة عملية البحث ")
+            }
+        });
+
+
+
+    }
+
+
+}
+
 function searcByDate() {
     var from = document.getElementById("datepickerfrom").value;
     var to = document.getElementById("datepickerto").value;
@@ -840,6 +859,64 @@ function searcByDate() {
                                   .append('<td>' +
                                   '<a href=" /referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
                                   '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
+                                    '<a length="0" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
+                                    + '">إحالة جديدة</a>' +
+                                  '</td>')
+
+                    ).draw().node();
+
+                });
+
+            },
+            error: function (xhr, status, error) {
+                // check status && error
+                toastr.error("فشلة عملية البحث ")
+            }
+        });
+
+
+
+    }
+
+
+}
+
+function searcByDateOutReach() {
+    var from = document.getElementById("datepickerfrom").value;
+    var to = document.getElementById("datepickerto").value;
+    var idrole = document.getElementById("role_id").value;
+
+    if (from != "" && to != "") {
+        $.ajax({
+            url: ' /referalpersons/searchReferalByDate',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'from': from, 'to': to, 'idrole': idrole },
+            success: function (data) {
+                $('#All7').DataTable().clear().draw();
+                $.each(data, function (i, referal) {
+                    $("#All7").DataTable().row.add(
+                    $('<tr></tr>')
+                    .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.submittingdate + '</td>')
+
+                    .append('<td>' + referal.referaldate + '</td>')
+
+                    .append('<td>' + referal.type + '</td>')
+
+                    .append('<td>' + referal.servicestartdate + '</td>')
+
+                    .append('<td>' + referal.serviceenddate + '</td>')
+
+                     .append('<td>' + referal.referalsender_FK + '</td>')
+
+                    .append('<td>' + referal.senderevalution + '</td>')
+
+                    .append('<td>' + referal.recieverevalution + '</td>')
+
+                    .append('<td>' + referal.outreachnote + '</td>')
+
+                                  .append('<td>' +
                                     '<a length="0" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
                                     + '">إحالة جديدة</a>' +
                                   '</td>')

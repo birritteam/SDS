@@ -79,6 +79,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [Authorize(Roles = "receptionist")]
         public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,referalreicver_FK,senderevalution,outreachnote")] temporal temporal)
         {
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
             if (ModelState.IsValid)
             {
                 DateTime now = DateTime.Now;
@@ -97,6 +98,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                 temporal.submittingdate = DateTime.Now;
                 temporal.referalstate = "Pending";
                 temporal.servicestate = "Pending";
+              
+                temporal.iduser_FK= User.Identity.GetUserId();
 
                 db.temporals.Add(temporal);
                 await db.SaveChangesAsync();
@@ -107,7 +110,71 @@ namespace SDS_SanadDistributedSystem.Controllers
             return View(temporal);
         }
 
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit1")]
+        public async Task<ActionResult> edit1([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalreicver_FK,senderevalution,recieverevalution,outreachnote,onoffflag,iduser_FK")] temporal referalperson)
+        {
+
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "Pending";
+                referalperson.servicestate = "Pending";
+                referalperson.referaldate = DateTime.Now;
+                referalperson.servicestartdate =null;
+                referalperson.serviceenddate = null;
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("IndexOutReach", "referalpersons","");
+            }
+         
+            return View(referalperson);
+        }
+
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit5")]
+        public async Task<ActionResult> edit5([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalreicver_FK,senderevalution,recieverevalution,outreachnote,iduser_FK")] temporal  referalperson)
+        {
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "Approved";
+                referalperson.servicestate = "In prgress";
+                referalperson.referaldate = DateTime.Now;
+                referalperson.servicestartdate = DateTime.Now;
+                referalperson.serviceenddate = null;
+
+                db.Entry(referalperson).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+                return RedirectToAction("IndexOutReach", "referalpersons", "");
+            }
+
+            return View(referalperson);
+        }
+        [HttpPost]
+        [MultipleButton(Name = "action", Argument = "edit7")]
+        public async Task<ActionResult> edit7([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalreicver_FK,senderevalution,recieverevalution,outreachnote,iduser_FK")] temporal referalperson)
+        {
+            if (ModelState.IsValid)
+            {
+                referalperson.referalstate = "Approved";
+                referalperson.servicestate = "Closed";
+                referalperson.referaldate = DateTime.Now;
+
+                if(referalperson.servicestartdate == null)
+                referalperson.servicestartdate = DateTime.Now;
+
+                referalperson.serviceenddate = DateTime.Now;
+
+                db.Entry(referalperson).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return RedirectToAction("IndexOutReach", "referalpersons", "");
+            }
+
+            return View(referalperson);
+        }
+
         // GET: temporals/Edit/5
+        [HttpGet]
         [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> Edit(string id)
         {
@@ -137,6 +204,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: temporals/Edit/5
+        [HttpGet]
         [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         public async Task<ActionResult> EditReferal(string id)
         {
@@ -188,26 +256,26 @@ namespace SDS_SanadDistributedSystem.Controllers
             return View(temporal);
         }
 
-        [Authorize(Roles = "cmIOutReachTeam")]
-        // POST: temporals/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditReferal([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalreicver_FK,senderevalution,recieverevalution,outreachnote")] temporal temporal)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(temporal).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index", "referalpersons", "");
-            }
+        //[Authorize(Roles = "cmIOutReachTeam")]
+        //// POST: temporals/Edit/5
+        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> EditReferal([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,tempregistrationdate,idcenter_FK,formnumber,note,submittingdate,referalstate,referaldate,servicestate,servicestartdate,serviceenddate,referalreicver_FK,senderevalution,recieverevalution,outreachnote")] temporal temporal)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(temporal).State = EntityState.Modified;
+        //        await db.SaveChangesAsync();
+        //        return RedirectToAction("Index", "referalpersons", "");
+        //    }
           
 
-            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK == user.idcenter_FK), "Id", "UserName", temporal.referalreicver_FK);
-            return View(temporal);
-        }
+        //    var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+        //    ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK == user.idcenter_FK), "Id", "UserName", temporal.referalreicver_FK);
+        //    return View(temporal);
+        //}
 
 
         // GET: temporals/Delete/5
