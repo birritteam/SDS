@@ -1,101 +1,149 @@
 ﻿
-<div class="col-md-12" id="ReportForm">
-    @using (Ajax.BeginForm("GetCounts", "Reporting", new AjaxOptions { HttpMethod = "GET", OnSuccess = "SuccessGetReport", OnFailure = "FaildGetReport", OnBegin = "BeginGetReport" , OnComplete = "CompleteGetReport"}))
+<div class="col-md-4 col-md-offset-4" id="ReportForm">
+    @using (Ajax.BeginForm("GetCounts", "Reporting", new AjaxOptions { HttpMethod = "GET", OnSuccess = "SuccessGetReport", OnFailure = "FaildGetReport", OnBegin = "BeginGetReport", OnComplete = "CompleteGetReport" }))
     {
         <div class="row">
-            <div class="col-md-5"><label>تاريخ البداية</label></div>
-            <div class="col-md-7">
+            <div class="col-md-3"><label>تاريخ البداية</label></div>
+            <div class="col-md-9">
                 <div class="md-form">
                     <input class="form-control" type="date" name="startDate" id="startDate" />
                 </div>
             </div>
-            <div class="col-md-5"><label>تاريخ النهاية</label></div>
-            <div class="col-md-7">
+            <div class="col-md-3"><label>تاريخ النهاية</label></div>
+            <div class="col-md-9">
                 <div class="md-form">
                     <input class="form-control" type="date" name="endDate" id="endDate" />
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="md-form">
-                <div class="col-md-12">
-                    <input type="submit" name="submit" value="إعداد التقرير الشهري" class="btn btn-default btn-rounded p-1" />
-                    <input type="submit" name="submit" value="أكثر ثلاث عناوين مكررة" class="btn btn-default btn-rounded p-1" />
-                    <input type="submit" name="submit" value="أكثر ثلاث طرق للتعرف  على المركز المجتمعي" class="btn btn-default btn-rounded p-1" />
-                </div>
-                <div class="col-md-1 p-1" id="loading"></div>
-                <div class="clearfix"></div>
-                <div class="col-md-12" id="month-report" style="display:none">
-                    <table id="All" class="display table table-bordered ReportTable" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th colspan="3">
-                                    إجمالي
-                                </th>
-                                <th colspan="6">
-                                    الفئات العمرية
-                                </th>
-                                <th colspan="10">
-                                    الملف
-                                </th>
-                                <th colspan="4">
-                                    الحالة
-                                </th>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <th colspan="3"></th>
-                                <th colspan="2"> < 18 </th>
-                                <th colspan="2"> 18 - 59</th>
-                                <th colspan="2"> 60 + </th>
-                                <th colspan="2"> نازح</th>
-                                <th colspan="2"> مجتمع مضيف</th>
-                                <th colspan="2"> نازح عائد</th>
-                                <th colspan="2"> لاجئ عائد</th>
-                                <th colspan="2"> لاجئ / طالب لجوء</th>
-                                <th colspan="2"> قيد المعالجة</th>
-                                <th colspan="2"> مغلقة</th>
-                            </tr>
-                            <tr>
-                                <th>الفئة الفرعية</th>
-                                <th>إناث وذكور</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                                <th>ذكور</th>
-                                <th>إناث</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+        <div class="col-md-12">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-primary active p-0">
+                    <input type="radio" name="centerid" value="all" autocomplete="off"> المشروع
+                </label>
+                @foreach (var item in ViewBag.centers)
+                {
+                    <label class="btn btn-primary p-0">
+                        <input type="radio" name="centerid" value="@item.idcenter" autocomplete="off"> @item.name
+                    </label>
+                }
 
-                          
-
-                        </tbody>
-                    </table>
-                </div>
             </div>
+
         </div>
+        <div class="col-md-6 col-md-offset-3">
+            <input type="submit" name="submit" value="إعداد التقرير الشهري" class="btn btn-default btn-rounded p-0" />
+            @*<input type="submit" name="submit" value="أكثر ثلاث عناوين مكررة" class="btn btn-default btn-rounded p-1" />
+                <input type="submit" name="submit" value="أكثر ثلاث طرق للتعرف  على المركز المجتمعي" class="btn btn-default btn-rounded p-1" />*@
+        </div>
+        <div class="col-md-1 p-1" id="loading"></div>
+        <div class="clearfix"></div>
     }
 </div>
+<div class="col-md-4">
+    @Html.ActionLink("عرض المخططات", "ChartIndex", "Reporting", new { @class = "btn btn-primary btn-rounded p-0" })
+
+</div>
+
+<div class="row">
+    <div class="md-form">
+
+        <div class="col-md-12" id="report" style="display:none;">
+            <h2 id="report-header">  </h2>
+            <div class="col-md-2 col-md-offset-10">
+                <button id="exporttoexcel" class="btn btn-info btn-rounded p-0">تصدير إلى إكسل   <i class="fa  fa-file-excel-o"></i></button>
+            </div>
+            <div class="col-md-12">
+                <table id="service-report" class="display table table-bordered table-striped  table-responsive" cellspacing="0">
+
+                    <tr class="blue-grey lighten-4 header-table">
+                        <th></th>
+                        <th></th>
+                        <th colspan="3">
+                            إجمالي
+                        </th>
+                        <th colspan="6">
+                            الفئات العمرية
+                        </th>
+                        <th colspan="10">
+                            الملف
+                        </th>
+                        <th colspan="4">
+                            الحالة
+                        </th>
+                    </tr>
+                    <tr class="header-table">
+                        <th></th>
+                        <th></th>
+                        <th colspan="3"></th>
+                        <th colspan="2"> < 18 </th>
+                        <th colspan="2"> 18 - 59</th>
+                        <th colspan="2"> 60 + </th>
+                        <th colspan="2"> نازح</th>
+                        <th colspan="2"> مجتمع مضيف</th>
+                        <th colspan="2"> نازح عائد</th>
+                        <th colspan="2"> لاجئ عائد</th>
+                        <th colspan="2"> لاجئ / طالب لجوء</th>
+                        <th colspan="2"> قيد المعالجة</th>
+                        <th colspan="2"> مغلقة</th>
+                        </>
+                    <tr tr class="table-info header-table">
+                        <th>النوع</th>
+                        <th>الفئة الفرعية</th>
+                        <th>إناث وذكور</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                        <th>ذكور</th>
+                        <th>إناث</th>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table id="ways-report" class="display table table-bordered table-striped  table-responsive" cellspacing="0">
+                    <tr class="blue-grey lighten-4 header-table">
+                        <th>طريقة التعرف على المركز</th>
+                        <th>العدد</th>
+                    </tr>
+
+
+                </table>
+            </div>
+            <div class="col-md-6">
+                <table id="address-report" class="display table table-bordered table-striped  table-responsive " cellspacing="0">
+
+                    <tr class="blue-grey lighten-4 header-table">
+                        <th>العنوان</th>
+                        <th>العدد</th>
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
 
 @section scripts{
-  
+
 }

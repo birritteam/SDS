@@ -1558,10 +1558,10 @@ namespace SDS_SanadDistributedSystem.Controllers
                     db.referalpersons.Add(rp);
                     await db.SaveChangesAsync();
 
-                    // send real time notifcation to reciver user
-                    var notificationHub = GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
-                    string username = db.AspNetUsers.SingleOrDefault(user => user.Id == rpvm.referalreciever_FK).UserName;
-                    notificationHub.Clients.All.notify("added", username);
+                   
+                    string username = db.AspNetUsers.SingleOrDefault(user => user.Id == rp.referalreicver_FK).UserName;
+                    
+                    NotificationHub.sendnotify(username, "added");
                 }
                 return new JsonResult { Data = "Success" };
             }

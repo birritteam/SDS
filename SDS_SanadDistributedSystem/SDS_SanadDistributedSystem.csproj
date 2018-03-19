@@ -339,6 +339,7 @@
       <DependentUpon>ServiceResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="viewModel\ChartsViewModel.cs" />
     <Compile Include="viewModel\referalPersonViewModel.cs" />
     <Compile Include="viewModel\ReportingViewModel.cs" />
     <Compile Include="viewModel\RPSearchViewModel.cs" />
@@ -942,6 +943,7 @@
     <Content Include="Views\families1\Edit.cshtml" />
     <Content Include="Views\families1\Index.cshtml" />
     <Content Include="Views\referalpersons\IndexOutReach.cshtml" />
+    <Content Include="Views\Reporting\ChartIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

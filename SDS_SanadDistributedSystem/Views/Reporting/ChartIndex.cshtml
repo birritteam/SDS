@@ -1,0 +1,24 @@
+﻿@model SDS_SanadDistributedSystem.viewModel.ChartsViewModel
+@{
+    ViewBag.Title = "ChartIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/Scripts/Highcharts-4.0.1/js/highcharts.js"></script>
+    <div class="row">
+
+
+        @foreach (var item in Model.publiccharts)
+        {
+            <div class="col-md-offset-1 col-md-10">
+                @item
+                <hr />
+            </div>
+
+        }
+
+    </div>
+
+}
+

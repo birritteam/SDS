@@ -12,7 +12,7 @@ namespace SDS_SanadDistributedSystem.viewModel
 
         public string gender { get; set; }
 
-        public string age { get; set; } 
+        public string age { get; set; }
 
         // for three addresses 
 
@@ -24,6 +24,8 @@ namespace SDS_SanadDistributedSystem.viewModel
 
 
         //service
+
+        public string type { get; set; }
 
         public string servicename { get; set; }
 

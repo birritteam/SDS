@@ -9,7 +9,7 @@
         //only load notifcation if not alerady loaded
 
         //if (count > 0) {
-            updateNotification();
+        updateNotification();
         //}
         $('span.count', this).html('&nbsp;')
 
@@ -31,7 +31,7 @@
 
         $.ajax({
             type: 'GET',
-            url: ' /sds/referalpersons/GetNotificationsReferal',
+            url: '/sds/referalpersons/GetNotificationsReferal',
             success: function (response) {
                 //alert("dasdad")
                 $('#notiContent').empty();
@@ -60,23 +60,33 @@
         count = parseInt($('span.count').html()) || 0;
         count++;
         $('span.count').html(count);
-        $.playSound("http://www.noiseaddicts.com/samples_1w72b820/3724.mp3");
+        // $.playSound("http://www.noiseaddicts.com/samples_1w72b820/3724.mp3");
+         $.playSound("/sds/Sound/slow-spring-board.mp3");
 
     }
-    var notificationHub = $.connection.notificationHub;
-    $.connection.hub.start().done(function () {
-        //console.log('Notification hub stareted' + $.connection.hub.id)
-        console.log('Notification hub stareted' )
-       
-    });
 
+    /*
+    
+     مشكلة إرسال الإشعارات انحلت من خلال 
+     https://stackoverflow.com/questions/14072223/signalr-js-client-methods-not-invoked
+    */
     //signalr method for push server message to client
+
+    var notificationHub = $.connection.notificationHub;
     notificationHub.client.notify = function (message, username) {
-        var loginusername = $('#loginusername').html();
-        if (message && message.toLowerCase() == "added" && username == loginusername) {
+        //var loginusername = $('#loginusername').html();
+        if (message && message.toLowerCase() == "added") {
             updateNotificationCount();
             toastr.success('لقد وصلتك إحالة جديدة .. من فضلك راجع الإشعارات');
         }
 
     }
+
+
+    $.connection.hub.start().done(function () {
+        console.log('Notification hub stareted ' + $.connection.hub.id)
+
+    });
+
+
 })
