@@ -4,7 +4,7 @@
         var centerId = $('#centers').val();
         if (caseId != null) {        //toastr.error("sssssssssssss" + caseId);{
             $.ajax({
-                url: '/referalpersons/FillServices',
+                url: '/sds/referalpersons/FillServices',
                 type: "GET",
                 dataType: "JSON",
                 data: { 'caseId': caseId, 'centerId': centerId },
@@ -39,12 +39,13 @@
 function FillRecivers() {
 
     var serviceId = $('#services').val();
+    var centerId = $('#centers').val();
     // alert("serviceId =" + serviceId);
     $.ajax({
-        url: '/referalpersons/FillRecivers',
+        url: '/sds/referalpersons/FillRecivers',
         type: "GET",
         dataType: "JSON",
-        data: { 'serviceId': serviceId },
+        data: { 'serviceId': serviceId ,'centerId':centerId},
         success: function (recivers) {
 
             $("#referalReciver_FK").empty();
@@ -70,7 +71,7 @@ function FillRecivers_EDIT() {
     var serviceId = $('#idservice_FK').val();
     //alert("serviceId =" + serviceId);
     $.ajax({
-        url: ' /referalpersons/FillRecivers',
+        url: ' /sds/referalpersons/FillRecivers',
         type: "GET",
         dataType: "JSON",
         data: { 'serviceId': serviceId },
@@ -368,7 +369,7 @@ function BindItemTable() {
 function deleterow(id) {
     //  alert(id);
     $.ajax({
-        url: ' /referalpersons/deleteRow',
+        url: ' /sds/referalpersons/deleteRow',
         type: "GET",
         dataType: "JSON",
         data: { 'selectedId': id },
@@ -578,10 +579,10 @@ function deleterowNew(index) {
     personReferal_text.forEach(function (item, i, array) {
         //console.log(item, i);
         $("#myTable").append(
-        $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
-             '</td><td>' + item.idservice_FK + '</td><td>' +
+         $('<tr><td>' + (i + 1) + '</td><td>' + item.idcase_FK +
+                    '</td><td>' + item.idservice_FK + '</td><td>' +
                     item.senderevalution + '</td><td>' +
-                    item.referalreciever_FK + '</td><td> <input type="submit" id=' + (i + 1) + ' value="حذف" class="btn btn-default" onclick="deleterowNew(this.id)" /></td></tr>'));
+                    item.referalreciever_FK + '</td><td> <input type="submit" id=' + (i + 1) + ' value="حذف" class="btn btn-danger btn-rounded p-1" onclick="deleterowNew(this.id)"/></td></tr>'));
     });
     // BindItemTable();
 }
@@ -594,14 +595,16 @@ function successSendReferals() {
     //personReferal.forEach(function (item, i, array) {
     //var list = JSON.stringify(personReferal);
 
-    var referals = JSON.stringify({ 'referals': personReferal });;
+    var referals = JSON.stringify({ 'referals': personReferal });
+    document.getElementById('sendrefeal').setAttribute("disabled", "disabled");
+
     //    result.push(data);
     //});
 
     $.ajax({
         // contentType: 'application/json; charset=utf-8',
         contentType: 'application/json',
-        url: ' /referalpersons/sendReferals',
+        url: ' /sds/referalpersons/sendReferals',
         type: "POST",
         dataType: "JSON",
         data: referals,
@@ -612,9 +615,11 @@ function (data) {
         $("#myTable tbody").empty();
         personReferal = [];
         personReferal_text = [];
+        document.getElementById('sendrefeal').removeAttribute("disabled");
     }
     else
         toastr.error('حدث خطأ أثناء الحفظ');
+    document.getElementById('sendrefeal').removeAttribute("disabled");
 
 },
 
@@ -709,7 +714,7 @@ function searchByName() {
 
     if (name != "") {
         $.ajax({
-            url: ' /referalpersons/searchReferalByName',
+            url: ' /sds/referalpersons/searchReferalByName',
             type: "GET",
             dataType: "JSON",
             data: { 'name': name, 'idrole': idrole },
@@ -738,9 +743,9 @@ function searchByName() {
                      .append('<td>' + referal.outreachnote + '</td>')
 
                                     .append('<td>' +
-                                  '<a href=" /referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
+                                  '<a href=" /sds/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
                                   '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
-                                    '<a length="0" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
+                                    '<a length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
                                     + '">إحالة جديدة</a>' +
                                   '</td>')
 
@@ -769,7 +774,7 @@ function searchByNameOutReach() {
 
     if (name != "") {
         $.ajax({
-            url: ' /referalpersons/searchReferalByName',
+            url: ' /sds/referalpersons/searchReferalByName',
             type: "GET",
             dataType: "JSON",
             data: { 'name': name, 'idrole': idrole },
@@ -798,7 +803,7 @@ function searchByNameOutReach() {
                      .append('<td>' + referal.outreachnote + '</td>')
 
                                     .append('<td>' +                                
-                                    '<a length="0" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
+                                    '<a length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
                                     + '">إحالة جديدة</a>' +
                                   '</td>')
 
@@ -828,7 +833,7 @@ function searcByDate() {
 
     if (from != "" && to != "") {
         $.ajax({
-            url: ' /referalpersons/searchReferalByDate',
+            url: ' /sds/referalpersons/searchReferalByDate',
             type: "GET",
             dataType: "JSON",
             data: { 'from': from, 'to': to, 'idrole': idrole },
@@ -857,9 +862,9 @@ function searcByDate() {
                     .append('<td>' + referal.outreachnote + '</td>')
 
                                   .append('<td>' +
-                                  '<a href=" /referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
+                                  '<a href=" /sds/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
                                   '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
-                                    '<a length="0" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
+                                    '<a length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
                                     + '">إحالة جديدة</a>' +
                                   '</td>')
 
@@ -888,7 +893,7 @@ function searcByDateOutReach() {
 
     if (from != "" && to != "") {
         $.ajax({
-            url: ' /referalpersons/searchReferalByDate',
+            url: ' /sds/referalpersons/searchReferalByDate',
             type: "GET",
             dataType: "JSON",
             data: { 'from': from, 'to': to, 'idrole': idrole },
@@ -917,7 +922,7 @@ function searcByDateOutReach() {
                     .append('<td>' + referal.outreachnote + '</td>')
 
                                   .append('<td>' +
-                                    '<a length="0" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
+                                    '<a length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
                                     + '">إحالة جديدة</a>' +
                                   '</td>')
 
@@ -945,7 +950,7 @@ function searchByNameCo() {
 
     if (name != "") {
         $.ajax({
-            url: ' /referalpersons/searchReferalByNameCO',
+            url: ' /sds/referalpersons/searchReferalByNameCO',
             type: "GET",
             dataType: "JSON",
             data: { 'name': name, 'idcase': idcase },
@@ -998,7 +1003,7 @@ function searcByDateCo() {
 
     if (from != "" && to != "") {
         $.ajax({
-            url: ' /referalpersons/searchReferalByDateCO',
+            url: ' /sds/referalpersons/searchReferalByDateCO',
             type: "GET",
             dataType: "JSON",
             data: { 'from': from, 'to': to, 'idcase': idcase },
@@ -1126,7 +1131,7 @@ $(document).ready(function () {
 
         $.ajax({
 
-            url: ' /referalpersons/PendingReReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            url: ' /sds/referalpersons/PendingReReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -1160,7 +1165,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -1179,7 +1184,7 @@ $(document).ready(function () {
 
                                        //PendingApproved 2
                                         '<div class="col-md-3">' +
-                                      '<form action=" /referalpersons/Index" method="post">'
+                                      '<form action=" /sds/referalpersons/Index" method="post">'
                                      + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                      + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                      + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1188,7 +1193,7 @@ $(document).ready(function () {
 
                                        //PendingOutReach 3
                                         '<div class="col-md-3">' +
-                                      '<form action=" /referalpersons/Index" method="post">'
+                                      '<form action=" /sds/referalpersons/Index" method="post">'
                                      + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                      + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                      + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1197,7 +1202,7 @@ $(document).ready(function () {
 
                                        //PendingRejected 4
                                        '<div class="col-md-3">' +
-                                      '<form action=" /referalpersons/Index" method="post">'
+                                      '<form action=" /sds/referalpersons/Index" method="post">'
                                      + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                      + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                      + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1206,7 +1211,7 @@ $(document).ready(function () {
 
                                        //PendingExternal 5
                                        '<div class="col-md-3">' +
-                                      '<form action=" /referalpersons/Index" method="post">'
+                                      '<form action=" /sds/referalpersons/Index" method="post">'
                                      + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                      + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                      + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1215,7 +1220,7 @@ $(document).ready(function () {
 
                                        //ApprovedInprgress 6
                                         '<div class="col-md-3">' +
-                                      '<form action=" /referalpersons/Index" method="post">'
+                                      '<form action=" /sds/referalpersons/Index" method="post">'
                                      + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                      + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                      + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1223,7 +1228,7 @@ $(document).ready(function () {
                                       + '</div>' +
                                        //OutReachInprgress 7
                                        '<div class="col-md-3">' +
-                                      '<form action=" /referalpersons/Index" method="post">'
+                                      '<form action=" /sds/referalpersons/Index" method="post">'
                                      + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                      + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                      + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1231,7 +1236,7 @@ $(document).ready(function () {
                                       + '</div>' +
                                        //closed 8
                                       '<div class="col-md-3">' +
-                                      '<form action=" /referalpersons/Index" method="post">'
+                                      '<form action=" /sds/referalpersons/Index" method="post">'
                                      + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                      + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                      + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1240,7 +1245,7 @@ $(document).ready(function () {
 
                                        //OutReachClosed 9
                                        '<div class="col-md-3">' +
-                                      '<form action=" /referalpersons/Index" method="post">'
+                                      '<form action=" /sds/referalpersons/Index" method="post">'
                                      + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                      + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                      + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1310,8 +1315,8 @@ $(document).ready(function () {
         var table = $('#All2').DataTable();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         $.ajax({
-            // url: ' /referalpersons/CloseReferal',
-            url: ' /referalpersons/PendingApprovedReReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // url: ' /sds/referalpersons/CloseReferal',
+            url: ' /sds/referalpersons/PendingApprovedReReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -1346,7 +1351,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
                                   //Pending 1
@@ -1362,7 +1367,7 @@ $(document).ready(function () {
 
 
                                  // '<div class="col-md-3">' +
-                                 // '<form action=" /referalpersons/Index" method="post">'
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
                                  //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1373,7 +1378,7 @@ $(document).ready(function () {
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1382,7 +1387,7 @@ $(document).ready(function () {
 
                                    //PendingExternal 5
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1391,7 +1396,7 @@ $(document).ready(function () {
 
                                    //ApprovedInprgress 6
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1399,7 +1404,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //OutReachInprgress 7
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1407,7 +1412,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //closed 8
                                   '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1416,7 +1421,7 @@ $(document).ready(function () {
 
                                    //OutReachClosed 9
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1487,8 +1492,8 @@ $(document).ready(function () {
         var table = $('#All2').DataTable();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         $.ajax({
-            // url: ' /referalpersons/CloseReferal',
-            url: ' /referalpersons/PendingOutReachReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // url: ' /sds/referalpersons/CloseReferal',
+            url: ' /sds/referalpersons/PendingOutReachReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -1523,7 +1528,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
                                 //Pending 1
@@ -1539,7 +1544,7 @@ $(document).ready(function () {
 
 
                                  // '<div class="col-md-3">' +
-                                 // '<form action=" /referalpersons/Index" method="post">'
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
                                  //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1549,7 +1554,7 @@ $(document).ready(function () {
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1558,7 +1563,7 @@ $(document).ready(function () {
 
                                    //PendingExternal 5
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1567,7 +1572,7 @@ $(document).ready(function () {
 
                                    //ApprovedInprgress 6
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1575,7 +1580,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //OutReachInprgress 7
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1583,7 +1588,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //closed 8
                                   '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1592,7 +1597,7 @@ $(document).ready(function () {
 
                                    //OutReachClosed 9
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1662,8 +1667,8 @@ $(document).ready(function () {
         var table = $('#All3').DataTable();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         $.ajax({
-            // url: ' /referalpersons/CloseReferal',
-            url: ' /referalpersons/PendingRejectedReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // url: ' /sds/referalpersons/CloseReferal',
+            url: ' /sds/referalpersons/PendingRejectedReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -1697,7 +1702,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
                          //Pending 1
@@ -1713,7 +1718,7 @@ $(document).ready(function () {
 
 
                                  // '<div class="col-md-3">' +
-                                 // '<form action=" /referalpersons/Index" method="post">'
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
                                  //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1722,7 +1727,7 @@ $(document).ready(function () {
 
                                    //PendingApproved 2
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1731,7 +1736,7 @@ $(document).ready(function () {
 
                                    //PendingOutReach 3
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1740,7 +1745,7 @@ $(document).ready(function () {
 
                                 //PendingExternal 5
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1749,7 +1754,7 @@ $(document).ready(function () {
 
                                    //ApprovedInprgress 6
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1757,7 +1762,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //OutReachInprgress 7
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1765,7 +1770,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //closed 8
                                   '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1774,7 +1779,7 @@ $(document).ready(function () {
 
                                    //OutReachClosed 9
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1845,8 +1850,8 @@ $(document).ready(function () {
         var table = $('#All6').DataTable();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         $.ajax({
-            // url: ' /referalpersons/CloseReferal',
-            url: ' /referalpersons/PendingExternalReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // url: ' /sds/referalpersons/CloseReferal',
+            url: ' /sds/referalpersons/PendingExternalReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -1880,7 +1885,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -1897,7 +1902,7 @@ $(document).ready(function () {
 
 
                                  // '<div class="col-md-3">' +
-                                 // '<form action=" /referalpersons/Index" method="post">'
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
                                  //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1906,7 +1911,7 @@ $(document).ready(function () {
 
                                    //PendingApproved 2
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1915,7 +1920,7 @@ $(document).ready(function () {
 
                                    //PendingOutReach 3
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1924,7 +1929,7 @@ $(document).ready(function () {
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1934,7 +1939,7 @@ $(document).ready(function () {
 
                                    //ApprovedInprgress 6
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1942,7 +1947,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //OutReachInprgress 7
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1950,7 +1955,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //closed 8
                                   '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -1959,7 +1964,7 @@ $(document).ready(function () {
 
                                    //OutReachClosed 9
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2032,8 +2037,8 @@ $(document).ready(function () {
         var table = $('#All4').DataTable();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         $.ajax({
-            // url: ' /referalpersons/CloseReferal',
-            url: ' /referalpersons/ApprovedInprgressReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // url: ' /sds/referalpersons/CloseReferal',
+            url: ' /sds/referalpersons/ApprovedInprgressReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -2067,7 +2072,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
                           //Pending 1
@@ -2083,7 +2088,7 @@ $(document).ready(function () {
 
 
                                  // '<div class="col-md-3">' +
-                                 // '<form action=" /referalpersons/Index" method="post">'
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
                                  //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2092,7 +2097,7 @@ $(document).ready(function () {
 
                                    //PendingApproved 2
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2101,7 +2106,7 @@ $(document).ready(function () {
 
                                    //PendingOutReach 3
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2110,7 +2115,7 @@ $(document).ready(function () {
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2119,7 +2124,7 @@ $(document).ready(function () {
 
                                    //PendingExternal 5
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2129,7 +2134,7 @@ $(document).ready(function () {
 
                                    //closed 8
                                   '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2138,7 +2143,7 @@ $(document).ready(function () {
 
                                    //OutReachClosed 9
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2209,8 +2214,8 @@ $(document).ready(function () {
         var table = $('#All4').DataTable();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         $.ajax({
-            // url: ' /referalpersons/CloseReferal',
-            url: ' /referalpersons/OutReachInprgressReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // url: ' /sds/referalpersons/CloseReferal',
+            url: ' /sds/referalpersons/OutReachInprgressReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -2245,7 +2250,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -2262,7 +2267,7 @@ $(document).ready(function () {
 
 
                                  // '<div class="col-md-3">' +
-                                 // '<form action=" /referalpersons/Index" method="post">'
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
                                  //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2271,7 +2276,7 @@ $(document).ready(function () {
 
                                    //PendingApproved 2
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2280,7 +2285,7 @@ $(document).ready(function () {
 
                                    //PendingOutReach 3
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2289,7 +2294,7 @@ $(document).ready(function () {
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2298,7 +2303,7 @@ $(document).ready(function () {
 
                                    //PendingExternal 5
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2308,7 +2313,7 @@ $(document).ready(function () {
 
                                    //closed 8
                                   '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2317,7 +2322,7 @@ $(document).ready(function () {
 
                                    //OutReachClosed 9
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2387,8 +2392,8 @@ $(document).ready(function () {
         var table = $('#All5').DataTable();
 
         $.ajax({
-            // url: ' /referalpersons/CloseReferal',
-            url: ' /referalpersons/CloseReferal',
+            // url: ' /sds/referalpersons/CloseReferal',
+            url: ' /sds/referalpersons/CloseReferal',
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -2423,7 +2428,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -2440,7 +2445,7 @@ $(document).ready(function () {
 
 
                                  // '<div class="col-md-3">' +
-                                 // '<form action=" /referalpersons/Index" method="post">'
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
                                  //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2449,7 +2454,7 @@ $(document).ready(function () {
 
                                    //PendingApproved 2
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2458,7 +2463,7 @@ $(document).ready(function () {
 
                                    //PendingOutReach 3
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2467,7 +2472,7 @@ $(document).ready(function () {
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2476,7 +2481,7 @@ $(document).ready(function () {
 
                                    //PendingExternal 5
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2485,7 +2490,7 @@ $(document).ready(function () {
 
                                    //ApprovedInprgress 6
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2493,7 +2498,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //OutReachInprgress 7
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2566,8 +2571,8 @@ $(document).ready(function () {
         var table = $('#All5').DataTable();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         $.ajax({
-            // url: ' /referalpersons/CloseReferal',
-            url: ' /referalpersons/OutReachClosedReReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            // url: ' /sds/referalpersons/CloseReferal',
+            url: ' /sds/referalpersons/OutReachClosedReReferal',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             type: "Post",
             dataType: "JSON",
             data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase },
@@ -2602,7 +2607,7 @@ $(document).ready(function () {
                                    '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">' +
                                    '<button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" title="تعديل"></button>' +
                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href=" /people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
-                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
+                                   '<a class=" fa fa-plus-square btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase + '" title=" إحالة جديدة"> </a>' +
                                      '</td>')
 
 
@@ -2619,7 +2624,7 @@ $(document).ready(function () {
 
 
                                  // '<div class="col-md-3">' +
-                                 // '<form action=" /referalpersons/Index" method="post">'
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
                                  //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2628,7 +2633,7 @@ $(document).ready(function () {
 
                                    //PendingApproved 2
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2637,7 +2642,7 @@ $(document).ready(function () {
 
                                    //PendingOutReach 3
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2646,7 +2651,7 @@ $(document).ready(function () {
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2655,7 +2660,7 @@ $(document).ready(function () {
 
                                    //PendingExternal 5
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2664,7 +2669,7 @@ $(document).ready(function () {
 
                                    //ApprovedInprgress 6
                                     '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2672,7 +2677,7 @@ $(document).ready(function () {
                                   + '</div>' +
                                    //OutReachInprgress 7
                                    '<div class="col-md-3">' +
-                                  '<form action=" /referalpersons/Index" method="post">'
+                                  '<form action=" /sds/referalpersons/Index" method="post">'
                                  + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
                                  + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
                                  + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
@@ -2810,8 +2815,8 @@ $('body').on('click', '#modalsave', function () {
 
 
     $.ajax({
-        // url: ' /referalpersons/CloseReferal',
-        url: ' /referalpersons/editreferalrow',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        // url: ' /sds/referalpersons/CloseReferal',
+        url: ' /sds/referalpersons/editreferalrow',//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
         type: "Post",
         dataType: "JSON",
         data: { 'idreferalperson': idreferalperson, 'idperson': idperson, 'idcase': idcase, 'recieverevalution': recieverevalution, 'outreachnote': outreachnote },

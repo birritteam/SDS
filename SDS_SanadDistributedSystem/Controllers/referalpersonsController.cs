@@ -1372,7 +1372,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 //first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid ).First();
                 //ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid ), "idservice", "name", first_service_firstcase.name);
                 first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid).First();
-                ViewBag.services = new SelectList(db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == user.center.idcenter) && u.idcase_FK == firstcaseid), "idservice", "name", first_service_firstcase.name);
+                ViewBag.services = new SelectList(db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == user.center.idcenter) && u.idcase_FK == firstcaseid), "idservice", "name", first_service_firstcase.idservice);
 
                 List<AspNetUser> recivers = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.center.idcenter == user.center.idcenter && u.Id !=user.Id).ToList();//<<<<<<<<<<<<<<<get all recivers in all centers
                 IEnumerable<SelectListItem> items = recivers.Select(c => new SelectListItem
@@ -1462,7 +1462,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 //first_service_firstcase = db.services.Where(s => s.idcase_FK == firstcaseid ).First();
                 //ViewBag.services = new SelectList(db.services.Where(s => s.idcase_FK == firstcaseid ), "idservice", "name", first_service_firstcase.name);
                 first_service_firstcase = db.services.Where(s => s.idcase_FK == idcase).First();
-                ViewBag.services = new SelectList(db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == user.center.idcenter) && u.idcase_FK == idcase), "idservice", "name", first_service_firstcase.name);
+                ViewBag.services = new SelectList(db.services.Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled && s.center.idcenter == user.center.idcenter) && u.idcase_FK == idcase), "idservice", "name", first_service_firstcase.idservice);
 
                 List<AspNetUser> recivers = db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.center.idcenter == user.center.idcenter && u.Id!=user.Id).ToList();//<<<<<<<<<<<<<<<get all recivers in all centers
                 IEnumerable<SelectListItem> items = recivers.Select(c => new SelectListItem
