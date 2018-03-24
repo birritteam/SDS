@@ -74,18 +74,36 @@
                     {
                         foreach (var item in ViewBag.ServicesBar)
                         {
-                           
+                            System.Collections.Generic.HashSet<SDS_SanadDistributedSystem.Models.centerservice> c = (System.Collections.Generic.HashSet<SDS_SanadDistributedSystem.Models.centerservice>)item.centerservices;
+                            var cs = c.ToList();
+                            var allcenter = "";
+                            foreach (var item2 in cs)
+                            {
+                                if (item2.enabled)
+                                {
+                                    allcenter += item2.center.name;
+
+                                    if (cs.Count > 1)
+                                    { allcenter = allcenter + "  "; }
+                                }
+                            }
+
                             <span>الخدمة:</span>
 
-                                @item.name
-                                <span>--</span>
+                            @item.name
+                            <span>--</span>
                                 <span>الوصف:</span>
 
                                 @item.description
+                                <span>--</span>
+                                <span>المراكز:</span>
 
+                                <span>@allcenter</span>
                                 <img src="~/Images/sanad.ico">
                         }
                     }
+
+                    
                     @if (ViewBag.ServicesBar != null)
                     {
                         <span>

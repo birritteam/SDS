@@ -41,7 +41,7 @@
         <li role="presentation"><a href="#fifth" aria-controls="fifth" role="tab" data-toggle="tab">مغلقة</a></li>
         <li role="presentation"><a href="#sixth" aria-controls="sixth" role="tab" data-toggle="tab">خارجية</a></li>
         <li role="presentation"><a href="#seventh" aria-controls="seventh" role="tab" data-toggle="tab">بحث</a></li>
-     </ul>
+    </ul>
 
 
     <div class="modal fade in" id="dlg-details" tabindex="-1" role="dialog" style="display: none;">
@@ -51,11 +51,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                     <h3 class="deep-grey-text mt-2 mb-2 pb-1 mx-3 fa fa-edit" style="font-size:2rem ;color:#195587"><b> تعديل الإحالة  </b></h3>
                 </div>
-                <div class="modal-body col-md-12"><div class="md-form"><input type="text" class="form-control validate col-md-12 " id="evaluation"  ><label for="evaluation">تقيم المستقبل: </label></div></div>
-                <div class="modal-body col-md-12"><div  class="md-form"><input type="text" class="form-control validate col-md-12 " id="notes"  > <label for="notes">الملاحظات: </label></div></div>
-                <input type="hidden" id="idreferalpersonselected" name="idreferalpersonselected"  />
-                <input type="hidden" id="idcaseselected" name="idcaseselected"  />
-                <input type="hidden" id="idpersonselected" name="idpersonselected"  />
+                <div class="modal-body col-md-12"><div class="md-form"><input type="text" class="form-control validate col-md-12 " id="evaluation"><label for="evaluation">تقيم المستقبل: </label></div></div>
+                <div class="modal-body col-md-12"><div class="md-form"><input type="text" class="form-control validate col-md-12 " id="notes"> <label for="notes">الملاحظات: </label></div></div>
+                <input type="hidden" id="idreferalpersonselected" name="idreferalpersonselected" />
+                <input type="hidden" id="idcaseselected" name="idcaseselected" />
+                <input type="hidden" id="idpersonselected" name="idpersonselected" />
                 <div class="modal-footer">
                     <button type="button" id="modalclose" class="btn btn-default" data-dismiss="modal">إغلاق</button>
                     <button type="button" id="modalsave" class="btn btn-primary" data-dismiss="modal">حفظ</button>
@@ -65,9 +65,9 @@
     </div>
     <!-- Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active card z-depth-2"  id="first">
+        <div role="tabpanel" class="tab-pane active card z-depth-2" id="first">
             @*@Html.RenderAction("GetMyFirstForm", "MyController)*@
-             
+
             <table id="All" class="display table table-bordered All" cellspacing="0" width="100%">
                 <thead>
                     <tr>
@@ -186,17 +186,17 @@
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 <td>
-                                    
-                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+
+                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
 
                                     <button type="button" class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details" title="تعديل"></button>
 
-                                        @Html.ActionLink(" ", "Details", "people", new { id = item.idperson_FK }, new { @class = " fa fa-info-circle btn ora btn-warning btn-rounded p-1", @title=" تفاصيل"})
-                                     
-                              
-                                        @Html.ActionLink(" ", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, new { @class = " fa fa-plus-square btn pur btn-purple btn-rounded p-1", @title = " إحالة جديدة" })
+                                    @Html.ActionLink(" ", "Details", "people", new { id = item.idperson_FK }, new { @class = " fa fa-info-circle btn ora btn-warning btn-rounded p-1", @title = " تفاصيل" })
+
+
+                                    @Html.ActionLink(" ", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, new { @class = " fa fa-plus-square btn pur btn-purple btn-rounded p-1", @title = " إحالة جديدة" })
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
@@ -222,7 +222,26 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger  PendingApproved"></button>
+                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
+                                                                }
+                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                    }
+                                                                </div>*@
+
+                                                            <div class="col-md-3">
+                                                                @using (Html.BeginForm())
+                                                                {
+                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                    <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
@@ -231,65 +250,46 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                    <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
+                                                            <div class="col-md-3">
+                                                                @using (Html.BeginForm())
+                                                                {
+                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                    <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
+                                                                }
+                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                        @using (Html.BeginForm())
+                                                                        {
+                                                                            <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                                <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                                <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
+                                                                        }
 
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                    <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
-                                                                }
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress"></button>
-                                                                }
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
-                                                                }
-
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
-                                                                }
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
-                                                                }
-                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
+                                                                    }
+                                                                </div>*@
                                                         </div>
                                                     </li>
 
@@ -361,12 +361,12 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
-                        
+
                         <th></th>
                         <th>تعديل حالة الإحالة</th>
-                        <th>
-                            وصول
-                        </th>
+                        @*<th>
+                                وصول
+                            </th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -426,7 +426,7 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                                
+
                                 <td>
 
                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
@@ -442,8 +442,8 @@
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                 </td>
                                 <td>
                                     <ul class="collapsible collapsible-accordion">
@@ -456,71 +456,71 @@
                                                         <div class="form-group">
                                                             @*@using (Ajax.BeginForm("CloseReferal", "referalpersons", new AjaxOptions { OnSuccess = "OnCloseSuccess", OnFailure = "OnCloseFailure" }))*@
                                                             @*<div class="col-md-3">
-                                        @using (Html.BeginForm())
-                                        {
-                                            <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                            <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
-                                        }
-                                    </div>*@
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
+                                                                    }
+                                                                </div>*@
 
 
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger OutReachInprgress"> وصول </button>
-                                                                }
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger OutReachInprgress"> وصول </button>
+                                                                    }
 
-                                                            </div>
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
-                                                                }
-                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
+                                                                    }
+                                                                </div>*@
                                                         </div>
                                                     </li>
 
@@ -534,9 +534,9 @@
 
 
                                 </td>
-                                <td>
-                                    لا
-                                </td>
+                                @*<td>
+                                        لا
+                                    </td>*@
 
                             </tr>
                         }
@@ -593,7 +593,7 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                                
+
                                 <td>
 
                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
@@ -609,8 +609,8 @@
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                 </td>
                                 <td>
 
@@ -625,70 +625,70 @@
                                                         <div class="form-group">
                                                             @*@using (Ajax.BeginForm("CloseReferal", "referalpersons", new AjaxOptions { OnSuccess = "OnCloseSuccess", OnFailure = "OnCloseFailure" }))*@
                                                             @*<div class="col-md-3">
-                                        @using (Html.BeginForm())
-                                        {
-                                            <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                            <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
-                                        }
-                                    </div>*@
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
+                                                                    }
+                                                                </div>*@
 
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger OutReachInprgress"> وصول </button>
-                                                                }
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger OutReachInprgress"> وصول </button>
+                                                                    }
 
-                                                            </div>
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
-                                                                }
-                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
+                                                                    }
+                                                                </div>*@
                                                             <
                                                         </div>
                                                     </li>
@@ -704,9 +704,9 @@
 
 
                                 </td>
-                                <td>
-                                    نعم
-                                </td>
+                                @*<td>
+                                        نعم
+                                    </td>*@
                             </tr>
                         }
                     }
@@ -842,8 +842,8 @@
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                 </td>
 
                                 <td>
@@ -858,78 +858,78 @@
                                                         <div class="form-group">
                                                             @*@using (Ajax.BeginForm("CloseReferal", "referalpersons", new AjaxOptions { OnSuccess = "OnCloseSuccess", OnFailure = "OnCloseFailure" }))*@
                                                             @*<div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
-                                                                }
-                                                            </div>*@
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger  PendingApproved"></button>
-                                                                }
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
-                                                                }
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                         <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                        <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
+                                                                    }
+                                                                </div>*@
+                                                            <div class="col-md-3">
+                                                                @using (Html.BeginForm())
+                                                                {
+                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
+                                                                }
+                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                    }
+                                                                </div>*@
+                                                            <div class="col-md-3">
+                                                                @using (Html.BeginForm())
+                                                                {
+                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
-                                                                }
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
+                                                                    }
 
-                                                            </div>
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
-                                                                }
-                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
+                                                                    }
+                                                                </div>*@
                                                         </div>
                                                     </li>
 
@@ -1009,12 +1009,12 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
-                        
+
                         <th></th>
                         <th>تعديل حالة الإحالة</th>
-                        <th>
-                            وصول
-                        </th>
+                        @*<th>
+                                وصول
+                            </th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -1073,7 +1073,7 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                               
+
                                 <td>
 
                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
@@ -1089,8 +1089,8 @@
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                 </td>
                                 <td>
 
@@ -1104,30 +1104,49 @@
                                                         <div class="form-group">
                                                             @*@using (Ajax.BeginForm("CloseReferal", "referalpersons", new AjaxOptions { OnSuccess = "OnCloseSuccess", OnFailure = "OnCloseFailure" }))*@
                                                             @*<div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
-                                                                }
-                                                            </div>*@
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
+                                                                    }
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger  PendingApproved"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
+                                                                }
+                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                    }
+                                                                </div>*@
+
+                                                            <div class="col-md-3">
+                                                                @using (Html.BeginForm())
+                                                                {
+                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
 
@@ -1135,39 +1154,20 @@
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
-                                                                }
-                                                            </div>
-
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
-                                                                }
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
-                                                                }
-                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
+                                                                    }
+                                                                </div>*@
                                                         </div>
                                                     </li>
 
@@ -1180,9 +1180,9 @@
 
 
                                 </td>
-                                <td>
-                                    لا
-                                </td>
+                                @*<td>
+                                        لا
+                                    </td>*@
                             </tr>
                         }
                         if (item.servicestate == "In prgress" && item.referalstate == "OutReach")
@@ -1238,7 +1238,7 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                               
+
                                 <td>
 
                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
@@ -1254,8 +1254,8 @@
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                 </td>
                                 <td>
                                     <ul class="collapsible collapsible-accordion">
@@ -1268,30 +1268,30 @@
                                                         <div class="form-group">
                                                             @*@using (Ajax.BeginForm("CloseReferal", "referalpersons", new AjaxOptions { OnSuccess = "OnCloseSuccess", OnFailure = "OnCloseFailure" }))*@
                                                             @*<div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
-                                                                }
-                                                            </div>*@
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
+                                                                    }
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger  PendingApproved"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
                                                                 }
                                                             </div>
 
@@ -1299,18 +1299,18 @@
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
 
@@ -1318,18 +1318,18 @@
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
                                                                 }
                                                             </div>
                                                         </div>
@@ -1346,9 +1346,9 @@
 
 
                                 </td>
-                                <td>
-                                    نعم
-                                </td>
+                                @*<td>
+                                        نعم
+                                    </td>*@
                             </tr>
 
                         }
@@ -1411,12 +1411,12 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
-                        
+
                         <th></th>
                         <th>تعديل حالة الإحالة</th>
-                        <th>
-                            وصول
-                        </th>
+                        @*<th>
+                                وصول
+                            </th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -1475,7 +1475,7 @@
                                 @*<td>
                                     @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                               
+
                                 <td>
 
                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
@@ -1491,8 +1491,8 @@
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                 </td>
                                 <td>
 
@@ -1506,70 +1506,70 @@
                                                         <div class="form-group">
                                                             @*@using (Ajax.BeginForm("CloseReferal", "referalpersons", new AjaxOptions { OnSuccess = "OnCloseSuccess", OnFailure = "OnCloseFailure" }))*@
                                                             @*<div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
-                                                                }
-                                                            </div>*@
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
+                                                                    }
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger  PendingApproved"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
-                                                                }
-                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                    }
+                                                                </div>*@
 
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
-                                                                }
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
+                                                                    }
 
-                                                            </div>
+                                                                </div>*@
 
                                                         </div>
                                                     </li>
@@ -1585,9 +1585,9 @@
 
 
                                 </td>
-                                <td>
-                                    لا
-                                </td>
+                                @*<td>
+                                        لا
+                                    </td>*@
                             </tr>
                         }
                         if (item.servicestate == "Closed" && item.referalstate == "OutReach")
@@ -1643,7 +1643,7 @@
                                 @*<td>
                                     @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
-                                
+
                                 <td>
 
                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
@@ -1659,8 +1659,8 @@
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                 </td>
                                 <td>
 
@@ -1674,70 +1674,70 @@
                                                         <div class="form-group">
                                                             @*@using (Ajax.BeginForm("CloseReferal", "referalpersons", new AjaxOptions { OnSuccess = "OnCloseSuccess", OnFailure = "OnCloseFailure" }))*@
                                                             @*<div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
-                                                                }
-                                                            </div>*@
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
+                                                                    }
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger  PendingApproved"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
-                                                                }
-                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                    }
+                                                                </div>*@
 
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
-                                                                }
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
+                                                                    }
 
-                                                            </div>
+                                                                </div>*@
 
                                                         </div>
                                                     </li>
@@ -1755,9 +1755,9 @@
 
 
                                 </td>
-                                <td>
-                                    نعم
-                                </td>
+                                @*<td>
+                                        نعم
+                                    </td>*@
                             </tr>
                         }
                     }
@@ -1893,8 +1893,8 @@
 
                                     @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|*@
                                     @*|
-        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                                         @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
                                 </td>
                                 <td>
 
@@ -1908,30 +1908,40 @@
                                                         <div class="form-group">
                                                             @*@using (Ajax.BeginForm("CloseReferal", "referalpersons", new AjaxOptions { OnSuccess = "OnCloseSuccess", OnFailure = "OnCloseFailure" }))*@
                                                             @*<div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
-                                                                }
-                                                            </div>*@
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="معلقة" class=" fa fa-tasks icon-large btn btn-danger  PendingReReferal"></button>
+                                                                    }
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger  PendingApproved"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
                                                                 }
                                                             </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                        <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                    }
+                                                                </div>*@
+
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                    <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
 
@@ -1939,49 +1949,39 @@
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
                                                                 }
                                                             </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
+                                                                    }
 
+                                                                </div>*@
                                                             <div class="col-md-3">
                                                                 @using (Html.BeginForm())
                                                                 {
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress"></button>
+                                                                            <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress"> وصول </button>
-                                                                }
-
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
-                                                                }
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                        <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                        <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
-                                                                }
-                                                            </div>
+                                                            @*<div class="col-md-3">
+                                                                    @using (Html.BeginForm())
+                                                                    {
+                                                                        <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                        <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                            <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                            <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
+                                                                    }
+                                                                </div>*@
                                                         </div>
                                                     </li>
 
@@ -2008,37 +2008,37 @@
             {
                 @*@Html.HiddenFor(ViewBag.role_id, new { Value = ViewBag.role_id });*@
                 <input type="hidden" value="@ViewBag.role_id" id="role_id" />
-                <div class="md-form">
-                    <div class="col-md-6">
-                        <input type="text" id="personname" class="form-control">
-                        <label for="form1" class=""> حسب اسم الشخص</label>
-                    </div>
-                    <div class="col-md-6 "></div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="button" value="بحث" class="btn btn-default" onclick="searchByName()" />
-                    </div>
-                </div>
+                        <div class="md-form">
+                            <div class="col-md-6">
+                                <input type="text" id="personname" class="form-control">
+                                <label for="form1" class=""> حسب اسم الشخص</label>
+                            </div>
+                            <div class="col-md-6 "></div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="button" value="بحث" class="btn btn-default" onclick="searchByName()" />
+                            </div>
+                        </div>
             }
             @using (Html.BeginForm())
             {
                 @*@Html.HiddenFor(model => model.ElementAt(0).idcase_FK, new { Value = Model.ElementAt(0).idcase_FK });*@
                 <input type="hidden" value="@ViewBag.role_id" id="role_id" />
-                <div class="md-form">
-                    <div class="col-md-6">
-                        @*@{var  today = DateTime.Now.ToShortDateString('YYYY-MM-DD');}*@
-                        <input placeholder="Selected date" type="date" id="datepickerfrom" value="2018-01-01">
-                        <label for="date-picker-example">من</label>
-                    </div>
-                    <div class="col-md-6">
-                        <input placeholder="Selected date" type="date" id="datepickerto" value="2018-12-01">
-                        <label for="date-picker-example">إلى</label>
-                    </div>
+                        <div class="md-form">
+                            <div class="col-md-6">
+                                @*@{var  today = DateTime.Now.ToShortDateString('YYYY-MM-DD');}*@
+                                <input placeholder="Selected date" type="date" id="datepickerfrom" value="2018-01-01">
+                                <label for="date-picker-example">من</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input placeholder="Selected date" type="date" id="datepickerto" value="2018-12-01">
+                                <label for="date-picker-example">إلى</label>
+                            </div>
 
 
 
-                </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="button" value="بحث" class="btn btn-default" onclick="searcByDate()" />
@@ -2090,7 +2090,7 @@
 
 
         </div>
-      
+
     </div>
 
 

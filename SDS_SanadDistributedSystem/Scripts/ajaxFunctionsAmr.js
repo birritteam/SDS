@@ -1192,13 +1192,13 @@ $(document).ready(function () {
                                        + '</div>' +
 
                                        //PendingOutReach 3
-                                        '<div class="col-md-3">' +
-                                      '<form action=" /sds/referalpersons/Index" method="post">'
-                                     + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                     + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                     + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                     + '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
-                                       + '</div>' +
+                                     //   '<div class="col-md-3">' +
+                                     // '<form action=" /sds/referalpersons/Index" method="post">'
+                                     //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                     //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                     //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                     //+ '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
+                                     //  + '</div>' +
 
                                        //PendingRejected 4
                                        '<div class="col-md-3">' +
@@ -1227,13 +1227,13 @@ $(document).ready(function () {
                                      + '<button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress waves-effect waves-light"></button> </form>'
                                       + '</div>' +
                                        //OutReachInprgress 7
-                                       '<div class="col-md-3">' +
-                                      '<form action=" /sds/referalpersons/Index" method="post">'
-                                     + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                     + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                     + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                     + '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
-                                      + '</div>' +
+                                     //  '<div class="col-md-3">' +
+                                     // '<form action=" /sds/referalpersons/Index" method="post">'
+                                     //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                     //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                     //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                     //+ '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
+                                     // + '</div>' +
                                        //closed 8
                                       '<div class="col-md-3">' +
                                       '<form action=" /sds/referalpersons/Index" method="post">'
@@ -1244,13 +1244,13 @@ $(document).ready(function () {
                                       + '</div>' +
 
                                        //OutReachClosed 9
-                                       '<div class="col-md-3">' +
-                                      '<form action=" /sds/referalpersons/Index" method="post">'
-                                     + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                     + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                     + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                     + '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
-                                     + '</div>'
+                                     //  '<div class="col-md-3">' +
+                                     // '<form action=" /sds/referalpersons/Index" method="post">'
+                                     //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                     //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                     //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                     //+ '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
+                                     //+ '</div>'
 
                                        + '</div>'
                                         + '</li>'
@@ -1403,13 +1403,13 @@ $(document).ready(function () {
                                  + '<button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress waves-effect waves-light"></button> </form>'
                                   + '</div>' +
                                    //OutReachInprgress 7
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
-                                  + '</div>' +
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
+                                 // + '</div>' +
                                    //closed 8
                                   '<div class="col-md-3">' +
                                   '<form action=" /sds/referalpersons/Index" method="post">'
@@ -1420,13 +1420,13 @@ $(document).ready(function () {
                                   + '</div>' +
 
                                    //OutReachClosed 9
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
-                                 + '</div>'
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
+                                 //+ '</div>'
 
                                    + '</div>'
                                     + '</li>'
@@ -1435,7 +1435,7 @@ $(document).ready(function () {
                                        + '</li>'
                                        + '</ul>'
                                   + '</td>')
-                                    .append('<td>' + "لا" + '</td>')
+                                  //  .append('<td>' + "لا" + '</td>')
 
 
                     ).draw().node();
@@ -1579,13 +1579,13 @@ $(document).ready(function () {
                                  + '<button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress waves-effect waves-light"></button> </form>'
                                   + '</div>' +
                                    //OutReachInprgress 7
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
-                                  + '</div>' +
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
+                                 // + '</div>' +
                                    //closed 8
                                   '<div class="col-md-3">' +
                                   '<form action=" /sds/referalpersons/Index" method="post">'
@@ -1596,13 +1596,13 @@ $(document).ready(function () {
                                   + '</div>' +
 
                                    //OutReachClosed 9
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
-                                 + '</div>'
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
+                                 //+ '</div>'
 
                                    + '</div>'
                                     + '</li>'
@@ -1612,7 +1612,7 @@ $(document).ready(function () {
                                        + '</ul>'
                                   + '</td>')
 
-                                    .append('<td>' + "نعم" + '</td>')
+                                    //.append('<td>' + "نعم" + '</td>')
                     ).draw().node();
 
                 });
@@ -1735,13 +1735,13 @@ $(document).ready(function () {
                                    + '</div>' +
 
                                    //PendingOutReach 3
-                                    '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
-                                   + '</div>' +
+                                 //   '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
+                                 //  + '</div>' +
 
                                 //PendingExternal 5
                                    '<div class="col-md-3">' +
@@ -1761,13 +1761,13 @@ $(document).ready(function () {
                                  + '<button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress waves-effect waves-light"></button> </form>'
                                   + '</div>' +
                                    //OutReachInprgress 7
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
-                                  + '</div>' +
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
+                                 // + '</div>' +
                                    //closed 8
                                   '<div class="col-md-3">' +
                                   '<form action=" /sds/referalpersons/Index" method="post">'
@@ -1778,13 +1778,13 @@ $(document).ready(function () {
                                   + '</div>' +
 
                                    //OutReachClosed 9
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
-                                 + '</div>'
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
+                                 //+ '</div>'
 
                                    + '</div>'
                                     + '</li>'
@@ -1919,13 +1919,13 @@ $(document).ready(function () {
                                    + '</div>' +
 
                                    //PendingOutReach 3
-                                    '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
-                                   + '</div>' +
+                                 //   '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
+                                 //  + '</div>' +
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
@@ -1946,13 +1946,13 @@ $(document).ready(function () {
                                  + '<button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress waves-effect waves-light"></button> </form>'
                                   + '</div>' +
                                    //OutReachInprgress 7
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
-                                  + '</div>' +
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
+                                 // + '</div>' +
                                    //closed 8
                                   '<div class="col-md-3">' +
                                   '<form action=" /sds/referalpersons/Index" method="post">'
@@ -1963,13 +1963,13 @@ $(document).ready(function () {
                                   + '</div>' +
 
                                    //OutReachClosed 9
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
-                                 + '</div>'
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
+                                 //+ '</div>'
 
                                   + '</div>'
                                     + '</li>'
@@ -2105,13 +2105,13 @@ $(document).ready(function () {
                                    + '</div>' +
 
                                    //PendingOutReach 3
-                                    '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
-                                   + '</div>' +
+                                 //   '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
+                                 //  + '</div>' +
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
@@ -2142,13 +2142,13 @@ $(document).ready(function () {
                                   + '</div>' +
 
                                    //OutReachClosed 9
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
-                                 + '</div>'
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
+                                 //+ '</div>'
 
                                 + '</div>'
                                     + '</li>'
@@ -2157,7 +2157,7 @@ $(document).ready(function () {
                                        + '</li>'
                                        + '</ul>'
                                   + '</td>')
-                                   .append('<td>' + "لا" + '</td>')
+                                   //.append('<td>' + "لا" + '</td>')
 
                     ).draw().node();
 
@@ -2284,13 +2284,13 @@ $(document).ready(function () {
                                    + '</div>' +
 
                                    //PendingOutReach 3
-                                    '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
-                                   + '</div>' +
+                                 //   '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
+                                 //  + '</div>' +
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
@@ -2321,13 +2321,13 @@ $(document).ready(function () {
                                   + '</div>' +
 
                                    //OutReachClosed 9
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
-                                 + '</div>'
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed waves-effect waves-light"> وصول </button> </form>'
+                                 //+ '</div>'
 
                                   + '</div>'
                                     + '</li>'
@@ -2336,7 +2336,7 @@ $(document).ready(function () {
                                        + '</li>'
                                        + '</ul>'
                                   + '</td>')
-                                   .append('<td>' + "نعم" + '</td>')
+                                   //.append('<td>' + "نعم" + '</td>')
 
                     ).draw().node();
 
@@ -2462,13 +2462,13 @@ $(document).ready(function () {
                                    + '</div>' +
 
                                    //PendingOutReach 3
-                                    '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
-                                   + '</div>' +
+                                 //   '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
+                                 //  + '</div>' +
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
@@ -2497,13 +2497,13 @@ $(document).ready(function () {
                                  + '<button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress waves-effect waves-light"></button> </form>'
                                   + '</div>' +
                                    //OutReachInprgress 7
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
-                                  + '</div>'
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
+                                 // + '</div>'
 
 
                                   + '</div>'
@@ -2514,7 +2514,7 @@ $(document).ready(function () {
                                        + '</ul>'
                                   + '</td>')
 
-                                  .append('<td>' + "لا" + '</td>')
+                                  //.append('<td>' + "لا" + '</td>')
 
                     ).draw().node();
 
@@ -2641,13 +2641,13 @@ $(document).ready(function () {
                                    + '</div>' +
 
                                    //PendingOutReach 3
-                                    '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
-                                   + '</div>' +
+                                 //   '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger  PendingOutReach waves-effect waves-light"> وصول </button> </form>'
+                                 //  + '</div>' +
 
                                    //PendingRejected 4
                                    '<div class="col-md-3">' +
@@ -2676,13 +2676,13 @@ $(document).ready(function () {
                                  + '<button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger  ApprovedInprgress waves-effect waves-light"></button> </form>'
                                   + '</div>' +
                                    //OutReachInprgress 7
-                                   '<div class="col-md-3">' +
-                                  '<form action=" /sds/referalpersons/Index" method="post">'
-                                 + '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
-                                 + '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
-                                 + '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
-                                 + '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
-                                  + '</div>' +
+                                 //  '<div class="col-md-3">' +
+                                 // '<form action=" /sds/referalpersons/Index" method="post">'
+                                 //+ '<input type="hidden" class="idreferalperson" name="idreferalperson" value="' + referal.idreferalperson + '">'
+                                 //+ '<input type="hidden" class="idcase" name="idcase" value="' + referal.idcase + '">'
+                                 //+ '<input type="hidden" class="idperson" name="idperson" value="' + referal.idperson + '">'
+                                 //+ '<button type="button" value="" title="قيد المتابعة-وصول" class=" fa fa-spinner icon-large btn btn-danger  OutReachInprgress waves-effect waves-light"> وصول </button> </form>'
+                                 // + '</div>' +
 
 
                                    +'</div>'
@@ -2693,7 +2693,7 @@ $(document).ready(function () {
                                        + '</ul>'
                                   + '</td>')
 
-                                  .append('<td>' + "نعم" + '</td>')
+                                 // .append('<td>' + "نعم" + '</td>')
 
 
 

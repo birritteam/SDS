@@ -1704,6 +1704,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                 referalperson.referalstate = "Approved";
                 referalperson.servicestate = "Pending";
                 referalperson.referaldate = DateTime.Now;
+                referalperson.servicestartdate = null;
+                referalperson.serviceenddate = null;
                 db.Entry(referalperson).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -1744,6 +1746,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                 referalperson.referalstate = "Rejected";
                 referalperson.servicestate = "Pending";
                 referalperson.referaldate = DateTime.Now;
+                referalperson.servicestartdate = null;
+                referalperson.serviceenddate = null;
                 db.Entry(referalperson).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -1764,6 +1768,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                 referalperson.referalstate = "Approved";
                 referalperson.servicestate = "In prgress";
                 referalperson.referaldate = DateTime.Now;
+                referalperson.servicestartdate = DateTime.Now;
+                referalperson.serviceenddate = null;
                 db.Entry(referalperson).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -1806,6 +1812,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 referalperson.referalstate = "Approved";
                 referalperson.servicestate = "Closed";
                 referalperson.referaldate = DateTime.Now;
+                referalperson.serviceenddate = DateTime.Now;
                 db.Entry(referalperson).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -1847,6 +1854,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                 referalperson.referalstate = "External";
                 referalperson.servicestate = "Pending";
                 referalperson.referaldate = DateTime.Now;
+                referalperson.servicestartdate = null;
+                referalperson.serviceenddate = null;
                 db.Entry(referalperson).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");

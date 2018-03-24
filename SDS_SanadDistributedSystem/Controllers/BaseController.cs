@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 using SDS_SanadDistributedSystem.Models;
 
 namespace SDS_SanadDistributedSystem.Controllers
@@ -14,7 +15,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // GET: Base
         public BaseController()
         {
-            ViewBag.ServicesBar = db.services.ToList();
+            ViewBag.ServicesBar = db.services.Include(s=>s.centerservices).Where(u => u.centerservices.Any(s => s.idservice_FK == u.idservice && s.enabled )).ToList();
 
             //if (CountNotificationOffilicn != 0)
             //{
