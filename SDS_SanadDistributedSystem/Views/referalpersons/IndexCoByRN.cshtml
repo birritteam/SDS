@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<SDS_SanadDistributedSystem.Models.referalperson>
 
 @{
-    ViewBag.Title = "الصفحة الرئيسية"+ ViewBag.case_manager;
+    ViewBag.Title = "الصفحة الرئيسية" + ViewBag.case_manager;
     Layout = "~/Views/Shared/_Layout.cshtml";
     //Layout = "_referallayout.cshtml";
 
@@ -31,12 +31,42 @@
     @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">    </script>*@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">جديدة أو معلقة <h5>@*@new_Count*@</h5></a></li>
-        <li role="presentation"><a href="#second" aria-controls="second" role="tab" data-toggle="tab">مقبولة  ولم يخدم</a></li>
-        <li role="presentation"><a href="#third" aria-controls="third" role="tab" data-toggle="tab">مرفوضة</a></li>
-        <li role="presentation"><a href="#fourth" aria-controls="fourth" role="tab" data-toggle="tab"> قيد المتابعة</a></li>
-        <li role="presentation"><a href="#fifth" aria-controls="fifth" role="tab" data-toggle="tab">مغلقة</a></li>
-        <li role="presentation"><a href="#sixth" aria-controls="sixth" role="tab" data-toggle="tab">خارجية</a></li>
+        <li role="presentation" class="active">
+            <a href="#first" aria-controls="first" role="tab" data-toggle="tab">
+                جديدة أو معلقة <span class="badge badge-warning ora    badge-pill count1">
+                </span><h5>@*@new_Count*@</h5>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#second" aria-controls="second" role="tab" data-toggle="tab">
+                مقبولة  ولم يخدم <span class="badge badge-warning ora  badge-pill count2">
+                </span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#third" aria-controls="third" role="tab" data-toggle="tab">
+                مرفوضة <span class="badge badge-warning ora  badge-pill count3">
+                </span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#fourth" aria-controls="fourth" role="tab" data-toggle="tab">
+                قيد المتابعة <span class="badge badge-warning ora  badge-pill count4">
+                </span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#fifth" aria-controls="fifth" role="tab" data-toggle="tab">
+                مغلقة <span class="badge badge-warning ora  badge-pill count5">
+                </span>
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#sixth" aria-controls="sixth" role="tab" data-toggle="tab">
+                خارجية <span class="badge badge-warning ora  badge-pill count6">
+                </span>
+            </a>
+        </li>
         <li role="presentation"><a href="#seventh" aria-controls="seventh" role="tab" data-toggle="tab">بحث</a></li>
         @if (User.IsInRole("cmIOutReachTeam"))
         {
@@ -66,33 +96,35 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.referalstate)
                             </th>*@
-                        <th>
-                            @Html.DisplayNameFor(model => model.referaldate)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.referaldate)
+                            </th>*@
                         <th>
                             الخدمة
                         </th>
                         @*<th>
                                 @Html.DisplayNameFor(model => model.servicestate)
                             </th>*@
-                        <th>
-                            @Html.DisplayNameFor(model => model.servicestartdate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.serviceenddate)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.servicestartdate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.serviceenddate)
+                            </th>*@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.outreachnote)
+                            </th>*@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.AspNetUser.Email)
                             </th>*@
@@ -126,9 +158,9 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.referalstate)
                                     </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.referaldate)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.referaldate)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.service.name)
 
@@ -136,25 +168,31 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.servicestate)
                                     </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.servicestartdate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.serviceenddate)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.servicestartdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.serviceenddate)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
-
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
+
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -206,24 +244,26 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.servicestate)
                             </th>*@
-                        <th>
-                            @Html.DisplayNameFor(model => model.servicestartdate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.serviceenddate)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.servicestartdate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.serviceenddate)
+                            </th>*@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.outreachnote)
+                            </th>*@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.AspNetUser.Email)
                             </th>*@
@@ -238,8 +278,8 @@
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
                         @*<th>
-                            وصول
-                        </th>*@
+                                وصول
+                            </th>*@
                         @*<th></th>*@
                     </tr>
                 </thead>
@@ -268,14 +308,20 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.servicestate)
                                     </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.servicestartdate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.serviceenddate)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.servicestartdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.serviceenddate)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -283,9 +329,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -300,8 +346,8 @@
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 @*<td>
-                                    لا
-                                </td>*@
+                                        لا
+                                    </td>*@
                                 @*<td>*@
                                 @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
@@ -334,14 +380,20 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.servicestate)
                                     </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.servicestartdate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.serviceenddate)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.servicestartdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.serviceenddate)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -349,9 +401,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -366,8 +418,8 @@
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 @*<td>
-                                    نعم
-                                </td>*@
+                                        نعم
+                                    </td>*@
                                 @*<td>*@
                                 @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
@@ -405,24 +457,26 @@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.servicestate)
                             </th>*@
-                        <th>
-                            @Html.DisplayNameFor(model => model.servicestartdate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.serviceenddate)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.servicestartdate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.serviceenddate)
+                            </th>*@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.outreachnote)
+                            </th>*@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.AspNetUser.Email)
                             </th>*@
@@ -464,14 +518,20 @@
                                 @*<td>
                                     @Html.DisplayFor(modelItem => item.servicestate)
                                     </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.servicestartdate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.serviceenddate)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.servicestartdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.serviceenddate)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -479,9 +539,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -537,21 +597,23 @@
                         <th>
                             @Html.DisplayNameFor(model => model.servicestartdate)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.serviceenddate)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.serviceenddate)
+                            </th>*@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.outreachnote)
+                            </th>*@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.AspNetUser.Email)
                             </th>*@
@@ -566,8 +628,8 @@
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
                         @*<th>
-                            وصول
-                        </th>*@
+                                وصول
+                            </th>*@
                         @*<th></th>*@
                     </tr>
                 </thead>
@@ -600,11 +662,17 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.servicestartdate)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.serviceenddate)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.serviceenddate)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -612,9 +680,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -629,8 +697,8 @@
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 @*<td>
-                                    لا
-                                </td>*@
+                                        لا
+                                    </td>*@
                                 @*<td>*@
                                 @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
@@ -666,11 +734,17 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.servicestartdate)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.serviceenddate)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.serviceenddate)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -678,9 +752,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -695,8 +769,8 @@
                                         @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 @*<td>
-                                    نعم
-                                </td>*@
+                                        نعم
+                                    </td>*@
                                 @*<td>*@
                                 @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
@@ -745,15 +819,17 @@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.outreachnote)
+                            </th>*@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.AspNetUser.Email)
                             </th>*@
@@ -768,8 +844,8 @@
                                 @Html.DisplayNameFor(model => model.service.name)
                             </th>*@
                         @*<th>
-                            وصول
-                        </th>*@
+                                وصول
+                            </th>*@
                         @*<th></th>*@
                     </tr>
                 </thead>
@@ -809,14 +885,20 @@
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -831,8 +913,8 @@
                                     @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 @*<td>
-                                    لا
-                                </td>*@
+                                        لا
+                                    </td>*@
                                 @*<td>*@
                                 @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
@@ -876,14 +958,20 @@
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -898,8 +986,8 @@
                                     @Html.DisplayFor(modelItem => item.service.name)
                                     </td>*@
                                 @*<td>
-                                    نعم
-                                </td>*@
+                                        نعم
+                                    </td>*@
                                 @*<td>*@
                                 @*@Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK }) |
                                     @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")*@
@@ -937,24 +1025,26 @@
                         <th>
                             الخدمة
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.servicestartdate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.serviceenddate)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.servicestartdate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.serviceenddate)
+                            </th>*@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.outreachnote)
+                            </th>*@
                         @*<th>
                                 @Html.DisplayNameFor(model => model.AspNetUser.Email)
                             </th>*@
@@ -996,14 +1086,20 @@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.servicestate)
                                     </td>*@
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.servicestartdate)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.serviceenddate)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.servicestartdate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.serviceenddate)
+                                    </td>*@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -1011,9 +1107,9 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.outreachnote)
+                                    </td>*@
                                 @*<td>
                                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                     </td>*@
@@ -1111,15 +1207,17 @@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.outreachnote)
+                            </th>*@
 
                         @*<th></th>*@
                     </tr>

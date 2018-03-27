@@ -96,15 +96,17 @@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        </th>*@
                         <th>عائلته مزارة</th>
                         <th> تاريخ الزيارة</th>
                         <th>العمليات الممكنة</th>
@@ -151,14 +153,20 @@
                                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.person.evaluation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.family.evaluation)
+                                </td>
+                                <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
                                 </td>
-                                <td>
+                                @*<td>
                                     @Html.DisplayFor(modelItem => item.outreachnote)
-                                </td>
+                                </td>*@
                                 
                                   @if (item.person.family.is_visited)
                                   {
@@ -265,15 +273,17 @@
                         <th>
                             المرسل
                         </th>
+                        <th> تقييم الفرد</th>
+                        <th> تقييم العائلة</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.recieverevalution)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.outreachnote)
-                        </th>
+                        </th>*@
                         <th>إحالة جديدة
                         </th>
 

@@ -133,7 +133,7 @@
     <value>الشخص</value>
   </data>
   <data name="recieverevalution" xml:space="preserve">
-    <value>تقيم المستقبل</value>
+    <value>ملاحظات المستقبل</value>
   </data>
   <data name="referaldate" xml:space="preserve">
     <value>تاريخ الإحالة</value>
@@ -145,7 +145,7 @@
     <value>حالة الإحالة</value>
   </data>
   <data name="senderevalution" xml:space="preserve">
-    <value>تقيم أولي</value>
+    <value>ملاحظات المرسل</value>
   </data>
   <data name="serviceenddate" xml:space="preserve">
     <value>تاريخ إنهاء الخدمة</value>

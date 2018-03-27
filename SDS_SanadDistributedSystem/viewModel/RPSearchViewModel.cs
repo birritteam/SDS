@@ -40,6 +40,9 @@ namespace SDS_SanadDistributedSystem.viewModel
 
         public string recieverevalution { get; set; }
 
+        public int? personEevalution { get; set; }
+        public int? familyEvalution { get; set; }
+
         //public string idcenter_FK { get; set; }
 
         public string outreachnote { get; set; }

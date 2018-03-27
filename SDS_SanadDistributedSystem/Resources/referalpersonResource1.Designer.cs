@@ -106,7 +106,7 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تقيم المستقبل.
+        ///   Looks up a localized string similar to ملاحظات المستقبل.
         /// </summary>
         public static string recieverevalution {
             get {
@@ -151,7 +151,7 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to تقيم أولي.
+        ///   Looks up a localized string similar to ملاحظات المرسل.
         /// </summary>
         public static string senderevalution {
             get {

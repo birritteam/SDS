@@ -358,6 +358,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\cardview.css" />
+    <Content Include="Content\custom-alert-bootstrap.css" />
+    <Content Include="Content\custom-alert.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -581,6 +583,8 @@
     <Content Include="Content\GE_SS_Text_Light.ttf" />
     <Content Include="Content\GE_SS_Text_Light.woff" />
     <None Include="Properties\PublishProfiles\sds.pubxml" />
+    <Content Include="Scripts\custom-alert-debug.js" />
+    <Content Include="Scripts\custom-alert.min.js" />
     <Content Include="Scripts\editPersonFunctions.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />

@@ -41,7 +41,8 @@
                 }
                 $.each(response, function (index, value) {
                     //var contactid = value.Contactid;/sds/referalpersons/Edit?idreferalperson=30&idperson=12345C3&idcase=4
-                    $('#notiContent').append($("<a class='col-md-12 list-group-item' href='/sds/referalpersons/Edit?idreferalperson=" + value.idreferalperson + "&idperson=" + value.idperson_FK + "&idcase=" + value.idcase_FK + "' target='_blank'>" +
+                    //Edit?idreferalperson=" + value.idreferalperson + "&idperson=" + value.idperson_FK + "&idcase=" + value.idcase_FK + 
+                    $('#notiContent').append($("<a class='col-md-12 list-group-item' href='/sds/referalpersons/index' target='_Self'>" +
                                                  "<div class='col-md-2'> <i class='fa fa-newspaper-o fa-lg' aria-hidden='true'></i></div> " +
                                                "<div class='col-md-10'> <p style='font-size:12px'> تمت إحالة " + value.personname + " إلى خدمة " + value.serviceType + " من قبل " + value.senderuserrole + " </p>  <small style='float: left; font-size:10px;'> <i class='fa fa-home fa-lg' aria-hidden='true'></i> " + value.center + " - <i class='fa fa-calendar' aria-hidden='true'></i> " + value.referaldate.toString() + "</small> </div>" +
                                                "</div></a> "));

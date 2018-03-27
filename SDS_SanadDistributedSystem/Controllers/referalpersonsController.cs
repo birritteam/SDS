@@ -429,6 +429,9 @@ namespace SDS_SanadDistributedSystem.Controllers
                 referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
 
                 rp.referaldate = DateTime.Now;
+                if(rp.servicestartdate==null)
+                    rp.servicestartdate = DateTime.Now;
+
                 rp.serviceenddate = DateTime.Now;
 
                 rp.referalstate = "Approved";
@@ -534,6 +537,9 @@ namespace SDS_SanadDistributedSystem.Controllers
                 rps.outreachnote = rp.outreachnote;
             else
                 rps.outreachnote = "لم يحدد ";
+
+            rps.personEevalution = rp.person.evaluation;
+            rps.familyEvalution = rp.person.family.evaluation;
 
             rps.referalsender_FK = db.AspNetUsers.Find(rp.referalsender_FK).Email;
 
@@ -686,7 +692,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmSGBV").First().Id;
                     ViewBag.role_id = db.AspNetRoles.Where(r => r.Name == "cmIOutReachTeam").First().Id;
                     //  referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK ==user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK != role_id && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(500);
+                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK != role_id && r.AspNetUser.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(500);
                     ViewBag.temporal = db.temporals.Where(t => t.idcenter_FK == user.idcenter_FK).ToList();
                     ViewBag.case_manager = "فريق وصول";
                 }
@@ -843,19 +849,23 @@ namespace SDS_SanadDistributedSystem.Controllers
             var roles = user.AspNetRoles.ToList();
             if (roles.Count > 0)
             {
-                if (User.IsInRole(rm))
+                if (User.IsInRole(rm) || rm.Equals("psychologicalSupport"))
                 {
-                    var idcase = db.AspNetRoles.Where(r => r.Name == rm).First().idcase;
-                    ViewBag.idcase = idcase;
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idcase_FK == idcase ).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
+                    int?  idcase = 0;
+                    if (!rm.Equals("psychologicalSupport"))
+                    {
+                         idcase = db.AspNetRoles.Where(r => r.Name == rm).First().idcase;
+                        ViewBag.idcase = idcase;
 
+                        referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idcase_FK == idcase).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
+                    }
                     if (rm.Equals("cmEducation"))
                         ViewBag.case_manager = "تعليمي";
                     if (rm.Equals("cmProfessional"))
                         ViewBag.case_manager = "مهني";
                     if (rm.Equals("cmChildProtection"))
                         ViewBag.case_manager = "حماية الطفل";
-                    if (rm.Equals("PsychologicalSupport"))
+                    if (rm.Equals("psychologicalSupport"))
                     {
 
                          idcase = db.AspNetRoles.Where(r => r.Name == "cmPsychologicalSupport1").First().idcase;
@@ -1068,6 +1078,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                     rps.outreachnote = r.outreachnote;
                 else
                     rps.outreachnote = "لم يحدد ";
+                rps.personEevalution = r.person.evaluation;
+                rps.familyEvalution = r.person.family.evaluation;
 
                 rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
 
@@ -1129,6 +1141,9 @@ namespace SDS_SanadDistributedSystem.Controllers
                 else
                     rps.outreachnote = "لم يحدد ";
 
+                rps.personEevalution = r.person.evaluation;
+                rps.familyEvalution = r.person.family.evaluation;
+
                 rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
 
                 RPSearchViewModels.Add(rps);
@@ -1183,6 +1198,9 @@ namespace SDS_SanadDistributedSystem.Controllers
                     rps.outreachnote = r.outreachnote;
                 else
                     rps.outreachnote = "لم يحدد ";
+
+                rps.personEevalution = r.person.evaluation;
+                rps.familyEvalution = r.person.family.evaluation;
 
                 rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
 
@@ -1243,6 +1261,9 @@ namespace SDS_SanadDistributedSystem.Controllers
                 else
                     rps.outreachnote = "لم يحدد ";
 
+                rps.personEevalution = r.person.evaluation;
+                rps.familyEvalution = r.person.family.evaluation;
+
                 rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
 
                 RPSearchViewModels.Add(rps);
@@ -1280,13 +1301,13 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public async Task<ActionResult> editreferalrow(int idreferalperson, int idperson, int idcase,string recieverevalution, string outreachnote)
+        public async Task<ActionResult> editreferalrow(int idreferalperson, int idperson, int idcase,string recieverevalution)
         {
             try
             {
                 referalperson rp = db.referalpersons.Find(idreferalperson, idperson, idcase);
             rp.recieverevalution = recieverevalution;
-            rp.outreachnote = outreachnote;
+           
             db.Entry(rp).State = EntityState.Modified;
 
             await db.SaveChangesAsync();

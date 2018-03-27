@@ -27,9 +27,9 @@
     @*<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
             @Html.ActionLink(" ", "Index", "people",null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list", @title = "عودة إلى قائمة الأشخاص" })
         </span>*@
-    @*<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
+    <span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
         @Html.ActionLink(" ", "Details", "people", new { id = @Model.person.idperson }, new { @class = "btn btn-primary btn-rounded p-3 fa fa-id-card-o", @title = "عودة إلى استمارة " + @Model.person.fname })
-    </span>*@
+    </span>
 
 
     <div class="card card-cascade">
@@ -54,6 +54,7 @@
 
                         </div>
                     </div>
+
 
 
                 </div>
@@ -110,7 +111,7 @@
 
                                 </div>
                                 <div class="row">
-                                    <input type="button" value="إضافة" class="btn btn-default btn-rounded p-0" onclick="successFillTableNew()" />
+                                    <input type="button" value="إضافة" id="addreferal" class="btn btn-default btn-rounded p-0" onclick="successFillTableNew()" />
 
                                 </div>
                             </div>
@@ -146,31 +147,34 @@
             </p>
 
             <div class="row">
-                <div style="display:inline;">
-                    @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
-                    @using (Html.BeginForm())
-            {
 
-                        @Html.AntiForgeryToken()
-
-                        <div class="form-group">
-                            <div class="col-md-12 ">
-                                <input type="button" value="إرسال الإحالات" id="sendrefeal" class="btn btn-default btn-rounded p-0" onclick="successSendReferals()" />
-                            </div>
-                        </div>
-
-                    }
-                </div>
             </div>
-            @*<div class="row">
+            <div class="row">
+                @using (Html.BeginForm("personReferal", "referalpersons", FormMethod.Post, new { @style = "display:inline;" }))
+                { @Html.AntiForgeryToken()
+                    @*<div class="row" style="display:inline;">*@
 
 
                     <p class="card-footer">
+                        @*<div>*@
+                        @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
 
+
+
+
+                        @*<div class="form-group">
+                            <div class="col-md-12 ">*@
+                        <input type="button" value="إرسال الإحالات" id="sendrefeal" class="btn btn-default btn-rounded p-0" onclick="successSendReferals()" />
+                        @*</div>
+                            </div>*@
+
+
+                        @*</div>*@
                     </p>
 
-                </div>*@
-
+                    @*</div>*@
+                }
+            </div>
         </div>
     </div>
 
