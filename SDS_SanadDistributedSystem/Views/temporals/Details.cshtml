@@ -12,7 +12,16 @@
 
     <!--Card image-->
     <div class="view card-header dark-blue-bg white-text">
-        <h3 class="h3-responsive card-header-content">استمارة بيانات غير مكتملة</h3>
+        <h3 class="h3-responsive card-header-content">استمارة بيانات غير مكتملة 
+        @if (Model.servicestate.Equals("Closed")) {
+<span class="text-success"> (مغلقة)</span>
+        }
+        else if (Model.servicestate.Equals("In prgress"))
+        {
+            <span class="text-warning"> (تم الاستكمال)</span>
+        }
+        
+        </h3>
         <p class="card-header-content sub-header h4-responsive">@Model.idperson</p>
     </div>
     <!--/Card image-->
@@ -169,22 +178,40 @@
         <div class="row">
 
         </div>
+@if (Model.servicestate.Equals("Pending"))
+{
         <div class="row">
 
             <p class="card-footer">
 
-                @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
-                {
+                
 
-                    <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "people",new { id=Model.idperson})'><i class="fa fa-edit"></i>    تعديل  </a>
+                    <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "temporals",new { id=Model.idperson})'><i class="fa fa-edit"></i>    تعديل  </a>
                     @*@Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" , @title = "تعديل بيانات الاستمارة" })*@
-                }
+                
 
             </p>
 
         </div>
 
+}
+@if (Model.servicestate.Equals("In prgress"))
+{
+    <div class="row">
 
+        <p class="card-footer">
+
+
+
+            <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "temporals",new { id=Model.idperson})'><i class="fa fa-edit"></i>    تعديل  </a>
+            @*@Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" , @title = "تعديل بيانات الاستمارة" })*@
+
+
+        </p>
+
+    </div>
+
+}
         @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
     </div>
 </div>

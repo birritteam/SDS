@@ -248,6 +248,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                temporal.servicestate = "In prgress";
                 db.Entry(temporal).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -311,6 +312,40 @@ namespace SDS_SanadDistributedSystem.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> closeOutreachReferal(string idperson)
+        {
+            try
+            {
+                temporal temp = db.temporals.Find(idperson);
+
+                temp.serviceenddate = DateTime.Now;
+                temp.servicestate = "Closed";
+
+                db.Entry(temp).State = EntityState.Modified;
+
+                await db.SaveChangesAsync();
+
+                return new JsonResult
+                {
+                    Data = new
+                    {
+                        idperson = idperson,
+                        servicestate = "مغلقة"
+                    },
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
+            }
+            catch (Exception e)
+            {
+                return new JsonResult { Data = "error" };
+            }
+
+
         }
     }
 }

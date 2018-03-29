@@ -18,6 +18,16 @@ function referalOpenedSuccessfully(data) {
     $("#" + data.idperson + "row").removeClass("grey lighten-3 grey-text");
 }
 
+function outreachReferalClosedSuccessfully(data) {
+    toastr.success("تم إغلاق الحالة " + data.idperson);
+    //toastr.info(data.idperson)
+    $("#closeReferal" + data.idperson).addClass("hidden");
+    //$("#openReferal" + data.idperson).removeClass("hidden");
+    $("#serviceState" + data.idperson).html(data.servicestate);
+    $("#serviceState" + data.idperson).addClass("text-success");
+    //$("#" + data.idperson + "row").addClass("grey lighten-3 grey-text");
+}
+
 function referalFailedToOpen() {
     toastr.error("فشلت عملية فتح الحالة");
 }

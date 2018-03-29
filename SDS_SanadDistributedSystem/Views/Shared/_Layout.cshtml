@@ -813,10 +813,26 @@
             <!--/. Sidebar navigation -->
             <!-- Navbar -->
             <nav class="navbar navbar-fixed-top mobile-fixed navbar-toggleable-md navbar-dark scrolling-navbar  top-nav-collapse">
+                
+                
+                   
+                
                 <!-- SideNav slide-out button -->
-                <div class="float-right" style="direction:ltr">
+                <div class="float-right">
                     <a href="#" data-activates="slide-out" class="button-collapse" style="color:#fff;cursor:pointer"><i class="fa fa-bars"></i></a>
                 </div>
+
+                
+                @*<div class="navbar-collapse collapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li class="nav-item">@Html.ActionLink("About", "About", "Home")</li>
+                        <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>*@
+
+
                 <!-- Breadcrumb-->
                 <div class="breadcrumb-dn mr-auto float-left">
                    @Html.Partial("_NotificationBell")
