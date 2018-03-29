@@ -19,19 +19,17 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         private string[]
             gender = { "أنثى", "ذكر" },
-            nationality = {"", "عربي - سوري" },
-            martial = {"", "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
+            nationality = { "", "عربي - سوري" },
+            martial = { "", "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
             education = {"","أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
             "6 سنوات (صف سادس)", "7 سنوات (صف سابع)", "8 سنوات (صف ثامن)","9 سنوات (صف تايع)","10 سنوات (صف عاشر)","11 سنة (صف حادي عشر)","12 سنة (صف ثاني عشر)",
             "شهادة جامعية","دراسات عليا","تدريب مهني أو تقني" },
-            relationtype = {"", "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
+            relationtype = { "", "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
             educationstate = { "الوضع الحالي", "آخر تحصيل" };
 
 
 
-            private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
-
-
+        private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
         public JsonResult nationalNumberAlreadyExisted(string nationalnumber, int? idperson)
         {
@@ -48,7 +46,8 @@ namespace SDS_SanadDistributedSystem.Controllers
         public JsonResult idAlreadyExisted(string family_order_id, int? idperson)
         {
             bool existed;
-            if (idperson == null) {
+            if (idperson == null)
+            {
                 existed = db.people.Any(x => x.family_order_id.Equals(family_order_id));
 
             }
@@ -58,11 +57,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             return Json(!existed, JsonRequestBehavior.AllowGet);
         }
 
-
-
-
-
-        [Authorize(Roles = "receptionist,cmIOutReachTeam,mobileTeamReceptionist")]
+        [Authorize(Roles = "receptionist,caseManager")]
         // GET: people
         public async Task<ActionResult> Index(string full_name, string nationalNumber)
         {
@@ -80,7 +75,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(await people.ToListAsync());
         }
-        [Authorize(Roles = "receptionist,cmIOutReachTeam,mobileTeamReceptionist")]
+        [Authorize(Roles = "receptionist,caseManager")]
         // GET: people/Details/5
         public async Task<ActionResult> Details(int? id)
         {
@@ -175,7 +170,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     }
                 }
             }
-   
+
             List<string> selectedDocuments = new List<string>();
 
             foreach (managelist d in managelists.Where(ml => ml.flag == "D"))
@@ -195,7 +190,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(person);
         }
-        [Authorize(Roles = "receptionist,mobileTeamReceptionist")]
+        [Authorize(Roles = "receptionist")]
         // GET: people/Create
         public ActionResult Create(int id)
         {
@@ -206,7 +201,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             person.idperson = id;
 
             ViewBag.family = person.family;
-            
+
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email");
             //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name");
 
@@ -216,16 +211,16 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             string selectedCurrentAddress = "";
             var familymanages = db.familymanages.Where(f => f.idfamily_FK == person.family.idfamily);
-            if(familymanages!=null)
-            foreach (familymanage fm in familymanages )
-            {
-                
-                if (fm.managelist.flag.Equals("A")&& fm.eval.Equals("Current"))
+            if (familymanages != null)
+                foreach (familymanage fm in familymanages)
                 {
+
+                    if (fm.managelist.flag.Equals("A") && fm.eval.Equals("Current"))
+                    {
                         selectedCurrentAddress = fm.managelist.name;
-                    
+
+                    }
                 }
-            }
 
             ViewBag.selectedCurrentAddress = selectedCurrentAddress;
 
@@ -265,7 +260,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(person);
         }
-        [Authorize(Roles = "receptionist,mobileTeamReceptionist")]
+        [Authorize(Roles = "receptionist")]
         // POST: people/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -343,8 +338,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                         db.personmanages.Add(weakness);
                     }
 
-                if(documents != null)
-                    foreach(int i in documents)
+                if (documents != null)
+                    foreach (int i in documents)
                     {
                         personmanage document = new personmanage()
                         {
@@ -382,7 +377,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
             return new JsonResult { Data = "Failed" };
         }
-        [Authorize(Roles = "receptionist,cmIOutReachTeam,mobileTeamReceptionist")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // GET: people/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
@@ -435,7 +430,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 }
             }
 
-            
+
 
             ViewBag.currentWorkID = new SelectList(works, "idmanagelist", "name", selectedCurrentWorkId);
             ViewBag.previousWorkID = new SelectList(works, "idmanagelist", "name", selectedPreviousWorkId);
@@ -506,7 +501,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber,evaluation,applicant,family_order_id")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
         {
-          //  List<int> weaknessesList = weaknesses.ToList();
+            //  List<int> weaknessesList = weaknesses.ToList();
             if (ModelState.IsValid)
             {
                 List<personmanage> personmanages = db.personmanages.Where(ps => ps.idperson_FK == person.idperson).ToList();
@@ -614,10 +609,10 @@ namespace SDS_SanadDistributedSystem.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "referalpersons",null);
+                    return RedirectToAction("Index", "referalpersons", null);
                 }
 
-                
+
             }
             //ViewBag.iduser = new SelectList(db.AspNetUsers, "Id", "Email", person.iduser);
             //ViewBag.idcenter_FK = new SelectList(db.centers, "idcenter", "name", person.idcenter_FK);

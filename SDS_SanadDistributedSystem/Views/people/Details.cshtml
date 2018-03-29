@@ -11,19 +11,19 @@
           class="shades">
         @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list", @title = "عودة إلى قائمة الأشخاص" })
     </span>
-    <span style="position:fixed; bottom: 20px; left: 150px; z-index:99;"
-          class="shades">
-        @Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users", @title = "عودة إلى صفحة العائلة" })
-    </span>
+
 }
-else if (User.IsInRole("cmIOutReachTeam"))
+else if (User.IsInRole("caseManager"))
 {
     <span style="position:fixed; bottom: 20px; left: 90px; z-index:99;"
           class="shades">
         @Html.ActionLink(" ", "Index", "referalpersons", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list", @title = "عودة إلى قائمة الإحالات" })
     </span>
 }
-
+<span style="position:fixed; bottom: 20px; left: 150px; z-index:99;"
+      class="shades">
+    @Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users", @title = "عودة إلى صفحة العائلة" })
+</span>
 
 
 
@@ -315,28 +315,43 @@ else if (User.IsInRole("cmIOutReachTeam"))
 
                     </div>
 
-                    <div class="row col-md-12">
-                        <h5><i class="fa fa-sticky-note-o" style="color:#ff8800"></i>     ملاحظات  </h5>
-                        <hr />
-                        @if (Model.note == null)
-                        {
-                            <text>لا يوجد ملاحظات</text>
-                        }
-                        else
-                        {
-                            @Html.DisplayFor(model => model.note)
-                        }
 
-                    </div>
                 </div>
 
             </div>
             @*<hr />*@
 
-
             <div class="row">
+                <div class="col-md-9">
+                    <h5 class="card-title"><i class="fa fa-percent" style="color:#ff8800"></i>    التقييم</h5>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>تقييم الفرد</label>
+                            @Html.DisplayFor(model => model.evaluation)
+                        </div>
+                        <div class="col-md-6">
+                            <label>تقييم العائلة</label>
+                            @Html.DisplayFor(model => model.family.evaluation)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5><i class="fa fa-sticky-note-o" style="color:#ff8800"></i>     ملاحظات  </h5>
+                    <hr />
+                    @if (Model.note == null)
+                    {
+                        <text>لا يوجد ملاحظات</text>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.note)
+                    }
+
+                </div>
 
             </div>
+
 
             <div class="row">
 
@@ -355,7 +370,7 @@ else if (User.IsInRole("cmIOutReachTeam"))
                     {
                         <table id="All" class="display table All text-center" cellspacing="0">
                             <thead>
-                                <tr >
+                                <tr>
                                     <th class="text-center">
                                         @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().service.name)
                                     </th>
@@ -379,24 +394,24 @@ else if (User.IsInRole("cmIOutReachTeam"))
                                     </th>
 
                                     @*<th>
-                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().servicestate)
-                                    </th>*@
-                                   <th class="text-center">
-                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().servicestartdate)
-                                        </th>
-                                        <th class="text-center">
-                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().serviceenddate)
-                                        </th>
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().servicestate)
+                                        </th>*@
+                                    <th class="text-center">
+                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().servicestartdate)
+                                    </th>
+                                    <th class="text-center">
+                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().serviceenddate)
+                                    </th>
 
-                                      @*  <th>
-        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().senderevalution)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().recieverevalution)
-    </th>
-    <th>
-        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().outreachnote)
-    </th>*@
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().senderevalution)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().recieverevalution)
+                                    </th>
+                                    @*<th>
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().outreachnote)
+                                        </th>*@
                                     @*<th>
                                             @Html.DisplayNameFor(model => model.AspNetUser.Email)
                                         </th>*@
@@ -429,14 +444,14 @@ else if (User.IsInRole("cmIOutReachTeam"))
                                                 @Html.DisplayFor(modelItem => item.submittingdate)
                                             </td>*@
                                         @*<td>
-                                            @Html.DisplayFor(modelItem => item.referalstate)
-                                        </td>*@
+                                                @Html.DisplayFor(modelItem => item.referalstate)
+                                            </td>*@
                                         @*<td>
                                                 @Html.DisplayFor(modelItem => item.referaldate)
                                             </td>*@
                                         @*<td>
-                                            @Html.DisplayFor(modelItem => item.servicestate)
-                                        </td>*@
+                                                @Html.DisplayFor(modelItem => item.servicestate)
+                                            </td>*@
                                         <td>
 
                                             @{
@@ -480,19 +495,19 @@ else if (User.IsInRole("cmIOutReachTeam"))
                                             }
                                         </td>
                                         <td>
-                                                @Html.DisplayFor(modelItem => item.servicestartdate)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.serviceenddate)
-                                            </td>
+                                            @Html.DisplayFor(modelItem => item.servicestartdate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.serviceenddate)
+                                        </td>
 
-                                        @*    <td>
-                                                @Html.DisplayFor(modelItem => item.senderevalution)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.recieverevalution)
-                                            </td>
-                                            <td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.senderevalution)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.recieverevalution)
+                                        </td>
+                                        @*<td>
                                                 @Html.DisplayFor(modelItem => item.outreachnote)
                                             </td>*@
                                         @*<td>
@@ -534,12 +549,13 @@ else if (User.IsInRole("cmIOutReachTeam"))
                 @*@Html.ActionLink(" ", "personReferal", "referalpersons", new { id = Model.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة جديدة" })*@
                 @*@Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-1 fa fa-users" })*@
                 @*@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded fa fa-list p-1" })*@
-               
-                 @*@if (User.IsInRole("receptionist"))
-                {*@
+
+                @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
+                {
+
                     <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "people",new { id=Model.idperson})'><i class="fa fa-edit"></i>    تعديل  </a>
-                        @*@Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" , @title = "تعديل بيانات الاستمارة" })*@
-                @*}*@
+                    @*@Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" , @title = "تعديل بيانات الاستمارة" })*@
+                }
 
             </p>
 

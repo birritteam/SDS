@@ -708,6 +708,19 @@
                                     </ul>
                                 </div>
                             </li>
+                            <li>
+                                <a class="collapsible-header waves-effect arrow-r"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;القوائم المدارة<i class="fa fa-angle-down rotate-icon"></i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <a href="~/managelists/Create" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-plus-circle" style="color:white"></i> إضافة عنصر جديد </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/managelists/index" class="waves-effect">&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-list" style="color:white"></i> كافة العناصر</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
                         }
                         @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
                         {

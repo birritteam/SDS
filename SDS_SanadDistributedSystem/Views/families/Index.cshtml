@@ -5,27 +5,28 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>كافة العائلات المسجلة
+<h2>
+    كافة العائلات المسجلة
     @if (User.IsInRole("receptionist"))
     {
         <small>@Html.ActionLink("   ", "Create", "families", null, new { @class = "btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn", @title = "إضافة عائلة جديدة" })</small>
         <small>@Html.ActionLink(" ", "Create", "temporals", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus wow fadeIn", @title = "إضافة شخص ببيانات غير مكتملة" })</small>
     }
-    </h2>
+</h2>
 
 @*<p>
-    @if (User.IsInRole("receptionist"))
-    {
+        @if (User.IsInRole("receptionist"))
+        {
 
-        @Html.ActionLink("إضافة عائلة جديدة", "Create")<br />
-        @Html.ActionLink("إضافة شخص ببيانات غير مكتملة", "Create", "temporals")
-    }
+            @Html.ActionLink("إضافة عائلة جديدة", "Create")<br />
+            @Html.ActionLink("إضافة شخص ببيانات غير مكتملة", "Create", "temporals")
+        }
 
 
-</p>*@
+    </p>*@
 
-    @using (Html.BeginForm())
-    {
+@using (Html.BeginForm())
+{
     <p>
         <div class="md-form col-md-4">
             @Html.Editor("SN", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "البحث حسب الرقم التسلسلي" } })
@@ -33,63 +34,63 @@
         <div class="md-form col-md-4">
             @Html.Editor("family_book_number", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "البحث حسب رقم دفتر العائلة" } })
         </div>
-        
+
         <div class="md-form col-md-4">
             @Html.Editor("LastName", "", new { htmlAttributes = new { @class = "form-control", @placeholder = "البحث حسب الاسم الأخير" } })
         </div>
         <input type="submit" value="بحث" class="btn btn-default hidden" />
     </p>
-    }
+}
 
-    
-    <table class="table table-hover">
-        <tr class="wow fadeIn">
-            <th>
-                @Html.DisplayNameFor(model => model.family_book_number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.serial_number)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.lastname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.familynature)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.personcount)
-            </th>
-            <th>
-                عدد الأفراد المسجلين
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.family_head)
-            </th>
-            @*<th>
+
+<table class="table table-hover">
+    <tr class="wow fadeIn">
+        <th>
+            @Html.DisplayNameFor(model => model.family_book_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.serial_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.familynature)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.personcount)
+        </th>
+        <th>
+            عدد الأفراد المسجلين
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.family_head)
+        </th>
+        @*<th>
                 @Html.DisplayNameFor(model => model.lastaddress)
             </th>*@
+        @*<th>
+            العنوان الحالي
+            @*@@*@Html.DisplayNameFor(model => model.familymanages.Where(f=>f.eval.Equals("Current")))*@@*@
+                </th>*@
             @*<th>
-                العنوان الحالي
-                @*@@*@Html.DisplayNameFor(model => model.familymanages.Where(f=>f.eval.Equals("Current")))*@@*@
-            </th>*@
+                    @Html.DisplayNameFor(model => model.displacementdate)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.displacementdate)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.phone1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.phone1owner)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.phone1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.phone1owner)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.phone2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.phone2owner)
+                </th>*@
             @*<th>
-                @Html.DisplayNameFor(model => model.phone2)
-            </th>     
-            <th>
-                @Html.DisplayNameFor(model => model.phone2owner)
-            </th>*@
-            @*<th>
-                @Html.DisplayNameFor(model => model.note)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.note)
+                </th>*@
             @*<th>
                     @Html.DisplayNameFor(model => model.AspNetUser.Email)
                 </th>*@
@@ -124,48 +125,51 @@
                     @Html.DisplayFor(modelItem => item.family_head)
                 </td>
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.lastaddress)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.lastaddress)
+                    </td>*@
                 @*<td>*@
-@*@Html.DisplayFor(modelItem => item.currentaddress)*@
-                    @*@item.familymanages.Where(f=>f.managelist.flag.Equals("A")&&f.eval.Equals("Current")).Select(f=>f.managelist.name)*@
+                @*@Html.DisplayFor(modelItem => item.currentaddress)*@
+                @*@item.familymanages.Where(f=>f.managelist.flag.Equals("A")&&f.eval.Equals("Current")).Select(f=>f.managelist.name)*@
                 @*</td>*@
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.displacementdate)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.displacementdate)
+                    </td>*@
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.phone1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.phone1owner)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.phone1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone1owner)
+                    </td>*@
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.phone2)
-                </td>
-                
-                <td>
-                    @Html.DisplayFor(modelItem => item.phone2owner)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.phone2)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone2owner)
+                    </td>*@
                 @*<td>
-                    @Html.DisplayFor(modelItem => item.note)
-                </td>*@
+                        @Html.DisplayFor(modelItem => item.note)
+                    </td>*@
                 @*<td>
                         @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                     </td>*@
                 <td>
-                    @Html.ActionLink(" ", "Edit", new { id = item.idfamily }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
+                    @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
+                    {
+                        @Html.ActionLink(" ", "Edit", new { id = item.idfamily }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
+                    }
                     @Html.ActionLink(" ", "Details", new { id = item.idfamily }, new { @class = "btn btn-primary btn-rounded fa fa-group p-1", @title = "تفاصيل" })
 
 
                     @*@Html.ActionLink(" تعديل ", "Edit", new { id = item.idfamily }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
-                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idfamily }, new { @class = "btn btn-primary btn-rounded p-0" })*@ 
-                   @* @Html.ActionLink("حذف", "Delete", new { id = item.idfamily })*@
+                        @Html.ActionLink("تفاصيل", "Details", new { id = item.idfamily }, new { @class = "btn btn-primary btn-rounded p-0" })*@
+                    @* @Html.ActionLink("حذف", "Delete", new { id = item.idfamily })*@
                     @if (User.IsInRole("receptionist"))
                     {
-                       @*@Html.ActionLink("إضافة شخص", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded p-0" })*@
-                        if (item.people.Count < item.personcount)
-                        {
-                            @Html.ActionLink(" ", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded fa fa-user-plus p-1", @title = "إضافة شخص" })
+                        @*@Html.ActionLink("إضافة شخص", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded p-0" })*@
+                    if (item.people.Count < item.personcount)
+                    {
+                        @Html.ActionLink(" ", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded fa fa-user-plus p-1", @title = "إضافة شخص" })
 
                         }
 
@@ -174,8 +178,8 @@
 
                 </td>
                 @*<td>
-                   <a href="/people/Create/@item.idfamily">إضافة شخص</a>
-                </td>*@
+                       <a href="/people/Create/@item.idfamily">إضافة شخص</a>
+                    </td>*@
             </tr>
         }
 

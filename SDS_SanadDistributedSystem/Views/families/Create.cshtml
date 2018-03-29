@@ -69,7 +69,7 @@
                             @Html.DropDownList("addressTypeID", null, htmlAttributes: new { @class = "form-control" })
                         </div>
                     </div>
-                </div>                
+                </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <div class="col-md-4"><label class="control-label" for="currentAddressID">العنوان الحالي</label></div>
@@ -78,24 +78,24 @@
                         </div>
                     </div>
                 </div>
-                
-                @if (User.IsInRole("mobileTeamReceptionist"))
-                {
-                    
-                        
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="col-md-4">@Html.LabelFor(model => model.sector, htmlAttributes: new { @class = "control-label" })</div>
-                                <div class="col-md-8">
-                                    @Html.DropDownList("sector", new SelectList(ViewBag.sectorValues), htmlAttributes: new { @class = "" })
-                                </div>
-                            </div>
+
+                @*@if (User.IsInRole("mobileTeamReceptionist"))
+                    {*@
+
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-4">@Html.LabelFor(model => model.sector, htmlAttributes: new { @class = "control-label" })</div>
+                        <div class="col-md-8">
+                            @Html.DropDownList("sector", new SelectList(ViewBag.sectorValues), htmlAttributes: new { @class = "" })
                         </div>
-                        
-                    
-                    
-                }
-                
+                    </div>
+                </div>
+
+
+
+                @*}*@
+
             </div>
             <div class="row">
                 <div class="col-md-4"></div>
@@ -129,15 +129,15 @@
                         <div class="col-md-8">@Html.DropDownList("previousAddressID", null, htmlAttributes: new { @class = "form-control" })</div>
                     </div>
                 </div>
-                
+
                 <div class="col-md-4"></div>
-                
-                
-                
-                
-                
-                
-               
+
+
+
+
+
+
+
 
                 @*<div class="col-md-4 hidden" id="lastaddress">
                         <div class="md-form">
@@ -166,7 +166,7 @@
                         @Html.ValidationMessageFor(model => model.lastaddress_details, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                
+
             </div>
 
             <div class="row">

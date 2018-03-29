@@ -16,8 +16,8 @@ namespace SDS_SanadDistributedSystem.Controllers
     {
         private sds_dbEntities db = new sds_dbEntities();
 
-        private string[] familynatureValues = {"فرد من المجتمع المضيف", "نازح داخلي", "نازح داخلي عائد", "لاجئ عائد إلى سورية" , "لاجئ أو طالب لجوء من دولة أخرى" };
-        private string[] sectorValues = { "","عشيرة", "حسياء الصناعية","فركلوس" };
+        private string[] familynatureValues = { "فرد من المجتمع المضيف", "نازح داخلي", "نازح داخلي عائد", "لاجئ عائد إلى سورية", "لاجئ أو طالب لجوء من دولة أخرى" };
+        private string[] sectorValues = { "خارج القطاع", "البغطاسية", "الحميدية", "القصور", "الميدان", "حسياء", "حسياء الصناعية", "عشيرة", "فركلوس" };
         private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
         public JsonResult idAlreadyExisted(string family_book_number, int? idfamily)
@@ -25,14 +25,14 @@ namespace SDS_SanadDistributedSystem.Controllers
             bool existed;
             if (idfamily == null)
             {
-               existed  = db.families.Any(x => x.family_book_number.Equals(family_book_number));
+                existed = db.families.Any(x => x.family_book_number.Equals(family_book_number));
             }
             else
-              existed = db.families.Any(x => x.family_book_number.Equals(family_book_number) && x.idfamily!=idfamily);
+                existed = db.families.Any(x => x.family_book_number.Equals(family_book_number) && x.idfamily != idfamily);
             return Json(!existed, JsonRequestBehavior.AllowGet);
         }
         // GET: families
-        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
+        [Authorize(Roles = "receptionist,cmIOutReachTeam,caseManager")]
         public async Task<ActionResult> Index(string family_book_number, string lastName, string SN)
         {
 
@@ -55,7 +55,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
 
         // GET: families/Details/5
-        [Authorize(Roles = "receptionist,cmIOutReachTeam")]
+        [Authorize(Roles = "receptionist, caseManager")]
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
@@ -64,7 +64,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
 
             family family = await db.families.FindAsync(id);
-            
+
             if (family == null)
             {
                 return HttpNotFound();
@@ -81,7 +81,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 if (m.flag == "A")
                 {
-                    foreach(var f in m.familymanages)
+                    foreach (var f in m.familymanages)
                     {
                         if (f.idfamily_FK == id && f.eval.Equals("Current"))
                         {
@@ -96,7 +96,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 else if (m.flag == "AT")
                 {
                     selectedAddressType = m.name;
-                }              
+                }
             }
 
 
@@ -112,7 +112,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.selectedAddressType = selectedAddressType;
             ViewBag.selectedCurrentAddress = selectedCurrentAddress;
             ViewBag.selectedPreviousAddress = selectedPreviousAddress;
-            
+
 
             return View(family);
         }
@@ -127,7 +127,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.previousAddressID = new SelectList(db.managelists.Where(ma => ma.flag == "A"), "idmanagelist", "name");
             ViewBag.evaluationValues = evaluationValues;
             ViewBag.familynatureValues = familynatureValues;
-            ViewBag.sectorValues=  sectorValues;
+            ViewBag.sectorValues = sectorValues;
             return View();
         }
 
@@ -145,17 +145,17 @@ namespace SDS_SanadDistributedSystem.Controllers
                 family.idcenter_FK = db.AspNetUsers.SingleOrDefault(u => u.Id == family.iduser).idcenter_FK;
 
 
-                int? maxFamilyId = db.families.Where(f => f.idcenter_FK == family.idcenter_FK).Max(f =>(int?) f.idfamily);
+                int? maxFamilyId = db.families.Where(f => f.idcenter_FK == family.idcenter_FK).Max(f => (int?)f.idfamily);
                 if (maxFamilyId != null)
                     family.idfamily = maxFamilyId.GetValueOrDefault() + 1;
                 else
                 {
-                    family.idfamily= db.centers.SingleOrDefault(c => c.idcenter == family.idcenter_FK).min_family_id;
-                  //  family.idfamily = db.centers;
+                    family.idfamily = db.centers.SingleOrDefault(c => c.idcenter == family.idcenter_FK).min_family_id;
+                    //  family.idfamily = db.centers;
                 }
 
 
-                
+
 
                 int? maxcenterform = db.families.Where(p => p.idcenter_FK == family.idcenter_FK).Max(p => p.formnumber) + 1;
                 if (maxcenterform != null)
@@ -228,7 +228,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             int selectedCurrentAddress = 0;
             int selectedPreviousAddress = 0;
 
-            foreach(familymanage fm in db.familymanages.Where(f=>f.idfamily_FK==family.idfamily))
+            foreach (familymanage fm in db.familymanages.Where(f => f.idfamily_FK == family.idfamily))
             {
                 if (fm.managelist.flag.Equals("AT"))
                 {
@@ -255,9 +255,9 @@ namespace SDS_SanadDistributedSystem.Controllers
             //    //}
             //}
 
-            ViewBag.addressTypeID = new SelectList(db.managelists.Where(ma => ma.flag == "AT"), "idmanagelist", "name",selectedAddressType);
-            ViewBag.currentAddressID = new SelectList(db.managelists.Where(ma => ma.flag == "A"), "idmanagelist", "name",selectedCurrentAddress);
-            ViewBag.previousAddressID = new SelectList(db.managelists.Where(ma => ma.flag == "A"), "idmanagelist", "name",selectedPreviousAddress);
+            ViewBag.addressTypeID = new SelectList(db.managelists.Where(ma => ma.flag == "AT"), "idmanagelist", "name", selectedAddressType);
+            ViewBag.currentAddressID = new SelectList(db.managelists.Where(ma => ma.flag == "A"), "idmanagelist", "name", selectedCurrentAddress);
+            ViewBag.previousAddressID = new SelectList(db.managelists.Where(ma => ma.flag == "A"), "idmanagelist", "name", selectedPreviousAddress);
 
             //ViewBag.idmangelist = new SelectList(db.managelists.Where(ma => ma.flag == "AT"), "idmanagelist", "name", selectedAddressType);
             ViewBag.evaluationValues = evaluationValues;
@@ -335,7 +335,14 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                 await db.SaveChangesAsync();
 
-                return RedirectToAction("Index");
+                if (User.IsInRole("receptionist"))
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "referalpersons", null);
+                }
             }
             ViewBag.evaluationValues = evaluationValues;
             ViewBag.familynatureValues = familynatureValues;

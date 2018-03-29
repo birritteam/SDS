@@ -5,10 +5,15 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>أشخاص ببيانات غير مستكملة</h2>
+<h2>
+    أشخاص ببيانات غير مستكملة
+    <small>@Html.ActionLink(" ", "Create", "temporals", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus", @title = "إضافة استمارة مؤقتة جديدة" })</small>
+
+</h2>
 
 <p>
-    @Html.ActionLink("إضافة استمارة مؤقتة جديدة", "Create")
+    @*@Html.ActionLink("إضافة استمارة مؤقتة جديدة", "Create")*@
+
 </p>
 <table class="table">
     <tr>
@@ -37,11 +42,16 @@
         <th>
             @Html.DisplayNameFor(model => model.tempregistrationdate)
         </th>
+        
         <th>
             اسم المركز
             @*@Html.DisplayNameFor(model => model.center.name)*@
         </th>
+        <th>
+            حالة الخدمة
+        </th>
         <th></th>
+
     </tr>
 
     @foreach (var item in Model)
@@ -76,10 +86,37 @@
             <td>
                 @Html.DisplayFor(modelItem => item.center.name)
             </td>
+            <td id=@("serviceState"+@item.idperson)>
+                @if (@item.servicestate.Equals("Pending"))
+                {
+                    <span class="">جديدة</span>
+                }
+                else if (@item.servicestate.Equals("In prgress"))
+                {
+                    <span class="text-success">قيد المتابعة</span>
+                }
+                else if (@item.servicestate.Equals("Closed"))
+                {
+                    <span class="text-danger">مغلقة</span>
+                }
+            </td>
+
+
+
             <td>
-                @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
-                @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
-                @Html.ActionLink("حذف", "Delete", new { id = item.idperson })
+                @Html.ActionLink(" ", "Details", "temporals", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card-o p-1", @title = "تفاصيل" })
+
+
+                @Html.ActionLink(" ", "Edit", "temporals", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
+               
+                 @*@Html.ActionLink(" ", "Delete", "temporals", new { id = @item.idperson }, new { @class = "btn btn-danger btn-rounded fa fa-window-close p-1", @title = "حذف" })*@
+
+
+
+
+                @*@Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
+                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
+                    @Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
             </td>
         </tr>
     }

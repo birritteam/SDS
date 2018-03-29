@@ -1,180 +1,366 @@
 ﻿@model SDS_SanadDistributedSystem.Models.temporal
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "استمارة بيانات غير مكتملة";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
+    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list wow fadeInUp", @title = "عودة إلى القائمة السابقة" })
+</span>
+<div class="card card-cascade">
 
-<div>
-    <h4>temporal</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fname)
-        </dt>
+    <!--Card image-->
+    <div class="view card-header dark-blue-bg white-text">
+        <h3 class="h3-responsive card-header-content">استمارة بيانات غير مكتملة</h3>
+        <p class="card-header-content sub-header h4-responsive">@Model.idperson</p>
+    </div>
+    <!--/Card image-->
+    <!--Card content-->
+    <div class="card-body text-center">
 
-        <dd>
-            @Html.DisplayFor(model => model.fname)
-        </dd>
+        <p class="card-text card-block">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lname)
-        </dt>
+            <div class="row">
+                <div class="col-md-9">
+                    <h5 class="card-title"><i class="fa fa-user-o" style="color:#ff8800"></i>   معلومات شخصية</h5>
+                    <hr />
+                    <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.lname)
-        </dd>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.fname)
+                            @Html.DisplayFor(model => model.fname)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.lname)
+                            @Html.DisplayFor(model => model.lname)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.fathername)
+                            @Html.DisplayFor(model => model.fathername)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.mothername)
+                            @Html.DisplayFor(model => model.mothername)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.gender)
+                            @Html.DisplayFor(model => model.gender)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.nationality)
+                            @Html.DisplayFor(model => model.nationality)
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fathername)
-        </dt>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.birthday)
+                            @Html.DisplayFor(model => model.birthday)
+                        </div>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.birthplace)
+                            @Html.DisplayFor(model => model.birthplace)
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.fathername)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.mothername)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.mothername)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.birthday)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.birthday)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.birthplace)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.birthplace)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.nationality)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nationality)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.martial)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.martial)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.relationtype)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.relationtype)
-        </dd>
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.martial)
+                            @Html.DisplayFor(model => model.martial)
+                        </div>
 
 
-        <dt>
-            @Html.DisplayNameFor(model => model.onoffflag)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.onoffflag)
-        </dd>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="card-title"> <i class="fa fa-phone" style="color:#ff8800"></i>   معلومات تواصل</h5>
+                    <hr />
+                    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.education)
-        </dt>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.currentaddress)
+                            @Html.DisplayFor(model => model.currentaddress)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.phone1)
+                            @Html.DisplayFor(model => model.phone1)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.phone2)
+                            @Html.DisplayFor(model => model.phone2)
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*<hr />*@
+            <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.education)
-        </dd>
+                <div class="col-md-3">
+                    <h5 class="card-title"><i class="fa fa-graduation-cap" style="color:#ff8800"></i>    التعليم والعمل   </h5>
+                    <hr />
+                    <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.educationstate)
-        </dt>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.education)
+                            @Html.DisplayFor(model => model.education)
+                        </div>
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.educationstate)
+                            @Html.DisplayFor(model => model.educationstate)
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.educationstate)
-        </dd>
+                        <div class="col-md-12">
+                            <label>العمل الحالي</label>
+                            @ViewBag.selectedCurrentWork
+                        </div>
+                        <div class="col-md-12">
+                            <label>العمل السابق</label>
+                            @ViewBag.selectedPreviousWork
+                        </div>
+                    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.phone1)
-        </dt>
+                </div>
+                <div class="col-md-6">
+                    <h5 class="card-title"><i class="fa fa-info" style="color:#ff8800"></i>    معلومات التسجيل</h5>
+                    <hr />
+                    <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.phone1)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.phone2)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.phone2)
-        </dd>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.tempregistrationdate)
+                            @Html.DisplayFor(model => model.tempregistrationdate)
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.currentaddress)
-        </dt>
+                        <div class="col-md-6">
+                            @Html.LabelFor(model => model.relationtype)
+                            @Html.DisplayFor(model => model.relationtype)
+                        </div>
+                    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.currentaddress)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.tempregistrationdate)
-        </dt>
+                </div>
+                <div class="col-md-3">
+                    <h5><i class="fa fa-sticky-note-o" style="color:#ff8800"></i>     ملاحظات  </h5>
+                    <hr />
+                    @if (Model.note == null)
+                    {
+                        <text>لا يوجد ملاحظات</text>
+                    }
+                    else
+                    {
+                        @Html.DisplayFor(model => model.note)
+                    }
 
-        <dd>
-            @Html.DisplayFor(model => model.tempregistrationdate)
-        </dd>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.formnumber)
-        </dt>
+            </div>
+            @*<hr />*@
 
-        <dd>
-            @Html.DisplayFor(model => model.formnumber)
-        </dd>
+            <div class="row">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.note)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.note)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.center.name)
-        </dt>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.center.name)
-        </dd>
 
-    </dl>
+
+
+        </p>
+
+        <div class="row">
+
+        </div>
+        <div class="row">
+
+            <p class="card-footer">
+
+                @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
+                {
+
+                    <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "people",new { id=Model.idperson})'><i class="fa fa-edit"></i>    تعديل  </a>
+                    @*@Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" , @title = "تعديل بيانات الاستمارة" })*@
+                }
+
+            </p>
+
+        </div>
+
+
+        @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idperson }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+
+@*<h2>استمارة بيانات غير مكتملة</h2>*@
+
+@*<div>
+        <h4>temporal</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.fname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.lname)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.lname)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.fathername)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.fathername)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.mothername)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.mothername)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.birthday)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.birthday)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.birthplace)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.birthplace)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.gender)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.gender)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.nationality)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nationality)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.martial)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.martial)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.relationtype)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.relationtype)
+            </dd>
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.onoffflag)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.onoffflag)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.education)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.education)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.educationstate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.educationstate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.phone1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phone1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.phone2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.phone2)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.currentaddress)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.currentaddress)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tempregistrationdate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tempregistrationdate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.formnumber)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.formnumber)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.note)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.note)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.center.name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.center.name)
+            </dd>
+
+        </dl>
+    </div>*@
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.idperson }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

@@ -1,9 +1,14 @@
 ﻿@model SDS_SanadDistributedSystem.Models.temporal
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "تعديل استمارة مؤقتة";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+<span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
+    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list wow fadeInUp", @title = "عودة إلى القائمة السابقة" })
+</span>
 
 <h2>تعديل الاستمارة المؤقتة</h2>
 
@@ -14,14 +19,14 @@
 
     <div class="form-horizontal">
         <h4>@Model.idperson</h4>
-        <hr />
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*@Html.HiddenFor(model => model.idperson)*@
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @*@Html.HiddenFor(model => model.idperson)*@
-        <input type="hidden" value="@Model.idperson" name="idperson" /> 
+        <input type="hidden" value="@Model.idperson" name="idperson" />
         @Html.HiddenFor(model => model.onoffflag)
         @Html.HiddenFor(model => model.tempregistrationdate)
         @Html.HiddenFor(model => model.idcenter_FK)
@@ -171,9 +176,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("عودة إلى القائمة السابقة", "Index")
-</div>
+@*<div>
+        @Html.ActionLink("عودة إلى القائمة السابقة", "Index")
+    </div>*@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
