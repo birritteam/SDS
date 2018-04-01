@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using SDS_SanadDistributedSystem.Models;
 using Microsoft.AspNet.Identity;
+using SDS_SanadDistributedSystem.Hubs;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
@@ -66,7 +67,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
 
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK== user.idcenter_FK), "Id", "UserName");
+            ViewBag.referalreicver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Name == "cmIOutReachTeam") && u.idcenter_FK== user.idcenter_FK), "Id", "UserName");
 
             return View();
         }
@@ -103,6 +104,11 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                 db.temporals.Add(temporal);
                 await db.SaveChangesAsync();
+
+                // send notification for outreach
+                string username = db.AspNetUsers.SingleOrDefault(u => u.Id == temporal.referalreicver_FK).UserName;
+                NotificationHub.sendnotify(username, "added outreach");
+
                 return RedirectToAction("Index");
             }
 

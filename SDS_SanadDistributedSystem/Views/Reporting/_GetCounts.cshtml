@@ -40,10 +40,12 @@
         <div class="clearfix"></div>
     }
 </div>
-<div class="col-md-4">
-    @Html.ActionLink("عرض المخططات", "ChartIndex", "Reporting", new { @class = "btn btn-primary btn-rounded p-0" })
 
-</div>
+    <div class="col-md-4">
+        @Html.ActionLink("عرض المخططات", "ChartIndex", "Reporting", new { @class = "btn btn-primary btn-rounded p-0" })
+    </div>
+
+
 
 <div class="row">
     <div class="md-form">
@@ -117,26 +119,30 @@
 
                 </table>
             </div>
-            <div class="col-md-6">
-                <table id="ways-report" class="display table table-bordered table-striped  table-responsive" cellspacing="0">
-                    <tr class="blue-grey lighten-4 header-table">
-                        <th>طريقة التعرف على المركز</th>
-                        <th>العدد</th>
-                    </tr>
+            @if (User.IsInRole("reporter") || User.IsInRole("admin") || User.IsInRole("superadmin"))
+            {
+                <div class="col-md-6">
+                    <table id="ways-report" class="display table table-bordered table-striped  table-responsive" cellspacing="0">
+                        <tr class="blue-grey lighten-4 header-table">
+                            <th>طريقة التعرف على المركز</th>
+                            <th>العدد</th>
+                        </tr>
 
 
-                </table>
-            </div>
-            <div class="col-md-6">
-                <table id="address-report" class="display table table-bordered table-striped  table-responsive " cellspacing="0">
+                    </table>
+                </div>
+                <div class="col-md-6">
+                    <table id="address-report" class="display table table-bordered table-striped  table-responsive " cellspacing="0">
 
-                    <tr class="blue-grey lighten-4 header-table">
-                        <th>العنوان</th>
-                        <th>العدد</th>
-                    </tr>
+                        <tr class="blue-grey lighten-4 header-table">
+                            <th>العنوان</th>
+                            <th>العدد</th>
+                        </tr>
 
-                </table>
-            </div>
+                    </table>
+                </div>
+            }
+            
 
         </div>
 

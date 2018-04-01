@@ -14,6 +14,12 @@ namespace SDS_SanadDistributedSystem.Hubs
             var list = db.referalpersons.Where(a => a.submittingdate <= afterDate && a.referalreicver_FK == usertosend && a.referalstate == "Pending" && a.servicestate == "Pending").OrderByDescending(a => a.submittingdate).ToList();
             return list;
         }
+
+        public List<temporal> GetTemporal(DateTime afterDate, string usertosend)
+        {
+            var list = db.temporals.Where(a => a.submittingdate <= afterDate && a.referalreicver_FK == usertosend && a.referalstate == "Pending" && a.servicestate == "Pending").OrderByDescending(a => a.submittingdate).ToList();
+            return list;
+        }
     }
 
     
