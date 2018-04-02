@@ -34,7 +34,8 @@
     @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js">    </script>*@
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">الإحالات الجديدة <h5>@*@new_Count*@</h5></a></li>
+        <li role="presentation" class="active"><a href="#first" aria-controls="first" role="tab" data-toggle="tab">الإحالات الجديدة <span class="badge badge-warning ora  badge-pill count_new">
+</span></a></li>
         <li role="presentation"><a href="#seventh" aria-controls="seventh" role="tab" data-toggle="tab">بحث</a></li>
             <li role="presentation">
                 <a href="#eighth" aria-controls="eighth" role="tab" data-toggle="tab">أشخاص بياناتهم غير مكتملة</a></li>
@@ -298,9 +299,12 @@
             <div role="tabpanel" class="tab-pane " id="eighth">
                 @*@Html.RenderAction("GetMySecondForm", "MyController)*@
                 <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#eighth_1" aria-controls="eighth_1" role="tab" data-toggle="tab">جديد</a></li>
-                    <li role="presentation"> <a href="#eighth_2" aria-controls="eighth_2" role="tab" data-toggle="tab">قيد المتابعة</a></li>
-                    <li role="presentation"> <a href="#eighth_3" aria-controls="eighth_3" role="tab" data-toggle="tab">مغلقة</a></li>
+                    <li role="presentation" class="active"><a href="#eighth_1" aria-controls="eighth_1" role="tab" data-toggle="tab">جديد <span class="badge badge-warning ora  badge-pill count1">
+</span></a></li>
+                    <li role="presentation"> <a href="#eighth_2" aria-controls="eighth_2" role="tab" data-toggle="tab">قيد المتابعة <span class="badge badge-warning ora  badge-pill count2">
+</span></a></li>
+                    <li role="presentation"> <a href="#eighth_3" aria-controls="eighth_3" role="tab" data-toggle="tab">مغلقة <span class="badge badge-warning ora  badge-pill count3">
+</span></a></li>
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active card z-depth-1" id="eighth_1">
@@ -313,7 +317,7 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.submittingdate)
                                     </th>
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayNameFor(model => model.referaldate)
                                     </th>
                                     <th>
@@ -321,16 +325,16 @@
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.serviceenddate)
-                                    </th>
+                                    </th>*@
                                     <th>
                                         المرسل
                                     </th>
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayNameFor(model => model.senderevalution)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.recieverevalution)
-                                    </th>
+                                    </th>*@
                                     <th>
                                         @Html.DisplayNameFor(model => model.outreachnote)
                                     </th>
@@ -362,7 +366,7 @@
                                                         </td>
                                                     }
                                                    
-                                                    @if (item.referaldate == null)
+                                                    @*@if (item.referaldate == null)
                                                     {
                                                     <td>
                                                         @item.referaldate
@@ -397,17 +401,17 @@
                                                         <td>
                                                             @item.serviceenddate.Value.ToShortDateString()
                                                         </td>
-                                                    }
+                                                    }*@
 
                                                 <td>
                                               @item.AspNetUser1.Email
                                                 </td>
-                                                <td>
+                                                @*<td>
                                                     @item.senderevalution
                                                 </td>
                                                 <td>
                                                     @item.recieverevalution
-                                                </td>
+                                                </td>*@
                                                 <td>
                                                     @item.outreachnote
                                                 </td>
@@ -437,25 +441,25 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.submittingdate)
                                     </th>
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayNameFor(model => model.referaldate)
-                                    </th>
+                                    </th>*@
 
                                     <th>
                                         @Html.DisplayNameFor(model => model.servicestartdate)
                                     </th>
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayNameFor(model => model.serviceenddate)
-                                    </th>
+                                    </th>*@
                                     <th>
                                         المرسل
                                     </th>
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayNameFor(model => model.senderevalution)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.recieverevalution)
-                                    </th>
+                                    </th>*@
                                     <th>
                                         @Html.DisplayNameFor(model => model.outreachnote)
                                     </th>
@@ -486,7 +490,7 @@
                                                 </td>
                                                }
 
-                                            @if (item.referaldate == null)
+                                            @*@if (item.referaldate == null)
                                             {
                                                 <td>
                                                     @item.referaldate
@@ -497,7 +501,7 @@
                                                 <td>
                                                     @item.referaldate.Value.ToShortDateString()
                                                 </td>
-                                            }
+                                            }*@
 
                                             @if (item.servicestartdate == null)
                                             {
@@ -511,7 +515,7 @@
                                                 </td>
                                             }
 
-                                            @if (item.serviceenddate == null)
+                                            @*@if (item.serviceenddate == null)
                                             {
                                                 <td>
                                                     @item.serviceenddate
@@ -521,16 +525,16 @@
                                                 <td>
                                                     @item.serviceenddate.Value.ToShortDateString()
                                                 </td>
-                                            }
+                                            }*@
                                                 <td>
                                                    @item.AspNetUser1.Email
                                                 </td>
-                                                <td>
+                                                @*<td>
                                                     @item.senderevalution
                                                 </td>
                                                 <td>
                                                     @item.recieverevalution
-                                                </td>
+                                                </td>*@
                                                 <td>
                                                     @item.outreachnote
                                                 </td>
@@ -559,9 +563,9 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.submittingdate)
                                     </th>
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayNameFor(model => model.referaldate)
-                                    </th>
+                                    </th>*@
 
                                     <th>
                                         @Html.DisplayNameFor(model => model.servicestartdate)
@@ -572,17 +576,17 @@
                                     <th>
                                         المرسل
                                     </th>
-                                    <th>
+                                    @*<th>
                                         @Html.DisplayNameFor(model => model.senderevalution)
                                     </th>
                                     <th>
                                         @Html.DisplayNameFor(model => model.recieverevalution)
-                                    </th>
+                                    </th>*@
                                     <th>
                                         @Html.DisplayNameFor(model => model.outreachnote)
                                     </th>
 
-                                    <th>تعديل</th>
+                                    @*<th>تعديل</th>*@
                                 </tr>
                             </thead>
                             <tbody>
@@ -608,7 +612,7 @@
                                                 </td>
                                                }
 
-                                            @if (item.referaldate == null)
+                                            @*@if (item.referaldate == null)
                                             {
                                                 <td>
                                                     @item.referaldate
@@ -619,7 +623,7 @@
                                                 <td>
                                                     @item.referaldate.Value.ToShortDateString()
                                                 </td>
-                                            }
+                                            }*@
 
                                             @if (item.servicestartdate == null)
                                             {
@@ -647,19 +651,19 @@
                                                 <td>
                                                     @item.AspNetUser1.Email
                                                 </td>
-                                                <td>
+                                                @*<td>
                                                     @item.senderevalution
                                                 </td>
                                                 <td>
                                                     @item.recieverevalution
-                                                </td>
+                                                </td>*@
                                                 <td>
                                                     @item.outreachnote
                                                 </td>
-                                                <td>
+                                                @*<td>
                                                     @Html.ActionLink("تعديل", "EditReferal", "temporals", new { id = @item.idperson }, "")
 
-                                                </td>
+                                                </td>*@
                                             </tr>
                                         }
                                     }
@@ -701,6 +705,29 @@
     <script src="~/Scripts/DataTables/dataTables.fixedColumns.min.js"></script>
     <script src="~/Scripts/AllDataTablesDesign.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+
+        $(document).ready(function () {
+            addCount()
+        }
+
+ );
+        function addCount() {
+            var count1 = $('#All8').DataTable().rows().count();
+            var count2 = $('#All9').DataTable().rows().count();
+            var count3 = $('#All10').DataTable().rows().count();
+            var count4 = $('#All').DataTable().rows().count()
+
+
+            $('.count1').html(" " + count1 + " ");
+            $('.count2').html(" " + count2 + " ");
+            $('.count3').html(" " + count3 + " ");
+            $('.count_new').html(" " + count4 + " ");
+
+
+        }
+    </script>
 }
 
 

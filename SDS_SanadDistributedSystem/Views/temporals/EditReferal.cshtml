@@ -75,7 +75,7 @@
                     @Html.HiddenFor(model => model.onoffflag)
                     @Html.HiddenFor(model => model.iduser_FK)
 
-
+                    @Html.HiddenFor(model => model.recieverevalution)
 
                     <div class="col-md-6">
 
@@ -96,13 +96,13 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    @*<div class="col-md-6">
                         <div class="md-form">
                             @Html.EditorFor(model => model.recieverevalution, new { htmlAttributes = new { @class = "form-control validate col-md-6" } })
                             @Html.LabelFor(model => model.recieverevalution, htmlAttributes: new { })
                             @Html.ValidationMessageFor(model => model.recieverevalution, "", new { @class = "text-danger" })
                         </div>
-                    </div>
+                    </div>*@
                     <div class="col-md-6">
                         <div class="md-form">
                             @Html.EditorFor(model => model.outreachnote, new { htmlAttributes = new { @class = "form-control validate col-md-6" } })
@@ -114,13 +114,15 @@
 
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="تعليق" class="btn btn-default" name="action:edit1" />
+                            @*<input type="submit" value="تعليق" class="btn btn-default" name="action:edit1" />*@
                             @*<input type="submit" value="مقبولة ولم يخدم" class="btn btn-default" name="action:edit2" />
                                 <input type="submit" value="مقبولة ولم يخدم-وصول" class="btn btn-default" name="action:edit3" />
                                 <input type="submit" value="مرفوضة" class="btn btn-default" name="action:edit4" />*@
-                            <input type="submit" value="قيد المتابعة" class="btn btn-default" name="action:edit5" />
+                            @if (Model.servicestate.Equals("Pending"))
+                            { <input type="submit" value="قيد المتابعة" class="btn btn-default" name="action:edit5" />}
                            @*<input type="submit" value="قيد المتابعة-وصول" class="btn btn-default" name="action:edit6" />*@
-                                <input type="submit" value="إغلاق" class="btn btn-default" name="action:edit7" />
+@if (Model.servicestate.Equals("In prgress"))
+{ <input type="submit" value="إغلاق" class="btn btn-default" name="action:edit7" />}
                                @* <input type="submit" value="مغلقة-وصول" class="btn btn-default" name="action:edit8" />
     <input type="submit" value="خارجية" class="btn btn-default" name="action:edit9" />*@
                         </div>
