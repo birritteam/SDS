@@ -604,7 +604,7 @@ function successSendReferals() {
     $.ajax({
         // contentType: 'application/json; charset=utf-8',
         contentType: 'application/json',
-        url: ' /sds/referalpersons/sendReferals',
+        url: ' /referalpersons/sendReferals',
         type: "POST",
         dataType: "JSON",
         data: referals,

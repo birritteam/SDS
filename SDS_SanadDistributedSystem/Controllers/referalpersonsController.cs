@@ -49,14 +49,19 @@ namespace SDS_SanadDistributedSystem.Controllers
             //return first 100 row order by submit  date
             //يتم الفلترة بعد تحديد المستخدم ثم الحصول على اسم الرول ثم الحصول  على  مجدول الخدمات على  الخدمات المرتبة بهذه الرول
 
-            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
+
 
             // جلب عدد الحالات التي تم إرسالها إلى مدير الحالة المسجل دخول حاليا والتي كان فيها أوف لاين
             //BaseController.CountNotificationOffilicn = db.referalpersons.Where(rp => rp.servicestate == "Pending" && rp.referalstate == "Pending" && rp.AspNetUser1.UserName == user.UserName).Count();
-
+            var user = db.AspNetUsers.Find(User.Identity.GetUserId());
             ViewBag.CountNotficationOffline = db.referalpersons.Where(rp => rp.servicestate == "Pending" && rp.referalstate == "Pending" && rp.AspNetUser1.UserName == user.UserName).Count();
+            
+            
+           
 
-            var referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
+           
+
+           var referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
             var roles = user.AspNetRoles.ToList();
             if (roles.Count > 0)
             {
@@ -682,7 +687,9 @@ namespace SDS_SanadDistributedSystem.Controllers
         public async Task<ActionResult> IndexOutReach()
         {
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            ViewBag.CountNotficationOffline = db.referalpersons.Where(rp => rp.servicestate == "Pending" && rp.referalstate == "Pending" && rp.AspNetUser1.UserName == user.UserName).Count();
+            string userid = User.Identity.GetUserId();
+            // هون اعتمدت على يوزر آي دي .. لأنو ما في ربطة نظامية مع اليوزر يلي هوي مستقب الإحالة
+            ViewBag.CountNotficationOffline = db.temporals.Where(t => t.servicestate == "Pending" && t.referalstate == "Pending" && t. referalreicver_FK == userid).Count();
 
             var referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100);
             var roles = user.AspNetRoles.ToList();
@@ -917,13 +924,30 @@ namespace SDS_SanadDistributedSystem.Controllers
 
         public JsonResult GetNotificationsReferal()
         {
+
             var notificationRegisterTime = Session["LastUpdated"] != null ? Convert.ToDateTime(Session["LastUpdated"]) : DateTime.Now;
             NotificationComponent NC = new NotificationComponent();
             string usertosend = db.AspNetUsers.SingleOrDefault(u => u.UserName == User.Identity.Name).Id;
-            var list = NC.GetReferals(notificationRegisterTime, usertosend);
 
-            Session["LastUpdated"] = DateTime.Now;
-            return new JsonResult { Data = list.Select(r => new { idreferalperson = r.idreferalperson, idperson_FK = r.idperson_FK, idcase_FK = r.idcase_FK, personname = r.person.fname + " " + r.person.lname, serviceType = r.service.name, referaldate = r.submittingdate.Value.ToString("dd-MM-yyyy"), senderuserrole = r.AspNetUser.AspNetRoles.FirstOrDefault().NameAR, center = r.center.name }), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            string validate;
+            if (User.IsInRole("cmIOutReachTeam"))
+            {
+                validate = "outreach volunteer";
+                var list = NC.GetTemporal(notificationRegisterTime, usertosend);
+                Session["LastUpdated"] = DateTime.Now;
+                var result = new { validate = validate, data = list.Select(r => new { idperson_FK = r.idperson, personname = r.fname + " " + r.fathername + " " + r.lname, referaldate = r.submittingdate.Value.ToString("dd-MM-yyyy"), senderuserrole = r.AspNetUser1.AspNetRoles.FirstOrDefault().NameAR, center = r.center.name }) };
+                return new JsonResult { Data = result, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+                
+            else
+            {
+                validate = "else";
+                var list = NC.GetReferals(notificationRegisterTime, usertosend);
+                Session["LastUpdated"] = DateTime.Now;
+                var result = new { validate = validate, data = list.Select(r => new { idreferalperson = r.idreferalperson, idperson_FK = r.idperson_FK, idcase_FK = r.idcase_FK, personname = r.person.fname + " " + r.person.fathername + " " + r.person.lname, serviceType = r.service.name, referaldate = r.submittingdate.Value.ToString("dd-MM-yyyy"), senderuserrole = r.AspNetUser.AspNetRoles.FirstOrDefault().NameAR, center = r.center.name }) };
+                return new JsonResult { Data = result , JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+                
         }
 
         public ActionResult FillServices(string caseId, string centerId)
