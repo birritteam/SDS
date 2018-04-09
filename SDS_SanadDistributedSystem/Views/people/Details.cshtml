@@ -476,6 +476,7 @@ else if (User.IsInRole("caseManager"))
                                                 {
                                                     <text>محالة خارجيا</text>
                                                 }
+
                                                 else if (item.servicestate == "In prgress" && item.referalstate == "Approved")
                                                 {
                                                     <text>قيد المتابعة</text>
@@ -484,15 +485,19 @@ else if (User.IsInRole("caseManager"))
                                                 {
                                                     <text>قيد المتابعة/وصول</text>
                                                 }
-                                                else if (item.servicestate == "Pending" && item.referalstate == "OutReach")
+                                                else if (item.servicestate == "Closed" && item.referalstate == "OutReach")
                                                 {
                                                     <text>مغلقة/وصول</text>
+                                                }
+                                                else if (item.servicestate == "Closed")
+                                                {
+                                                    <text>مغلقة</text>
                                                 }
 
 
 
 
-                                            }
+}
                                         </td>
                                         <td>
                                             @Html.DisplayFor(modelItem => item.servicestartdate)

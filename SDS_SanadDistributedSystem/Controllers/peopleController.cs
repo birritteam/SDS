@@ -356,6 +356,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                 await db.SaveChangesAsync();
                 //return RedirectToAction("Create");
 
+                //if (person.family.people.Count >= person.family.personcount)
+                //{
+                //    return RedirectToAction("Index");
+                //}
+
                 return new JsonResult
                 {
                     Data = new
@@ -609,7 +614,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "referalpersons", null);
+                    return RedirectToAction("IndexOutReach", "referalpersons", null);
                 }
 
 

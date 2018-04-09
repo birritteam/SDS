@@ -341,7 +341,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "referalpersons", null);
+                    return RedirectToAction("IndexOutReach", "referalpersons", null);
                 }
             }
             ViewBag.evaluationValues = evaluationValues;
