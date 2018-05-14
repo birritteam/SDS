@@ -175,15 +175,10 @@
 
                         if (item.servicestate == "Pending" && item.referalstate == "Pending")
                         {
-                            new_Count++;
-                            count++;
+                           
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
-                                    <span>
-                                        new_Count++
-                                        count
-                                    </span>
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.submittingdate)
@@ -2213,7 +2208,7 @@
 
 @section Scripts {
 
-    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    @*<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>*@
 
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>

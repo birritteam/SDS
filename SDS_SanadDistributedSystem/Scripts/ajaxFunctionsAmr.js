@@ -604,7 +604,7 @@ function successSendReferals() {
     $.ajax({
         // contentType: 'application/json; charset=utf-8',
         contentType: 'application/json',
-        url: ' /referalpersons/sendReferals',
+        url: ' /sds/referalpersons/sendReferals',
         type: "POST",
         dataType: "JSON",
         data: referals,
@@ -744,13 +744,14 @@ function searchByName() {
 
                        //.append('<td>' + referal.outreachnote + '</td>')
 
-                                    .append('<td>' +
-                                  '<a href=" /sds/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
-                                  '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
-                                    '<a length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
-                                    + '">إحالة جديدة</a>' +
-                                  '</td>')
 
+                                    .append('<td>' +
+                                     '<a class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" href=" /sds/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
+                                  '&amp;idcase=' + referal.idcase + '" title="تعديل"></a>' +
+                                    '<a class=" fa fa-exchange btn pur btn-purple btn-rounded p-1 waves-effect waves-light" length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
+                                    + '"title="إحالة جديدة"></a>' +
+                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
+                                  '</td>')
 
                     ).draw().node();
 
@@ -806,12 +807,13 @@ function searchByNameOutReach() {
 
                        //.append('<td>' + referal.outreachnote + '</td>')
 
-                                    .append('<td>' +                                
-                                    '<a length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
-                                    + '">إحالة جديدة</a>' +
+                                      .append('<td>' +
+                                    '<a class=" fa fa-exchange btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager' + referal.idperson + '?idcase=' + referal.idcase
+                                    + '" title=" إحالة جديدة"></a>' +
+                                                                        ' <a class=" fa fa-id-card-o btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل الشخص"></a>' +
+                                                                        '<a class=" fa fa-edit btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Edit/' + referal.idperson + '" title=" تعديل بيانات الشخص"></a>' +
                                   '</td>')
-
-
+                  
                     ).draw().node();
 
                 });
@@ -866,14 +868,14 @@ function searcByDate() {
                     .append('<td>' + referal.recieverevalution + '</td>')
 
                       //.append('<td>' + referal.outreachnote + '</td>')
-
-                                  .append('<td>' +
-                                  '<a href=" /sds/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
-                                  '&amp;idcase=' + referal.idcase + '">تعديل</a>' +
-                                    '<a length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
-                                    + '">إحالة جديدة</a>' +
+                                    .append('<td>' +
+                                     '<a class="fa fa-edit btn gre btn-success btn-rounded p-1 btn-details waves-effect waves-light" href=" /sds/referalpersons/Edit?idreferalperson=' + referal.idreferalperson + '&amp;idperson=' + referal.idperson +
+                                  '&amp;idcase=' + referal.idcase + '" title="تعديل"></a>' +
+                                    '<a class=" fa fa-exchange btn pur btn-purple btn-rounded p-1 waves-effect waves-light" length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
+                                    + '"title="إحالة جديدة"></a>' +
+                                    '<a class=" fa fa-info-circle btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل"> </a>' +
                                   '</td>')
-
+                                  
                     ).draw().node();
 
                 });
@@ -929,9 +931,11 @@ function searcByDateOutReach() {
 
                       //.append('<td>' + referal.outreachnote + '</td>')
 
-                                  .append('<td>' +
-                                    '<a length="0" href=" /sds/referalpersons/personReferalByCaseManager/' + referal.idperson + '?idcase=' + referal.idcase
-                                    + '">إحالة جديدة</a>' +
+                                      .append('<td>' +
+                                    '<a class=" fa fa-exchange btn pur btn-purple btn-rounded p-1 waves-effect waves-light" href="/sds/referalpersons/personReferalByCaseManager' + referal.idperson + '?idcase=' + referal.idcase
+                                    + '" title=" إحالة جديدة"></a>' +
+                                                                        ' <a class=" fa fa-id-card-o btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Details/' + referal.idperson + '" title=" تفاصيل الشخص"></a>' +
+                                                                        '<a class=" fa fa-edit btn ora btn-warning btn-rounded p-1 waves-effect waves-light" href="/people/Edit/' + referal.idperson + '" title=" تعديل بيانات الشخص"></a>' +
                                   '</td>')
 
                     ).draw().node();

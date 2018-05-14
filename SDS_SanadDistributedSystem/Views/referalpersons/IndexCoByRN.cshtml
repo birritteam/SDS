@@ -33,37 +33,37 @@
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
             <a href="#first" aria-controls="first" role="tab" data-toggle="tab">
-                جديدة أو معلقة <span class="badge badge-warning ora    badge-pill count1">
+                جديدة أو معلقة <span class="badge badge-warning ora  ora  ora badge-pill count1">
                 </span><h5>@*@new_Count*@</h5>
             </a>
         </li>
         <li role="presentation">
             <a href="#second" aria-controls="second" role="tab" data-toggle="tab">
-                مقبولة  ولم يخدم <span class="badge badge-warning ora  badge-pill count2">
+                مقبولة  ولم يخدم <span class="badge badge-warning ora  ora  badge-pill count2">
                 </span>
             </a>
         </li>
         <li role="presentation">
             <a href="#third" aria-controls="third" role="tab" data-toggle="tab">
-                مرفوضة <span class="badge badge-warning ora  badge-pill count3">
+                مرفوضة <span class="badge badge-warning ora  ora  badge-pill count3">
                 </span>
             </a>
         </li>
         <li role="presentation">
             <a href="#fourth" aria-controls="fourth" role="tab" data-toggle="tab">
-                قيد المتابعة <span class="badge badge-warning ora  badge-pill count4">
+                قيد المتابعة <span class="badge badge-warning ora  ora  badge-pill count4">
                 </span>
             </a>
         </li>
         <li role="presentation">
             <a href="#fifth" aria-controls="fifth" role="tab" data-toggle="tab">
-                مغلقة <span class="badge badge-warning ora  badge-pill count5">
+                مغلقة <span class="badge badge-warning ora  ora  badge-pill count5">
                 </span>
             </a>
         </li>
         <li role="presentation">
             <a href="#sixth" aria-controls="sixth" role="tab" data-toggle="tab">
-                خارجية <span class="badge badge-warning ora  badge-pill count6">
+                خارجية <span class="badge badge-warning ora  ora  badge-pill count6">
                 </span>
             </a>
         </li>
@@ -146,7 +146,6 @@
                     {
                         if (item.servicestate == "Pending" && item.referalstate == "Pending")
                         {
-                            new_Count++;
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
@@ -1141,7 +1140,7 @@
             @using (Html.BeginForm())
             {
                 @*@Html.HiddenFor(ViewBag.role_id, new { Value = ViewBag.role_id });*@
-                <input type="hidden" value="@ViewBag.idcase" id="role_id" />
+                <input type="hidden" value="@ViewBag.idcase" id="idcase" />
                 <div class="md-form">
                     <div class="col-md-6">
                         <input type="text" id="personname" class="form-control">
@@ -1158,7 +1157,7 @@
             @using (Html.BeginForm())
             {
                 @*@Html.HiddenFor(model => model.ElementAt(0).idcase_FK, new { Value = Model.ElementAt(0).idcase_FK });*@
-                <input type="hidden" value="@ViewBag.idcase" id="role_id" />
+                <input type="hidden" value="@ViewBag.idcase" id="idcase" />
                 <div class="md-form">
                     <div class="col-md-6">
                         @*@{var  today = DateTime.Now.ToShortDateString('YYYY-MM-DD');}*@

@@ -10,7 +10,7 @@
 
 <h3>الصفحة االرئيسية-  قسم @ViewBag.case_manager</h3>
 
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">*@
 <link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="~/Content/DataTables/css/select.jqueryui.min.css" rel="stylesheet" />
@@ -151,15 +151,10 @@
 
                         if (item.servicestate == "Pending" && item.referalstate == "Pending")
                         {
-                            new_Count++;
-                            count++;
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
-                                    <span>
-                                        new_Count++
-                                        count
-                                    </span>
+
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.submittingdate)
@@ -2189,7 +2184,7 @@
 
 @section Scripts {
 
-<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+@*<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>*@
 
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
     <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>

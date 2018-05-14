@@ -698,8 +698,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                     //return first 100 row order by submit  date
                     var role_id = db.AspNetRoles.Where(r => r.Name == "cmSGBV").First().Id;
                     ViewBag.role_id = db.AspNetRoles.Where(r => r.Name == "cmIOutReachTeam").First().Id;
-                    //  referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.idcenter_FK ==user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
-                    referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK != role_id && r.AspNetUser.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(500);
+                //  referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK == role_id && r.AspNetUser.idcenter_FK==user.idcenter_FK).OrderBy(r => r.submittingdate).Take(100);
+                referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idrole_FK != role_id && r.idcenter_FK  == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(500);
                     ViewBag.temporal = db.temporals.Where(t => t.idcenter_FK == user.idcenter_FK).ToList();
                     ViewBag.case_manager = "فريق وصول";
                 }
@@ -1058,7 +1058,12 @@ namespace SDS_SanadDistributedSystem.Controllers
         public ActionResult searchReferalByName(string name, string idrole)
         {
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            List<referalperson> referalpersons = db.referalpersons.Where(r => (r.person.fname == name || r.person.lname == name || r.person.fname + " " + r.person.lname == name) && r.service.idrole_FK == idrole && r.idcenter_FK == user.idcenter_FK).ToList();
+
+            List<referalperson> referalpersons = null;
+            if (User.IsInRole("cmIOutReachTeam"))
+           referalpersons = db.referalpersons.Where(r => (r.person.fname.Contains( name) || r.person.lname.Contains(name) || (r.person.fname + " " + r.person.lname).Contains( name)) && r.idcenter_FK == user.idcenter_FK).ToList();
+            else
+                referalpersons = db.referalpersons.Where(r => (r.person.fname.Contains(name) || r.person.lname.Contains(name) || (r.person.fname + " " + r.person.lname).Contains(name)) && r.service.idrole_FK == idrole && r.idcenter_FK == user.idcenter_FK).ToList();
             List<RPSearchViewModel> RPSearchViewModels = new List<viewModel.RPSearchViewModel>();
 
             foreach (referalperson r in referalpersons)
@@ -1119,7 +1124,12 @@ namespace SDS_SanadDistributedSystem.Controllers
             DateTime from_date = DateTime.ParseExact(from, "yyyy-MM-dd", null);
             DateTime to_date = DateTime.ParseExact(to, "yyyy-MM-dd", null);
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            List<referalperson> referalpersons = db.referalpersons.Where(r => r.submittingdate > from_date && r.submittingdate < to_date && r.service.idrole_FK == idrole && r.idcenter_FK == user.idcenter_FK).ToList();
+            List<referalperson> referalpersons = null;
+            if (User.IsInRole("cmIOutReachTeam"))
+                referalpersons= db.referalpersons.Where(r => r.submittingdate > from_date && r.submittingdate < to_date &&  r.idcenter_FK == user.idcenter_FK).ToList();
+            else
+                referalpersons= db.referalpersons.Where(r => r.submittingdate > from_date && r.submittingdate < to_date && r.service.idrole_FK == idrole && r.idcenter_FK == user.idcenter_FK).ToList();
+
             List<RPSearchViewModel> RPSearchViewModels = new List<viewModel.RPSearchViewModel>();
 
             foreach (referalperson r in referalpersons)
@@ -1178,7 +1188,13 @@ namespace SDS_SanadDistributedSystem.Controllers
         public ActionResult searchReferalByNameCO(string name, int idcase)
         {
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            List<referalperson> referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idcase_FK == idcase && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100).ToList();
+
+            List<referalperson> referalpersons = null;
+            if (User.IsInRole("coOutReachTeam"))
+                referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => (r.person.fname.Contains(name) || r.person.lname.Contains(name) || (r.person.fname + " " + r.person.lname).Contains(name)) && !r.person.is_secret).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100).ToList();
+            else
+                referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => (r.person.fname.Contains(name) || r.person.lname.Contains(name) || (r.person.fname + " " + r.person.lname).Contains(name)) && r.service.idcase_FK == idcase).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100).ToList();
+
             List<RPSearchViewModel> RPSearchViewModels = new List<viewModel.RPSearchViewModel>();
 
             foreach (referalperson r in referalpersons)
@@ -1239,7 +1255,13 @@ namespace SDS_SanadDistributedSystem.Controllers
             DateTime from_date = DateTime.ParseExact(from, "yyyy-MM-dd", null);
             DateTime to_date = DateTime.ParseExact(to, "yyyy-MM-dd", null);
             var user = db.AspNetUsers.Find(User.Identity.GetUserId());
-            List<referalperson> referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.service.idcase_FK == idcase && r.idcenter_FK == user.idcenter_FK).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100).ToList();
+            List<referalperson> referalpersons = null;
+            var role_id = db.AspNetRoles.Where(r => r.Name == "cmSGBV").First().Id;
+            if (User.IsInRole("coOutReachTeam"))
+                referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.submittingdate > from_date && r.submittingdate < to_date && !r.person.is_secret ).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100).ToList();
+            else
+                referalpersons = db.referalpersons.Include(r => r.AspNetUser).Include(r => r.@case).Include(r => r.center).Include(r => r.person).Include(r => r.service).Where(r => r.submittingdate > from_date && r.submittingdate < to_date && r.service.idcase_FK == idcase ).OrderByDescending(r => r.submittingdate.Value.Year).OrderByDescending(r => r.submittingdate.Value.Day).OrderByDescending(r => r.submittingdate.Value.Month).Take(100).ToList();
+
             List<RPSearchViewModel> RPSearchViewModels = new List<viewModel.RPSearchViewModel>();
 
             foreach (referalperson r in referalpersons)
