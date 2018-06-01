@@ -12,10 +12,10 @@ using SDS_SanadDistributedSystem.Models;
 namespace SDS_SanadDistributedSystem.Controllers
 {
     [Authorize(Roles = "superadmin,admin")]
-    public class centersController : BaseController
+
+    public class centersController : Controller
     {
         private sds_dbEntities db = new sds_dbEntities();
-
         [Authorize(Roles = "superadmin,admin")]
         // GET: centers
         public async Task<ActionResult> Index()
@@ -83,7 +83,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
-        public async Task<ActionResult> Create([Bind(Include = "idcenter,name,location,flag,idpartner_FK")] center center)
+        public async Task<ActionResult> Create([Bind(Include = "idcenter,name,location,idpartner_FK,flag,min_family_id,max_family_id,min_person_id,max_person_id")] center center)
         {
             if (ModelState.IsValid)
             {
@@ -120,8 +120,9 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
-        public async Task<ActionResult> Edit([Bind(Include = "idcenter,name,location,flag,idpartner_FK")] center center)
+        public async Task<ActionResult> Edit([Bind(Include = "idcenter,name,location,idpartner_FK,flag,min_family_id,max_family_id,min_person_id,max_person_id")] center center)
         {
+            ModelState.Remove("flag");
             if (ModelState.IsValid)
             {
                 db.Entry(center).State = EntityState.Modified;

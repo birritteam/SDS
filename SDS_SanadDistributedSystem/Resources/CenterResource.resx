@@ -126,6 +126,18 @@
   <data name="location" xml:space="preserve">
     <value>الموقع</value>
   </data>
+  <data name="max_family_id" xml:space="preserve">
+    <value>أعلى قيمة لمعرفات العائلة</value>
+  </data>
+  <data name="max_person_id" xml:space="preserve">
+    <value>أعلى قيمة لمعرفات الفرد</value>
+  </data>
+  <data name="min_family_id" xml:space="preserve">
+    <value>أدنى قيمة لمعرفات العائلة</value>
+  </data>
+  <data name="min_person_id" xml:space="preserve">
+    <value>أدنى قيمة لمعرفات الفرد</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>اسم المركز</value>
   </data>

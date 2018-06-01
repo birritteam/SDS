@@ -893,11 +893,6 @@
     <Content Include="Views\referalfamilies\Details.cshtml" />
     <Content Include="Views\referalfamilies\Edit.cshtml" />
     <Content Include="Views\referalfamilies\Index.cshtml" />
-    <Content Include="Views\centers\Create.cshtml" />
-    <Content Include="Views\centers\Delete.cshtml" />
-    <Content Include="Views\centers\Details.cshtml" />
-    <Content Include="Views\centers\Edit.cshtml" />
-    <Content Include="Views\centers\Index.cshtml" />
     <Content Include="Views\Account\SmartLogin.cshtml" />
     <Content Include="Views\referalpersons\_referallayout.cshtml" />
     <Content Include="Views\secretPeople\Create.cshtml" />
@@ -942,6 +937,11 @@
     <Content Include="Views\referalpersons\IndexCoByRN.cshtml" />
     <Content Include="Views\referalpersons\IndexOutReach.cshtml" />
     <Content Include="Views\Reporting\ChartIndex.cshtml" />
+    <Content Include="Views\centers\Create.cshtml" />
+    <Content Include="Views\centers\Delete.cshtml" />
+    <Content Include="Views\centers\Details.cshtml" />
+    <Content Include="Views\centers\Edit.cshtml" />
+    <Content Include="Views\centers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

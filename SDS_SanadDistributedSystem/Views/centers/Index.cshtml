@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>المراكز</h2>
@@ -13,7 +12,8 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+        @*    @Html.DisplayNameFor(model => model.name)*@
+            المركز
         </th>
         <th>
             @Html.DisplayNameFor(model => model.location)
@@ -21,35 +21,57 @@
         <th>
             @Html.DisplayNameFor(model => model.flag)
         </th>
-        @*<th>
-                @Html.DisplayNameFor(model => model.partner.name)
-            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.min_family_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.max_family_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.min_person_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.max_person_id)
+        </th>
+        <th>
+       @*     @Html.DisplayNameFor(model => model.partner.name)*@
+           الشريك
+        </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.flag)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.partner.name)
-                </td>*@
-            <td>
-                @Html.ActionLink("تعديل", "Edit", new { id = item.idcenter }) |
-                @Html.ActionLink("تفاصيل", "Details", new { id = item.idcenter }) |
-                @Html.ActionLink("إضافة مستخدمين", "../Account/Register", new { id = item.idcenter })
-
-                @* @Html.ActionLink("Delete", "Delete", new { id=item.idcenter })*@
-            </td>
-        </tr>
-    }
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.flag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.min_family_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.max_family_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.min_person_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.max_person_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.partner.name)
+        </td>
+        <td>
+            @Html.ActionLink("تعديل", "Edit", new { id = item.idcenter }) |
+            @Html.ActionLink("تفاصيل", "Details", new { id = item.idcenter }) |
+            @Html.ActionLink("إضافة مستخدمين", "../Account/Register", new { id = item.idcenter })
+    </td>
+    </tr>
+}
 
 </table>

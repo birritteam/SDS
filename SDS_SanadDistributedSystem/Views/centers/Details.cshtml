@@ -2,7 +2,6 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>تفاصيل</h2>
@@ -35,13 +34,46 @@
             @Html.DisplayFor(model => model.flag)
         </dd>
 
-        @*<dt>
-                @Html.DisplayNameFor(model => model.partner.name)
-            </dt>
+        <dt>
+            @Html.DisplayNameFor(model => model.min_family_id)
+        </dt>
 
-            <dd>
-                @Html.DisplayFor(model => model.partner.name)
-            </dd>*@
+        <dd>
+            @Html.DisplayFor(model => model.min_family_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.max_family_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.max_family_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.min_person_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.min_person_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.max_person_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.max_person_id)
+        </dd>
+
+        <dt>
+@*            @Html.DisplayNameFor(model => model.partner.name)*@
+            الشريك
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.partner.name)
+        </dd>
 
     </dl>
 </div>
@@ -49,3 +81,4 @@
     @Html.ActionLink("تعديل", "Edit", new { id = Model.idcenter }) |
     @Html.ActionLink("عودة إلى القائمة", "Index")
 </p>
+

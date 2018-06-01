@@ -88,6 +88,42 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to أعلى قيمة لمعرفات العائلة.
+        /// </summary>
+        public static string max_family_id {
+            get {
+                return ResourceManager.GetString("max_family_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to أعلى قيمة لمعرفات الفرد.
+        /// </summary>
+        public static string max_person_id {
+            get {
+                return ResourceManager.GetString("max_person_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to أدنى قيمة لمعرفات العائلة.
+        /// </summary>
+        public static string min_family_id {
+            get {
+                return ResourceManager.GetString("min_family_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to أدنى قيمة لمعرفات الفرد.
+        /// </summary>
+        public static string min_person_id {
+            get {
+                return ResourceManager.GetString("min_person_id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اسم المركز.
         /// </summary>
         public static string name {

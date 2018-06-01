@@ -41,9 +41,24 @@ namespace SDS_SanadDistributedSystem.Models
         public string flag { get; set; }
         [Display(Name = "idpartner_FK", ResourceType = typeof(CenterResource))]
         public string idpartner_FK { get; set; }
+        [Required]
+        // [MinValue(1, "Value must be at least 1")]
+
+        [Display(Name = "min_family_id", ResourceType = typeof(CenterResource))]
         public int min_family_id { get; set; }
+        [Required]
+        //[MinValue(1, "Value must be at least 1")]
+
+        [Display(Name = "max_family_id", ResourceType = typeof(CenterResource))]
         public int max_family_id { get; set; }
+        [Required]
+        // [MinValue(1, "Value must be at least 1")]
+
+        [Display(Name = "min_person_id", ResourceType = typeof(CenterResource))]
         public int min_person_id { get; set; }
+        [Required]
+        //  [MinValue(1, "Value must be at least 1")]
+        [Display(Name = "max_person_id", ResourceType = typeof(CenterResource))]
         public int max_person_id { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
