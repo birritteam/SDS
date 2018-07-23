@@ -58,179 +58,180 @@ else if (User.IsInRole("caseManager"))
         <!--/.Card-->*@
 
 
-    <div class="card card-cascade">
+    <div class="container">
+        <div class="card card-cascade">
 
-        <!--Card image-->
-        <div class="view card-header my-blue-gradient white-text">
-            <h3 class="h3-responsive card-header-content">استمارة العائلة </h3>
-            <p class="card-header-content sub-header h4-responsive">@Model.serial_number</p>
-        </div>
-        <!--/Card image-->
-        <!--Card content-->
-        <div class="card-body text-center">
-            <p class="card-text card-block">
-                <div class="row">
-                    <div class="col-md-8">
-                        <h5 class="card-title"><i class="fa fa-info" style="color:#ff8800"></i>    معلومات العائلة</h5>
-                        <hr />
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.family_book_number)
-                            @Html.DisplayFor(model => model.family_book_number)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.lastname)
-                            @Html.DisplayFor(model => model.lastname)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.family_head)
-                            @Html.DisplayFor(model => model.family_head)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.personcount)
-                            @Html.DisplayFor(model => model.personcount)
-                        </div>
-                        <div class="col-md-4">
-                            <label>عدد الأفراد المسجلين</label>
-                            @Model.people.Count
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.familynature)
-                            @Html.DisplayFor(model => model.familynature)
-                        </div>
-                        @*<div class="col-md-3">
+            <!--Card image-->
+            <div class="view card-header my-blue-gradient white-text">
+                <h3 class="h3-responsive card-header-content">استمارة العائلة </h3>
+                <p class="card-header-content sub-header h4-responsive">@Model.serial_number</p>
+            </div>
+            <!--/Card image-->
+            <!--Card content-->
+            <div class="card-body text-center">
+                <p class="card-text card-block">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h5 class="card-title"><i class="fa fa-info" style="color:#ff8800"></i>    معلومات العائلة</h5>
+                            <hr />
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.family_book_number)
+                                @Html.DisplayFor(model => model.family_book_number)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.lastname)
+                                @Html.DisplayFor(model => model.lastname)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.family_head)
+                                @Html.DisplayFor(model => model.family_head)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.personcount)
+                                @Html.DisplayFor(model => model.personcount)
+                            </div>
+                            <div class="col-md-4">
+                                <label>عدد الأفراد المسجلين</label>
+                                @Model.people.Count
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.familynature)
+                                @Html.DisplayFor(model => model.familynature)
+                            </div>
+                            @*<div class="col-md-3">
                                 @Html.LabelFor(model => model.currentaddress)
                                 @Html.DisplayFor(model => model.currentaddress)
                             </div>*@
-                        <div class="col-md-4">
-                            <label>السكن الحالي</label>
-                            @ViewBag.selectedCurrentAddress
-                        </div>
-
-                        <div class="col-md-4">
-                            <label>نوع السكن</label>
-                            @ViewBag.selectedAddressType
-                        </div>
-                        @if (Model.familynature.Equals("نازح داخلي"))
-            {<div class="col-md-4">
-                        <label>السكن السابق</label>
-                        @ViewBag.selectedPreviousAddress
-                    </div>
-                    @*<div class="col-md-3">
-                            @Html.LabelFor(model => model.lastaddress)
-                            @Html.DisplayFor(model => model.lastaddress)
-                        </div>*@
                             <div class="col-md-4">
-                                @Html.LabelFor(model => model.displacementdate)
-                                @Html.DisplayFor(model => model.displacementdate)
+                                <label>السكن الحالي</label>
+                                @ViewBag.selectedCurrentAddress
                             </div>
-                        }
 
-
-
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.evaluation)
-                            @Html.DisplayFor(model => model.evaluation)
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="col-md-12">
-                            <h5 class="card-title"> <i class="fa fa-phone" style="color:#ff8800"></i>   معلومات تواصل</h5>
-                            <hr />
-                            <div class="col-md-6">
-                                @Html.LabelFor(model => model.phone1)
-                                @Html.DisplayFor(model => model.phone1)
+                            <div class="col-md-4">
+                                <label>نوع السكن</label>
+                                @ViewBag.selectedAddressType
                             </div>
-                            <div class="col-md-6">
-                                @Html.LabelFor(model => model.phone1owner)
-                                @Html.DisplayFor(model => model.phone1owner)
-                            </div>
-                            @if (Model.phone2 != null)
-                            {
-                                <div class="col-md-6">
-                                    @Html.LabelFor(model => model.phone2)
-                                    @Html.DisplayFor(model => model.phone2)
+                            @if (Model.familynature.Equals("نازح داخلي"))
+                            {<div class="col-md-4">
+                                    <label>السكن السابق</label>
+                                    @ViewBag.selectedPreviousAddress
                                 </div>
-                                <div class="col-md-6">
-                                    @Html.LabelFor(model => model.phone2owner)
-                                    @Html.DisplayFor(model => model.phone2owner)
+                                @*<div class="col-md-3">
+                                    @Html.LabelFor(model => model.lastaddress)
+                                    @Html.DisplayFor(model => model.lastaddress)
+                                </div>*@
+                                <div class="col-md-4">
+                                    @Html.LabelFor(model => model.displacementdate)
+                                    @Html.DisplayFor(model => model.displacementdate)
                                 </div>
                             }
 
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
 
 
-                                <h5><i class="fa fa-sticky-note-o" style="color:#ff8800"></i>     ملاحظات  </h5>
-                                <hr />
-                                @if (Model.note == null)
-                                {
-                                    <text>لا يوجد ملاحظات</text>
-                                }
-                                else
-                                {
-                                    @Html.DisplayFor(model => model.note)
-                                }
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.evaluation)
+                                @Html.DisplayFor(model => model.evaluation)
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="col-md-12">
+                                <h5 class="card-title"> <i class="fa fa-phone" style="color:#ff8800"></i>   معلومات تواصل</h5>
+                                <hr />
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.phone1)
+                                    @Html.DisplayFor(model => model.phone1)
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(model => model.phone1owner)
+                                    @Html.DisplayFor(model => model.phone1owner)
+                                </div>
+                                @if (Model.phone2 != null)
+                                {
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.phone2)
+                                        @Html.DisplayFor(model => model.phone2)
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Html.LabelFor(model => model.phone2owner)
+                                        @Html.DisplayFor(model => model.phone2owner)
+                                    </div>
+                                }
 
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+                                    <h5><i class="fa fa-sticky-note-o" style="color:#ff8800"></i>     ملاحظات  </h5>
+                                    <hr />
+                                    @if (Model.note == null)
+                                    {
+                                        <text>لا يوجد ملاحظات</text>
+                                    }
+                                    else
+                                    {
+                                        @Html.DisplayFor(model => model.note)
+                                    }
+                                </div>
+                            </div>
+
+
+                        </div>
 
                     </div>
 
-                </div>
 
 
 
 
-
-            </p>
-
-
-            @*  <hr>*@
-
-            <div class="col-md-12">
-                @*  <hr/>*@
-                <h5 class="card-title"> <i class="fa fa-group" style="color:#2f91db"></i>   الأشخاص المسجلين ضمن العائلة</h5>
-                @*<hr />*@
+                </p>
 
 
+                @*  <hr>*@
 
-                <table class="table table-hover" id="familymembers">
+                <div class="col-md-12">
+                    @*  <hr/>*@
+                    <h5 class="card-title"> <i class="fa fa-group" style="color:#2f91db"></i>   الأشخاص المسجلين ضمن العائلة</h5>
+                    @*<hr />*@
 
-                    <tr class="wow fadeIn">
-                        <th class="text-center">
-                            @Html.DisplayNameFor(model => model.people.First().family_order_id)
-                        </th>
-                        <th class="text-center">
-                            @Html.DisplayNameFor(model => model.people.First().full_name)
-                        </th>
-                        <th class="text-center">
-                            @Html.DisplayNameFor(model => model.people.First().mothername)
-                        </th>
-                        <th class="text-center">
-                            @Html.DisplayNameFor(model => model.people.First().age)
-                        </th>
-                        <th class="text-center">
-                            @Html.DisplayNameFor(model => model.people.First().gender)
-                        </th>
-                        <th></th>
-                    </tr>
 
-                    @foreach (var item in Model.people)
-                    {
+
+                    <table class="table table-hover" id="familymembers">
 
                         <tr class="wow fadeIn">
-                            <td>
-                                @Html.DisplayFor(modelItem => item.family_order_id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.full_name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.mothername)
-                            </td>
-                            <td>
-                                @*@{
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.people.First().family_order_id)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.people.First().full_name)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.people.First().mothername)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.people.First().age)
+                            </th>
+                            <th class="text-center">
+                                @Html.DisplayNameFor(model => model.people.First().gender)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model.people)
+                        {
+
+                            <tr class="wow fadeIn">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.family_order_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.full_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mothername)
+                                </td>
+                                <td>
+                                    @*@{
                                         var dob = item.birthday.GetValueOrDefault();
                                         DateTime now = DateTime.Today;
                                         int age = now.Year - dob.Year;
@@ -238,72 +239,73 @@ else if (User.IsInRole("caseManager"))
                                         { age--; }
                                         @Html.DisplayFor(model => age);
                                     }*@
-                                @Html.DisplayFor(modelItem => item.age)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.gender)
-                            </td>
-                            <td class="text-center">
-                                @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
-                                {
-                                    @Html.ActionLink(" ", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
-                                }
-                                @Html.ActionLink(" ", "Details", "people", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card-o p-1", @title = "تفاصيل" })
-                                @Html.ActionLink(" ", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة" })
+                                    @Html.DisplayFor(modelItem => item.age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.gender)
+                                </td>
+                                <td class="text-center">
+                                    @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
+                                    {
+                                        @Html.ActionLink(" ", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
+                                    }
+                                    @Html.ActionLink(" ", "Details", "people", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card-o p-1", @title = "تفاصيل" })
+                                    @Html.ActionLink(" ", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة" })
 
 
-                                @*  @Html.ActionLink("حذف", "Delete", "people", new { id = item.idperson }, new { @class = "btn btn-danger" })*@
-                            </td>
-                        </tr>                             }
+                                    @*  @Html.ActionLink("حذف", "Delete", "people", new { id = item.idperson }, new { @class = "btn btn-danger" })*@
+                                </td>
+                            </tr>}
 
-                </table>
+                    </table>
 
-            </div>
-            <!-- Card footer -->
-            @*<div class="card-data">
+                </div>
+                <!-- Card footer -->
+                @*<div class="card-data">
                     <ul>
                         <li>@Html.ActionLink(" ", "Edit", new { id = Model.idfamily }, new { @class = "btn btn-warning btn-rounded p-2 fa fa-edit" })</li>
                         <li>@Html.ActionLink(" ", "Create", "people", new { id = Model.idfamily }, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus" })</li>
                         <li>@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-2 fa fa-list" })</li>
                     </ul>
                 </div>*@
-            <!-- Card footer -->
-            <div class="row">
+                <!-- Card footer -->
+                <div class="row">
 
-            </div>
-            <div class="row">
-                <p class="card-footer">
-                    @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
-                    {
-                        <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "families",new { id=Model.idfamily})'><i class="fa fa-edit"></i>    تعديل  </a>
-                    }
-                    @*@Html.ActionLink(" ", "Edit", new { id = Model.idfamily }, new { @class = "btn btn-warning btn-rounded p-1 fa fa-edit" })*@
-                    @if (User.IsInRole("receptionist"))
-                    {
-                        if (@Model.people.Count() < @Model.personcount)
+                </div>
+                <div class="row">
+                    <p class="card-footer">
+                        @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
                         {
-                            @*@Html.ActionLink(" ", "Create", "people", new { id = Model.idfamily }, new { @class = "btn btn-default btn-rounded p-1 fa fa-user-plus" })*@
-                            <a class="btn btn-default btn-rounded p-1" href='@Url.Action("Create", "people",new { id=Model.idfamily})'><i class="fa fa-user-plus"></i>    إضافة شخص   </a>
-
+                            <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "families",new { id=Model.idfamily})'><i class="fa fa-edit"></i>    تعديل  </a>
                         }
-                        else
+                        @*@Html.ActionLink(" ", "Edit", new { id = Model.idfamily }, new { @class = "btn btn-warning btn-rounded p-1 fa fa-edit" })*@
+                        @if (User.IsInRole("receptionist"))
                         {
-                            @*@Html.ActionLink(" ", "Create", "people", new { id = Model.idfamily }, new { @class = "btn btn-default btn-rounded p-1 fa fa-user-plus disabled" })*@
-                            <a class="btn btn-default btn-rounded p-1 disabled" title="عدد الأفراد المسجلين لا يمكن أن يتجاوز عدد أفراد العائلة" href='@Url.Action("Create", "people",new { id=Model.idfamily})'><i class="fa fa-user-plus"></i>    لا يمكن إضافة المزيد من الأشخاص   </a>
+                            if (@Model.people.Count() < @Model.personcount)
+                            {
+                                @*@Html.ActionLink(" ", "Create", "people", new { id = Model.idfamily }, new { @class = "btn btn-default btn-rounded p-1 fa fa-user-plus" })*@
+                                <a class="btn btn-default btn-rounded p-1" href='@Url.Action("Create", "people",new { id=Model.idfamily})'><i class="fa fa-user-plus"></i>    إضافة شخص   </a>
 
+                            }
+                            else
+                            {
+                                @*@Html.ActionLink(" ", "Create", "people", new { id = Model.idfamily }, new { @class = "btn btn-default btn-rounded p-1 fa fa-user-plus disabled" })*@
+                                <a class="btn btn-default btn-rounded p-1 disabled" title="عدد الأفراد المسجلين لا يمكن أن يتجاوز عدد أفراد العائلة" href='@Url.Action("Create", "people",new { id=Model.idfamily})'><i class="fa fa-user-plus"></i>    لا يمكن إضافة المزيد من الأشخاص   </a>
+
+                            }
                         }
-                    }
 
 
-                </p>
+                    </p>
+                </div>
+
+
+
+                @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
             </div>
+            <!--/.Card content-->
 
-
-
-            @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
         </div>
-        <!--/.Card content-->
-
     </div>
 
 

@@ -32,33 +32,34 @@
     </span>
 
 
-    <div class="card card-cascade">
+    <div class="container">
+        <div class="card card-cascade">
 
-        <!--Card image-->
-        <div class="view card-header dark-blue-bg white-text">
-            <h3 class="h3-responsive card-header-content">إضافة إحالات جديدة لـ:</h3>
-            <p class="card-header-content sub-header h4-responsive">@Model.person.full_name</p>
-        </div>
-        <!--/Card image-->
-        <!--Card content-->
-        <div class="card-body text-center">
+            <!--Card image-->
+            <div class="view card-header dark-blue-bg white-text">
+                <h3 class="h3-responsive card-header-content">إضافة إحالات جديدة لـ:</h3>
+                <p class="card-header-content sub-header h4-responsive">@Model.person.full_name</p>
+            </div>
+            <!--/Card image-->
+            <!--Card content-->
+            <div class="card-body text-center">
 
-            <p class="card-text card-block">
+                <p class="card-text card-block">
 
-                <div class="row col-md-12">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                            @Html.DropDownList("centers", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
-                            @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
+                    <div class="row col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.DropDownList("centers", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
+                                @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
 
+                            </div>
                         </div>
+
+
+
                     </div>
 
-              
-
-                </div>
-                
                     @using (Html.BeginForm())
                     {
 
@@ -94,7 +95,7 @@
                                         @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                             </div>
+                            </div>
                             <div class="row col-md-12">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-6">
@@ -122,59 +123,60 @@
 
 
 
-                        
+
                     }
 
-                <div class="row col-md-12">
-                    <div class="form-group">
-                        <table id="myTable" class="display table table-hover" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">الرقم التسلسلي</th>
-                                    <th class="text-center">القسم</th>
-                                    <th class="text-center">الخدمة</th>
-                                    <th class="text-center">ملاحظات </th>
-                                    <th class="text-center">المستقبل</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                    <div class="row col-md-12">
+                        <div class="form-group">
+                            <table id="myTable" class="display table table-hover" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">الرقم التسلسلي</th>
+                                        <th class="text-center">القسم</th>
+                                        <th class="text-center">الخدمة</th>
+                                        <th class="text-center">ملاحظات </th>
+                                        <th class="text-center">المستقبل</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
                     </div>
-                    
+
+                </p>
+
+                <div class="row">
+
                 </div>
-                
-            </p>
+                <div class="row">
+                    @using (Html.BeginForm("personReferal", "referalpersons", FormMethod.Post, new { @style = "display:inline;" }))
+                    {@Html.AntiForgeryToken()
+                    @*<div class="row" style="display:inline;">*@
 
-            <div class="row">
-                
+
+                    <p class="card-footer">
+                        @*<div>*@
+                        @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
+
+
+
+
+                        @*<div class="form-group">
+                        <div class="col-md-12 ">*@
+                        <input type="button" value="إرسال الإحالات" id="sendrefeal" class="btn btn-default btn-rounded p-0" onclick="successSendReferals()" />
+                        @*</div>
+                        </div>*@
+
+
+                        @*</div>*@
+                    </p>
+
+                    @*</div>*@
+                }
+                </div>
             </div>
-<div class="row">
-    @using (Html.BeginForm("personReferal", "referalpersons", FormMethod.Post, new { @style = "display:inline;" }))
-    { @Html.AntiForgeryToken()
-        @*<div class="row" style="display:inline;">*@
-
-
-        <p class="card-footer">
-            @*<div>*@
-            @*@using (Ajax.BeginForm("sendReferals", "referalpersons", new AjaxOptions { OnSuccess = "successSendReferals", OnFailure = "OnFailureSendReferals" }))*@
-
-
-
-
-            @*<div class="form-group">
-                <div class="col-md-12 ">*@
-            <input type="button" value="إرسال الإحالات" id="sendrefeal" class="btn btn-default btn-rounded p-0" onclick="successSendReferals()" />
-            @*</div>
-                </div>*@
-
-
-            @*</div>*@
-        </p>
-
-                @*</div>*@
-    }
-</div>
         </div>
     </div>
 

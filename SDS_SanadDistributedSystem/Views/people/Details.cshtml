@@ -108,466 +108,468 @@ else if (User.IsInRole("caseManager"))
     </div>*@
 <!--/.Accordion wrapper-->
 <!--Card-->
-<div class="card card-cascade">
+<div class="container">
+    <div class="card card-cascade">
 
-    <!--Card image-->
-    <div class="view card-header dark-blue-bg white-text">
-        <h3 class="h3-responsive card-header-content">استمارة</h3>
-        <p class="card-header-content sub-header h4-responsive">@Model.full_name</p>
-    </div>
-    <!--/Card image-->
-    <!--Card content-->
-    <div class="card-body text-center">
+        <!--Card image-->
+        <div class="view card-header dark-blue-bg white-text">
+            <h3 class="h3-responsive card-header-content">استمارة</h3>
+            <p class="card-header-content sub-header h4-responsive">@Model.full_name</p>
+        </div>
+        <!--/Card image-->
+        <!--Card content-->
+        <div class="card-body text-center">
 
-        <p class="card-text card-block">
+            <p class="card-text card-block">
 
-            <div class="row">
-                <div class="col-md-9">
-                    <h5 class="card-title"><i class="fa fa-user-o" style="color:#ff8800"></i>   معلومات شخصية</h5>
-                    <hr />
-                    <div class="row">
+                <div class="row">
+                    <div class="col-md-9">
+                        <h5 class="card-title"><i class="fa fa-user-o" style="color:#ff8800"></i>   معلومات شخصية</h5>
+                        <hr />
+                        <div class="row">
 
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.full_name)
-                            @Html.DisplayFor(model => model.full_name)
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.full_name)
+                                @Html.DisplayFor(model => model.full_name)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.mothername)
+                                @Html.DisplayFor(model => model.mothername)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.gender)
+                                @Html.DisplayFor(model => model.gender)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.nationality)
+                                @Html.DisplayFor(model => model.nationality)
+                            </div>
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.birthday)
+                                @Html.DisplayFor(model => model.birthday)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.birthplace)
+                                @Html.DisplayFor(model => model.birthplace)
+                            </div>
+
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.nationalnumber)
+                                @Html.DisplayFor(model => model.nationalnumber)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(model => model.martial)
+                                @Html.DisplayFor(model => model.martial)
+                            </div>
+
+
+
                         </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.mothername)
-                            @Html.DisplayFor(model => model.mothername)
+                    </div>
+                    <div class="col-md-3">
+                        <h5 class="card-title"> <i class="fa fa-phone" style="color:#ff8800"></i>   معلومات تواصل</h5>
+                        <hr />
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.currentaddress)
+                                @Html.DisplayFor(model => model.currentaddress)
+                            </div>
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.phone1)
+                                @Html.DisplayFor(model => model.phone1)
+                            </div>
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.phone2)
+                                @Html.DisplayFor(model => model.phone2)
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.gender)
-                            @Html.DisplayFor(model => model.gender)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.nationality)
-                            @Html.DisplayFor(model => model.nationality)
+                    </div>
+                </div>
+                @*<hr />*@
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <h5 class="card-title"><i class="fa fa-graduation-cap" style="color:#ff8800"></i>    التعليم والعمل   </h5>
+                        <hr />
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.education)
+                                @Html.DisplayFor(model => model.education)
+                            </div>
+                            <div class="col-md-12">
+                                @Html.LabelFor(model => model.educationstate)
+                                @Html.DisplayFor(model => model.educationstate)
+                            </div>
+
+                            <div class="col-md-12">
+                                <label>العمل الحالي</label>
+                                @ViewBag.selectedCurrentWork
+                            </div>
+                            <div class="col-md-12">
+                                <label>العمل السابق</label>
+                                @ViewBag.selectedPreviousWork
+                            </div>
                         </div>
 
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.birthday)
-                            @Html.DisplayFor(model => model.birthday)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.birthplace)
-                            @Html.DisplayFor(model => model.birthplace)
-                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h5 class="card-title"><i class="fa fa-info" style="color:#ff8800"></i>    معلومات التسجيل</h5>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.serial_number)
+                                @Html.DisplayFor(model => model.serial_number)
+                            </div>
 
 
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.nationalnumber)
-                            @Html.DisplayFor(model => model.nationalnumber)
-                        </div>
-                        <div class="col-md-4">
-                            @Html.LabelFor(model => model.martial)
-                            @Html.DisplayFor(model => model.martial)
-                        </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.registrationdate)
+                                @Html.DisplayFor(model => model.registrationdate)
+                            </div>
 
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.applicant)
+                                @Html.DisplayFor(model => model.applicant)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(model => model.relationtype)
+                                @Html.DisplayFor(model => model.relationtype)
+                            </div>
+                            <div class="col-md-6">
+                                <label>طريقة التعرف على المركز</label>
+                                @ViewBag.selectedKC
+                            </div>
+                            @*<div class="col-md-3">
+                                    @Html.LabelFor(model => model.formnumber)
+                                    @Html.DisplayFor(model => model.formnumber)
+                                </div>*@
+
+
+
+                            @*<div class="col-md-3">
+                                    @Html.LabelFor(model => model.family.familynature)
+                                    @Html.DisplayFor(model => model.family.familynature)
+                                </div>*@
+
+                            @*@Html.DisplayNameFor(model => model.center.name)
+                                    @Html.DisplayFor(model => model.center.name)
+
+
+
+                                 @*<div class="col-md-3">
+                                    @Html.LabelFor(model => model.AspNetUser.Email)
+                                    @Html.DisplayFor(model => model.AspNetUser.Email)
+                                </div>*@
+
+
+                        </div>
 
 
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <h5 class="card-title"> <i class="fa fa-phone" style="color:#ff8800"></i>   معلومات تواصل</h5>
-                    <hr />
-                    <div class="row">
+                    <div class="col-md-3">
 
-                        <div class="col-md-12">
-                            @Html.LabelFor(model => model.currentaddress)
-                            @Html.DisplayFor(model => model.currentaddress)
-                        </div>
-                        <div class="col-md-12">
-                            @Html.LabelFor(model => model.phone1)
-                            @Html.DisplayFor(model => model.phone1)
-                        </div>
-                        <div class="col-md-12">
-                            @Html.LabelFor(model => model.phone2)
-                            @Html.DisplayFor(model => model.phone2)
-                        </div>
-                    </div>
-                </div>
-            </div>
-            @*<hr />*@
-            <div class="row">
-
-                <div class="col-md-3">
-                    <h5 class="card-title"><i class="fa fa-graduation-cap" style="color:#ff8800"></i>    التعليم والعمل   </h5>
-                    <hr />
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            @Html.LabelFor(model => model.education)
-                            @Html.DisplayFor(model => model.education)
-                        </div>
-                        <div class="col-md-12">
-                            @Html.LabelFor(model => model.educationstate)
-                            @Html.DisplayFor(model => model.educationstate)
-                        </div>
-
-                        <div class="col-md-12">
-                            <label>العمل الحالي</label>
-                            @ViewBag.selectedCurrentWork
-                        </div>
-                        <div class="col-md-12">
-                            <label>العمل السابق</label>
-                            @ViewBag.selectedPreviousWork
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-md-6">
-                    <h5 class="card-title"><i class="fa fa-info" style="color:#ff8800"></i>    معلومات التسجيل</h5>
-                    <hr />
-                    <div class="row">
-                        <div class="col-md-6">
-                            @Html.LabelFor(model => model.serial_number)
-                            @Html.DisplayFor(model => model.serial_number)
-                        </div>
-
-
-                        <div class="col-md-6">
-                            @Html.LabelFor(model => model.registrationdate)
-                            @Html.DisplayFor(model => model.registrationdate)
-                        </div>
-
-
-                        <div class="col-md-6">
-                            @Html.LabelFor(model => model.applicant)
-                            @Html.DisplayFor(model => model.applicant)
-                        </div>
-                        <div class="col-md-6">
-                            @Html.LabelFor(model => model.relationtype)
-                            @Html.DisplayFor(model => model.relationtype)
-                        </div>
-                        <div class="col-md-6">
-                            <label>طريقة التعرف على المركز</label>
-                            @ViewBag.selectedKC
-                        </div>
-                        @*<div class="col-md-3">
-                                @Html.LabelFor(model => model.formnumber)
-                                @Html.DisplayFor(model => model.formnumber)
-                            </div>*@
-
-
-
-                        @*<div class="col-md-3">
-                                @Html.LabelFor(model => model.family.familynature)
-                                @Html.DisplayFor(model => model.family.familynature)
-                            </div>*@
-
-                        @*@Html.DisplayNameFor(model => model.center.name)
-                                @Html.DisplayFor(model => model.center.name)
-
-
-
-                             @*<div class="col-md-3">
-                                @Html.LabelFor(model => model.AspNetUser.Email)
-                                @Html.DisplayFor(model => model.AspNetUser.Email)
-                            </div>*@
-
-
-                    </div>
-
-
-                </div>
-                <div class="col-md-3">
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h5 class="card-title">    <i class="fa fa-wheelchair" style="color:#ff8800"> </i> نقاط الضعف   </h5>
-                            <hr />
-                            <ul class="list-inline">
-                                @*<content><label>نقاط الضعف:</label></content>*@
-                                @if (ViewBag.selectedWeaknesses.Count == 0)
-                                {
-                                    <text>لا يوجد نقاط ضعف</text>
-                                }
-                                else
-                                {
-                                    foreach (string w in ViewBag.selectedWeaknesses)
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title">    <i class="fa fa-wheelchair" style="color:#ff8800"> </i> نقاط الضعف   </h5>
+                                <hr />
+                                <ul class="list-inline">
+                                    @*<content><label>نقاط الضعف:</label></content>*@
+                                    @if (ViewBag.selectedWeaknesses.Count == 0)
                                     {
-                                        <li class="list-inline-item">@w</li>
+                                        <text>لا يوجد نقاط ضعف</text>
                                     }
-                                }
-
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <h5 class="card-title"><i class="fa fa-folder-open-o" style="color:#ff8800"></i>    الوثائق   </h5>
-                            <hr />
-                            <ul class="list-inline">
-
-                                @*<content><label>الوثائق:</label></content>*@
-                                @if (ViewBag.selectedDocuments.Count == 0)
-                                {
-                                    <text>لا يوجد وثائق</text>
-                                }
-                                else
-                                {
-                                    foreach (string d in ViewBag.selectedDocuments)
+                                    else
                                     {
-                                        <li class="list-inline-item">@d</li>
+                                        foreach (string w in ViewBag.selectedWeaknesses)
+                                        {
+                                            <li class="list-inline-item">@w</li>
+                                        }
                                     }
-                                }
 
-                            </ul>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="card-title"><i class="fa fa-folder-open-o" style="color:#ff8800"></i>    الوثائق   </h5>
+                                <hr />
+                                <ul class="list-inline">
+
+                                    @*<content><label>الوثائق:</label></content>*@
+                                    @if (ViewBag.selectedDocuments.Count == 0)
+                                    {
+                                        <text>لا يوجد وثائق</text>
+                                    }
+                                    else
+                                    {
+                                        foreach (string d in ViewBag.selectedDocuments)
+                                        {
+                                            <li class="list-inline-item">@d</li>
+                                        }
+                                    }
+
+                                </ul>
+                            </div>
+
                         </div>
+
 
                     </div>
 
-
                 </div>
+                @*<hr />*@
 
-            </div>
-            @*<hr />*@
-
-            <div class="row">
-                <div class="col-md-9">
-                    <h5 class="card-title"><i class="fa fa-percent" style="color:#ff8800"></i>    التقييم</h5>
-                    <hr />
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>تقييم الفرد</label>
-                            @Html.DisplayFor(model => model.evaluation)
-                        </div>
-                        <div class="col-md-6">
-                            <label>تقييم العائلة</label>
-                            @Html.DisplayFor(model => model.family.evaluation)
+                <div class="row">
+                    <div class="col-md-9">
+                        <h5 class="card-title"><i class="fa fa-percent" style="color:#ff8800"></i>    التقييم</h5>
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>تقييم الفرد</label>
+                                @Html.DisplayFor(model => model.evaluation)
+                            </div>
+                            <div class="col-md-6">
+                                <label>تقييم العائلة</label>
+                                @Html.DisplayFor(model => model.family.evaluation)
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <h5><i class="fa fa-sticky-note-o" style="color:#ff8800"></i>     ملاحظات  </h5>
-                    <hr />
-                    @if (Model.note == null)
-                    {
-                        <text>لا يوجد ملاحظات</text>
-                    }
-                    else
-                    {
-                        @Html.DisplayFor(model => model.note)
-                    }
+                    <div class="col-md-3">
+                        <h5><i class="fa fa-sticky-note-o" style="color:#ff8800"></i>     ملاحظات  </h5>
+                        <hr />
+                        @if (Model.note == null)
+                        {
+                            <text>لا يوجد ملاحظات</text>
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(model => model.note)
+                        }
+
+                    </div>
 
                 </div>
 
-            </div>
+
+                <div class="row">
 
 
-            <div class="row">
+                    <div class="col-md-12">
+                        @*<hr/>*@
 
+                        <h5 class="card-title"><i class="fa fa-exchange" style="color:#319ae9"></i> الإحالات</h5>
 
-                <div class="col-md-12">
-                    @*<hr/>*@
-
-                    <h5 class="card-title"><i class="fa fa-exchange" style="color:#319ae9"></i> الإحالات</h5>
-
-                    <hr />
-                    @if (Model.referalpersons.Count == 0)
-                    {
-                        <text>لا يوجد إحالات</text>
-                    }
-                    else
-                    {
-                        <table id="All" class="display table All text-center" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">
-                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().service.name)
-                                    </th>
-                                    <th class="text-center">
-                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().center.name)
-                                    </th>
-                                    @*<th>
-                                            المرسل
-                                        </th>
-                                        <th>
-                                            المستقبل
-                                        </th>*@
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().referaldate)
-                                        </th>
-                                        <th>
-                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().submittingdate)
-                                        </th>*@
-                                    <th class="text-center">
-                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().referalstate)
-                                    </th>
-
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().servicestate)
-                                        </th>*@
-                                    <th class="text-center">
-                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().servicestartdate)
-                                    </th>
-                                    <th class="text-center">
-                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().serviceenddate)
-                                    </th>
-
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().senderevalution)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().recieverevalution)
-                                    </th>
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().outreachnote)
-                                        </th>*@
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.AspNetUser.Email)
-                                        </th>*@
-                                    @*<th>
-                                            @Html.DisplayNameFor(model => model.@case.name)
-                                        </th>*@
-
-
-
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.referalpersons)
-                                {
+                        <hr />
+                        @if (Model.referalpersons.Count == 0)
+                        {
+                            <text>لا يوجد إحالات</text>
+                        }
+                        else
+                        {
+                            <table id="All" class="display table All text-center" cellspacing="0">
+                                <thead>
                                     <tr>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.service.name)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.center.name)
-                                        </td>
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.submittingdate)
-                                            </td>*@
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.referalstate)
-                                            </td>*@
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.referaldate)
-                                            </td>*@
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.servicestate)
-                                            </td>*@
-                                        <td>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().service.name)
+                                        </th>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().center.name)
+                                        </th>
+                                        @*<th>
+                                                المرسل
+                                            </th>
+                                            <th>
+                                                المستقبل
+                                            </th>*@
+                                        @*<th>
+                                                @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().referaldate)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().submittingdate)
+                                            </th>*@
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().referalstate)
+                                        </th>
 
-                                            @{
-                                                if (item.servicestate == "Pending" && item.referalstate == "Pending")
-                                                {
-                                                    <text>جديدة/ لم تخدم بعد</text>
-                                                }
+                                        @*<th>
+                                                @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().servicestate)
+                                            </th>*@
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().servicestartdate)
+                                        </th>
+                                        <th class="text-center">
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().serviceenddate)
+                                        </th>
 
-                                                else if (item.servicestate == "Pending" && item.referalstate == "Approved")
-                                                {
-                                                    <text>مقبولة/لم تخدم بعد</text>
-                                                }
-                                                else if (item.servicestate == "Pending" && item.referalstate == "OutReach")
-                                                {
-                                                    <text>مقبولة/وصول</text>
-                                                }
-                                                else if (item.servicestate == "Pending" && item.referalstate == "Rejected")
-                                                {
-                                                    <text>مرفوضة</text>
-                                                }
-                                                else if (item.servicestate == "Pending" && item.referalstate == "External")
-                                                {
-                                                    <text>محالة خارجيا</text>
-                                                }
-
-                                                else if (item.servicestate == "In prgress" && item.referalstate == "Approved")
-                                                {
-                                                    <text>قيد المتابعة</text>
-                                                }
-                                                else if (item.servicestate == "In prgress" && item.referalstate == "OutReach")
-                                                {
-                                                    <text>قيد المتابعة/وصول</text>
-                                                }
-                                                else if (item.servicestate == "Closed" && item.referalstate == "OutReach")
-                                                {
-                                                    <text>مغلقة/وصول</text>
-                                                }
-                                                else if (item.servicestate == "Closed")
-                                                {
-                                                    <text>مغلقة</text>
-                                                }
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().senderevalution)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().recieverevalution)
+                                        </th>
+                                        @*<th>
+                                                @Html.DisplayNameFor(model => model.referalpersons.FirstOrDefault().outreachnote)
+                                            </th>*@
+                                        @*<th>
+                                                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+                                            </th>*@
+                                        @*<th>
+                                                @Html.DisplayNameFor(model => model.@case.name)
+                                            </th>*@
 
 
 
-
-}
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.servicestartdate)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.serviceenddate)
-                                        </td>
-
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.senderevalution)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.recieverevalution)
-                                        </td>
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.outreachnote)
-                                            </td>*@
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.AspNetUser.Email)
-                                            </td>*@
-                                        @*<td>
-                                                @Html.DisplayFor(modelItem => item.@case.name)
-                                            </td>*@
-
-
-
-                                        @*<td>
-                                                @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
-                                                @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
-
-                                            </td>*@
 
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.referalpersons)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.service.name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.center.name)
+                                            </td>
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.AspNetUser.UserName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.AspNetUser1.UserName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.submittingdate)
+                                                </td>*@
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.referalstate)
+                                                </td>*@
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.referaldate)
+                                                </td>*@
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.servicestate)
+                                                </td>*@
+                                            <td>
+
+                                                @{
+                                                    if (item.servicestate == "Pending" && item.referalstate == "Pending")
+                                                    {
+                                                        <text>جديدة/ لم تخدم بعد</text>
+                                                    }
+
+                                                    else if (item.servicestate == "Pending" && item.referalstate == "Approved")
+                                                    {
+                                                        <text>مقبولة/لم تخدم بعد</text>
+                                                    }
+                                                    else if (item.servicestate == "Pending" && item.referalstate == "OutReach")
+                                                    {
+                                                        <text>مقبولة/وصول</text>
+                                                    }
+                                                    else if (item.servicestate == "Pending" && item.referalstate == "Rejected")
+                                                    {
+                                                        <text>مرفوضة</text>
+                                                    }
+                                                    else if (item.servicestate == "Pending" && item.referalstate == "External")
+                                                    {
+                                                        <text>محالة خارجيا</text>
+                                                    }
+
+                                                    else if (item.servicestate == "In prgress" && item.referalstate == "Approved")
+                                                    {
+                                                        <text>قيد المتابعة</text>
+                                                    }
+                                                    else if (item.servicestate == "In prgress" && item.referalstate == "OutReach")
+                                                    {
+                                                        <text>قيد المتابعة/وصول</text>
+                                                    }
+                                                    else if (item.servicestate == "Closed" && item.referalstate == "OutReach")
+                                                    {
+                                                        <text>مغلقة/وصول</text>
+                                                    }
+                                                    else if (item.servicestate == "Closed")
+                                                    {
+                                                        <text>مغلقة</text>
+                                                    }
+
+
+
 
                                                 }
-                            </tbody>
-                        </table>
-                                                }
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.servicestartdate)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.serviceenddate)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.senderevalution)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.recieverevalution)
+                                            </td>
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.outreachnote)
+                                                </td>*@
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                                                </td>*@
+                                            @*<td>
+                                                    @Html.DisplayFor(modelItem => item.@case.name)
+                                                </td>*@
+
+
+
+                                            @*<td>
+                                                    @Html.ActionLink("تعديل", "Edit", new { idreferalperson = item.idreferalperson, idperson = item.idperson_FK, idcase = item.idcase_FK })|
+                                                    @Html.ActionLink("إحالة جديدة", "personReferalByCaseManager", "referalpersons", new { id = item.idperson_FK, idcase = item.idcase_FK }, "")
+
+                                                </td>*@
+
+                                        </tr>
+
+                                    }
+                                </tbody>
+                            </table>
+                        }
+
+                    </div>
 
                 </div>
-
-            </div>
-
-        </p>
-
-        <div class="row">
-
-        </div>
-        <div class="row">
-
-            <p class="card-footer">
-                @*<i class="fa fa-magic ml-1"></i>*@
-                <a class="btn btn-secondary btn-rounded p-1" href='@Url.Action("personReferal", "referalpersons",new { id=Model.idperson})'><i class="fa fa-exchange"></i>    إحالة جديدة</a>
-                @*@Html.ActionLink(" ", "personReferal", "referalpersons", new { id = Model.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة جديدة" })*@
-                @*@Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-1 fa fa-users" })*@
-                @*@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded fa fa-list p-1" })*@
-
-                @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
-                {
-
-                    <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "people",new { id=Model.idperson})'><i class="fa fa-edit"></i>    تعديل  </a>
-                    @*@Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" , @title = "تعديل بيانات الاستمارة" })*@
-                }
 
             </p>
 
+            <div class="row">
+
+            </div>
+            <div class="row">
+
+                <p class="card-footer">
+                    @*<i class="fa fa-magic ml-1"></i>*@
+                    <a class="btn btn-secondary btn-rounded p-1" href='@Url.Action("personReferal", "referalpersons",new { id=Model.idperson})'><i class="fa fa-exchange"></i>    إحالة جديدة</a>
+                    @*@Html.ActionLink(" ", "personReferal", "referalpersons", new { id = Model.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة جديدة" })*@
+                    @*@Html.ActionLink(" ", "Details", "families", new { id = Model.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-1 fa fa-users" })*@
+                    @*@Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded fa fa-list p-1" })*@
+
+                    @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
+                    {
+
+                        <a class="btn btn-warning btn-rounded p-1" href='@Url.Action("Edit", "people",new { id=Model.idperson})'><i class="fa fa-edit"></i>    تعديل  </a>
+                        @*@Html.ActionLink(" ", "Edit", new { id = Model.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" , @title = "تعديل بيانات الاستمارة" })*@
+                    }
+
+                </p>
+
+            </div>
+
+
+            @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
         </div>
-
-
-        @*<a class="btn btn-deep-orange" style="padding:10px; margin:10px;">Go somewhere</a>*@
     </div>
 </div>
 

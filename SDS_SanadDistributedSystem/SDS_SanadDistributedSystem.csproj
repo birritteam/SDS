@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -359,6 +360,7 @@
     <Content Include="Content\cardview.css" />
     <Content Include="Content\custom-alert-bootstrap.css" />
     <Content Include="Content\custom-alert.css" />
+    <Content Include="Content\dataTables.bootstrap4.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap4.css" />
@@ -520,6 +522,7 @@
     <Content Include="Content\GE_SS_Text_Light.svg" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\login.css" />
+    <Content Include="Content\material.min.css" />
     <Content Include="Content\mdb.css" />
     <Content Include="Content\mdb.min.css" />
     <Content Include="favicon.ico" />
@@ -534,6 +537,7 @@
     <Content Include="404.aspx" />
     <Content Include="images\birr.jpg" />
     <Content Include="images\notfound.png" />
+    <Content Include="images\pageloader.gif" />
     <Content Include="images\sanad.ico" />
     <Content Include="images\sanad.jpg" />
     <Content Include="images\user-200x200.png" />
@@ -581,9 +585,11 @@
     <Content Include="Content\GE_SS_Text_Light.eot" />
     <Content Include="Content\GE_SS_Text_Light.ttf" />
     <Content Include="Content\GE_SS_Text_Light.woff" />
+    <Content Include="Content\fonts\NotoKufiArabic-Regular.ttf" />
     <None Include="Properties\PublishProfiles\sds.pubxml" />
     <Content Include="Scripts\custom-alert-debug.js" />
     <Content Include="Scripts\custom-alert.min.js" />
+    <Content Include="Scripts\dataTables.bootstrap4.min.js" />
     <Content Include="Scripts\editPersonFunctions.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
@@ -797,6 +803,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.nicescroll.iframehelper.min.js" />
     <Content Include="Scripts\jquery.nicescroll.min.js" />
     <Content Include="Scripts\jquery.signalR-2.2.2.js" />
@@ -813,6 +820,7 @@
     <Content Include="Scripts\mdb.js" />
     <Content Include="Scripts\mdb.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\MyDataTableDesign.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />

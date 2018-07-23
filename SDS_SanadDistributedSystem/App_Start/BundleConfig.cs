@@ -29,7 +29,7 @@ namespace SDS_SanadDistributedSystem
                       "~/Scripts/bootstrap-select.js",
                       "~/Scripts/Layout.js",
                       "~/Scripts/respond.js",
-                      "~/Scripts/DataTables/jquery.dataTables.js",
+                      //"~/Scripts/DataTables/jquery.dataTables.js",
                       "~/Scripts/jquery.nicescroll.min.js"
                       ));
 
@@ -38,7 +38,7 @@ namespace SDS_SanadDistributedSystem
                       "~/Content/mdb.min.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/bootstrap-select.css",
-                      "~/Content/DataTables/css/jquery.dataTables.css",
+                      //"~/Content/DataTables/css/jquery.dataTables.css",
                       "~/Content/site.css"));
         }
     }

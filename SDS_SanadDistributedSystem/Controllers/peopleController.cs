@@ -16,20 +16,31 @@ namespace SDS_SanadDistributedSystem.Controllers
     public class peopleController : BaseController
     {
         private sds_dbEntities db = new sds_dbEntities();
-
-        private string[]
-            gender = { "أنثى", "ذكر" },
-            nationality = { "", "عربي - سوري" },
-            martial = { "", "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" },
-            education = {"","أمي (لا يعرف القراءة والكتابة)", "سنة واحدة (صف أول)", "سنتان (صف ثاني)", "3 سنوات (صف ثالث)", "4 سنوات (صف رابع)", "5 سنوات (صف خامس)",
-            "6 سنوات (صف سادس)", "7 سنوات (صف سابع)", "8 سنوات (صف ثامن)","9 سنوات (صف تايع)","10 سنوات (صف عاشر)","11 سنة (صف حادي عشر)","12 سنة (صف ثاني عشر)",
-            "شهادة جامعية","دراسات عليا","تدريب مهني أو تقني" },
-            relationtype = { "", "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" },
-            educationstate = { "الوضع الحالي", "آخر تحصيل" };
-
-
-
-        private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+        private readonly string[] gender = { "أنثى", "ذكر" };
+        private readonly string[] nationality = { "", "عربي - سوري" };
+        private readonly string[] martial = { "", "متزوج(ة)", "عازب(ة)", "مطلق(ة)", "منفصل(ة)", "أرمل(ة)", "مخطوب(ة)" };
+        private readonly string[] education = {
+            "",
+            "أمي (لا يعرف القراءة والكتابة)",
+            "سنة واحدة (صف أول)",
+            "سنتان (صف ثاني)",
+            "3 سنوات (صف ثالث)",
+            "4 سنوات (صف رابع)",
+            "5 سنوات (صف خامس)",
+            "6 سنوات (صف سادس)",
+            "7 سنوات (صف سابع)",
+            "8 سنوات (صف ثامن)",
+            "9 سنوات (صف تايع)",
+            "10 سنوات (صف عاشر)",
+            "11 سنة (صف حادي عشر)",
+            "12 سنة (صف ثاني عشر)",
+            "شهادة جامعية",
+            "دراسات عليا",
+            "تدريب مهني أو تقني"
+        };
+        private readonly string[] relationtype = { "", "الشخص نفسه", "أب", "أم", "ابن", "ابنة", "أخ", "أخت", "جد", "جدة", "حفيد", "حفيدة", "صلة قرابة أخرى", "لا يوجد صلة قرابة" };
+        private readonly string[] educationstate = { "الوضع الحالي", "آخر تحصيل" };
+        private readonly int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
         public JsonResult nationalNumberAlreadyExisted(string nationalnumber, int? idperson)
         {
@@ -194,11 +205,12 @@ namespace SDS_SanadDistributedSystem.Controllers
         // GET: people/Create
         public ActionResult Create(int id)
         {
-            person person = new person();
-
-            person.family = db.families.SingleOrDefault(f => f.idfamily == id);
-            //person.idfamily_FK = id;
-            person.idperson = id;
+            person person = new person
+            {
+                family = db.families.SingleOrDefault(f => f.idfamily == id),
+                //person.idfamily_FK = id;
+                idperson = id
+            };
 
             ViewBag.family = person.family;
 
@@ -232,18 +244,19 @@ namespace SDS_SanadDistributedSystem.Controllers
 
 
 
-            List<IQueryable> weaknesses = new List<IQueryable>();
-
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WM"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WD"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WE"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WC"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WWD"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WWF"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WWS"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WP"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WF"));
-            weaknesses.Add(managelists.Where(ma => ma.flag == "WL"));
+            List<IQueryable> weaknesses = new List<IQueryable>
+            {
+                managelists.Where(ma => ma.flag == "WM"),
+                managelists.Where(ma => ma.flag == "WD"),
+                managelists.Where(ma => ma.flag == "WE"),
+                managelists.Where(ma => ma.flag == "WC"),
+                managelists.Where(ma => ma.flag == "WWD"),
+                managelists.Where(ma => ma.flag == "WWF"),
+                managelists.Where(ma => ma.flag == "WWS"),
+                managelists.Where(ma => ma.flag == "WP"),
+                managelists.Where(ma => ma.flag == "WF"),
+                managelists.Where(ma => ma.flag == "WL")
+            };
 
             ViewBag.weaknesses = weaknesses;
 
@@ -434,8 +447,6 @@ namespace SDS_SanadDistributedSystem.Controllers
                     }
                 }
             }
-
-
 
             ViewBag.currentWorkID = new SelectList(works, "idmanagelist", "name", selectedCurrentWorkId);
             ViewBag.previousWorkID = new SelectList(works, "idmanagelist", "name", selectedPreviousWorkId);
@@ -631,7 +642,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         }
         [Authorize(Roles = "admin")]
         // GET: people/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -648,7 +659,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // POST: people/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public async Task<ActionResult> DeleteConfirmed(int? id)
         {
             person person = await db.people.FindAsync(id);
             db.people.Remove(person);

@@ -4,7 +4,10 @@
     ViewBag.Title = "أشخاص ببيانات غير مستكملة";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
+@*<link href="~/Content/material.min.css" rel="stylesheet" />
+<link href="~/Content/DataTables/css/dataTables.material.min.css" rel="stylesheet" />*@
 <h2>
     أشخاص ببيانات غير مستكملة
     @if (User.IsInRole("receptionist"))
@@ -13,153 +16,161 @@
     }
 </h2>
 
-<p>
-    @*@Html.ActionLink("إضافة استمارة مؤقتة جديدة", "Create")*@
+<div class="container">
+    @* mdl-data-table *@
+    <table class="MyDataTable table table-hover table-striped" id="temporals">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.fname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.lname)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.fathername)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.mothername)
+                    </th>*@
 
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.fname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fathername)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.mothername)
-        </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.phone1)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.phone2)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.currentaddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tempregistrationdate)
+                </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.phone1)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.phone2)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.currentaddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tempregistrationdate)
-        </th>
-        
-        <th>
-            اسم المركز
-            @*@Html.DisplayNameFor(model => model.center.name)*@
-        </th>
-        <th>
-            حالة الخدمة
-        </th>
-        <th></th>
-@if (User.IsInRole("receptionist"))
-{
-        <th></th>}
-
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.fname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fathername)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.mothername)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.phone1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.phone2)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.currentaddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tempregistrationdate)
-            </td>
-
-            <td>
-                @Html.DisplayFor(modelItem => item.center.name)
-            </td>
-            <td id=@("serviceState"+@item.idperson)>
-                @if (@item.servicestate.Equals("Pending"))
-                {
-                    <span class="">جديدة</span>
-                }
-                else if (@item.servicestate.Equals("In prgress"))
-                {
-                    <span class="text-warning">تم الاستكمال</span>
-                }
-                else if (@item.servicestate.Equals("Closed"))
-                {
-                    <span class="text-success">مغلقة</span>
-                }
-            </td>
-
-            
-
-            <td>
-                @Html.ActionLink(" ", "Details", "temporals", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card-o p-1", @title = "تفاصيل" })
-
-                @if (@item.servicestate.Equals("Pending"))
-                {
-                    @Html.ActionLink(" ", "Edit", "temporals", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
-
-                }
-
-
-                 @*@Html.ActionLink(" ", "Delete", "temporals", new { id = @item.idperson }, new { @class = "btn btn-danger btn-rounded fa fa-window-close p-1", @title = "حذف" })*@
-
-
-
-
-                @*@Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
-                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
-                    @Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
-            </td>
-            @if (User.IsInRole("receptionist"))
-            {
-                <td>
-                    @using (Ajax.BeginForm("closeOutreachReferal", "temporals", null, new AjaxOptions { OnSuccess = "outreachReferalClosedSuccessfully", OnFailure = "referalFailedToClose" }, new { @style = "display:inline;" }))
+                <th>
+                    اسم المركز
+                    @*@Html.DisplayNameFor(model => model.center.name)*@
+                </th>
+                <th>
+                    حالة الخدمة
+                </th>
+                <th></th>
+                @*@if (User.IsInRole("receptionist"))
                     {
-                        @Html.AntiForgeryToken()
+                        <th></th>
+                    }*@
 
-                        <input type="hidden" id="idperson" name="idperson" value="@item.idperson" />
+            </tr>
+        </thead>
 
-                        if (@item.servicestate == "In prgress")
-                        {
-                            <span id=@("closeReferal"+@item.idperson) class="">
-                                <input type="submit" value="إغلاق" class="btn btn-danger btn-rounded b-p-0" />
-                            </span>
-                        }
-                        else
-                        {
-                            <span id=@("closeReferal"+@item.idperson) class="hidden">
-                                <input type="submit" value="إغلاق" class="btn btn-danger btn-rounded b-p-0" />
-                            </span>
-                        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.lname)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.fathername)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.mothername)
+                    </td>*@
 
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone1)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.phone2)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.currentaddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tempregistrationdate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.center.name)
+                </td>
+                <td id=@("serviceState"+@item.idperson)>
+                    @if (@item.servicestate.Equals("Pending"))
+                    {
+                        <span class="">جديدة</span>
+                    }
+                    else if (@item.servicestate.Equals("In prgress"))
+                    {
+                        <span class="text-warning">تم الاستكمال</span>
+                    }
+                    else if (@item.servicestate.Equals("Closed"))
+                    {
+                        <span class="text-success">مغلقة</span>
                     }
                 </td>
-            }
-            
-        </tr>
-    }
 
-</table>
+
+
+                <td>
+                    @Html.ActionLink(" ", "Details", "temporals", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card-o p-1", @title = "تفاصيل" })
+
+                    @if (@item.servicestate.Equals("Pending"))
+                    {
+                        @Html.ActionLink(" ", "Edit", "temporals", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
+
+                    }
+
+
+                    @*@Html.ActionLink(" ", "Delete", "temporals", new { id = @item.idperson }, new { @class = "btn btn-danger btn-rounded fa fa-window-close p-1", @title = "حذف" })*@
+
+
+
+
+                    @*@Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
+                        @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
+                        @Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
+                    @*</td>
+                        <td>*@
+                    @if (User.IsInRole("receptionist"))
+                    {
+                        @*<td>*@
+                        using (Ajax.BeginForm("closeOutreachReferal", "temporals", null, new AjaxOptions { OnSuccess = "outreachReferalClosedSuccessfully", OnFailure = "referalFailedToClose" }, new { @style = "display:inline;" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <input type="hidden" id="idperson" name="idperson" value="@item.idperson" />
+
+                            if (@item.servicestate == "In prgress")
+                            {
+                                <span id=@("closeReferal"+@item.idperson) class="">
+                                    <input type="submit" value="إغلاق" class="btn btn-danger btn-rounded b-p-0" />
+                                </span>
+                            }
+                            else
+                            {
+                                <span id=@("closeReferal"+@item.idperson) class="hidden">
+                                    <input type="submit" value="إغلاق" class="btn btn-danger btn-rounded b-p-0" />
+                                </span>
+                            }
+
+                        }
+                        @*</td>*@
+                    }
+                </td>
+
+            </tr>
+        }
+
+    </table>
+</div>
 
 
 @section Scripts {
+    <script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+    @*<script src="~/Scripts/DataTables/dataTables.material.min.js"></script>*@
+    <script src="~/Scripts/MyDataTableDesign.js"></script>
     <script src="~/Scripts/referalsChangeState.js"></script>
     @Scripts.Render("~/bundles/jqueryval")
 

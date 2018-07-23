@@ -15,7 +15,13 @@
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    @using System.Web.Security
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(window).load(function () {
+        // Animate loader off screen
+        $(".my-loader").fadeOut("slow");;
+    });
+</script>*@
     
     @*@{*@ 
        @*// var new= خدمات مشروع سند;*@
@@ -26,7 +32,7 @@
 
 
 <body class="fixed-sn mdb-skin bg-skin-lp container-fluid" style="padding-top:50px;">
-    
+    <div class="my-loader"></div>
     @*<div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">

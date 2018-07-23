@@ -6,6 +6,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
 @*<link href="~/Content/cardview.css" rel="stylesheet" />*@
 
 @*<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />
@@ -16,19 +18,24 @@
 @*<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />*@
 @*<link href="~/Content/DataTables/css/buttons.bootstrap.min.css" rel="stylesheet" />*@
 
-<h3>الحالات السرية الخاصة بالمستخدم</h3>
-<h4>@User.Identity.GetUserName()</h4>
-<p>
-    @Html.ActionLink("إضافة حالة جديدة", "Create")
-</p>
-<table class="table display" id="All">
+<h3>
+    الحالات السرية الخاصة بالمستخدم @User.Identity.GetUserName() <small>@Html.ActionLink(" ", "Create", "secretPeople", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus", @title = "إضافة حالة جديدة" })</small>
+</h3>
+<h4></h4>
+
+
+<div class="container">
+    <table class="MyDataTable table table-hover" id="secretPeople">
     <thead>
         <tr>
+            @*<th>
+            @Html.DisplayNameFor(model => model.fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lname)
+        </th>*@
             <th>
-                @Html.DisplayNameFor(model => model.fname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.lname)
+                @Html.DisplayNameFor(model => model.full_name)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.gender)
@@ -42,13 +49,13 @@
             <th>
                 @Html.DisplayNameFor(model => model.currentaddress)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.registrationdate)
-            </th>
+            </th>*@
 
             <th>حالة الخدمة</th>
             <th></th>
-            <th></th>
+            @*<th></th>*@
         </tr>
     </thead>
     <tbody>
@@ -66,11 +73,9 @@
         }
         //<tr>
             <td>
-                @Html.DisplayFor(modelItem => item.fname)
+                @Html.DisplayFor(modelItem => item.full_name)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.lname)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.gender)
             </td>
@@ -84,9 +89,9 @@
             <td>
                 @Html.DisplayFor(modelItem => item.currentaddress)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.registrationdate)
-            </td>
+            </td>*@
             @*@if (@item.referalpersons.FirstOrDefault().servicestate.Equals("In prgress"))
             {
                 <td id=@("serviceState"+@item.idperson)>
@@ -157,9 +162,9 @@
 
                 }
 
-            </td>
+            @*</td>
             
-            <td>
+            <td>*@
                 @Html.ActionLink(" ", "Edit", "secretPeople", new { id = @item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1" })
                 @Html.ActionLink(" ", "Details", "secretPeople", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card p-1" })
                  @*|@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
@@ -173,25 +178,14 @@
         </tbody>
 
 </table>
+</div>
 
-@section Scripts {
-@*<script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
-<script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+@section Scripts 
+    {
 
-<script src="~/Scripts/DataTables/dataTables.buttons.min.js"></script>
-<script src="~/Scripts/DataTables/buttons.bootstrap.min.js"></script>
-<script src="~/Scripts/DataTables/buttons.flash.min.js"></script>
-<script src="~/Scripts/DataTables/buttons.html5.min.js"></script>
-<script src="~/Scripts/DataTables/buttons.print.min.js"></script>
-
-
-<script src="~/scripts/jszip.min.js"></script>
-<script src="~/Scripts/DataTables/buttons.print.min.js"></script>
-<script src="~/Scripts/DataTables/dataTables.select.min.js"></script>
-<script src="~/Scripts/DataTables/responsive.jqueryui.min.js"></script>
-<script src="~/Scripts/DataTables/buttons.colVis.min.js"></script>
-<script src="~/Scripts/DataTables/dataTables.fixedColumns.min.js"></script>
-<script src="~/Scripts/AllDataTablesDesign.js"></script>*@
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/MyDataTableDesign.js"></script>
     <script src="~/Scripts/referalsChangeState.js"></script>
 @Scripts.Render("~/bundles/jqueryval")
 

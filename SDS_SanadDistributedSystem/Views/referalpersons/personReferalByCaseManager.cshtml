@@ -32,126 +32,127 @@
     </span>
 
 
-    <div class="card card-cascade">
+    <div class="container">
+        <div class="card card-cascade">
 
-        <!--Card image-->
-        <div class="view card-header dark-blue-bg white-text">
-            <h3 class="h3-responsive card-header-content">إضافة إحالات جديدة لـ:</h3>
-            <p class="card-header-content sub-header h4-responsive">@Model.person.full_name</p>
-        </div>
-        <!--/Card image-->
-        <!--Card content-->
-        <div class="card-body text-center">
-
-            <p class="card-text card-block">
-
-                <div class="row col-md-12">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                            @Html.DropDownList("centers", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
-                            @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
-
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-                @using (Html.BeginForm())
-                {
-
-                    @Html.AntiForgeryToken()
-                    @Html.HiddenFor(model => model.idperson_FK, new { @Value = Model.person.idperson });
-
-                    <div class="">
-                        <div class="row col-md-12">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.idcase_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-
-                                    @Html.DropDownList("idcase_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
-                                    @Html.ValidationMessageFor(model => model.idcase_FK, "", new { @class = "text-danger" })
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.referalreicver_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-
-                                    @Html.DropDownList("referalReciver_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "" })
-                                    @Html.ValidationMessageFor(model => model.referalreicver_FK, "", new { @class = "text-danger" })
-
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                                    @Html.DropDownList("services", null, htmlAttributes: new { @class = "form-control", @onchange = "FillRecivers()" })
-                                    @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row col-md-12">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-6">
-                                <div class="md-form">
-                                    @Html.TextAreaFor(model => model.senderevalution, new { @type = "text", @id = "senderevalution", @class = "md-textarea" })
-                                    @Html.LabelFor(model => model.senderevalution, htmlAttributes: new { @for = "senderevalution" })
-                                    @Html.ValidationMessageFor(model => model.senderevalution, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            @Html.HiddenFor(model => model.outreachnote);
-
-                            <div class="col-md-2">
-                                <div class="row" style="padding:25px;">
-
-                                </div>
-                                <div class="row">
-                                    <input type="button" value="إضافة" id="addreferal" class="btn btn-default btn-rounded p-0" onclick="successFillTableNew()" />
-
-                                </div>
-                            </div>
-                            <div class="col-md-2"></div>
-                        </div>
-
-                    </div>
-
-
-
-
-                }
-
-                <div class="row col-md-12">
-                    <div class="form-group">
-                        <table id="myTable" class="display table table-hover" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">الرقم التسلسلي</th>
-                                    <th class="text-center">القسم</th>
-                                    <th class="text-center">الخدمة</th>
-                                    <th class="text-center">ملاحظات</th>
-                                    <th class="text-center">المستقبل</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-
-                </div>
-
-            </p>
-
-            <div class="row">
-
+            <!--Card image-->
+            <div class="view card-header dark-blue-bg white-text">
+                <h3 class="h3-responsive card-header-content">إضافة إحالات جديدة لـ:</h3>
+                <p class="card-header-content sub-header h4-responsive">@Model.person.full_name</p>
             </div>
-            <div class="row">
-                @using (Html.BeginForm("personReferal", "referalpersons", FormMethod.Post, new { @style = "display:inline;" }))
-                { @Html.AntiForgeryToken()
+            <!--/Card image-->
+            <!--Card content-->
+            <div class="card-body text-center">
+
+                <p class="card-text card-block">
+
+                    <div class="row col-md-12">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.idcenter_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                                @Html.DropDownList("centers", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
+                                @Html.ValidationMessageFor(model => model.idcenter_FK, "", new { @class = "text-danger" })
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    @using (Html.BeginForm())
+                    {
+
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(model => model.idperson_FK, new { @Value = Model.person.idperson });
+
+                        <div class="">
+                            <div class="row col-md-12">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.idcase_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                                        @Html.DropDownList("idcase_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "FillServices()" })
+                                        @Html.ValidationMessageFor(model => model.idcase_FK, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.referalreicver_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                                        @Html.DropDownList("referalReciver_FK", null, htmlAttributes: new { @class = "form-control", @onchange = "" })
+                                        @Html.ValidationMessageFor(model => model.referalreicver_FK, "", new { @class = "text-danger" })
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        @Html.DropDownList("services", null, htmlAttributes: new { @class = "form-control", @onchange = "FillRecivers()" })
+                                        @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row col-md-12">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        @Html.TextAreaFor(model => model.senderevalution, new { @type = "text", @id = "senderevalution", @class = "md-textarea" })
+                                        @Html.LabelFor(model => model.senderevalution, htmlAttributes: new { @for = "senderevalution" })
+                                        @Html.ValidationMessageFor(model => model.senderevalution, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                @Html.HiddenFor(model => model.outreachnote);
+
+                                <div class="col-md-2">
+                                    <div class="row" style="padding:25px;">
+
+                                    </div>
+                                    <div class="row">
+                                        <input type="button" value="إضافة" id="addreferal" class="btn btn-default btn-rounded p-0" onclick="successFillTableNew()" />
+
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+
+                        </div>
+
+
+
+
+                    }
+
+                    <div class="row col-md-12">
+                        <div class="form-group">
+                            <table id="myTable" class="display table table-hover" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">الرقم التسلسلي</th>
+                                        <th class="text-center">القسم</th>
+                                        <th class="text-center">الخدمة</th>
+                                        <th class="text-center">ملاحظات</th>
+                                        <th class="text-center">المستقبل</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </p>
+
+                <div class="row">
+
+                </div>
+                <div class="row">
+                    @using (Html.BeginForm("personReferal", "referalpersons", FormMethod.Post, new { @style = "display:inline;" }))
+                    {@Html.AntiForgeryToken()
                     @*<div class="row" style="display:inline;">*@
 
 
@@ -163,10 +164,10 @@
 
 
                         @*<div class="form-group">
-                            <div class="col-md-12 ">*@
+                        <div class="col-md-12 ">*@
                         <input type="button" value="إرسال الإحالات" id="sendrefeal" class="btn btn-default btn-rounded p-0" onclick="successSendReferals()" />
                         @*</div>
-                            </div>*@
+                        </div>*@
 
 
                         @*</div>*@
@@ -174,6 +175,7 @@
 
                     @*</div>*@
                 }
+                </div>
             </div>
         </div>
     </div>

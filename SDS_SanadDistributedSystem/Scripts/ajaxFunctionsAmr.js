@@ -557,7 +557,7 @@ function successFillTableNew() {
         }
         else {
             if (checkexist)
-                toastr.warning('تمت إضافة هذه الخدمة مسبقا للجدول.');
+                toastr.warning('تم إضافة هذه الخدمة مسبقا للجدول.');
                 //alert("already exist.....")
 
             else
@@ -625,7 +625,7 @@ function (data) {
 
         error: function (xhr, status, error) {
             // check status && error
-            toastr.error("فشلة عملية الحفظ ")
+            toastr.error("فشلت عملية الحفظ ")
         }
     });
 
@@ -760,7 +760,7 @@ function searchByName() {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة عملية البحث ")
+                toastr.error("فشلت عملية البحث ")
             }
         });
 
@@ -821,7 +821,7 @@ function searchByNameOutReach() {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة عملية البحث ")
+                toastr.error("فشلت عملية البحث ")
             }
         });
 
@@ -883,7 +883,7 @@ function searcByDate() {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة عملية البحث ")
+                toastr.error("فشلت عملية البحث ")
             }
         });
 
@@ -945,7 +945,7 @@ function searcByDateOutReach() {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة عملية البحث ")
+                toastr.error("فشلت عملية البحث ")
             }
         });
 
@@ -999,7 +999,7 @@ function searchByNameCo() {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة عملية البحث ")
+                toastr.error("فشلت عملية البحث ")
             }
         });
 
@@ -1055,7 +1055,7 @@ function searcByDateCo() {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة عملية البحث ")
+                toastr.error("فشلت عملية البحث ")
             }
         });
 
@@ -1068,20 +1068,20 @@ function searcByDateCo() {
 
 function successClose() {
 
-    toastr.success("تمت إغلاق الإحالة");
+    toastr.success("تم إغلاق الإحالة");
 }
 
 function OnFailureClose() {
-    toastr.error("فشلة عملية الإغلاق ")
+    toastr.error("فشلت عملية الإغلاق ")
 }
 
 function OnCloseSuccess() {
 
-    toastr.success("تمت إغلاق الإحالة");
+    toastr.success("تم إغلاق الإحالة");
 }
 
 function OnCloseFailure() {
-    toastr.error("فشلة عملية الإغلاق ")
+    toastr.error("فشلت عملية الإغلاق ")
 }
 
 
@@ -1286,7 +1286,7 @@ $(document).ready(function () {
                     $('.collapsible').collapsible({ refresh: true });
                     row.remove().draw();
 
-                    toastr.success("تمت تعليق حالة الإحالة");
+                    toastr.success("تم تعليق حالة الإحالة");
                     bindAction();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     // refereshtables();
                     // $(this).on('click');
@@ -1295,7 +1295,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // check status && error
-                    toastr.error("فشلة عملية ");
+                    toastr.error("فشلت عملية ");
                     //  $(".PendingReReferal").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     hidePleaseWait();
                 }
@@ -1470,7 +1470,7 @@ $(document).ready(function () {
                     $('.collapsible').collapsible({ refresh: true });
                     row.remove().draw();
 
-                    toastr.success("تمت قبول الإحالة");
+                    toastr.success("تم قبول الإحالة");
                     bindAction();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     // refereshtables();
                     // $(this).on('click');
@@ -1479,7 +1479,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // check status && error
-                    toastr.error("فشلة العملية  " + error);
+                    toastr.error("فشلت العملية  " + error);
                     //$(".PendingApproved").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     hidePleaseWait();
                 }
@@ -1649,7 +1649,7 @@ $(document).ready(function () {
                 $('.collapsible').collapsible({ refresh: true });
                 row.remove().draw();
 
-                toastr.success("تمت قبول الإحالة-وصول");
+                toastr.success("تم قبول الإحالة-وصول");
                 bindAction();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 // refereshtables();
                 //  $(this).on('click');
@@ -1658,7 +1658,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة العملية  ");
+                toastr.error("فشلت العملية  ");
                 // $(".PendingOutReach").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 hidePleaseWait();
             }
@@ -1837,7 +1837,7 @@ $(document).ready(function () {
                     $('.collapsible').collapsible({ refresh: true });
                     row.remove().draw();
 
-                    toastr.success("تمت رفض الإحالة");
+                    toastr.success("تم رفض الإحالة");
                     bindAction();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     // refereshtables();
                     //$(this).on('click');
@@ -1846,7 +1846,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // check status && error
-                    toastr.error("فشلة العملية  ");
+                    toastr.error("فشلت العملية  ");
                     // $(".PendingRejected").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     hidePleaseWait();
                    
@@ -2041,7 +2041,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // check status && error
-                    toastr.error("فشلة العملية  ");
+                    toastr.error("فشلت العملية  ");
                     // $(".PendingExternal").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     hidePleaseWait();
                 }
@@ -2222,7 +2222,7 @@ $(document).ready(function () {
                 },
                 error: function (xhr, status, error) {
                     // check status && error
-                    toastr.error("فشلة العملية  ");
+                    toastr.error("فشلت العملية  ");
                     //$(".ApprovedInprgress").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                     hidePleaseWait();
                 }
@@ -2403,7 +2403,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة العملية  ");
+                toastr.error("فشلت العملية  ");
                 // $(".OutReachInprgress").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 hidePleaseWait();
             }
@@ -2576,7 +2576,7 @@ $(document).ready(function () {
                 $('.collapsible').collapsible({ refresh: true });
                 row.remove().draw();
 
-                toastr.success("تمت إغلاق الإحالة");
+                toastr.success("تم إغلاق الإحالة");
                 bindAction();
             // refereshtables();
             // $(this).on('click');
@@ -2585,7 +2585,7 @@ $(document).ready(function () {
         },
             error: function (xhr, status, error) {
             // check status && error
-                toastr.error("فشلة عملية الإغلاق ");
+                toastr.error("فشلت عملية الإغلاق ");
             //$(".closed").disabled = false;
                 hidePleaseWait();
         }
@@ -2758,7 +2758,7 @@ $(document).ready(function () {
                 $('.collapsible').collapsible({ refresh: true });
                 row.remove().draw();
 
-                toastr.success("تمت إغلاق الإحالة-وصول");
+                toastr.success("تم إغلاق الإحالة-وصول");
                 bindAction();//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 // refereshtables();
                 //  $(this).on('click');
@@ -2767,7 +2767,7 @@ $(document).ready(function () {
             },
             error: function (xhr, status, error) {
                 // check status && error
-                toastr.error("فشلة عملية الإغلاق ");
+                toastr.error("فشلت عملية الإغلاق ");
                 //$(".OutReachClosed").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                 hidePleaseWait();
             }
@@ -2894,7 +2894,7 @@ $('body').on('click', '#modalsave', function () {
         },
         error: function (xhr, status, error) {
             // check status && error
-            toastr.error("فشلة العملية-يرجى التاكد من الاتصال" );
+            toastr.error("فشلت العملية-يرجى التاكد من الاتصال" );
             // $(".OutReachInprgress").disabled = false;//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
         }
