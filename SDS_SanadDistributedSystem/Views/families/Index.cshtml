@@ -9,8 +9,8 @@
     كافة العائلات المسجلة
     @if (User.IsInRole("receptionist"))
     {
-        <small>@Html.ActionLink("   ", "Create", "families", null, new { @class = "btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn", @title = "إضافة عائلة جديدة" })</small>
-        <small>@Html.ActionLink(" ", "Create", "temporals", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus wow fadeIn", @title = "إضافة شخص ببيانات غير مكتملة" })</small>
+        <small>@Html.ActionLink("   ", "Create", "families", null, new { @class = "btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn", @title = "إضافة عائلة جديدة", target = "_blank" })</small>
+        <small>@Html.ActionLink(" ", "Create", "temporals", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus wow fadeIn", @title = "إضافة شخص ببيانات غير مكتملة", target = "_blank" })</small>
     }
 </h2>
 <link href="~/Content/dataTables.bootstrap4.min.css" rel="stylesheet" />
@@ -162,9 +162,9 @@
                     <td>
                         @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
                         {
-                            @Html.ActionLink(" ", "Edit", new { id = item.idfamily }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
+                            @Html.ActionLink(" ", "Edit", new { id = item.idfamily }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" , target = "_blank" })
                         }
-                        @Html.ActionLink(" ", "Details", new { id = item.idfamily }, new { @class = "btn btn-primary btn-rounded fa fa-group p-1", @title = "تفاصيل" })
+                        @Html.ActionLink(" ", "Details", new { id = item.idfamily }, new { @class = "btn btn-primary btn-rounded fa fa-group p-1", @title = "تفاصيل", target = "_blank" })
 
 
                         @*@Html.ActionLink(" تعديل ", "Edit", new { id = item.idfamily }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
@@ -175,7 +175,7 @@
                             @*@Html.ActionLink("إضافة شخص", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded p-0" })*@
                             if (item.people.Count < item.personcount)
                             {
-                                @Html.ActionLink(" ", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded fa fa-user-plus p-1", @title = "إضافة شخص" })
+                                @Html.ActionLink(" ", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded fa fa-user-plus p-1", @title = "إضافة شخص", target = "_blank" })
 
                             }
 

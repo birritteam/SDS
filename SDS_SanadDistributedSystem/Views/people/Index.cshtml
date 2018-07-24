@@ -13,7 +13,7 @@
 
     @if (User.IsInRole("receptionist"))
     {
-        <small>@Html.ActionLink(" ", "Index", "families", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus", @title = "إضافة شخص جديد" })</small>
+        <small>@Html.ActionLink(" ", "Index", "families", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus", @title = "إضافة شخص جديد", target = "_blank" })</small>
     }
 </h2>
 
@@ -141,13 +141,13 @@
                             @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-0" })*@
                         @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
                         {
-                            @Html.ActionLink(" ", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" })
+                            @Html.ActionLink(" ", "Edit", "people", new { id = item.idperson }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل", target = "_blank" })
 
                         }
-                        @Html.ActionLink(" ", "Details", "people", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card-o p-1", @title = "تفاصيل" })
+                        @Html.ActionLink(" ", "Details", "people", new { id = @item.idperson }, new { @class = "btn btn-primary btn-rounded fa fa-id-card-o p-1", @title = "تفاصيل", target = "_blank" })
 
-                        @Html.ActionLink(" ", "Details", "families", new { id = item.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-1 fa fa-users", @title = "عرض صفحة العائلة" })
-                        @Html.ActionLink(" ", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة" })
+                        @Html.ActionLink(" ", "Details", "families", new { id = item.idfamily_FK }, new { @class = "btn btn-default btn-rounded p-1 fa fa-users", @title = "عرض صفحة العائلة", target = "_blank" })
+                        @Html.ActionLink(" ", "personReferal", "referalpersons", new { id = item.idperson }, new { @class = "btn btn-secondary btn-rounded p-1 fa fa-exchange", @title = "إحالة", target = "_blank" })
 
 
 
