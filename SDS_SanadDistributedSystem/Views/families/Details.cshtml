@@ -95,13 +95,17 @@ else if (User.IsInRole("caseManager"))
                                 @Model.people.Count
                             </div>
                             <div class="col-md-4">
+                                <label>طريقة التعرف على المركز</label>
+                                @ViewBag.selectedKC
+                            </div>
+                            <div class="col-md-4">
                                 @Html.LabelFor(model => model.familynature)
                                 @Html.DisplayFor(model => model.familynature)
                             </div>
                             @*<div class="col-md-3">
-                                @Html.LabelFor(model => model.currentaddress)
-                                @Html.DisplayFor(model => model.currentaddress)
-                            </div>*@
+            @Html.LabelFor(model => model.currentaddress)
+            @Html.DisplayFor(model => model.currentaddress)
+        </div>*@
                             <div class="col-md-4">
                                 <label>السكن الحالي</label>
                                 @ViewBag.selectedCurrentAddress
@@ -117,9 +121,9 @@ else if (User.IsInRole("caseManager"))
                                     @ViewBag.selectedPreviousAddress
                                 </div>
                                 @*<div class="col-md-3">
-                                    @Html.LabelFor(model => model.lastaddress)
-                                    @Html.DisplayFor(model => model.lastaddress)
-                                </div>*@
+                @Html.LabelFor(model => model.lastaddress)
+                @Html.DisplayFor(model => model.lastaddress)
+            </div>*@
                                 <div class="col-md-4">
                                     @Html.LabelFor(model => model.displacementdate)
                                     @Html.DisplayFor(model => model.displacementdate)

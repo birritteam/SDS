@@ -6,19 +6,19 @@
 }
 
 @*<span style="position:fixed; top: 60px; left: 30px; z-index:99;"
-      @*tabindex="0"
-      data-toggle="tooltip"
-      title="عودة إلى قائمة الأشخاص"
-      class="shades">
-    @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list wow fadeInUp" })
-</span>
-<span style="position:fixed; top: 60px; left: 90px; z-index:99;"
-      @*tabindex="0"
-      data-toggle="tooltip"
-      title="عودة إلى العائلة"
-      class="shades">
-    @Html.ActionLink(" ", "Details", "families", new { id = @ViewBag.family.idfamily }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users wow fadeInUp" })
-</span>*@
+          @*tabindex="0"
+          data-toggle="tooltip"
+          title="عودة إلى قائمة الأشخاص"
+          class="shades">
+        @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list wow fadeInUp" })
+    </span>
+    <span style="position:fixed; top: 60px; left: 90px; z-index:99;"
+          @*tabindex="0"
+          data-toggle="tooltip"
+          title="عودة إلى العائلة"
+          class="shades">
+        @Html.ActionLink(" ", "Details", "families", new { id = @ViewBag.family.idfamily }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users wow fadeInUp" })
+    </span>*@
 
 <span style="position:fixed; bottom: 20px; left: 90px; z-index:99;">
     @Html.ActionLink(" ", "Index", null, new { @class = "btn btn-primary btn-rounded p-3 fa fa-list wow fadeInUp", @title = "عودة إلى قائمة الأشخاص" })
@@ -27,270 +27,278 @@
     @Html.ActionLink(" ", "Details", "families", new { id = @ViewBag.family.idfamily }, new { @class = "btn btn-default btn-rounded p-3 fa fa-users wow fadeInUp", @title = "عودة إلى صفحة العائلة" })
 </span>
 
-    <h2>إضافة شخص للعائلة   </h2>
+<h2>إضافة شخص للعائلة   </h2>
 
 
-    <div class="container-fluid" id="">
-        @using (Ajax.BeginForm("Create", "people", new AjaxOptions
-        {
-            OnSuccess = "SuccessLoadForPerson",
-            OnFailure = "FailureLoadForPerson",
-            //UpdateTargetId = "ParentDiv",
-            HttpMethod = "POST",
-            
-            //InsertionMode = InsertionMode.Replace
-        }, new { @id = "personCreationForm" }))
-        {
-            @Html.AntiForgeryToken()
-            <input type="hidden" id="family_book_number" name="family_book_number" value="@ViewBag.family.family_book_number" />
+<div class="container-fluid" id="">
+    @using (Ajax.BeginForm("Create", "people", new AjaxOptions
+    {
+        Confirm = "تم التأكد من موافقة المستفيد على منح معلوماته؟ ",
+        OnSuccess = "SuccessLoadForPerson",
+        OnFailure = "FailureLoadForPerson",
+        //UpdateTargetId = "ParentDiv",
+        HttpMethod = "POST",
 
-            <div class="form-horizontal">
-                <h4 class="h4">@ViewBag.family.serial_number</h4>
+        //InsertionMode = InsertionMode.Replace
+    }, new { @id = "personCreationForm" }))
+    {
+        @Html.AntiForgeryToken()
+        <input type="hidden" id="family_book_number" name="family_book_number" value="@ViewBag.family.family_book_number" />
 
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <h4 class="h4">@ViewBag.family.serial_number</h4>
 
-                @* <input type="hidden" name="idperson" id="idperson" />*@
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-                <div class="row">
-                    
-                        <div class="col-md-2"><label class="control-label" for="p_order">موقع الشخص ضمن العائلة</label></div>
-                        <div class="col-md-5">
-                            <div class="btn-group" data-toggle="buttons" id="p_order">
-                                <label class="btn btn-primary active">
-                                    <input type="radio" name="position" id="H" value="H" autocomplete="off" checked> زوج
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="position" id="W" value="W" autocomplete="off"> زوجة
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="position" id="S" value="C" autocomplete="off"> ابن
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="position" id="D" value="C" autocomplete="off"> بنت
-                                </label>
-                            </div>
-                            @*@Html.RadioButton("position", "H", new { @id = "H" })
-                                @Html.Label("زوج", new { @for = "H" })
-                                @Html.RadioButton("position", "W", new { @id = "W" })
-                                @Html.Label("زوجة", new { @for = "W" })
-                                @Html.RadioButton("position", "C", new { @id = "S" })
-                                @Html.Label("ابن", new { @for = "S" })
-                                @Html.RadioButton("position", "C", new { @id = "D" })
-                                @Html.Label("بنت", new { @for = "D" })*@
-                        </div>
-                        <div class="col-md-1">
-                            <input type="number" id="wifeOrder" class="hidden" min="1" max="4" value="1" />
-                            <input type="number" id="childOrder" class="hidden" min="1" max="20" value="1" />
-                        </div>
-                        @Html.ValidationMessageFor(model => model.family_order_id, "", new { @class = "text-danger col-md-3" })
-                        <div class="col-md-1">
-                            @*<input type="text" id="family_order_id" name="family_order_id" value="@ViewBag.family.family_book_number" readonly="readonly"/>*@
-                            @Html.EditorFor(model => model.family_order_id, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.family.family_book_number, @readonly = "readonly" } })
-                        </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="form-group hidden">
-                        @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @foreach (string item in ViewBag.genderOptions)
-                                {
-                                    @Html.RadioButtonFor(model => model.gender, item, new { @id = item })
-                                @Html.Label(item, new { @for = item })
-                            }
-                        </div>
+            @* <input type="hidden" name="idperson" id="idperson" />*@
+
+            <div class="row">
+
+                <div class="col-md-2"><label class="control-label" for="p_order">موقع الشخص ضمن العائلة</label></div>
+                <div class="col-md-5">
+                    <div class="btn-group" data-toggle="buttons" id="p_order">
+                        <label class="btn btn-primary active">
+                            <input type="radio" name="position" id="H" value="H" autocomplete="off" checked> زوج
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="position" id="W" value="W" autocomplete="off"> زوجة
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="position" id="S" value="C" autocomplete="off"> ابن
+                        </label>
+                        <label class="btn btn-primary">
+                            <input type="radio" name="position" id="D" value="C" autocomplete="off"> بنت
+                        </label>
                     </div>
+                    @*@Html.RadioButton("position", "H", new { @id = "H" })
+                @Html.Label("زوج", new { @for = "H" })
+                @Html.RadioButton("position", "W", new { @id = "W" })
+                @Html.Label("زوجة", new { @for = "W" })
+                @Html.RadioButton("position", "C", new { @id = "S" })
+                @Html.Label("ابن", new { @for = "S" })
+                @Html.RadioButton("position", "C", new { @id = "D" })
+                @Html.Label("بنت", new { @for = "D" })*@
+                </div>
+                <div class="col-md-1">
+                    <input type="number" id="wifeOrder" class="hidden" min="1" max="4" value="1" />
+                    <input type="number" id="childOrder" class="hidden" min="1" max="20" value="1" />
+                </div>
+                @Html.ValidationMessageFor(model => model.family_order_id, "", new { @class = "text-danger col-md-3" })
+                <div class="col-md-1">
+                    @*<input type="text" id="family_order_id" name="family_order_id" value="@ViewBag.family.family_book_number" readonly="readonly"/>*@
+                    @Html.EditorFor(model => model.family_order_id, new { htmlAttributes = new { @class = "form-control", @Value = @ViewBag.family.family_book_number, @readonly = "readonly" } })
                 </div>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.fname, new { htmlAttributes = new { @class = "form-control validate" } })
-                            @Html.LabelFor(model => model.fname, htmlAttributes: new { })
-                            @Html.ValidationMessageFor(model => model.fname, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.lname, new { htmlAttributes = new { @class = "form-control validate", @Value = @ViewBag.family.lastname } })
-                            @Html.LabelFor(model => model.lname, htmlAttributes: new { })
-                            @Html.ValidationMessageFor(model => model.lname, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.fathername, new { htmlAttributes = new { @class = "form-control validate" } })
-                            @Html.LabelFor(model => model.fathername, htmlAttributes: new { })
-                            @Html.ValidationMessageFor(model => model.fathername, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.mothername, new { htmlAttributes = new { @class = "form-control validate" } })
-                            @Html.LabelFor(model => model.mothername, htmlAttributes: new { })
-                            @Html.ValidationMessageFor(model => model.mothername, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-1"><label>تاريخ الميلاد</label></div>
-                    <div class="col-md-3">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.birthday, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control validate" } })
-                            @Html.ValidationMessageFor(model => model.birthday, "", new { @class = "text-danger" })
-                            @*<label class="md-form">تاريخ الميلاد</label>*@
-                            @*@Html.EditorFor(model => model.birthday, "{0:dd/MM/yyyy}",new  { htmlAttributes = new { @class = "form-control validate", @type = "text" } })*@
-
-                            @*@Html.LabelFor(model => model.birthday, htmlAttributes: new { })*@
-
-                            @*//@type = "text" } })*@
-                            @*<label for="birthday">تاريخ الميلاد - مثال: 25/01/1990</label>*@
-
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.birthplace, new { htmlAttributes = new { @class = "form-control validate" } })
-                            @Html.LabelFor(model => model.birthplace, htmlAttributes: new { })
-                            @Html.ValidationMessageFor(model => model.birthplace, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.nationalnumber, new { htmlAttributes = new { @class = "form-control validate", @id = "nationalnumber", @length = "11", @style = "direction: ltr;" } })
-                            @Html.LabelFor(model => model.nationalnumber, htmlAttributes: new { @for = "nationalnumber" })
-                            @Html.ValidationMessageFor(model => model.nationalnumber, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="md-form ui-widget ">
-                            @Html.EditorFor(model => model.currentaddress, new { htmlAttributes = new { @class = "form-control validate" , @Value = @ViewBag.selectedCurrentAddress + " - " + @ViewBag.family.currentaddress_details } })
-                            @Html.LabelFor(model => model.currentaddress, htmlAttributes: new { })
-                            @Html.ValidationMessageFor(model => model.currentaddress, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.phone1, new { htmlAttributes = new { @class = "form-control validate", @id = "phone1", @length = "10", @style = "direction: ltr;" } })
-                            @Html.LabelFor(model => model.phone1, htmlAttributes: new { @for = "phone1" })
-                            @Html.ValidationMessageFor(model => model.phone1, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.phone2, new { htmlAttributes = new { @class = "form-control validate", @id = "phone2", @length = "10", @style = "direction: ltr;" } })
-                            @Html.LabelFor(model => model.phone2, htmlAttributes: new { @for = "phone2" })
-                            @Html.ValidationMessageFor(model => model.phone2, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.nationality, htmlAttributes: new { @class = "control-label col-md-4" })
-                            @Html.DropDownList("nationality", new SelectList(ViewBag.nationalityOptions), htmlAttributes: new { @class = "col-md-8" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            @Html.DropDownList("martial", new SelectList(ViewBag.martialOptions), htmlAttributes: new { @class = "col-md-8" })
-                            @Html.LabelFor(model => model.martial, htmlAttributes: new { @class = "control-label col-md-4" })
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label col-md-4">طريقة التعرف على المركز</label>
-                            @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "" })
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    @*<div class="col-md-2"></div>*@
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-4" })
-                            @Html.DropDownList("education", new SelectList(ViewBag.educationOptions), htmlAttributes: new { })
-                        </div>
-                    </div>
-
-                    @*<div class="col-md-4">
-
-                        </div>*@
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-4" })
-                            @foreach (string item in ViewBag.educationstateOptions)
-                            {
-                                @Html.RadioButtonFor(model => model.educationstate, item, new { @id = item })
-                                @Html.Label(item, new { @for = item })
-                            }
-                            @Html.ValidationMessageFor(model => model.educationstate, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="row">
-                    @*<div class="col-md-2"></div>*@
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="currentWorkID">العمل الحالي</label>
-                            @Html.DropDownList("currentWorkID", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                    @*<div class="col-md-4">
-                        </div>*@
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label class="control-label col-md-4" for="previousWorkID">العمل السابق</label>
-                            @Html.DropDownList("previousWorkID", null, htmlAttributes: new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-
-
-                </div>
-
-                <div class="row">
-                    @*<div class="col-md-2"></div>*@
-                    <div class="col-md-4">
-                        <div class="md-form">
-                            @Html.EditorFor(model => model.applicant, new { htmlAttributes = new { @class = "form-control validate", @id = "applicant" } })
-                            @Html.LabelFor(model => model.applicant, htmlAttributes: new { @for = "applicant" })
-                            @Html.ValidationMessageFor(model => model.applicant, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-4" })
-                            @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtypeOptions), htmlAttributes: new { @class = "form-control" })
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <h4 class="h4">الوثائق</h4>
-                    @foreach (var document in ViewBag.documentsOptions)
+            </div>
+            <div class="row">
+                <div class="form-group hidden">
+                    @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @foreach (string item in ViewBag.genderOptions)
                         {
+                            @Html.RadioButtonFor(model => model.gender, item, new { @id = item })
+                            @Html.Label(item, new { @for = item })
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.fname, new { htmlAttributes = new { @class = "form-control validate" } })
+                        @Html.LabelFor(model => model.fname, htmlAttributes: new { })
+                        @Html.ValidationMessageFor(model => model.fname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.lname, new { htmlAttributes = new { @class = "form-control validate", @Value = @ViewBag.family.lastname } })
+                        @Html.LabelFor(model => model.lname, htmlAttributes: new { })
+                        @Html.ValidationMessageFor(model => model.lname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.fathername, new { htmlAttributes = new { @class = "form-control validate" } })
+                        @Html.LabelFor(model => model.fathername, htmlAttributes: new { })
+                        @Html.ValidationMessageFor(model => model.fathername, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.mothername, new { htmlAttributes = new { @class = "form-control validate" } })
+                        @Html.LabelFor(model => model.mothername, htmlAttributes: new { })
+                        @Html.ValidationMessageFor(model => model.mothername, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-1"><label>تاريخ الميلاد</label></div>
+                <div class="col-md-3">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.birthday, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control validate" } })
+                        @Html.ValidationMessageFor(model => model.birthday, "", new { @class = "text-danger" })
+                        @*<label class="md-form">تاريخ الميلاد</label>*@
+                        @*@Html.EditorFor(model => model.birthday, "{0:dd/MM/yyyy}",new  { htmlAttributes = new { @class = "form-control validate", @type = "text" } })*@
+
+                        @*@Html.LabelFor(model => model.birthday, htmlAttributes: new { })*@
+
+                        @*//@type = "text" } })*@
+                        @*<label for="birthday">تاريخ الميلاد - مثال: 25/01/1990</label>*@
+
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.birthplace, new { htmlAttributes = new { @class = "form-control validate" } })
+                        @Html.LabelFor(model => model.birthplace, htmlAttributes: new { })
+                        @Html.ValidationMessageFor(model => model.birthplace, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.nationalnumber, new { htmlAttributes = new { @class = "form-control validate", @id = "nationalnumber", @length = "11", @style = "direction: ltr;" } })
+                        @Html.LabelFor(model => model.nationalnumber, htmlAttributes: new { @for = "nationalnumber" })
+                        @Html.ValidationMessageFor(model => model.nationalnumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="md-form ui-widget ">
+                        @Html.EditorFor(model => model.currentaddress, new { htmlAttributes = new { @class = "form-control validate", @Value = @ViewBag.selectedCurrentAddress + " - " + @ViewBag.family.currentaddress_details } })
+                        @Html.LabelFor(model => model.currentaddress, htmlAttributes: new { })
+                        @Html.ValidationMessageFor(model => model.currentaddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.phone1, new { htmlAttributes = new { @class = "form-control validate", @id = "phone1", @length = "10", @style = "direction: ltr;" } })
+                        @Html.LabelFor(model => model.phone1, htmlAttributes: new { @for = "phone1" })
+                        @Html.ValidationMessageFor(model => model.phone1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.phone2, new { htmlAttributes = new { @class = "form-control validate", @id = "phone2", @length = "10", @style = "direction: ltr;" } })
+                        @Html.LabelFor(model => model.phone2, htmlAttributes: new { @for = "phone2" })
+                        @Html.ValidationMessageFor(model => model.phone2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.nationality, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("nationality", new SelectList(ViewBag.nationalityOptions), htmlAttributes: new { @class = "col-md-8" })
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.DropDownList("martial", new SelectList(ViewBag.martialOptions), htmlAttributes: new { @class = "col-md-8" })
+                        @Html.LabelFor(model => model.martial, htmlAttributes: new { @class = "control-label col-md-4" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+
+                </div>
+
+                @*<div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label col-md-4">طريقة التعرف على المركز</label>
+                    @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "" })
+                </div>
+            </div>*@
+            </div>
+
+
+            <div class="row">
+                @*<div class="col-md-2"></div>*@
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.education, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("education", new SelectList(ViewBag.educationOptions), htmlAttributes: new { })
+                    </div>
+                </div>
+
+                @*<div class="col-md-4">
+
+            </div>*@
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @foreach (string item in ViewBag.educationstateOptions)
+                        {
+                            @Html.RadioButtonFor(model => model.educationstate, item, new { @id = item })
+                            @Html.Label(item, new { @for = item })
+                        }
+                        @Html.ValidationMessageFor(model => model.educationstate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                @*<div class="col-md-2"></div>*@
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="currentWorkID">العمل الحالي</label>
+                        @Html.DropDownList("currentWorkID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+                @*<div class="col-md-4">
+            </div>*@
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label col-md-4" for="previousWorkID">العمل السابق</label>
+                        @Html.DropDownList("previousWorkID", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+
+
+            </div>
+
+            <div class="row">
+                @*<div class="col-md-2"></div>*@
+                <div class="col-md-4">
+                    <div class="md-form">
+                        @Html.EditorFor(model => model.applicant, new { htmlAttributes = new { @class = "form-control validate", @id = "applicant" } })
+                        @Html.LabelFor(model => model.applicant, htmlAttributes: new { @for = "applicant" })
+                        @Html.ValidationMessageFor(model => model.applicant, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.relationtype, htmlAttributes: new { @class = "control-label col-md-4" })
+                        @Html.DropDownList("relationtype", new SelectList(ViewBag.relationtypeOptions), htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="padding-right:20px; padding-left:20px;">
+
+                    <h5 class="card-title"><i class="fa fa-folder-open-o" style="color:#ff8800"></i>    الوثائق   </h5>
+                    <hr />
+
+                    @foreach (var document in ViewBag.documentsOptions)
+                    {
                         <div class="col-md-4">
                             <div class="checkbox-inline wow fadeIn">
                                 <input type="checkbox" name="documents" value="@document.idmanagelist" id="@document.idmanagelist" />
@@ -298,17 +306,20 @@
                             </div>
                         </div>
                     }
-
                 </div>
-                <div class="row">
+            </div>
+            <div class="row">
+                <div class="col-md-12" style="padding-right:20px; padding-left:20px;">
 
-                    <h4 class="h4">نقاط الضعف</h4>
+                    <h5 class="card-title">    <i class="fa fa-wheelchair" style="color:#ff8800"> </i> نقاط الضعف   </h5>
+                    <hr />
+
                     @foreach (var weakness in ViewBag.weaknesses)
-                {
-                    //  <div>
-                    foreach (var item in weakness)
-
                     {
+                        //  <div>
+                        foreach (var item in weakness)
+
+                        {
                             <div class="col-md-4">
                                 <div class="checkbox-inline wow fadeIn">
                                     <input type="checkbox" name="weaknesses" value="@item.idmanagelist" id="@item.idmanagelist" />
@@ -322,192 +333,202 @@
 
                         @*<div class="card">
 
-                            </div>*@
+                    </div>*@
                     }
 
 
-
-                </div>
-                @*<div class="row">
-                    @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
-                    @*<h3 class="h4">التقييم</h3>
-                    <div class="md-form">
-                        @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 , @checked = "checked"})
-                        @Html.Label(0 + " %", new { @for = "e" + 0 })
-
-                        @foreach (int item in ViewBag.evaluationValues)
-                    {
-                            @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e"+item})
-                            @Html.Label(item + " %", new { @for = "e" + item })
-                        }
-                        @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-                    </div>*@
-
-                <hr />
-                <div class="row">
-                    <div class="col-md-2">
-                        @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
-                    </div>
-                    <div>
-                        <div class="range-field">
-                            <input type="range" name="evaluation" id="evaluation" min="0" max="100" value="0" />
-                        </div>
-                    </div>
-
-                </div>
-                <hr />
-                @*<div class="md-form center">
-                        @Html.RadioButton("evaluation", "10", new { @id = "e10" })
-                        @Html.Label("10 %", new { @for = "e10" })
-                        @Html.RadioButton("evaluation", "20", new { @id = "e20" })
-                        @Html.Label("20 %", new { @for = "e20" })
-                        @Html.RadioButton("evaluation", "30", new { @id = "e30" })
-                        @Html.Label("30 %", new { @for = "e30" })
-                        @Html.RadioButton("evaluation", "40", new { @id = "e40" })
-                        @Html.Label("40 %", new { @for = "e40" })
-                        @Html.RadioButton("evaluation", "50", new { @id = "e50" })
-                        @Html.Label("50 %", new { @for = "e50" })
-                        @Html.RadioButton("evaluation", "60", new { @id = "e60" })
-                        @Html.Label("60 %", new { @for = "e60" })
-                        @Html.RadioButton("evaluation", "70", new { @id = "e70" })
-                        @Html.Label("70 %", new { @for = "e70" })
-                        @Html.RadioButton("evaluation", "80", new { @id = "e80" })
-                        @Html.Label("80 %", new { @for = "e80" })
-                        @Html.RadioButton("evaluation", "90", new { @id = "e90" })
-                        @Html.Label("90 %", new { @for = "e90" })
-                        @Html.RadioButton("evaluation", "100", new { @id = "e100" })
-                        @Html.Label("100 %", new { @for = "e100" })
-
-                        @Html.EditorFor(model => model.evaluation, new { htmlAttributes = new { @class = "form-control validate" } })
-                    @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
-                    @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-                    </div>*@
-                <div class="row">
-                    <div class="md-form">
-                        @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
-                        @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
-                        @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
-                <input type="hidden" name="registrationdate" id="registrationdate" />
-                
-                <input class="hidden" name="idfamily_FK" id="idfamily_FK" value="@ViewBag.family.idfamily" />
- 
-                <input type="hidden" name="idcenter_FK" id="idcenter_FK" />
-                <input type="hidden" name="iduser" id="iduser" />
-
-                <div class="row">
-                    <div class="md-form">
-                        <div class="col-md-offset-5 col-md-7">
-                            <input type="submit" value="إضافة" class="btn btn-default btn-rounded p-1" />
-                        </div>
-                    </div>
-                </div>
-
-                <div>
-
-                    <table class="table" id="familymembers">
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.family_order_id)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.full_name)
-                            </th>
-                            @*<th>
-                                    @Html.DisplayNameFor(model => model.fname)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.lname)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.fathername)
-                                </th>*@
-                            <th>
-                                @Html.DisplayNameFor(model => model.mothername)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.age)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.gender)
-                            </th>
-                            <th></th>
-                        </tr>
-                        @foreach (var item in Model.family.people)
-                {
-                    if (!item.is_secret)
-                    {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.family_order_id)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.full_name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.mothername)
-                                    </td>
-                                    @*<td>
-                                            @Html.DisplayFor(modelItem => item.fname)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.lname)
-                                        </td>
-                                        <td>
-                                            @Html.DisplayFor(modelItem => item.fathername)
-                                        </td>
-
-                                    *@
-                                    <td>
-                                        @*@{
-                                                var dob = item.birthday.GetValueOrDefault();
-                                                DateTime now = DateTime.Today;
-                                                int age = now.Year - dob.Year;
-                                                if (now < dob.AddYears(age))
-                                                { age--; }
-                                                @Html.DisplayFor(model => age);
-                                            }*@
-                                        @Html.DisplayFor(modelItem => item.age)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.gender)
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
-                                        @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
-                                        @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, "")
-
-
-                                        @*@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
-                                    </td>
-                                </tr>
-
-                            }
-                        }
-
-                    </table>
                 </div>
             </div>
-        }
-    </div>
+            @*<div class="row">
+        @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
+        @*<h3 class="h4">التقييم</h3>
+        <div class="md-form">
+            @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 , @checked = "checked"})
+            @Html.Label(0 + " %", new { @for = "e" + 0 })
 
-    @*<div>
+            @foreach (int item in ViewBag.evaluationValues)
+        {
+                @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e"+item})
+                @Html.Label(item + " %", new { @for = "e" + item })
+            }
+            @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+        </div>*@
+
+            <hr />
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+                </div>
+                <div>
+                    <div class="range-field" style="padding:15px; padding-right:80px; padding-left:80px;">
+                        <input type="range" name="evaluation" id="evaluation" min="0" max="100" value="0" />
+                    </div>
+                </div>
+
+            </div>
+            <hr />
+            @*<div class="md-form center">
+            @Html.RadioButton("evaluation", "10", new { @id = "e10" })
+            @Html.Label("10 %", new { @for = "e10" })
+            @Html.RadioButton("evaluation", "20", new { @id = "e20" })
+            @Html.Label("20 %", new { @for = "e20" })
+            @Html.RadioButton("evaluation", "30", new { @id = "e30" })
+            @Html.Label("30 %", new { @for = "e30" })
+            @Html.RadioButton("evaluation", "40", new { @id = "e40" })
+            @Html.Label("40 %", new { @for = "e40" })
+            @Html.RadioButton("evaluation", "50", new { @id = "e50" })
+            @Html.Label("50 %", new { @for = "e50" })
+            @Html.RadioButton("evaluation", "60", new { @id = "e60" })
+            @Html.Label("60 %", new { @for = "e60" })
+            @Html.RadioButton("evaluation", "70", new { @id = "e70" })
+            @Html.Label("70 %", new { @for = "e70" })
+            @Html.RadioButton("evaluation", "80", new { @id = "e80" })
+            @Html.Label("80 %", new { @for = "e80" })
+            @Html.RadioButton("evaluation", "90", new { @id = "e90" })
+            @Html.Label("90 %", new { @for = "e90" })
+            @Html.RadioButton("evaluation", "100", new { @id = "e100" })
+            @Html.Label("100 %", new { @for = "e100" })
+
+            @Html.EditorFor(model => model.evaluation, new { htmlAttributes = new { @class = "form-control validate" } })
+        @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+        @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+        </div>*@
+            <div class="row">
+                <div class="md-form">
+                    @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
+                    @Html.LabelFor(model => model.note, htmlAttributes: new { @for = "note" })
+                    @Html.ValidationMessageFor(model => model.note, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @*<div class="row">
+
+            </div>
+            <div class="row col-md-12">
+                <div class="checkbox-inline wow fadeIn">
+                    <input type="checkbox" name="agreement" id="agreement" />
+                    <label for="agreement">المستفيد موافق على منح المعلومات السابقة </label>
+                </div>
+            </div>*@
+
+
+            <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
+            <input type="hidden" name="registrationdate" id="registrationdate" />
+
+            <input class="hidden" name="idfamily_FK" id="idfamily_FK" value="@ViewBag.family.idfamily" />
+
+            <input type="hidden" name="idcenter_FK" id="idcenter_FK" />
+            <input type="hidden" name="iduser" id="iduser" />
+
+            <div class="row">
+                <div class="md-form">
+                    <div class="col-md-offset-5 col-md-7">
+                        <input type="submit" value="إضافة" class="btn btn-default btn-rounded p-1" />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+                <table class="table" id="familymembers">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.family_order_id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.full_name)
+                        </th>
+                        @*<th>
+                        @Html.DisplayNameFor(model => model.fname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.lname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.fathername)
+                    </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.mothername)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.age)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.gender)
+                        </th>
+                        <th></th>
+                    </tr>
+                    @foreach (var item in Model.family.people)
+                    {
+                        if (!item.is_secret)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.family_order_id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.full_name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mothername)
+                                </td>
+                                @*<td>
+                                @Html.DisplayFor(modelItem => item.fname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.lname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.fathername)
+                            </td>
+
+                                *@
+                                <td>
+                                    @*@{
+                                    var dob = item.birthday.GetValueOrDefault();
+                                    DateTime now = DateTime.Today;
+                                    int age = now.Year - dob.Year;
+                                    if (now < dob.AddYears(age))
+                                    { age--; }
+                                    @Html.DisplayFor(model => age);
+                                }*@
+                                    @Html.DisplayFor(modelItem => item.age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.gender)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("تعديل", "Edit", new { id = item.idperson }) |
+                                    @Html.ActionLink("تفاصيل", "Details", new { id = item.idperson }) |
+                                    @Html.ActionLink("إحالة", "personReferal", "referalpersons", new { id = item.idperson }, "")
+
+
+                                    @*@Html.ActionLink("حذف", "Delete", new { id = item.idperson })*@
+                                </td>
+                            </tr>
+
+                        }
+                    }
+
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+@*<div>
         @Html.ActionLink("العودة إلى قائمة الأشخاص", "Index")
     </div>*@
 
-    @section Scripts {
-        @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
-        @Scripts.Render("~/Scripts/createPersonFunctions.js", "~/bundles/jqueryval")
-        @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>
-            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-            <link rel="stylesheet" href="~/Content/jquery-ui.min.css" />*@
-        @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
-        @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
-        @*<script src="~/Scripts/jquery-ui.min.js"></script>
-            <script src="~/Scripts/person-creation-script.js"></script>*@
-    }
+@section Scripts {
+    @*<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    @Scripts.Render("~/Scripts/createPersonFunctions.js", "~/bundles/jqueryval")
+    @*<script src="~/Scripts/jquery-3.2.1.min.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="~/Content/jquery-ui.min.css" />*@
+    @*<script src="https://code.jquery.com/jquery-1.12.4.js"></script>*@
+    @*<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>*@
+    @*<script src="~/Scripts/jquery-ui.min.js"></script>
+        <script src="~/Scripts/person-creation-script.js"></script>*@
+}

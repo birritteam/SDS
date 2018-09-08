@@ -120,11 +120,11 @@
   <data name="family_book_number_existed" xml:space="preserve">
     <value>رقم دفتر العائلة موجود مسبقا</value>
   </data>
-  <data name="flag_existed" xml:space="preserve">
-    <value>الرمز المميز موجود مسبقا</value>
-  </data>
   <data name="id_existed" xml:space="preserve">
     <value>الرقم التسلسلي موجود مسبقا</value>
+  </data>
+  <data name="name_existed" xml:space="preserve">
+    <value>الاسم موجود مسبقا</value>
   </data>
   <data name="national_number_existed" xml:space="preserve">
     <value>الرقم الوطني موجود مسبقا</value>

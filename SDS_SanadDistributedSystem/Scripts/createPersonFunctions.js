@@ -17,7 +17,7 @@ function SuccessLoadForPerson(data) {
 
     idFamily = data.family_book_number;
     $("#family_order_id").val(idFamily);
-    
+
     $("#idfamily_FK").val(data.idfamily);
 
     //$("#ذكر").prop("checked", true).trigger("click");
@@ -38,7 +38,7 @@ function SuccessLoadForPerson(data) {
         data.age + "</td><td>" + data.gender + "</td><td>" +
 
         '<a href="/people/Edit/' +
-         data.idperson + '"> تعديل </a>|<a href="/people/Details/' +
+        data.idperson + '"> تعديل </a>|<a href="/people/Details/' +
         data.idperson + '"> تفاصيل </a>' +
         //'|<a href="/people/Delete/' + data.idperson + '"> حذف </a></td>' +
         '|<a href="/referalpersons/personReferal/' + data.idperson + '"> إحالة </a></td>' +
@@ -51,10 +51,30 @@ function FailureLoadForPerson(data) {
     toastr.error("فشلت عملية الإضافة", 'فشل العملية');
 }
 
+//function CheckAgreement(data) {
+//    var $form = $('#personCreationForm');
+//    var $checkbox = $('#agreement');
+//    if (!$checkbox.is(':checked')) {
+//        alert('Please confirm!');
+//        e.preventDefault();
+//        e.stopPropagation();
+//    }
+
+//}
+
 
 $(document).ready(function () {
 
 
+    //var $form = $('#personCreationForm');
+    //var $checkbox = $('#agreement');
+
+    //$form.on('submit', function (e) {
+    //    if (!$checkbox.is(':checked')) {
+    //        alert('Please confirm!');
+    //        e.preventDefault();
+    //    }
+    //});
 
     //$('#birthday').datepicker({
     //        dateFormat: "dd/mm/yy",
@@ -68,15 +88,15 @@ $(document).ready(function () {
     //    });
     $.validator.unobtrusive.parse("#ParentDiv > form");
     idFamily = $("#family_book_number").val();
-   // idFamily = $("#family_order_id").val();
+    // idFamily = $("#family_order_id").val();
     //$('#idfamily_FK').val(idFamily);
     //$("#ذكر").prop("checked", true).trigger("click");
     $("input[type=radio][name=position][id=H]").trigger("click").trigger("change");
     //$("#family_order_id").val(idFamily + "H").trigger("change");
     //$("#family_order_id").trigger("focus");
-  //  $("#idperson").trigger("focusout");
-  //  $("#fname").trigger("focus");
-   // $("#idperson").validator();
+    //  $("#idperson").trigger("focusout");
+    //  $("#fname").trigger("focus");
+    // $("#idperson").validator();
 
     //$(function () {
 

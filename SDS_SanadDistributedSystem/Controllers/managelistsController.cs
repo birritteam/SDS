@@ -16,9 +16,9 @@ namespace SDS_SanadDistributedSystem.Controllers
     {
         private sds_dbEntities db = new sds_dbEntities();
 
-        public JsonResult flagAlreadyExisted(string flag)
+        public JsonResult nameAlreadyExisted(string name)
         {
-            bool existed = db.managelists.Any(x => x.flag.Equals(flag));
+            bool existed = db.managelists.Any(x => x.name.Equals(name));
             return Json(!existed, JsonRequestBehavior.AllowGet);
         }
 

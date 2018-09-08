@@ -128,20 +128,20 @@ namespace SDS_SanadDistributedSystem.Controllers
 
 
             //int selectedKCID = 0;
-            string selectedKC = "";
+            //string selectedKC = "";
 
-            var kc = managelists.Where(ma => ma.flag == "KC");
+            //var kc = managelists.Where(ma => ma.flag == "KC");
 
-            foreach (var item in kc)
-            {
-                foreach (var personmanage in item.personmanages)
-                {
-                    if (personmanage.idperson_FK == id)
-                    {
-                        selectedKC = personmanage.managelist.name;
-                    }
-                }
-            }
+            //foreach (var item in kc)
+            //{
+            //    foreach (var personmanage in item.personmanages)
+            //    {
+            //        if (personmanage.idperson_FK == id)
+            //        {
+            //            selectedKC = personmanage.managelist.name;
+            //        }
+            //    }
+            //}
 
 
             List<int> selectedML = new List<int>();
@@ -196,12 +196,13 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.selectedWeaknesses = selectedWeaknesses;
             ViewBag.selectedCurrentWork = selectedCurrentWork;
             ViewBag.selectedPreviousWork = selectedPreviousWork;
-            ViewBag.selectedKC = selectedKC;
+            //ViewBag.selectedKC = selectedKC;
 
 
             return View(person);
         }
         [Authorize(Roles = "receptionist")]
+      //  [AllowAnonymous]
         // GET: people/Create
         public ActionResult Create(int id)
         {
@@ -240,7 +241,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.currentWorkID = works;
             ViewBag.previousWorkID = works;
 
-            ViewBag.idKnowledgeCenter = new SelectList(managelists.Where(ma => ma.flag == "KC"), "idmanagelist", "name");
+            //ViewBag.idKnowledgeCenter = new SelectList(managelists.Where(ma => ma.flag == "KC"), "idmanagelist", "name");
 
 
 
@@ -274,6 +275,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             return View(person);
         }
         [Authorize(Roles = "receptionist")]
+        //[AllowAnonymous]
         // POST: people/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -281,7 +283,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         // removed formnumber from the Bind parameters 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser,evaluation,applicant,family_order_id")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
+        public async Task<ActionResult> Create([Bind(Include = "idperson,fname,lname,nationalnumber,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,note,iduser,evaluation,applicant,family_order_id")] person person, int currentWorkID, int previousWorkID, int[] weaknesses, int[] documents)
         {
             if (ModelState.IsValid)
             {
@@ -327,15 +329,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 db.personmanages.Add(previousWork);
 
 
-                personmanage knowledgecenter = new personmanage()
-                {
-                    idperson_FK = person.idperson,
-                    idmanagelist_FK = idKnowledgeCenter,
-                    person = person,
-                    eval = "",
-                    managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == idKnowledgeCenter)
-                };
-                db.personmanages.Add(knowledgecenter);
+                
 
                 if (weaknesses != null)
                     foreach (var i in weaknesses)
@@ -395,6 +389,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
             return new JsonResult { Data = "Failed" };
         }
+       // [AllowAnonymous]
         [Authorize(Roles = "receptionist,cmIOutReachTeam")]
         // GET: people/Edit/5
         public async Task<ActionResult> Edit(int? id)
@@ -434,23 +429,23 @@ namespace SDS_SanadDistributedSystem.Controllers
             }
 
 
-            int selectedKCID = 0;
-            var kc = managelists.Where(ma => ma.flag == "KC");
+            //int selectedKCID = 0;
+            //var kc = managelists.Where(ma => ma.flag == "KC");
 
-            foreach (var item in kc)
-            {
-                foreach (var personmanage in item.personmanages)
-                {
-                    if (personmanage.idperson_FK == id)
-                    {
-                        selectedKCID = personmanage.idmanagelist_FK;
-                    }
-                }
-            }
+            //foreach (var item in kc)
+            //{
+            //    foreach (var personmanage in item.personmanages)
+            //    {
+            //        if (personmanage.idperson_FK == id)
+            //        {
+            //            selectedKCID = personmanage.idmanagelist_FK;
+            //        }
+            //    }
+            //}
 
             ViewBag.currentWorkID = new SelectList(works, "idmanagelist", "name", selectedCurrentWorkId);
             ViewBag.previousWorkID = new SelectList(works, "idmanagelist", "name", selectedPreviousWorkId);
-            ViewBag.idKnowledgeCenter = new SelectList(kc, "idmanagelist", "name", selectedKCID);
+            //ViewBag.idKnowledgeCenter = new SelectList(kc, "idmanagelist", "name", selectedKCID);
 
             List<int> selectedML = new List<int>();
             List<IQueryable> weaknesses = new List<IQueryable>();
@@ -509,13 +504,14 @@ namespace SDS_SanadDistributedSystem.Controllers
 
             return View(person);
         }
+      //  [AllowAnonymous]
         [Authorize(Roles = "receptionist,cmIOutReachTeam,mobileTeamReceptionist")]
         // POST: people/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber,evaluation,applicant,family_order_id")] person person, int currentWorkID, int previousWorkID, int idKnowledgeCenter, int[] weaknesses, int[] documents)
+        public async Task<ActionResult> Edit([Bind(Include = "idperson,fname,lname,fathername,mothername,birthday,birthplace,gender,nationality,martial,relationtype,onoffflag,education,educationstate,phone1,phone2,currentaddress,registrationdate,idfamily_FK,idcenter_FK,formnumber,note,iduser,nationalnumber,evaluation,applicant,family_order_id")] person person, int currentWorkID, int previousWorkID, int[] weaknesses, int[] documents)
         {
             //  List<int> weaknessesList = weaknesses.ToList();
             if (ModelState.IsValid)
@@ -560,23 +556,23 @@ namespace SDS_SanadDistributedSystem.Controllers
                             }
 
                         }
-                        else
-                        if (pm.managelist.flag.Equals("KC"))
-                        {
-                            if (pm.managelist.idmanagelist != idKnowledgeCenter)
-                            {
-                                personmanages.Remove(pm);
-                                personmanage knowledgecenter = new personmanage()
-                                {
-                                    idperson_FK = person.idperson,
-                                    idmanagelist_FK = idKnowledgeCenter,
-                                    person = person,
-                                    eval = "",
-                                    managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == idKnowledgeCenter)
-                                };
-                                personmanages.Add(knowledgecenter);
-                            }
-                        }
+                        //else
+                        //if (pm.managelist.flag.Equals("KC"))
+                        //{
+                        //    if (pm.managelist.idmanagelist != idKnowledgeCenter)
+                        //    {
+                        //        personmanages.Remove(pm);
+                        //        personmanage knowledgecenter = new personmanage()
+                        //        {
+                        //            idperson_FK = person.idperson,
+                        //            idmanagelist_FK = idKnowledgeCenter,
+                        //            person = person,
+                        //            eval = "",
+                        //            managelist = db.managelists.SingleOrDefault(ml => ml.idmanagelist == idKnowledgeCenter)
+                        //        };
+                        //        personmanages.Add(knowledgecenter);
+                        //    }
+                        //}
                         else //weaknesses && documents
                              // if(personmanage.managelist.flag.Equals())
                         {

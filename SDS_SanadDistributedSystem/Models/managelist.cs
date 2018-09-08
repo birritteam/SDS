@@ -27,15 +27,16 @@ namespace SDS_SanadDistributedSystem.Models
 
         [Display(Name = "idmanagelist", ResourceType = typeof(PersonAndFamilyResources))]
         public int idmanagelist { get; set; }
+        [Required]
+        [Remote("nameAlreadyExisted", "managelists",
+            ErrorMessageResourceType = typeof(ErrorResource),
+            ErrorMessageResourceName = "name_existed")
+            ]
         [Display(Name = "managelist_name", ResourceType = typeof(PersonAndFamilyResources))]
         public string name { get; set; }
 
         [StringLength(3)]
-        [Required]
-        [Remote("flagAlreadyExisted", "managelists",
-            ErrorMessageResourceType = typeof(ErrorResource),
-            ErrorMessageResourceName = "id_existed")
-            ]
+        [Required]      
         [Display(Name = "managelist_flag", ResourceType = typeof(PersonAndFamilyResources))]
         public string flag { get; set; }
 
