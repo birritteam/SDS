@@ -511,6 +511,20 @@ namespace SDS_SanadDistributedSystem.Controllers
             rps.idreferalperson = rp.idreferalperson.ToString();
             rps.name = rp.person.fname + " " + rp.person.lname;
             rps.submittingdate = rp.submittingdate.Value.ToShortDateString();
+
+            rps.phone1 = rp.person.phone1;
+            rps.phone2 = rp.person.phone2;
+
+            if (rp.person.family.phone1 != null)
+                rps.family_phone1 = rp.person.family.phone1 + " (" + rp.person.family.phone1owner + ") ";
+            else
+                rps.family_phone1 = rp.person.family.phone1;
+
+            if (rp.person.family.phone2 != null)
+                rps.family_phone2 = rp.person.family.phone2 + " (" + rp.person.family.phone2owner + ") ";
+            else
+                rps.family_phone2 = rp.person.family.phone2;
+
             if (rp.referaldate != null)
                 rps.referaldate = rp.referaldate.Value.ToShortDateString();
             else

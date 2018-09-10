@@ -118,6 +118,7 @@
                         </th>
                         <th> تقييم الفرد</th>
                         <th> تقييم العائلة</th>
+                        <th>معلومات التواصل</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
@@ -187,7 +188,29 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.family.evaluation)
                                 </td>
+                                <td>
+                                    @if(!item.person.phone1.IsEmpty() )
+                                    {
+                                   <b>  هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.phone1)<br/>
+                                    }
+                                    @if (!item.person.phone2.IsEmpty())
+                                    {
+                                     <b> هاتف 2:</b> @Html.DisplayFor(modelItem => item.person.phone2)
+                                    }
+                                  
+                                    @if (item.person.phone1.IsEmpty() && item.person.phone2.IsEmpty())
+                                    {
+                                        if (!item.person.family.phone1.IsEmpty())
+                                        {;
+                                            <b> هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.family.phone1)   <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone1owner)<span>)</span> </span> <br/>
+                                        }
+                                        if (!item.person.family.phone2.IsEmpty())
+                                        {
+                                            <b> هاتف 2:</b>     @Html.DisplayFor(modelItem => item.person.family.phone2)  <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone2owner)<span>)</span> </span>
+                                        }
 
+                                    }
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
                                 </td>
@@ -366,6 +389,7 @@
                         </th>
                         <th> تقييم الفرد</th>
                         <th> تقييم العائلة</th>
+                        <th>معلومات التواصل</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
@@ -435,6 +459,30 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.family.evaluation)
+                                </td>
+                                <td>
+                                    @if (!item.person.phone1.IsEmpty())
+                                    {
+                                        <b>  هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.phone1)<br />
+                                    }
+                                    @if (!item.person.phone2.IsEmpty())
+                                    {
+                                        <b> هاتف 2:</b> @Html.DisplayFor(modelItem => item.person.phone2)
+                                    }
+
+                                    @if (item.person.phone1.IsEmpty() && item.person.phone2.IsEmpty())
+                                    {
+                                        if (!item.person.family.phone1.IsEmpty())
+                                        {
+                                            ;
+                                            <b> هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.family.phone1)   <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone1owner)<span>)</span> </span> <br />
+                                        }
+                                        if (!item.person.family.phone2.IsEmpty())
+                                        {
+                                            <b> هاتف 2:</b>     @Html.DisplayFor(modelItem => item.person.family.phone2)  <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone2owner)<span>)</span> </span>
+                                        }
+
+                                    }
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -785,6 +833,7 @@
                         </th>
                         <th> تقييم الفرد</th>
                         <th> تقييم العائلة</th>
+                        <th>معلومات التواصل</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
@@ -850,6 +899,30 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.family.evaluation)
+                                </td>
+                                <td>
+                                    @if (!item.person.phone1.IsEmpty())
+                                    {
+                                        <b>  هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.phone1)<br />
+                                    }
+                                    @if (!item.person.phone2.IsEmpty())
+                                    {
+                                        <b> هاتف 2:</b> @Html.DisplayFor(modelItem => item.person.phone2)
+                                    }
+
+                                    @if (item.person.phone1.IsEmpty() && item.person.phone2.IsEmpty())
+                                    {
+                                        if (!item.person.family.phone1.IsEmpty())
+                                        {
+                                            ;
+                                            <b> هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.family.phone1)   <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone1owner)<span>)</span> </span> <br />
+                                        }
+                                        if (!item.person.family.phone2.IsEmpty())
+                                        {
+                                            <b> هاتف 2:</b>     @Html.DisplayFor(modelItem => item.person.family.phone2)  <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone2owner)<span>)</span> </span>
+                                        }
+
+                                    }
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -1035,6 +1108,7 @@
                         </th>
                         <th> تقييم الفرد</th>
                         <th> تقييم العائلة</th>
+                        <th>معلومات التواصل</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
@@ -1104,6 +1178,30 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.family.evaluation)
+                                </td>
+                                <td>
+                                    @if (!item.person.phone1.IsEmpty())
+                                    {
+                                        <b>  هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.phone1)<br />
+                                    }
+                                    @if (!item.person.phone2.IsEmpty())
+                                    {
+                                        <b> هاتف 2:</b> @Html.DisplayFor(modelItem => item.person.phone2)
+                                    }
+
+                                    @if (item.person.phone1.IsEmpty() && item.person.phone2.IsEmpty())
+                                    {
+                                        if (!item.person.family.phone1.IsEmpty())
+                                        {
+                                            ;
+                                            <b> هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.family.phone1)   <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone1owner)<span>)</span> </span> <br />
+                                        }
+                                        if (!item.person.family.phone2.IsEmpty())
+                                        {
+                                            <b> هاتف 2:</b>     @Html.DisplayFor(modelItem => item.person.family.phone2)  <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone2owner)<span>)</span> </span>
+                                        }
+
+                                    }
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
@@ -1451,6 +1549,7 @@
                         </th>
                         <th> تقييم الفرد</th>
                         <th> تقييم العائلة</th>
+                        <th>معلومات التواصل</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
@@ -1523,6 +1622,30 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)
+                                </td>
+                                <td>
+                                    @if (!item.person.phone1.IsEmpty())
+                                    {
+                                        <b>  هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.phone1)<br />
+                                    }
+                                    @if (!item.person.phone2.IsEmpty())
+                                    {
+                                        <b> هاتف 2:</b> @Html.DisplayFor(modelItem => item.person.phone2)
+                                    }
+
+                                    @if (item.person.phone1.IsEmpty() && item.person.phone2.IsEmpty())
+                                    {
+                                        if (!item.person.family.phone1.IsEmpty())
+                                        {
+                                            ;
+                                            <b> هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.family.phone1)   <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone1owner)<span>)</span> </span> <br />
+                                        }
+                                        if (!item.person.family.phone2.IsEmpty())
+                                        {
+                                            <b> هاتف 2:</b>     @Html.DisplayFor(modelItem => item.person.family.phone2)  <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone2owner)<span>)</span> </span>
+                                        }
+
+                                    }
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.recieverevalution)
@@ -1872,6 +1995,7 @@
                         </th>
                         <th> تقييم الفرد</th>
                         <th> تقييم العائلة</th>
+                        <th>معلومات التواصل</th>
                         <th>
                             @Html.DisplayNameFor(model => model.senderevalution)
                         </th>
@@ -1937,6 +2061,30 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.family.evaluation)
+                                </td>
+                                <td>
+                                    @if (!item.person.phone1.IsEmpty())
+                                    {
+                                        <b>  هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.phone1)<br />
+                                    }
+                                    @if (!item.person.phone2.IsEmpty())
+                                    {
+                                        <b> هاتف 2:</b> @Html.DisplayFor(modelItem => item.person.phone2)
+                                    }
+
+                                    @if (item.person.phone1.IsEmpty() && item.person.phone2.IsEmpty())
+                                    {
+                                        if (!item.person.family.phone1.IsEmpty())
+                                        {
+                                            ;
+                                            <b> هاتف 1: </b>  @Html.DisplayFor(modelItem => item.person.family.phone1)   <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone1owner)<span>)</span> </span> <br />
+                                        }
+                                        if (!item.person.family.phone2.IsEmpty())
+                                        {
+                                            <b> هاتف 2:</b>     @Html.DisplayFor(modelItem => item.person.family.phone2)  <span><span>(</span>@Html.DisplayFor(modelItem => item.person.family.phone2owner)<span>)</span> </span>
+                                        }
+
+                                    }
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.senderevalution)

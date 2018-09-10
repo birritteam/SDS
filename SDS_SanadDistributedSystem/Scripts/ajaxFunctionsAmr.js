@@ -1154,6 +1154,18 @@ $(document).ready(function () {
                 success: function (data) {
 
                     $.each(data, function (i, referal) {
+                        var info = "";
+                        if (referal.phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                        if (referal.phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                        if (referal.phone1 == null && referal.phone2 == null) {
+                            if (referal.family_phone1 != null)
+                                info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                            if (referal.family_phone2 != null)
+                                info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                        }
+
                         table.row.add(
                         $('<tr></tr>')
                         .append('<td>' + referal.name + '</td>')
@@ -1171,7 +1183,7 @@ $(document).ready(function () {
 
                              .append('<td>' + referal.personEevalution + '</td>')
                              .append('<td>' + referal.familyEvalution + '</td>')
-
+                             .append('<td>' + info + '</td>')
                         .append('<td>' + referal.senderevalution + '</td>')
 
                             .append('<td>' + referal.recieverevalution + '</td>')
@@ -1347,6 +1359,19 @@ $(document).ready(function () {
                 success: function (data) {
 
                     $.each(data, function (i, referal) {
+                        var info = "";
+                        if (referal.phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                        if (referal.phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                        if (referal.phone1 == null && referal.phone2 == null) {
+                            if (referal.family_phone1 != null)
+                                info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                            if (referal.family_phone2 != null)
+                                info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                        }
+
+
                         table.row.add(
                         $('<tr></tr>')
                         .append('<td>' + referal.name + '</td>')
@@ -1363,7 +1388,7 @@ $(document).ready(function () {
                         .append('<td>' + referal.referalsender_FK + '</td>')
                              .append('<td>' + referal.personEevalution + '</td>')
                              .append('<td>' + referal.familyEvalution + '</td>')
-
+                                            .append('<td>' + info + '</td>')
                         .append('<td>' + referal.senderevalution + '</td>')
 
                             .append('<td>' + referal.recieverevalution + '</td>')
@@ -1528,6 +1553,18 @@ $(document).ready(function () {
             success: function (data) {
 
                 $.each(data, function (i, referal) {
+                    
+                    var info = "";
+                    if (referal.phone1 != null)
+                        info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                    if (referal.phone2 != null)
+                        info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                    if (referal.phone1 == null && referal.phone2 == null) {
+                        if (referal.family_phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                        if (referal.family_phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                    }
                     table.row.add(
                     $('<tr></tr>')
                     .append('<td>' + referal.name + '</td>')
@@ -1544,7 +1581,8 @@ $(document).ready(function () {
                     .append('<td>' + referal.referalsender_FK + '</td>')
                          .append('<td>' + referal.personEevalution + '</td>')
                          .append('<td>' + referal.familyEvalution + '</td>')
-
+                        
+                       .append('<td>' + info + '</td>')
                     .append('<td>' + referal.senderevalution + '</td>')
 
                         .append('<td>' + referal.recieverevalution + '</td>')
@@ -1709,6 +1747,17 @@ $(document).ready(function () {
                 success: function (data) {
 
                     $.each(data, function (i, referal) {
+                        var info = "";
+                        if (referal.phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                        if (referal.phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                        if (referal.phone1 == null && referal.phone2 == null) {
+                            if (referal.family_phone1 != null)
+                                info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                            if (referal.family_phone2 != null)
+                                info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                        }
                         table.row.add(
                         $('<tr></tr>')
                         .append('<td>' + referal.name + '</td>')
@@ -1725,7 +1774,8 @@ $(document).ready(function () {
                         .append('<td>' + referal.referalsender_FK + '</td>')
                              .append('<td>' + referal.personEevalution + '</td>')
                              .append('<td>' + referal.familyEvalution + '</td>')
-
+                             
+                         .append('<td>' + info + '</td>')
                         .append('<td>' + referal.senderevalution + '</td>')
 
                             .append('<td>' + referal.recieverevalution + '</td>')
@@ -1900,6 +1950,17 @@ $(document).ready(function () {
                 success: function (data) {
 
                     $.each(data, function (i, referal) {
+                        var info = "";
+                        if (referal.phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                        if (referal.phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                        if (referal.phone1 == null && referal.phone2 == null) {
+                            if (referal.family_phone1 != null)
+                                info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                            if (referal.family_phone2 != null)
+                                info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                        }
                         table.row.add(
                         $('<tr></tr>')
                         .append('<td>' + referal.name + '</td>')
@@ -1916,7 +1977,7 @@ $(document).ready(function () {
                         .append('<td>' + referal.referalsender_FK + '</td>')
                              .append('<td>' + referal.personEevalution + '</td>')
                              .append('<td>' + referal.familyEvalution + '</td>')
-
+                           .append('<td>' + info + '</td>')
                         .append('<td>' + referal.senderevalution + '</td>')
 
                             .append('<td>' + referal.recieverevalution + '</td>')
@@ -2092,6 +2153,18 @@ $(document).ready(function () {
                 success: function (data) {
 
                     $.each(data, function (i, referal) {
+                        
+                        var info = "";
+                        if (referal.phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                        if (referal.phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                        if (referal.phone1 == null && referal.phone2 == null) {
+                            if (referal.family_phone1 != null)
+                                info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                            if (referal.family_phone2 != null)
+                                info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                        }
                         table.row.add(
                         $('<tr></tr>')
                         .append('<td>' + referal.name + '</td>')
@@ -2108,6 +2181,8 @@ $(document).ready(function () {
                         .append('<td>' + referal.referalsender_FK + '</td>')
                              .append('<td>' + referal.personEevalution + '</td>')
                              .append('<td>' + referal.familyEvalution + '</td>')
+                            
+                          .append('<td>' + info + '</td>')
                         .append('<td>' + referal.senderevalution + '</td>')
 
                             .append('<td>' + referal.recieverevalution + '</td>')
@@ -2271,6 +2346,18 @@ $(document).ready(function () {
             success: function (data) {
 
                 $.each(data, function (i, referal) {
+                    
+                    var info = "";
+                    if (referal.phone1 != null)
+                        info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                    if (referal.phone2 != null)
+                        info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                    if (referal.phone1 == null && referal.phone2 == null) {
+                        if (referal.family_phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                        if (referal.family_phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                    }
                     table.row.add(
                     $('<tr></tr>')
                     .append('<td>' + referal.name + '</td>')
@@ -2287,6 +2374,8 @@ $(document).ready(function () {
                     .append('<td>' + referal.referalsender_FK + '</td>')
                          .append('<td>' + referal.personEevalution + '</td>')
                          .append('<td>' + referal.familyEvalution + '</td>')
+                        
+                      .append('<td>' + info + '</td>')
                     .append('<td>' + referal.senderevalution + '</td>')
 
                         .append('<td>' + referal.recieverevalution + '</td>')
@@ -2453,6 +2542,18 @@ $(document).ready(function () {
             success: function (data) {
 
                 $.each(data, function (i, referal) {
+                    
+                    var info = "";
+                    if (referal.phone1 != null)
+                        info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                    if (referal.phone2 != null)
+                        info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                    if (referal.phone1 == null && referal.phone2 == null) {
+                        if (referal.family_phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                        if (referal.family_phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                    }
                     table.row.add(
                     $('<tr></tr>')
                     .append('<td>' + referal.name + '</td>')
@@ -2469,6 +2570,8 @@ $(document).ready(function () {
                     .append('<td>' + referal.referalsender_FK + '</td>')
                          .append('<td>' + referal.personEevalution + '</td>')
                          .append('<td>' + referal.familyEvalution + '</td>')
+
+                    .append('<td>' + info + '</td>')
                     .append('<td>' + referal.senderevalution + '</td>')
 
                         .append('<td>' + referal.recieverevalution + '</td>')
@@ -2633,6 +2736,18 @@ $(document).ready(function () {
             success: function (data) {
 
                 $.each(data, function (i, referal) {
+                    
+                    var info = "";
+                    if (referal.phone1 != null)
+                        info = " <b> هاتف 1: </b>" + referal.phone1 + "</br>";
+                    if (referal.phone2 != null)
+                        info = info + " <b> هاتف 2: </b>" + referal.phone2;
+                    if (referal.phone1 == null && referal.phone2 == null) {
+                        if (referal.family_phone1 != null)
+                            info = " <b> هاتف 1: </b>" + referal.family_phone1 + "</br>";
+                        if (referal.family_phone2 != null)
+                            info = info + " <b> هاتف 2: </b>" + referal.family_phone2;
+                    }
                     table.row.add(
                     $('<tr></tr>')
                     .append('<td>' + referal.name + '</td>')
@@ -2649,6 +2764,7 @@ $(document).ready(function () {
                     .append('<td>' + referal.referalsender_FK + '</td>')
                          .append('<td>' + referal.personEevalution + '</td>')
                          .append('<td>' + referal.familyEvalution + '</td>')
+                      .append('<td>' + info + '</td>')
                     .append('<td>' + referal.senderevalution + '</td>')
 
                         .append('<td>' + referal.recieverevalution + '</td>')

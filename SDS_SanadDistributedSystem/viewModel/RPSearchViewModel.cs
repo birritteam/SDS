@@ -40,6 +40,11 @@ namespace SDS_SanadDistributedSystem.viewModel
 
         public string recieverevalution { get; set; }
 
+        public string phone1 { get; set; }
+        public string phone2 { get; set; }
+        public string family_phone1 { get; set; }
+        public string family_phone2 { get; set; }
+
         public int? personEevalution { get; set; }
         public int? familyEvalution { get; set; }
 
