@@ -615,14 +615,15 @@ namespace SDS_SanadDistributedSystem.Controllers
                 person.personmanages = personmanages;
 
                 await db.SaveChangesAsync();
-                if (User.IsInRole("receptionist"))
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("IndexOutReach", "referalpersons", null);
-                }
+                return RedirectToAction("Details", "families", new { id=person.idfamily_FK });
+                //if (User.IsInRole("receptionist"))
+                //{
+                //    return RedirectToAction("Index");
+                //}
+                //else
+                //{
+                //    return RedirectToAction("IndexOutReach", "referalpersons", null);
+                //}
 
 
             }

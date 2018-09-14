@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using SDS_SanadDistributedSystem.Models;
 using Microsoft.AspNet.Identity;
+using System.Text.RegularExpressions;
 
 namespace SDS_SanadDistributedSystem.Controllers
 {
@@ -374,20 +375,25 @@ namespace SDS_SanadDistributedSystem.Controllers
                 //    else
                 //        item.families.Remove(family);
                 //}
-
+                family.people = db.people.Where(p => p.idfamily_FK == family.idfamily).ToList();
+                foreach (person p in family.people)
+                {
+                    p.family_order_id = Regex.Replace(p.family_order_id, "[0-9]{2,}", family.family_book_number);
+                }
 
 
 
                 await db.SaveChangesAsync();
 
-                if (User.IsInRole("receptionist"))
-                {
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return RedirectToAction("IndexOutReach", "referalpersons", null);
-                }
+                return RedirectToAction("Details", "families",new { id=family.idfamily });
+                //if (User.IsInRole("receptionist"))
+                //{
+                //    return RedirectToAction("Index");
+                //}
+                //else
+                //{
+                //    return RedirectToAction("IndexOutReach", "referalpersons", null);
+                //}
             }
             ViewBag.evaluationValues = evaluationValues;
             ViewBag.familynatureValues = familynatureValues;

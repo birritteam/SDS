@@ -131,10 +131,11 @@ namespace SDS_SanadDistributedSystem.Controllers
                     var roles = login_user.First().AspNetRoles.First().Name;
                     string action_name = "";
                     string controller_name = "";
-                    if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
-                        || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
-                        || roles.Equals("cmAwareness")
-                        || roles.Equals("cmSmallProjects") || roles.Equals("cmInkindAssistance"))
+                    if(User.IsInRole("caseManager"))
+                    //if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
+                    //    || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
+                    //    || roles.Equals("cmAwareness")
+                    //    || roles.Equals("cmSmallProjects") || roles.Equals("cmInkindAssistance"))
                     {
                         action_name = "index";
                         controller_name = "referalpersons";
