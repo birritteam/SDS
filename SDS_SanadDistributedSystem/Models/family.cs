@@ -67,7 +67,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string idcenter_FK { get; set; }
         [Display(Name = "serial_number", ResourceType = typeof(PersonAndFamilyResources))]
         public string serial_number { get; set; }
-        [Remote("idAlreadyExisted", "families",
+        [Remote("familyBookNumberAlreadyExisted", "families",
             ErrorMessageResourceType = typeof(ErrorResource),
             ErrorMessageResourceName = "family_book_number_existed", AdditionalFields = "idfamily", HttpMethod = "Post")
             ]
