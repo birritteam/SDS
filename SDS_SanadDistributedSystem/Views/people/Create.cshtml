@@ -33,7 +33,7 @@
 <div class="container-fluid" id="">
     @using (Ajax.BeginForm("Create", "people", new AjaxOptions
     {
-        Confirm = "تم التأكد من موافقة المستفيد على منح معلوماته؟ ",
+        Confirm = "تم أخذ موافقة الشخص المعني على جمع بياناته الشخصية وتم إعلامه أن الهدف من جمع هذه البيانات هو تقديم الخدمة المناسبة له وبأنه سيتم التعامل مع بياناته الشخصية بسرية تامة",
         OnSuccess = "SuccessLoadForPerson",
         OnFailure = "FailureLoadForPerson",
         //UpdateTargetId = "ParentDiv",

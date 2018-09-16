@@ -157,7 +157,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     else if (roles.Equals("receptionist"))
                     {
                         action_name = "index";
-                        controller_name = "people";
+                        controller_name = "families";
                     }
                     else if (roles.Equals("cmSGBV"))
                     {

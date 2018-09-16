@@ -21,7 +21,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         private string[] sectorValues = { "خارج القطاع", "البغطاسية", "الحميدية", "القصور", "الميدان", "حسياء", "حسياء الصناعية", "عشيرة", "فركلوس" };
         private int[] evaluationValues = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
 
-        public JsonResult idAlreadyExisted(string family_book_number, int? idfamily)
+        public JsonResult familyBookNumberAlreadyExisted(string family_book_number, int? idfamily)
         {
             bool existed;
             if (idfamily == null)
@@ -376,9 +376,14 @@ namespace SDS_SanadDistributedSystem.Controllers
                 //        item.families.Remove(family);
                 //}
                 family.people = db.people.Where(p => p.idfamily_FK == family.idfamily).ToList();
+                //string digits = "";
+                Regex regex = new Regex("[0-9]{1,}");
+
                 foreach (person p in family.people)
                 {
-                    p.family_order_id = Regex.Replace(p.family_order_id, "[0-9]{2,}", family.family_book_number);
+                    //digits = new String(p.family_order_id.TakeWhile(Char.IsDigit).ToArray());
+                    p.family_order_id = regex.Replace(p.family_order_id, family.family_book_number,1);
+
                 }
 
 
