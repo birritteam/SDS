@@ -128,57 +128,65 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                 case SignInStatus.Success:
                     var login_user = db.AspNetUsers.Where(u => u.Email.Equals(model.Email));
-                    var roles = login_user.First().AspNetRoles.First().Name;
+                    //   var roles = login_user.First().AspNetRoles.First().Name;
+                    // var allroles = db.AspNetRoles;
+                    List<string> roles = new List<string>();
+                    foreach (var r in login_user.First().AspNetRoles)
+                        roles.Add(r.Name);
+
                     string action_name = "";
                     string controller_name = "";
-                    if(User.IsInRole("caseManager"))
-                    //if (roles.Equals("cmEducation") || roles.Equals("cmProfessional") || roles.Equals("cmChildProtection") || roles.Equals("cmPsychologicalSupport1")
-                    //    || roles.Equals("cmPsychologicalSupport2") || roles.Equals("cmPsychologicalSupport3") || roles.Equals("cmDayCare") || roles.Equals("cmHomeCare")
-                    //    || roles.Equals("cmAwareness")
-                    //    || roles.Equals("cmSmallProjects") || roles.Equals("cmInkindAssistance"))
+
+                    if (roles.Count > 0)
                     {
-                        action_name = "index";
-                        controller_name = "referalpersons";
+                        if (roles.Contains("caseManager"))
+                        {
+                            action_name = "index";
+                            controller_name = "referalpersons";
+                        }
+                        if (roles.Contains("cmIOutReachTeam"))
+                        {
+                            action_name = "IndexOutReach";
+                            controller_name = "referalpersons";
+                        }
+                        if (roles.Contains("coEducation") || roles.Contains("coProfessional") || roles.Contains("coChildProtection")
+                            || roles.Contains("coPsychologicalSupport")
+                            || roles.Contains("coDayCare") || roles.Contains("coHomeCare")
+                            || roles.Contains("coAwareness")
+                            || roles.Contains("coSmallProjects") || roles.Contains("coOutReachTeam") || roles.Contains("coInkindAssistance"))
+                        {
+                            action_name = "IndexCo";
+                            controller_name = "referalpersons";
+                        }
+                        if (roles.Contains("receptionist"))
+                        {
+                            action_name = "index";
+                            controller_name = "families";
+                        }
+                        if (roles.Contains("cmSGBV"))
+                        {
+                            action_name = "index";
+                            controller_name = "secretPeople";
+                        }
+                        if (roles.Contains("reporter"))
+                        {
+                            action_name = "index";
+                            controller_name = "Reporting";
+                        }
+                        if (roles.Contains("admin"))
+                        {
+                            action_name = "AdminPage";
+                            controller_name = "Account";
+                        }
+
                     }
-                    else if (roles.Equals("cmIOutReachTeam"))
-                    {
-                        action_name = "IndexOutReach";
-                        controller_name = "referalpersons";
-                    }
-                    else if (roles.Equals("coEducation") || roles.Equals("coProfessional") || roles.Equals("coChildProtection")
-                        || roles.Equals("coPsychologicalSupport")
-                        || roles.Equals("coDayCare") || roles.Equals("coHomeCare")
-                        || roles.Equals("coAwareness")
-                        || roles.Equals("coSmallProjects") || roles.Equals("coOutReachTeam") || roles.Equals("coInkindAssistance"))
-                    {
-                        action_name = "IndexCo";
-                        controller_name = "referalpersons";
-                    }
-                    else if (roles.Equals("receptionist"))
-                    {
-                        action_name = "index";
-                        controller_name = "families";
-                    }
-                    else if (roles.Equals("cmSGBV"))
-                    {
-                        action_name = "index";
-                        controller_name = "secretPeople";
-                    }
-                    else if (roles.Equals("admin"))
-                    {
-                        action_name = "AdminPage";
-                        controller_name = "Account";
-                    }
-                    else if (roles.Equals("reporter"))
-                    {
-                        action_name = "index";
-                        controller_name = "Reporting";
-                    }
+
                     else
                     {
                         action_name = "index";
                         controller_name = "Account";
                     }
+
                     return RedirectToAction(action_name, controller_name);
 
                 case SignInStatus.LockedOut:

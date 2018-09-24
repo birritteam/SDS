@@ -33,7 +33,7 @@
 <div class="container-fluid" id="">
     @using (Ajax.BeginForm("Create", "people", new AjaxOptions
     {
-        Confirm = "تم أخذ موافقة الشخص المعني على جمع بياناته الشخصية وتم إعلامه أن الهدف من جمع هذه البيانات هو تقديم الخدمة المناسبة له وبأنه سيتم التعامل مع بياناته الشخصية بسرية تامة",
+        // Confirm = "تم أخذ موافقة الشخص المعني على جمع بياناته الشخصية وتم إعلامه أن الهدف من جمع هذه البيانات هو تقديم الخدمة المناسبة له وبأنه سيتم التعامل مع بياناته الشخصية بسرية تامة",
         OnSuccess = "SuccessLoadForPerson",
         OnFailure = "FailureLoadForPerson",
         //UpdateTargetId = "ParentDiv",
@@ -72,13 +72,13 @@
                         </label>
                     </div>
                     @*@Html.RadioButton("position", "H", new { @id = "H" })
-                @Html.Label("زوج", new { @for = "H" })
-                @Html.RadioButton("position", "W", new { @id = "W" })
-                @Html.Label("زوجة", new { @for = "W" })
-                @Html.RadioButton("position", "C", new { @id = "S" })
-                @Html.Label("ابن", new { @for = "S" })
-                @Html.RadioButton("position", "C", new { @id = "D" })
-                @Html.Label("بنت", new { @for = "D" })*@
+                        @Html.Label("زوج", new { @for = "H" })
+                        @Html.RadioButton("position", "W", new { @id = "W" })
+                        @Html.Label("زوجة", new { @for = "W" })
+                        @Html.RadioButton("position", "C", new { @id = "S" })
+                        @Html.Label("ابن", new { @for = "S" })
+                        @Html.RadioButton("position", "C", new { @id = "D" })
+                        @Html.Label("بنت", new { @for = "D" })*@
                 </div>
                 <div class="col-md-1">
                     <input type="number" id="wifeOrder" class="hidden" min="1" max="4" value="1" />
@@ -213,11 +213,11 @@
                 </div>
 
                 @*<div class="col-md-4">
-                <div class="form-group">
-                    <label class="control-label col-md-4">طريقة التعرف على المركز</label>
-                    @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "" })
-                </div>
-            </div>*@
+                        <div class="form-group">
+                            <label class="control-label col-md-4">طريقة التعرف على المركز</label>
+                            @Html.DropDownList("idKnowledgeCenter", null, htmlAttributes: new { @class = "" })
+                        </div>
+                    </div>*@
             </div>
 
 
@@ -232,7 +232,7 @@
 
                 @*<div class="col-md-4">
 
-            </div>*@
+                    </div>*@
                 <div class="col-md-4">
                     <div class="form-group">
                         @Html.LabelFor(model => model.educationstate, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -258,7 +258,7 @@
                 </div>
 
                 @*<div class="col-md-4">
-            </div>*@
+                    </div>*@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label col-md-4" for="previousWorkID">العمل السابق</label>
@@ -333,26 +333,26 @@
 
                         @*<div class="card">
 
-                    </div>*@
+                            </div>*@
                     }
 
 
                 </div>
             </div>
             @*<div class="row">
-        @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
-        @*<h3 class="h4">التقييم</h3>
-        <div class="md-form">
-            @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 , @checked = "checked"})
-            @Html.Label(0 + " %", new { @for = "e" + 0 })
+                @Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label h4" })
+                @*<h3 class="h4">التقييم</h3>
+                <div class="md-form">
+                    @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0 , @checked = "checked"})
+                    @Html.Label(0 + " %", new { @for = "e" + 0 })
 
-            @foreach (int item in ViewBag.evaluationValues)
-        {
-                @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e"+item})
-                @Html.Label(item + " %", new { @for = "e" + item })
-            }
-            @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-        </div>*@
+                    @foreach (int item in ViewBag.evaluationValues)
+                {
+                        @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e"+item})
+                        @Html.Label(item + " %", new { @for = "e" + item })
+                    }
+                    @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+                </div>*@
 
             <hr />
             <div class="row">
@@ -368,31 +368,31 @@
             </div>
             <hr />
             @*<div class="md-form center">
-            @Html.RadioButton("evaluation", "10", new { @id = "e10" })
-            @Html.Label("10 %", new { @for = "e10" })
-            @Html.RadioButton("evaluation", "20", new { @id = "e20" })
-            @Html.Label("20 %", new { @for = "e20" })
-            @Html.RadioButton("evaluation", "30", new { @id = "e30" })
-            @Html.Label("30 %", new { @for = "e30" })
-            @Html.RadioButton("evaluation", "40", new { @id = "e40" })
-            @Html.Label("40 %", new { @for = "e40" })
-            @Html.RadioButton("evaluation", "50", new { @id = "e50" })
-            @Html.Label("50 %", new { @for = "e50" })
-            @Html.RadioButton("evaluation", "60", new { @id = "e60" })
-            @Html.Label("60 %", new { @for = "e60" })
-            @Html.RadioButton("evaluation", "70", new { @id = "e70" })
-            @Html.Label("70 %", new { @for = "e70" })
-            @Html.RadioButton("evaluation", "80", new { @id = "e80" })
-            @Html.Label("80 %", new { @for = "e80" })
-            @Html.RadioButton("evaluation", "90", new { @id = "e90" })
-            @Html.Label("90 %", new { @for = "e90" })
-            @Html.RadioButton("evaluation", "100", new { @id = "e100" })
-            @Html.Label("100 %", new { @for = "e100" })
+                    @Html.RadioButton("evaluation", "10", new { @id = "e10" })
+                    @Html.Label("10 %", new { @for = "e10" })
+                    @Html.RadioButton("evaluation", "20", new { @id = "e20" })
+                    @Html.Label("20 %", new { @for = "e20" })
+                    @Html.RadioButton("evaluation", "30", new { @id = "e30" })
+                    @Html.Label("30 %", new { @for = "e30" })
+                    @Html.RadioButton("evaluation", "40", new { @id = "e40" })
+                    @Html.Label("40 %", new { @for = "e40" })
+                    @Html.RadioButton("evaluation", "50", new { @id = "e50" })
+                    @Html.Label("50 %", new { @for = "e50" })
+                    @Html.RadioButton("evaluation", "60", new { @id = "e60" })
+                    @Html.Label("60 %", new { @for = "e60" })
+                    @Html.RadioButton("evaluation", "70", new { @id = "e70" })
+                    @Html.Label("70 %", new { @for = "e70" })
+                    @Html.RadioButton("evaluation", "80", new { @id = "e80" })
+                    @Html.Label("80 %", new { @for = "e80" })
+                    @Html.RadioButton("evaluation", "90", new { @id = "e90" })
+                    @Html.Label("90 %", new { @for = "e90" })
+                    @Html.RadioButton("evaluation", "100", new { @id = "e100" })
+                    @Html.Label("100 %", new { @for = "e100" })
 
-            @Html.EditorFor(model => model.evaluation, new { htmlAttributes = new { @class = "form-control validate" } })
-        @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
-        @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-        </div>*@
+                    @Html.EditorFor(model => model.evaluation, new { htmlAttributes = new { @class = "form-control validate" } })
+                @Html.LabelFor(model => model.evaluation, htmlAttributes: new { })
+                @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+                </div>*@
             <div class="row">
                 <div class="md-form">
                     @Html.TextAreaFor(model => model.note, new { @type = "text", @id = "note", @class = "md-textarea" })
@@ -402,13 +402,13 @@
             </div>
             @*<div class="row">
 
-            </div>
-            <div class="row col-md-12">
-                <div class="checkbox-inline wow fadeIn">
-                    <input type="checkbox" name="agreement" id="agreement" />
-                    <label for="agreement">المستفيد موافق على منح المعلومات السابقة </label>
                 </div>
-            </div>*@
+                <div class="row col-md-12">
+                    <div class="checkbox-inline wow fadeIn">
+                        <input type="checkbox" name="agreement" id="agreement" />
+                        <label for="agreement">المستفيد موافق على منح المعلومات السابقة </label>
+                    </div>
+                </div>*@
 
 
             <input type="hidden" name="onoffflag" id="onoffflag" value="online" />
@@ -438,14 +438,14 @@
                             @Html.DisplayNameFor(model => model.full_name)
                         </th>
                         @*<th>
-                        @Html.DisplayNameFor(model => model.fname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.lname)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.fathername)
-                    </th>*@
+                                @Html.DisplayNameFor(model => model.fname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.lname)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.fathername)
+                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.mothername)
                         </th>
@@ -472,25 +472,25 @@
                                     @Html.DisplayFor(modelItem => item.mothername)
                                 </td>
                                 @*<td>
-                                @Html.DisplayFor(modelItem => item.fname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.lname)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.fathername)
-                            </td>
+                                        @Html.DisplayFor(modelItem => item.fname)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.lname)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.fathername)
+                                    </td>
 
                                 *@
                                 <td>
                                     @*@{
-                                    var dob = item.birthday.GetValueOrDefault();
-                                    DateTime now = DateTime.Today;
-                                    int age = now.Year - dob.Year;
-                                    if (now < dob.AddYears(age))
-                                    { age--; }
-                                    @Html.DisplayFor(model => age);
-                                }*@
+                                            var dob = item.birthday.GetValueOrDefault();
+                                            DateTime now = DateTime.Today;
+                                            int age = now.Year - dob.Year;
+                                            if (now < dob.AddYears(age))
+                                            { age--; }
+                                            @Html.DisplayFor(model => age);
+                                        }*@
                                     @Html.DisplayFor(modelItem => item.age)
                                 </td>
                                 <td>

@@ -80,7 +80,7 @@
                 </div>
 
                 @*@if (User.IsInRole("mobileTeamReceptionist"))
-            {*@
+                    {*@
 
 
                 <div class="col-md-4">
@@ -114,12 +114,12 @@
                         <div class="col-md-8">
                             @Html.DropDownList("familynature", new SelectList(ViewBag.familynatureValues), htmlAttributes: new { @class = "" })
                             @*<select id="familynature" name="familynature" class="form-control">
-                            <option value="فرد من المجتمع المضيف">فرد من المجتمع المضيف</option>
-                            <option value="نازح داخلي">نازح داخلي</option>
-                            <option value="نازح داخلي عائد">نازح داخلي عائد</option>
-                            <option value="لاجئ عائد إلى سورية">لاجئ عائد إلى سورية</option>
-                            <option value="لاجئ أو طالب لجوء من دولة أخرى">لاجئ أو طالب لجوء من دولة أخرى</option>
-                        </select>*@
+                                    <option value="فرد من المجتمع المضيف">فرد من المجتمع المضيف</option>
+                                    <option value="نازح داخلي">نازح داخلي</option>
+                                    <option value="نازح داخلي عائد">نازح داخلي عائد</option>
+                                    <option value="لاجئ عائد إلى سورية">لاجئ عائد إلى سورية</option>
+                                    <option value="لاجئ أو طالب لجوء من دولة أخرى">لاجئ أو طالب لجوء من دولة أخرى</option>
+                                </select>*@
                         </div>
                     </div>
                 </div>
@@ -145,12 +145,12 @@
 
 
                 @*<div class="col-md-4 hidden" id="lastaddress">
-                <div class="md-form">
-                    @Html.EditorFor(model => model.lastaddress, new { htmlAttributes = new { @class = "form-control validate" } })
-                    @Html.LabelFor(model => model.lastaddress, htmlAttributes: new { })
-                    @Html.ValidationMessageFor(model => model.lastaddress, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
+                        <div class="md-form">
+                            @Html.EditorFor(model => model.lastaddress, new { htmlAttributes = new { @class = "form-control validate" } })
+                            @Html.LabelFor(model => model.lastaddress, htmlAttributes: new { })
+                            @Html.ValidationMessageFor(model => model.lastaddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
             </div>
             <div class="row">
                 <div id="displacementdate" class="col-md-4">
@@ -214,12 +214,12 @@
 
 
             @*<div class="form-group">
-            @Html.LabelFor(model => model.iduser, "iduser", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("iduser", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.iduser, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                    @Html.LabelFor(model => model.iduser, "iduser", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("iduser", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.iduser, "", new { @class = "text-danger" })
+                    </div>
+                </div>*@
 
 
             @*<hr />*@
@@ -239,17 +239,17 @@
             <div class="row">
                 @*@Html.LabelFor(model => model.evaluation, htmlAttributes: new { @class = "control-label" })
 
-            <div class="md-form">
+                    <div class="md-form">
 
-                @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0, @checked = "checked" })
-                @Html.Label(0 + " %", new { @for = "e" + 0 })
-                @foreach (int item in ViewBag.evaluationValues)
-                {
-                    @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e" + item })
-                    @Html.Label(item + " %", new { @for = "e" + item })
-                }
-                @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
-            </div>*@
+                        @Html.RadioButtonFor(model => model.evaluation, 0, new { @id = "e" + 0, @checked = "checked" })
+                        @Html.Label(0 + " %", new { @for = "e" + 0 })
+                        @foreach (int item in ViewBag.evaluationValues)
+                        {
+                            @Html.RadioButtonFor(model => model.evaluation, item, new { @id = "e" + item })
+                            @Html.Label(item + " %", new { @for = "e" + item })
+                        }
+                        @Html.ValidationMessageFor(model => model.evaluation, "", new { @class = "text-danger" })
+                    </div>*@
             </div>
 
             <div class="row">
@@ -261,13 +261,13 @@
             </div>
             @*<div class="row">
 
-        </div>*@
-        @*<div class="row col-md-12">
-            <div class="checkbox-inline wow fadeIn">
-                <input type="checkbox" name="agreement" id="agreement" />
-                <label for="agreement">المستفيد موافق على منح المعلومات السابقة </label>
-            </div>
-        </div>*@
+                </div>*@
+            @*<div class="row col-md-12">
+                    <div class="checkbox-inline wow fadeIn">
+                        <input type="checkbox" name="agreement" id="agreement" />
+                        <label for="agreement">المستفيد موافق على منح المعلومات السابقة </label>
+                    </div>
+                </div>*@
 
             <div class="md-form">
                 <div class="col-md-offset-5 col-md-7">
@@ -285,14 +285,14 @@
 
 @section Scripts {
     @Scripts.Render("~/Scripts/familyFunctions.js", "~/bundles/jqueryval")
-<script>
-    $("form").submit(function (e) {
-        var r = confirm("تم أخذ موافقة الشخص المعني على جمع بياناته الشخصية وتم إعلامه أن الهدف من جمع هذه البيانات هو تقديم الخدمة المناسبة له وبأنه سيتم التعامل مع بياناته الشخصية بسرية تامة");
-        if (r == false) {
-            e.preventDefault();
-        }
-    }
-    );
+    <script>
+    //$("form").submit(function (e) {
+    //    var r = confirm("تم أخذ موافقة الشخص المعني على جمع بياناته الشخصية وتم إعلامه أن الهدف من جمع هذه البيانات هو تقديم الخدمة المناسبة له وبأنه سيتم التعامل مع بياناته الشخصية بسرية تامة");
+    //    if (r == false) {
+    //        e.preventDefault();
+    //    }
+    //}
+    //);
 
     </script>
 }

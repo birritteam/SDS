@@ -45,6 +45,9 @@ namespace SDS_SanadDistributedSystem.viewModel
         public string family_phone1 { get; set; }
         public string family_phone2 { get; set; }
 
+        public string age { get; set; }
+        public string gender { get; set; }
+
         public int? personEevalution { get; set; }
         public int? familyEvalution { get; set; }
 

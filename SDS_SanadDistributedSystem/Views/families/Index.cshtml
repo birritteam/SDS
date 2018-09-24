@@ -9,7 +9,8 @@
     كافة العائلات المسجلة
     @if (User.IsInRole("receptionist"))
     {
-        <small>@Html.ActionLink("   ", "Create", "families", null, new { @class = "btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn", @title = "إضافة عائلة جديدة", target = "_blank" })</small>
+        <small><button data-target="#confirmModal" data-toggle="modal" class="btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn">إضافة عائلة جديدة</button></small>
+        @*<small>@Html.ActionLink("   ", "Create", "families", null, new { @class = "btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn", @title = "إضافة عائلة جديدة", target = "_blank" })</small>*@
         <small>@Html.ActionLink(" ", "Create", "temporals", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus wow fadeIn", @title = "إضافة شخص ببيانات غير مكتملة", target = "_blank" })</small>
     }
 </h2>
@@ -42,7 +43,33 @@
             <input type="submit" value="بحث" class="btn btn-default hidden" />
         </p>
     }*@
-
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">رسالة تأكيد</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @*<div class="btn-group" data-toggle="buttons">
+                        <label class="btn btn-primary">
+                            <input type="radio" name="position" id="confirm-check" autocomplete="off"> <q>تم أخذ موافقة الشخص المعني على جمع بياناته الشخصية وتم إعلامه أن الهدف من جمع هذه البيانات هو تقديم الخدمة المناسبة له وبأنه سيتم التعامل مع بياناته الشخصية بسرية تامة</q>
+                        </label>
+                    </div>*@
+                <div class="checkbox-inline wow fadeIn">
+                    <input type="checkbox" id="agree" />
+                    <label for="agree"><q>تم أخذ موافقة الشخص المعني على جمع بياناته الشخصية وتم إعلامه أن الهدف من جمع هذه البيانات هو تقديم الخدمة المناسبة له وبأنه سيتم التعامل مع بياناته الشخصية بسرية تامة</q></label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @*<button type="button" class="btn btn-secondary" data-dismiss="modal">رفض</button>*@
+                <button id="confirm-button" class="btn btn-primary" role="button">متابعة</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <table class="MyDataTable table table-hover table-striped" id="families">
@@ -162,7 +189,7 @@
                     <td>
                         @if (User.IsInRole("receptionist") || User.IsInRole("cmIOutReachTeam"))
                         {
-                            @Html.ActionLink(" ", "Edit", new { id = item.idfamily }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل" , target = "_blank" })
+                            @Html.ActionLink(" ", "Edit", new { id = item.idfamily }, new { @class = "btn btn-warning btn-rounded fa fa-edit p-1", @title = "تعديل", target = "_blank" })
                         }
                         @Html.ActionLink(" ", "Details", new { id = item.idfamily }, new { @class = "btn btn-primary btn-rounded fa fa-group p-1", @title = "تفاصيل", target = "_blank" })
 
@@ -173,9 +200,9 @@
                         @if (User.IsInRole("receptionist"))
                         {
                             @*@Html.ActionLink("إضافة شخص", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded p-0" })*@
-                            if (item.people.Count < item.personcount)
-                            {
-                                @Html.ActionLink(" ", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded fa fa-user-plus p-1", @title = "إضافة شخص", target = "_blank" })
+                        if (item.people.Count < item.personcount)
+                        {
+                            @Html.ActionLink(" ", "Create", "people", new { id = item.idfamily }, new { @class = "btn btn-default btn-rounded fa fa-user-plus p-1", @title = "إضافة شخص", target = "_blank" })
 
                             }
 
@@ -197,4 +224,19 @@
         <script src="~/Scripts/jquery.dataTables.min.js"></script>
         <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
         <script src="~/Scripts/MyDataTableDesign.js"></script>
+        <script>
+            $("#confirm-button").click(function () {
+                //~/families/Create
+                //
+                //alert($("#agree").is(":checked"));
+                if ($("#agree").is(":checked"))
+                    window.location.href = "/families/Create";
+                else
+                    $("q").css("color", "red");
+            });
+            $('#confirmModal').on('show.bs.modal', function (e) {
+                $("#agree").prop("checked", false);
+                $("q").css("color", "black");
+            })
+        </script>
     }

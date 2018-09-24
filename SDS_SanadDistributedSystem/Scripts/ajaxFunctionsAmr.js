@@ -1168,7 +1168,10 @@ $(document).ready(function () {
 
                         table.row.add(
                         $('<tr></tr>')
-                        .append('<td>' + referal.name + '</td>')
+                     .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
+
                         .append('<td>' + referal.submittingdate + '</td>')
 
                         //.append('<td>' + referal.referaldate + '</td>')
@@ -1374,7 +1377,9 @@ $(document).ready(function () {
 
                         table.row.add(
                         $('<tr></tr>')
-                        .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
                         .append('<td>' + referal.submittingdate + '</td>')
 
                         .append('<td>' + referal.referaldate + '</td>')
@@ -1568,6 +1573,8 @@ $(document).ready(function () {
                     table.row.add(
                     $('<tr></tr>')
                     .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
                     .append('<td>' + referal.submittingdate + '</td>')
 
                     .append('<td>' + referal.referaldate + '</td>')
@@ -1760,7 +1767,9 @@ $(document).ready(function () {
                         }
                         table.row.add(
                         $('<tr></tr>')
-                        .append('<td>' + referal.name + '</td>')
+                      .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
                         .append('<td>' + referal.submittingdate + '</td>')
 
                         .append('<td>' + referal.referaldate + '</td>')
@@ -1963,7 +1972,9 @@ $(document).ready(function () {
                         }
                         table.row.add(
                         $('<tr></tr>')
-                        .append('<td>' + referal.name + '</td>')
+                      .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
                         .append('<td>' + referal.submittingdate + '</td>')
 
                         .append('<td>' + referal.referaldate + '</td>')
@@ -2167,7 +2178,9 @@ $(document).ready(function () {
                         }
                         table.row.add(
                         $('<tr></tr>')
-                        .append('<td>' + referal.name + '</td>')
+                      .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
                         .append('<td>' + referal.submittingdate + '</td>')
 
                         .append('<td>' + referal.referaldate + '</td>')
@@ -2360,7 +2373,9 @@ $(document).ready(function () {
                     }
                     table.row.add(
                     $('<tr></tr>')
-                    .append('<td>' + referal.name + '</td>')
+                     .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
                     .append('<td>' + referal.submittingdate + '</td>')
 
                     .append('<td>' + referal.referaldate + '</td>')
@@ -2556,7 +2571,9 @@ $(document).ready(function () {
                     }
                     table.row.add(
                     $('<tr></tr>')
-                    .append('<td>' + referal.name + '</td>')
+                     .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
                     .append('<td>' + referal.submittingdate + '</td>')
 
                     .append('<td>' + referal.referaldate + '</td>')
@@ -2751,6 +2768,10 @@ $(document).ready(function () {
                     table.row.add(
                     $('<tr></tr>')
                     .append('<td>' + referal.name + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
+                    .append('<td>' + referal.gender + '</td>')
+                    .append('<td>' + referal.age + '</td>')
                     .append('<td>' + referal.submittingdate + '</td>')
 
                     .append('<td>' + referal.referaldate + '</td>')

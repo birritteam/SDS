@@ -117,6 +117,12 @@
                             اسم الشخص
                         </th>
                         <th>
+                            الجنس
+                        </th>
+                        <th>
+                            العمر
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.submittingdate)
                         </th>
                         @*<th>
@@ -180,6 +186,12 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
 
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.age)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.submittingdate)
@@ -387,7 +399,12 @@
                         <th>
                             اسم الشخص
                         </th>
-
+                        <th>
+                            الجنس
+                        </th>
+                        <th>
+                            العمر
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.submittingdate)
                         </th>
@@ -453,6 +470,12 @@
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.age)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.submittingdate)
@@ -577,7 +600,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                    <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
@@ -586,7 +609,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                    <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
@@ -595,7 +618,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
+                                                                    <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
                                                                 }
                                                             </div>
                                                             @*<div class="col-md-3">
@@ -614,7 +637,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                    <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
                                                             @*<div class="col-md-3">
@@ -751,7 +774,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                    <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
@@ -760,7 +783,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                    <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
@@ -769,7 +792,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
+                                                                    <button type="button" value="" title="قيد المتابعة" class=" fa fa-spinner icon-large btn btn-danger ApprovedInprgress"></button>
                                                                 }
                                                             </div>
                                                             @*<div class="col-md-3">
@@ -788,7 +811,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                    <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
                                                             @*<div class="col-md-3">
@@ -831,6 +854,12 @@
                     <tr>
                         <th>
                             اسم الشخص
+                        </th>
+                        <th>
+                            الجنس
+                        </th>
+                        <th>
+                            العمر
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.submittingdate)
@@ -893,6 +922,12 @@
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.age)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.submittingdate)
@@ -1106,7 +1141,12 @@
                         <th>
                             اسم الشخص
                         </th>
-
+                        <th>
+                            الجنس
+                        </th>
+                        <th>
+                            العمر
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.submittingdate)
                         </th>
@@ -1172,6 +1212,12 @@
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.age)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.submittingdate)
@@ -1314,7 +1360,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
+                                                                    <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
@@ -1323,7 +1369,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                    <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
                                                                 }
                                                             </div>
 
@@ -1333,7 +1379,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                    <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
                                                                 }
                                                             </div>
                                                             @*<div class="col-md-3">
@@ -1465,7 +1511,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
+                                                                    <button type="button" value="" title="قبول" class=" fa fa-check-circle icon-large btn btn-danger PendingApproved"></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
@@ -1474,26 +1520,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
-                                                                }
-                                                            </div>
-
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
-                                                                }
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                @using (Html.BeginForm())
-                                                                {
-                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
-                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
-                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                    <button type="button" value="" title="قبول-وصول" class=" fa fa-check-circle icon-large btn btn-danger PendingOutReach "> وصول </button>
                                                                 }
                                                             </div>
 
@@ -1503,7 +1530,7 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                    <button type="button" value="" title="رفض" class=" fa fa-eject icon-large btn btn-danger PendingRejected "></button>
                                                                 }
                                                             </div>
                                                             <div class="col-md-3">
@@ -1512,7 +1539,26 @@
                                                                     <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
                                                                     <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
                                                                     <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
-                                                                            <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
+                                                                    <button type="button" value="" title="خارجي" class=" fa fa-external-link icon-large btn btn-danger PendingExternal "></button>
+                                                                }
+                                                            </div>
+
+                                                            <div class="col-md-3">
+                                                                @using (Html.BeginForm())
+                                                                {
+                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                    <button type="button" value="" title="إغلاق" class=" fa fa-expeditedssl icon-large btn btn-danger closed"></button>
+                                                                }
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                @using (Html.BeginForm())
+                                                                {
+                                                                    <input type="hidden" class="idreferalperson" name="idreferalperson" value="@item.idreferalperson" />
+                                                                    <input type="hidden" class="idcase" name="idcase" value="@item.idcase_FK" />
+                                                                    <input type="hidden" class="idperson" name="idperson" value="@item.idperson_FK" />
+                                                                    <button type="button" value="" title="إغلاق-وصول" class=" fa fa-expeditedssl icon-large btn btn-danger OutReachClosed"> وصول </button>
                                                                 }
                                                             </div>
                                                         </div>
@@ -1547,7 +1593,12 @@
                         <th>
                             اسم الشخص
                         </th>
-
+                        <th>
+                            الجنس
+                        </th>
+                        <th>
+                            العمر
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.submittingdate)
                         </th>
@@ -1613,6 +1664,12 @@
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.age)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.submittingdate)
@@ -1995,6 +2052,12 @@
                             اسم الشخص
                         </th>
                         <th>
+                            الجنس
+                        </th>
+                        <th>
+                            العمر
+                        </th>
+                        <th>
                             @Html.DisplayNameFor(model => model.submittingdate)
                         </th>
                         @*<th>
@@ -2055,6 +2118,12 @@
                             <tr>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.person.fname) @Html.DisplayFor(modelItem => item.person.lname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.gender)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.person.age)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.submittingdate)
