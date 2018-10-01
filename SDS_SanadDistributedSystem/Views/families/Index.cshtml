@@ -9,7 +9,7 @@
     كافة العائلات المسجلة
     @if (User.IsInRole("receptionist"))
     {
-        <small><button data-target="#confirmModal" data-toggle="modal" class="btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn">إضافة عائلة جديدة</button></small>
+        <small><button data-target="#confirmModal" data-toggle="modal" class="btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn" title = "إضافة عائلة جديدة"></button></small>
         @*<small>@Html.ActionLink("   ", "Create", "families", null, new { @class = "btn btn-primary btn-rounded p-2 fa fa-plus-circle wow fadeIn", @title = "إضافة عائلة جديدة", target = "_blank" })</small>*@
         <small>@Html.ActionLink(" ", "Create", "temporals", null, new { @class = "btn btn-default btn-rounded p-2 fa fa-user-plus wow fadeIn", @title = "إضافة شخص ببيانات غير مكتملة", target = "_blank" })</small>
     }
@@ -47,10 +47,11 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">رسالة تأكيد</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                <h5 class="modal-title" id="exampleModalLabel">رسالة تأكيد</h5>
+
             </div>
             <div class="modal-body">
                 @*<div class="btn-group" data-toggle="buttons">
@@ -65,7 +66,7 @@
             </div>
             <div class="modal-footer">
                 @*<button type="button" class="btn btn-secondary" data-dismiss="modal">رفض</button>*@
-                <button id="confirm-button" class="btn btn-primary" role="button">متابعة</button>
+                <button id="confirm-button" class="btn btn-primary btn-rounded" role="button">متابعة</button>
             </div>
         </div>
     </div>
@@ -233,6 +234,7 @@
                     window.location.href = "/families/Create";
                 else
                     $("q").css("color", "red");
+
             });
             $('#confirmModal').on('show.bs.modal', function (e) {
                 $("#agree").prop("checked", false);
