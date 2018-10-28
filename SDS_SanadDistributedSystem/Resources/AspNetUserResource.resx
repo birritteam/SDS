@@ -147,4 +147,7 @@
   <data name="UserName" xml:space="preserve">
     <value>اسم المستخدم</value>
   </data>
+  <data name="ShowName" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
 </root>

@@ -409,7 +409,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, enabled = model.enabled, idcenter_FK = model.idcenter_FK };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, enabled = model.enabled, idcenter_FK = model.idcenter_FK, ShowName = model.ShowName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -451,7 +451,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // GET: /Account/ConfirmEmail
         //        [AllowAnonymous]
-        [Authorize(Roles = "superadmin,admin")]
+        //     [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
             if (userId == null || code == null)
@@ -465,7 +465,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // GET: /Account/ForgotPassword
         //        [AllowAnonymous]
-        [Authorize(Roles = "superadmin,admin")]
+        //   [Authorize(Roles = "superadmin,admin")]
         public ActionResult ForgotPassword()
         {
             return View();
@@ -476,7 +476,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         //        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "superadmin,admin")]
+        //     [Authorize(Roles = "superadmin,admin")]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -521,7 +521,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         // [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "superadmin,admin")]
+        //   [Authorize(Roles = "superadmin,admin")]
 
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
@@ -547,7 +547,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         //
         // GET: /Account/ResetPasswordConfirmation
         //        [AllowAnonymous]
-        [Authorize(Roles = "superadmin,admin")]
+        //     [Authorize(Roles = "superadmin,admin")]
 
         public ActionResult ResetPasswordConfirmation()
         {
@@ -559,7 +559,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         //        [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "superadmin,admin")]
+        //     [Authorize(Roles = "superadmin,admin")]
 
         public ActionResult ExternalLogin(string provider, string returnUrl)
         {

@@ -15,7 +15,6 @@ namespace SDS_SanadDistributedSystem.Models
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
-
     public partial class managelist
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -36,7 +35,7 @@ namespace SDS_SanadDistributedSystem.Models
         public string name { get; set; }
 
         [StringLength(3)]
-        [Required]      
+        [Required]
         [Display(Name = "managelist_flag", ResourceType = typeof(PersonAndFamilyResources))]
         public string flag { get; set; }
 
@@ -44,5 +43,6 @@ namespace SDS_SanadDistributedSystem.Models
         public virtual ICollection<familymanage> familymanages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<personmanage> personmanages { get; set; }
+
     }
 }

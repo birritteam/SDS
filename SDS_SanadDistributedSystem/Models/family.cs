@@ -9,9 +9,9 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
+    using Resources;
     using System;
     using System.Collections.Generic;
-    using Resources;
     using System.ComponentModel.DataAnnotations;
     using System.Web.Mvc;
 
@@ -85,7 +85,7 @@ namespace SDS_SanadDistributedSystem.Models
         [DataType(DataType.Date, ErrorMessage = "’Ì€… «· «—ÌŒ €Ì— ’ÕÌÕ…")]
         [Display(Name = "last_visit_date", ResourceType = typeof(PersonAndFamilyResources))]
         public Nullable<System.DateTime> last_visit_date { get; set; }
-    
+        
         public virtual AspNetUser AspNetUser { get; set; }
         public virtual center center { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

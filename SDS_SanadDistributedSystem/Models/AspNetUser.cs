@@ -22,16 +22,17 @@ namespace SDS_SanadDistributedSystem.Models
         {
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
-            this.referalfamilies = new HashSet<referalfamily>();
-            this.referalpersons = new HashSet<referalperson>();
-            this.AspNetRoles = new HashSet<AspNetRole>();
             this.families = new HashSet<family>();
             this.people = new HashSet<person>();
+            this.referalfamilies = new HashSet<referalfamily>();
             this.referalfamilies1 = new HashSet<referalfamily>();
+            this.referalpersons = new HashSet<referalperson>();
             this.referalpersons1 = new HashSet<referalperson>();
             this.temporals = new HashSet<temporal>();
             this.temporals1 = new HashSet<temporal>();
+            this.AspNetRoles = new HashSet<AspNetRole>();
         }
+
 
         [Display(Name = "Id", ResourceType = typeof(AspNetUserResource))]
         public string Id { get; set; }
@@ -67,30 +68,31 @@ namespace SDS_SanadDistributedSystem.Models
         public string idcenter_FK { get; set; }
         [Display(Name = "enabled", ResourceType = typeof(AspNetUserResource))]
         public bool enabled { get; set; }
-
-
+        [Display(Name = "ShowName", ResourceType = typeof(AspNetUserResource))]
+        public string ShowName { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaim> AspNetUserClaims { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserLogin> AspNetUserLogins { get; set; }
         public virtual center center { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<referalfamily> referalfamilies { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<referalperson> referalpersons { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<family> families { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<person> people { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<referalfamily> referalfamilies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalfamily> referalfamilies1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<referalperson> referalpersons { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<referalperson> referalpersons1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<temporal> temporals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<temporal> temporals1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
     }
 }

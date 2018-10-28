@@ -9,11 +9,11 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
+    using Resources;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using Resources;
 
     public partial class referalperson
     {

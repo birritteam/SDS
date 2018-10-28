@@ -15,10 +15,14 @@
         @*<th>
             @Html.DisplayNameFor(model => model.UserName)
         </th>*@
+
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        @*<th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShowName)
+        </th>    
+    @*<th>
                 @Html.DisplayNameFor(model => model.PasswordHash)
             </th>
             <th>
@@ -67,7 +71,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
             </td>
-            @*<td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowName)
+            </td>
+        
+    @*<td>
                     @Html.DisplayFor(modelItem => item.EmailConfirmed)
                 </td>*@
             @*<td>

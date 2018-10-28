@@ -165,7 +165,9 @@ namespace SDS_SanadDistributedSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             AspNetUser aspNetUser = await db.AspNetUsers.FindAsync(id);
+
             if (aspNetUser == null)
             {
                 return HttpNotFound();
@@ -188,7 +190,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             ViewBag.SelectedRolesId = userRoles;
             ViewBag.NotSelectedRolesId = allRoles;//db.AspNetRoles;
             ViewBag.enableOptions = aspNetUser.enabled;
-
+            //   ViewBag.ShowName = aspNetUser.ShowName;
             return View(aspNetUser);
         }
 
@@ -198,7 +200,7 @@ namespace SDS_SanadDistributedSystem.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "superadmin,admin")]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,UserName,Email,PasswordHash,PhoneNumber,idcenter_FK,enabled")] AspNetUser aspNetUser, string[] currentSelectedRolesID)//PasswordHash,
+        public async Task<ActionResult> Edit([Bind(Include = "Id,UserName,ShowName,Email,PasswordHash,PhoneNumber,idcenter_FK,enabled")] AspNetUser aspNetUser, string[] currentSelectedRolesID)//PasswordHash,
         {
             if (ModelState.IsValid)
             {
@@ -229,8 +231,8 @@ namespace SDS_SanadDistributedSystem.Controllers
                     }
                 //(aspNetUser, aspNetUser.PasswordHash);
                 ApplicationUserManager usrMngr = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-      //          IPasswordHasher hash = usrMngr.PasswordHasher;//(aspNetUser, aspNetUser.PasswordHash);
-      //          aspNetUser.PasswordHash = hash.HashPassword(aspNetUser.PasswordHash);
+                //          IPasswordHasher hash = usrMngr.PasswordHasher;//(aspNetUser, aspNetUser.PasswordHash);
+                //          aspNetUser.PasswordHash = hash.HashPassword(aspNetUser.PasswordHash);
                 // IdentityResult i =  await usrMngr.UpdateSecurityStampAsync(aspNetUser.Id);
                 aspNetUser.SecurityStamp = Guid.NewGuid().ToString();//usrMngr.GetSecurityStamp(aspNetUser.Id);
                 await db.SaveChangesAsync();

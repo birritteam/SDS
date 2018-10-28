@@ -124,6 +124,15 @@ namespace SDS_SanadDistributedSystem.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to المستخدم.
+        /// </summary>
+        public static string ShowName {
+            get {
+                return ResourceManager.GetString("ShowName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to اسم المستخدم.
         /// </summary>
         public static string UserName {

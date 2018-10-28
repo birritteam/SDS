@@ -141,4 +141,7 @@
   <data name="Roles" xml:space="preserve">
     <value>صلاحيات المستخدم</value>
   </data>
+  <data name="ShowName" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
 </root>

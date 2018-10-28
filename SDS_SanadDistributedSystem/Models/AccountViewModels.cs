@@ -110,6 +110,10 @@ namespace SDS_SanadDistributedSystem.Models
         [Required]
         [Display(Name = "enabled", ResourceType = typeof(RegisterViewModelResource))]
         public virtual bool enabled { get; set; }
+
+        [Display(Name = "ShowName", ResourceType = typeof(RegisterViewModelResource))]
+        public virtual string ShowName { get; set; }
+
     }
 
     public class ResetPasswordViewModel

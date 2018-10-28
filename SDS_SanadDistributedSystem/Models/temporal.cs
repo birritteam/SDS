@@ -9,11 +9,12 @@
 
 namespace SDS_SanadDistributedSystem.Models
 {
-    using System;
     using Resources;
-
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class temporal
     {
         [Display(Name = "person_id", ResourceType = typeof(PersonAndFamilyResources))]

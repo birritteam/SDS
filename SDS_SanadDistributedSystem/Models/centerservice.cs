@@ -10,7 +10,6 @@
 namespace SDS_SanadDistributedSystem.Models
 {
     using customValidation;
-    using Microsoft.AspNet.Identity;
     using Resources;
     using System;
     using System.Collections.Generic;
@@ -42,7 +41,5 @@ namespace SDS_SanadDistributedSystem.Models
 
         public virtual center center { get; set; }
         public virtual service service { get; set; }
-
-
     }
 }

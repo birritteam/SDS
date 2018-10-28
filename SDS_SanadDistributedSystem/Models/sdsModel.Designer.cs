@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Nawzat\Source\Repos\SDS\SDS_SanadDistributedSystem\Models\sdsModel.edmx'. 
+﻿// T4 code generation is enabled for model 'G:\Birr Projects\SDS\SDS 27-10-2018\SDS-master\SDS\SDS_SanadDistributedSystem\Models\sdsModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

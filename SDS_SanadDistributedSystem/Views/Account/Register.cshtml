@@ -40,6 +40,13 @@
                 </div>
             </div>
             <div class="form-group">
+                @Html.LabelFor(m => m.ShowName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.ShowName, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ShowName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
                 @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                 <div class="col-md-10">
                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })

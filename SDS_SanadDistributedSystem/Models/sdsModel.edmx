@@ -60,6 +60,7 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" />
           <Property Name="enabled" Type="bit" Nullable="false" />
+          <Property Name="ShowName" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="cases">
           <Key>
@@ -100,14 +101,14 @@
             <PropertyRef Name="idfamily" />
           </Key>
           <Property Name="idfamily" Type="int" Nullable="false" />
-          <Property Name="familynature" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="familynature" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="personcount" Type="int" />
           <Property Name="lastaddress_details" Type="varchar" MaxLength="100" />
           <Property Name="currentaddress_details" Type="varchar" MaxLength="100" />
           <Property Name="displacementdate" Type="date" />
-          <Property Name="phone1" Type="nvarchar" MaxLength="50" />
-          <Property Name="phone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone1" Type="varchar" MaxLength="15" />
+          <Property Name="phone2" Type="varchar" MaxLength="15" />
           <Property Name="note" Type="text" />
           <Property Name="iduser" Type="nvarchar" MaxLength="128" />
           <Property Name="phone1owner" Type="nvarchar" MaxLength="100" />
@@ -116,10 +117,10 @@
           <Property Name="formnumber" Type="int" />
           <Property Name="idcenter_FK" Type="varchar" MaxLength="5" />
           <Property Name="serial_number" Type="varchar" MaxLength="17" StoreGeneratedPattern="Computed" Nullable="false" />
-          <Property Name="family_book_number" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="family_book_number" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="family_head" Type="varchar" MaxLength="50" />
           <Property Name="sector" Type="nvarchar" MaxLength="20" />
-          <Property Name="is_visited" Type="bit" />
+          <Property Name="is_visited" Type="bit" Nullable="false" />
           <Property Name="last_visit_date" Type="date" />
         </EntityType>
         <EntityType Name="familymanage">
@@ -1133,6 +1134,7 @@
           <NavigationProperty Name="temporals" Relationship="sds_dbModel.FK_temporal_AspNetUsers" FromRole="AspNetUser" ToRole="temporal" />
           <NavigationProperty Name="temporals1" Relationship="sds_dbModel.FK_temporal_AspNetUsers1" FromRole="AspNetUser" ToRole="temporal" />
           <NavigationProperty Name="AspNetRoles" Relationship="sds_dbModel.AspNetUserRoles" FromRole="AspNetUser" ToRole="AspNetRole" />
+          <Property Name="ShowName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="case">
           <Key>
@@ -1188,14 +1190,14 @@
             <PropertyRef Name="idfamily" />
           </Key>
           <Property Name="idfamily" Type="Int32" Nullable="false" />
-          <Property Name="familynature" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="familynature" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="personcount" Type="Int32" />
           <Property Name="lastaddress_details" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="currentaddress_details" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="displacementdate" Type="DateTime" Precision="0" />
-          <Property Name="phone1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="phone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="note" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="iduser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="phone1owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -1204,10 +1206,10 @@
           <Property Name="formnumber" Type="Int32" />
           <Property Name="idcenter_FK" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="serial_number" Type="String" Nullable="false" MaxLength="17" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="family_book_number" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="family_book_number" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="family_head" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="sector" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="is_visited" Type="Boolean" />
+          <Property Name="is_visited" Type="Boolean" Nullable="false" />
           <Property Name="last_visit_date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="AspNetUser" Relationship="sds_dbModel.FK_family_AspNetUsers" FromRole="family" ToRole="AspNetUser" />
           <NavigationProperty Name="center" Relationship="sds_dbModel.FK_family_center" FromRole="family" ToRole="center" />
@@ -1883,6 +1885,7 @@
           <EntitySetMapping Name="AspNetUsers">
             <EntityTypeMapping TypeName="sds_dbModel.AspNetUser">
               <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="ShowName" ColumnName="ShowName" />
                 <ScalarProperty Name="enabled" ColumnName="enabled" />
                 <ScalarProperty Name="idcenter_FK" ColumnName="idcenter_FK" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
