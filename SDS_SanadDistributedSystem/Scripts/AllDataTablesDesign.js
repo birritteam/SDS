@@ -264,3 +264,102 @@ $(document).ready(function () {
     //    }
     //})
 });
+
+$(document).ready(function () {
+    var table = $('.All2').DataTable({
+        dom: "<'row'<'col-md-6'f><'col-md-3'l><'col-md-3'B>>" +
+             "<'row'<'col-md-12'th>>" +
+               "<'row'<'col-md-12'tr>>" +
+             "<'row'<'col-md-7'p><'col-md-5'i>>",
+
+        buttons: [{
+            extend: 'print',
+            exportOptions: {
+                columns: ':visible'
+            },
+            text: "طباعة <i class='fa fa-print'></i>",
+            key: {
+                key: "p",
+                altkey: true
+            },
+        },
+        {
+            extend: 'copy',
+            text: "نسخ <i class='fa fa fa-copy'></i>",
+            key: {
+                key: "c",
+                altkey: true
+            }
+        }, {
+            extend: 'excel',
+            exportOptions: {
+                columns: ':visible'
+            },
+            text: "تصدير إلى Excel <i class='fa fa fa-file-excel-o'></i>",
+            key: {
+                key: "e",
+                altkey: true
+            }
+        }
+        //{
+        //    extend: 'pdf',
+        //    text: "تصدير إلى PDF <i class='fa fa fa-file-pdf-o'></i>"
+        //}
+        ],
+        "sScrollX": "100%",
+
+
+
+        "lengthMenu": [[25, 50, 75, 100, -1], [25, 50, 75, 100, "الكل"]],
+        // "columnDefs": [
+        ////{ "targets": [0], "visible": false }
+        // ],
+        language: {
+
+            "decimal": "",
+            "emptyTable": "لا يوجد أي بيانات لعرضها ضمن الجدول",
+            "info": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مُدخلات",
+            "infoEmpty": "إظهار 0 إلى 0 من أصل 0 مُدخلات",
+            "infoFiltered": "(تم البحث في   _MAX_  عناصر )",
+            "infoPostFix": "",
+            "thousands": ",",
+            "lengthMenu": "إظهار _MENU_ سجل",
+            "loadingRecords": "... جارٍ التحميل",
+            "processing": "... جارٍ المعالجة",
+            "search": " ابحث: ",
+            "zeroRecords": "لا يوجد أي تطابق من السجلات الموجودة",
+            "paginate": {
+                "first": "الأول",
+                "last": "الأخير",
+                "next": "التالي",
+                "previous": "السابق"
+            },
+            //      "columnDefs": [
+            //{ "width": "10px", "targets": 0 },
+            //{ "width": "40px", "targets": 1 },
+            //{ "width": "100px", "targets": 2 },
+            //{ "width": "70px", "targets": 3 },
+            //{ "width": "120px", "targets": 4 },
+            //{ "width": "440px", "targets": 5 },
+            //   { "width": "120px", "targets": 6 }, { "width": "100px", "targets": 7 }, { "width": "100px", "targets": 8 }, { "width": "100px", "targets": 9 },
+            //      ],
+            //      "columnDefs": [
+            //{ "width": "120px", "targets": 10 },
+            //      ],
+            select: {
+
+                rows: {
+                    _: "  %d أسطر تم تحديدها",
+                    0: "  انقر لتحديد سطر",
+                    1: "  سطر واحد محدد",
+                }
+            },
+
+            //"url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Arabic.json",
+
+        },
+
+        select: false
+    });
+
+});

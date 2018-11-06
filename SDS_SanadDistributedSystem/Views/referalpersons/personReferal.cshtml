@@ -78,6 +78,16 @@
                                     </div>
                                 </div>
 
+                               
+
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        @Html.DropDownList("services", null, htmlAttributes: new { @class = "form-control", @onchange = "FillRecivers()" })
+                                        @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.referalreicver_FK, htmlAttributes: new { @class = "control-label col-md-4" })
@@ -88,13 +98,6 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.idservice_FK, htmlAttributes: new { @class = "control-label col-md-4" })
-                                        @Html.DropDownList("services", null, htmlAttributes: new { @class = "form-control", @onchange = "FillRecivers()" })
-                                        @Html.ValidationMessageFor(model => model.idservice_FK, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
                             </div>
                             <div class="row col-md-12">
                                 <div class="col-md-2"></div>

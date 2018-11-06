@@ -669,7 +669,7 @@ pre { display: block; padding: 9.5px; margin: 0 0 10px; font-size: 13px; line-he
 
 table { background-color: transparent; }
 caption { padding-top: 8px; padding-bottom: 8px; color: #777; text-align: right; }
-th { text-align: right; }
+th { text-align: center; }
 .table { width: 100%; max-width: 100%; margin-bottom: 20px; }
  .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th { padding: 8px; line-height: 1.42857143; vertical-align: top; border-top: 1px solid #ddd; }
  .table > thead > tr > th { vertical-align: bottom; border-bottom: 2px solid #ddd; }

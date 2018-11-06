@@ -136,6 +136,7 @@ namespace SDS_SanadDistributedSystem.Controllers
 
                     string action_name = "";
                     string controller_name = "";
+                    Session["UserName"] = login_user.First().ShowName;
 
                     if (roles.Count > 0)
                     {

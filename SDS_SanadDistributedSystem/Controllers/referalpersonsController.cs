@@ -570,7 +570,7 @@ namespace SDS_SanadDistributedSystem.Controllers
             rps.personEevalution = rp.person.evaluation;
             rps.familyEvalution = rp.person.family.evaluation;
 
-            rps.referalsender_FK = db.AspNetUsers.Find(rp.referalsender_FK).Email;
+            rps.referalsender_FK = db.AspNetUsers.Find(rp.referalsender_FK).ShowName;
 
             return rps;
 
@@ -1002,7 +1002,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                     UserViewModel uvm = new UserViewModel();
                     uvm.Id = u.Id;
                     uvm.Email = u.Email;
-                    uvm.UserName = u.UserName + "-" + u.center.name;
+                    uvm.UserName = u.ShowName + "-" + u.center.name;
 
                     user_list.Add(uvm);
                 }
@@ -1062,7 +1062,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 UserViewModel uvm = new UserViewModel();
                 uvm.Id = u.Id;
                 uvm.Email = u.Email;
-                uvm.UserName = u.UserName + "-" + u.center.name;
+                uvm.UserName = u.ShowName + "-" + u.center.name;
 
                 user_list.Add(uvm);
             }
@@ -1137,7 +1137,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 rps.personEevalution = r.person.evaluation;
                 rps.familyEvalution = r.person.family.evaluation;
 
-                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
+                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).ShowName;
 
                 RPSearchViewModels.Add(rps);
             }
@@ -1205,7 +1205,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 rps.personEevalution = r.person.evaluation;
                 rps.familyEvalution = r.person.family.evaluation;
 
-                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
+                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).ShowName;
 
                 RPSearchViewModels.Add(rps);
             }
@@ -1269,7 +1269,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 rps.personEevalution = r.person.evaluation;
                 rps.familyEvalution = r.person.family.evaluation;
 
-                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
+                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).ShowName;
 
                 RPSearchViewModels.Add(rps);
             }
@@ -1337,7 +1337,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 rps.personEevalution = r.person.evaluation;
                 rps.familyEvalution = r.person.family.evaluation;
 
-                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).Email;
+                rps.referalsender_FK = db.AspNetUsers.Find(r.referalsender_FK).ShowName;
 
                 RPSearchViewModels.Add(rps);
             }
@@ -1472,7 +1472,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 IEnumerable<SelectListItem> items = recivers.Select(c => new SelectListItem
                 {
                     Value = c.Id,
-                    Text = c.UserName + "-" + c.center.name
+                    Text = c.ShowName + "-" + c.center.name
 
                 });
                 //  ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");
@@ -1562,7 +1562,7 @@ namespace SDS_SanadDistributedSystem.Controllers
                 IEnumerable<SelectListItem> items = recivers.Select(c => new SelectListItem
                 {
                     Value = c.Id,
-                    Text = c.UserName + "-" + c.center.name
+                    Text = c.ShowName + "-" + c.center.name
 
                 });
                 //  ViewBag.referalReciver_FK = new SelectList(db.AspNetUsers.Where(u => u.AspNetRoles.Any(r => r.Id == first_service_firstcase.idrole_FK) && u.idcenter_FK == user.idcenter_FK), "Id", "UserName");

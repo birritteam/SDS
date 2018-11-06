@@ -10,7 +10,7 @@
                 <li class="collapsible-header waves-effect arrow-r">
 
                     @*@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-                    <a href="/sds/Manage/Index" class="waves-effect"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-user-circle fa-5x" style="color:white"></i> مرحباً <span id="loginusername">@User.Identity.GetUserName()</span></a>
+                    <a href="#" class="waves-effect"> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-user-circle fa-5x" style="color:white"></i> مرحباً <span id="loginusername">@HttpContext.Current.Session["UserName"]</span></a>
 
                 </li>
 
