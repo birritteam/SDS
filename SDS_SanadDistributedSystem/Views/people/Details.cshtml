@@ -221,8 +221,8 @@ else if (User.IsInRole("caseManager"))
                         <hr />
                         <div class="row">
                             <div class="col-md-6">
-                                @Html.LabelFor(model => model.serial_number)
-                                @Html.DisplayFor(model => model.serial_number)
+                                <label>رقم استمارة العائلة</label>
+                                @Html.DisplayFor(model => model.family.serial_number)
                             </div>
 
 

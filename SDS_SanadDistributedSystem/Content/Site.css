@@ -1,4 +1,4 @@
-﻿/*@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+/*@import url(http://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
 @import url(//fonts.googleapis.com/earlyaccess/notokufiarabic.css);
 @import url('https://fonts.googleapis.com/css?family=Cairo');
 @import url('https://fonts.googleapis.com/css?family=Dosis');*/
@@ -40,8 +40,7 @@
 }
 
 [type=checkbox]:checked + label:before {
-   
-    right: 5px;
+   right: 10px;
 }
 
 
