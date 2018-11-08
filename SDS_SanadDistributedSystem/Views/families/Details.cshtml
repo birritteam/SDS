@@ -136,6 +136,11 @@ else if (User.IsInRole("caseManager"))
                                 @Html.LabelFor(model => model.evaluation)
                                 @Html.DisplayFor(model => model.evaluation)
                             </div>
+                            <div class=" col-md-12">
+                                <h5 class="card-title"> <i class="fa fa-user" style="color:#ff8800"></i>   المسؤول عن التسجيل</h5>
+                                <hr />
+                                @Html.DisplayFor(model => model.AspNetUser.ShowName)
+                            </div>
                         </div>
                         <div class="col-md-4">
                             <div class="col-md-12">
@@ -160,8 +165,9 @@ else if (User.IsInRole("caseManager"))
                                         @Html.DisplayFor(model => model.phone2owner)
                                     </div>
                                 }
-
+                                
                             </div>
+                            
                             <div class="row">
                                 <div class="col-md-12">
 
